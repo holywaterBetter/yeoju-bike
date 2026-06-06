@@ -1,0 +1,483 @@
+.page {
+  position: relative;
+  width: 1440px;
+  height: 8472px;
+  overflow: hidden;
+  background: #fff;
+  color: #000;
+  font-family: "Nunito Sans", "Figtree", "Noto Sans KR", Arial, sans-serif;
+}
+
+.page * {
+  box-sizing: border-box;
+}
+
+.page p,
+.page h1,
+.page h2,
+.page h3 {
+  margin: 0;
+}
+
+.blurOne,
+.blurTwo,
+.blurThree,
+.blurFour,
+.blurFive {
+  position: absolute;
+  border-radius: 233.5px;
+  filter: blur(150px);
+  pointer-events: none;
+}
+
+.blurOne {
+  left: 920px;
+  top: 2643px;
+  width: 600px;
+  height: 653px;
+  transform: rotate(-125.63deg) scaleY(-1);
+  background: linear-gradient(180deg, rgba(84, 84, 212, 0.2), rgba(84, 84, 212, 0.08));
+}
+
+.blurTwo {
+  left: 360px;
+  top: 161px;
+  width: 467px;
+  height: 1399px;
+  transform: rotate(65.71deg);
+  background: linear-gradient(180deg, rgba(251, 168, 28, 0.11), rgba(224, 86, 136, 0.06));
+}
+
+.blurThree {
+  left: -552px;
+  top: 1930px;
+  width: 467px;
+  height: 1399px;
+  transform: rotate(65.71deg);
+  background: linear-gradient(180deg, rgba(251, 168, 28, 0.11), rgba(224, 86, 136, 0.06));
+}
+
+.blurFour {
+  left: -685px;
+  top: 1759px;
+  width: 860px;
+  height: 2577px;
+  transform: rotate(65.71deg);
+  background: linear-gradient(180deg, rgba(251, 168, 28, 0.05), rgba(224, 86, 136, 0.02));
+}
+
+.blurFive {
+  left: -452px;
+  top: 184px;
+  width: 467px;
+  height: 1234px;
+  transform: rotate(-54.37deg);
+  background: linear-gradient(180deg, rgba(84, 84, 212, 0.27), rgba(84, 84, 212, 0.11));
+}
+
+.logo {
+  position: absolute;
+  left: 120px;
+  top: 36.58px;
+  width: 78.67px;
+  height: 54.42px;
+  object-fit: cover;
+}
+
+.nav {
+  position: absolute;
+  left: 1026px;
+  top: 50px;
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  gap: 40px;
+  font-size: 18px;
+  line-height: normal;
+  white-space: nowrap;
+}
+
+.nav a {
+  color: rgba(0, 0, 0, 0.7);
+  font-weight: 400;
+  text-decoration: none;
+  font-variation-settings: "YTLC" 500, "wdth" 100;
+}
+
+.nav .activeNav {
+  color: #030303;
+  font-family: "Figtree", "Nunito Sans", "Noto Sans KR", Arial, sans-serif;
+  font-weight: 800;
+  letter-spacing: -0.5002px;
+}
+
+.contentStack {
+  position: absolute;
+  left: 0;
+  top: 264px;
+  display: flex;
+  width: 1440px;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 240px;
+  padding-bottom: 100px;
+}
+
+.tourSection {
+  display: flex;
+  width: 1440px;
+  flex-direction: column;
+  align-items: center;
+  gap: 42px;
+  padding: 0 120px;
+}
+
+.sectionIntro {
+  display: flex;
+  width: 1200px;
+  flex-direction: column;
+  align-items: center;
+  gap: 80px;
+}
+
+.titleGroup {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 36px;
+}
+
+.sectionTitle {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  font-family: "Figtree", "Nunito Sans", "Noto Sans KR", Arial, sans-serif;
+  font-size: 60px;
+  font-weight: 800;
+  line-height: 84px;
+  text-align: center;
+  word-break: keep-all;
+}
+
+.reserveButton {
+  display: flex;
+  width: 233px;
+  height: 64.625px;
+  align-items: center;
+  justify-content: center;
+  border-radius: 5px;
+  background: #52a6ff;
+  color: #fff;
+  font-size: 21px;
+  font-weight: 700;
+  line-height: normal;
+  text-align: center;
+  text-decoration: none;
+  font-variation-settings: "YTLC" 500, "wdth" 100;
+}
+
+.copyGroup {
+  display: flex;
+  width: 1200px;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 60px;
+  color: rgba(0, 0, 0, 0.7);
+  text-align: center;
+  letter-spacing: -0.6565px;
+}
+
+.summaryCopy {
+  display: flex;
+  width: 100%;
+  flex-direction: column;
+  align-items: center;
+  gap: 10px;
+}
+
+.summaryCopy h2,
+.infoColumn h3 {
+  width: 100%;
+  color: rgba(0, 0, 0, 0.7);
+  font-family: "Figtree", "Nunito Sans", "Noto Sans KR", Arial, sans-serif;
+  font-size: 30px;
+  font-weight: 600;
+  line-height: 50px;
+}
+
+.summaryCopy p,
+.infoColumn p {
+  width: 100%;
+  color: rgba(0, 0, 0, 0.7);
+  font-size: 21px;
+  font-weight: 400;
+  line-height: 39px;
+  font-variation-settings: "YTLC" 500, "wdth" 100;
+}
+
+.infoRow {
+  display: flex;
+  width: 100%;
+  align-items: flex-start;
+  justify-content: space-between;
+}
+
+.infoColumn {
+  display: flex;
+  width: 580px;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 10px;
+  text-align: left;
+}
+
+.heroClip {
+  position: relative;
+  width: 1200px;
+  overflow: hidden;
+}
+
+.cropImage {
+  position: absolute;
+  max-width: none;
+  object-fit: cover;
+  pointer-events: none;
+}
+
+.gallery {
+  display: flex;
+  width: 1204px;
+  height: 324px;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.galleryLarge,
+.gallerySmall {
+  position: relative;
+  height: 324px;
+  overflow: hidden;
+}
+
+.galleryLarge {
+  width: 600px;
+}
+
+.gallerySmall {
+  width: 560px;
+}
+
+.mapRoot {
+  position: absolute;
+  left: 0;
+  top: -10.75px;
+  width: 1200px;
+  height: 758.982px;
+}
+
+.mapBase {
+  position: absolute;
+  left: 0;
+  top: 0;
+  width: 1200px;
+  height: 758.982px;
+  overflow: hidden;
+  pointer-events: none;
+}
+
+.mapBase img {
+  position: absolute;
+  left: -4.19%;
+  top: -22.01%;
+  width: 108.38%;
+  height: 128.52%;
+  max-width: none;
+}
+
+.mapRoutes {
+  position: absolute;
+  left: 0;
+  top: 0;
+  width: 1200px;
+  height: 758.982px;
+}
+
+.bleedAsset,
+.bleedBox {
+  position: absolute;
+}
+
+.bleedBox img {
+  display: block;
+  width: 100%;
+  height: 100%;
+  max-width: none;
+}
+
+.startPin {
+  position: absolute;
+  left: 661px;
+  top: 402px;
+  width: 60.18px;
+  height: 87.23px;
+}
+
+.pinShape {
+  position: absolute;
+  inset: 0;
+  width: 60.18px;
+  height: 87.23px;
+  max-width: none;
+}
+
+.pinCircle {
+  position: absolute;
+  left: 9.94px;
+  top: 9.94px;
+  width: 40.304px;
+  height: 40.304px;
+  max-width: none;
+}
+
+.startPin span {
+  position: absolute;
+  left: 29.42px;
+  top: 11.36px;
+  transform: translateX(-50%);
+  color: #6200ff;
+  font-family: "Figtree", "Nunito Sans", "Noto Sans KR", Arial, sans-serif;
+  font-size: 16px;
+  font-weight: 600;
+  line-height: 39px;
+  letter-spacing: -0.6565px;
+  white-space: nowrap;
+}
+
+.giftSection {
+  display: flex;
+  width: 1440px;
+  flex-direction: column;
+  align-items: center;
+  gap: 68px;
+  padding: 0 120px;
+}
+
+.giftHeading {
+  display: flex;
+  width: 705px;
+  flex-direction: column;
+  align-items: center;
+  gap: 14px;
+  word-break: keep-all;
+}
+
+.giftHeading h2 {
+  width: 705px;
+  font-family: "Figtree", "Nunito Sans", "Noto Sans KR", Arial, sans-serif;
+  font-size: 60px;
+  font-weight: 800;
+  line-height: 84px;
+}
+
+.giftHeading p {
+  width: 705px;
+  color: rgba(0, 0, 0, 0.7);
+  font-family: "Figtree", "Nunito Sans", "Noto Sans KR", Arial, sans-serif;
+  font-size: 21px;
+  font-weight: 600;
+  line-height: 39px;
+  text-align: center;
+  letter-spacing: -0.6565px;
+}
+
+.giftGrid {
+  display: grid;
+  width: 1200px;
+  height: 900px;
+  grid-template-columns: repeat(3, 384px);
+  grid-template-rows: repeat(3, 300px);
+  column-gap: 16px;
+  row-gap: 0;
+  justify-content: center;
+}
+
+.giftCard {
+  display: flex;
+  width: 384px;
+  height: 300px;
+  flex-direction: column;
+  align-items: center;
+  padding-top: 48px;
+  text-align: center;
+}
+
+.giftIcon {
+  position: relative;
+  width: 69px;
+  height: 69px;
+  margin-bottom: 20px;
+}
+
+.iconImage,
+.iconStack,
+.iconOval {
+  display: block;
+  width: 69px;
+  height: 69px;
+}
+
+.iconImage,
+.iconOval,
+.keyringIcon,
+.cameraIcon,
+.penIcon {
+  position: absolute;
+  max-width: none;
+}
+
+.iconStack {
+  position: relative;
+}
+
+.keyringIcon {
+  left: 21px;
+  top: 11.5px;
+  width: 30.871px;
+  height: 43.282px;
+  transform: rotate(11.85deg);
+}
+
+.cameraIcon {
+  left: 20px;
+  top: 22.5px;
+  width: 29px;
+  height: 22px;
+}
+
+.penIcon {
+  left: 22.5px;
+  top: 15.7px;
+  width: 22.222px;
+  height: 38.528px;
+  transform: rotate(15deg);
+}
+
+.giftCard h3 {
+  width: 299px;
+  margin-bottom: 20px;
+  font-size: 28px;
+  font-weight: 600;
+  line-height: normal;
+  letter-spacing: -0.7503px;
+  font-variation-settings: "YTLC" 500, "wdth" 100;
+}
+
+.giftCard p {
+  width: 299px;
+  color: rgba(0, 0, 0, 0.7);
+  font-size: 20px;
+  font-weight: 400;
+  line-height: 28px;
+  letter-spacing: -0.5002px;
+  font-variation-settings: "YTLC" 500, "wdth" 100;
+}
