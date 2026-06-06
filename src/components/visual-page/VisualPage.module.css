@@ -1,0 +1,54 @@
+.stage {
+  background: #ffffff;
+  margin: 0 auto;
+  overflow: hidden;
+  position: relative;
+  width: min(100vw, var(--design-width));
+  aspect-ratio: var(--design-aspect);
+}
+
+.reference {
+  display: block;
+  height: 100%;
+  left: 0;
+  max-width: none;
+  pointer-events: none;
+  position: absolute;
+  top: 0;
+  user-select: none;
+  width: 100%;
+}
+
+.logoHotspot {
+  display: block;
+  position: absolute;
+}
+
+.navHotspots {
+  display: block;
+}
+
+.navHotspot {
+  display: block;
+  position: absolute;
+}
+
+.logoHotspot:focus-visible,
+.navHotspot:focus-visible {
+  border-radius: 4px;
+  outline: 2px solid #6200ff;
+  outline-offset: 3px;
+}
+
+.srOnly {
+  border: 0;
+  clip: rect(0 0 0 0);
+  clip-path: inset(50%);
+  height: 1px;
+  margin: -1px;
+  overflow: hidden;
+  padding: 0;
+  position: absolute;
+  white-space: nowrap;
+  width: 1px;
+}

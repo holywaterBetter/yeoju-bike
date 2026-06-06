@@ -1,0 +1,535 @@
+.page {
+  position: relative;
+  width: 1440px;
+  height: 2415px;
+  overflow: hidden;
+  background: #ffffff;
+  color: #000000;
+  font-family: "Figtree", "Nunito Sans", "Noto Sans KR", "Apple SD Gothic Neo",
+    sans-serif;
+}
+
+.page *,
+.page *::before,
+.page *::after {
+  box-sizing: border-box;
+}
+
+.page h1,
+.page h2,
+.page h3,
+.page p {
+  margin: 0;
+}
+
+.page img {
+  display: block;
+  max-width: none;
+}
+
+.background {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+}
+
+.glow {
+  position: absolute;
+  border-radius: 233.5px;
+  filter: blur(150px);
+  pointer-events: none;
+}
+
+.orangeGlowTop {
+  left: 426px;
+  top: 161px;
+  width: 467px;
+  height: 1399.298px;
+  background: linear-gradient(
+    180deg,
+    rgba(251, 168, 28, 0.11) 0%,
+    rgba(224, 86, 136, 0.06) 100%
+  );
+  transform: rotate(65.71deg);
+}
+
+.orangeGlowMiddle {
+  left: -552px;
+  top: 1930px;
+  width: 467px;
+  height: 1399.298px;
+  background: linear-gradient(
+    180deg,
+    rgba(251, 168, 28, 0.11) 0%,
+    rgba(224, 86, 136, 0.06) 100%
+  );
+  transform: rotate(65.71deg);
+}
+
+.orangeGlowBottom {
+  left: -685px;
+  top: 1759px;
+  width: 860.002px;
+  height: 2576.87px;
+  background: linear-gradient(
+    180deg,
+    rgba(251, 168, 28, 0.05) 0%,
+    rgba(224, 86, 136, 0.02) 100%
+  );
+  transform: rotate(65.71deg);
+}
+
+.purpleGlowTop {
+  left: -452px;
+  top: 184px;
+  width: 467px;
+  height: 1233.793px;
+  background: linear-gradient(
+    180deg,
+    rgba(84, 84, 212, 0.27) 0%,
+    rgba(84, 84, 212, 0.11) 100%
+  );
+  transform: rotate(-54.37deg);
+}
+
+.purpleGlowLeft {
+  left: -312px;
+  top: 1670px;
+  width: 467px;
+  height: 508.495px;
+  background: linear-gradient(
+    180deg,
+    rgba(84, 84, 212, 0.21) 0%,
+    rgba(84, 84, 212, 0.09) 100%
+  );
+  transform: rotate(-54.37deg);
+}
+
+.purpleGlowBottom {
+  left: 920px;
+  top: 2642.96px;
+  width: 599.578px;
+  height: 652.853px;
+  background: linear-gradient(
+    180deg,
+    rgba(84, 84, 212, 0.2) 0%,
+    rgba(84, 84, 212, 0.08) 100%
+  );
+  transform: rotate(-125.63deg) scaleY(-1);
+}
+
+.header {
+  position: absolute;
+  left: 0;
+  top: 0;
+  z-index: 2;
+  width: 1440px;
+}
+
+.logoLink {
+  position: absolute;
+  left: 120px;
+  top: 36.58px;
+  width: 78.67px;
+  height: 54.422px;
+  display: block;
+}
+
+.logoImage {
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.navigation {
+  position: absolute;
+  left: calc(75% - 54px);
+  top: 50px;
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  gap: 40px;
+  color: rgba(0, 0, 0, 0.7);
+  font-family: "Nunito Sans", "Noto Sans KR", sans-serif;
+  font-size: 18px;
+  font-weight: 400;
+  line-height: normal;
+  text-align: right;
+  white-space: nowrap;
+  word-break: break-word;
+}
+
+.navItem {
+  color: inherit;
+  text-decoration: none;
+  font-variation-settings: "YTLC" 500, "wdth" 100;
+}
+
+.activeNavItem {
+  color: #030303;
+  font-family: "Figtree", "Nunito Sans", "Noto Sans KR", sans-serif;
+  font-weight: 800;
+  letter-spacing: -0.5002px;
+}
+
+.reservationIntro {
+  position: absolute;
+  left: 50%;
+  top: 264px;
+  width: 1440px;
+  padding: 0 120px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 40px;
+  box-sizing: border-box;
+  transform: translateX(-50%);
+}
+
+.copyBlock {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 20px;
+}
+
+.pageTitle,
+.sectionTitle {
+  margin: 0;
+  width: 100%;
+  color: #000000;
+  font-family: "Figtree", "Nunito Sans", "Noto Sans KR", sans-serif;
+  font-size: 60px;
+  font-weight: 800;
+  line-height: 84px;
+  text-align: center;
+  word-break: break-word;
+}
+
+.description {
+  width: 100%;
+  color: rgba(0, 0, 0, 0.7);
+  font-family: "Nunito Sans", "Noto Sans KR", sans-serif;
+  font-size: 21px;
+  font-weight: 400;
+  letter-spacing: -0.6565px;
+  text-align: center;
+  word-break: break-word;
+  font-variation-settings: "YTLC" 500, "wdth" 100;
+}
+
+.description p {
+  margin: 0;
+  line-height: 39px;
+}
+
+.cardGrid {
+  width: 100%;
+  height: 602px;
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  grid-template-rows: repeat(2, minmax(0, 1fr));
+  gap: 30px;
+}
+
+.tourCard {
+  position: relative;
+  min-width: 0;
+  overflow: hidden;
+  background: #ffa2ab;
+}
+
+.cardMedia {
+  position: absolute;
+  inset: 0;
+  overflow: hidden;
+  background: #000000;
+}
+
+.cardImage {
+  position: absolute;
+  display: block;
+  max-width: none;
+  object-fit: cover;
+  pointer-events: none;
+}
+
+.hangulTourImage {
+  left: -50px;
+  top: -127px;
+  width: 661px;
+  height: 496px;
+}
+
+.goldenBellImage {
+  left: -230px;
+  top: -206px;
+  width: 944px;
+  height: 533px;
+}
+
+.kYeojuImage {
+  left: calc(50% + 22px);
+  top: -105px;
+  width: 747px;
+  height: 420px;
+  transform: translateX(-50%);
+}
+
+.clubCourseImage {
+  left: -22px;
+  top: -207px;
+  width: 755px;
+  height: 566px;
+}
+
+.cardBlur {
+  position: absolute;
+  left: 0;
+  right: 0;
+  top: 42.66%;
+  bottom: 0;
+  background: rgba(0, 0, 0, 0.01);
+  backdrop-filter: blur(32.75px);
+}
+
+.cardGradient {
+  position: absolute;
+  left: 0;
+  right: 0;
+  top: 35.71%;
+  bottom: -0.05%;
+}
+
+.blackGradient {
+  background-image: linear-gradient(
+    179.609deg,
+    rgba(0, 0, 0, 0) 0.95526%,
+    #000000 98.84%
+  );
+}
+
+.greenGradient {
+  background-image: linear-gradient(
+    179.609deg,
+    rgba(41, 47, 23, 0) 0.95526%,
+    #292f17 98.84%
+  );
+}
+
+.deepGreenGradient {
+  background-image: linear-gradient(
+    179.609deg,
+    rgba(110, 133, 160, 0) 0.95526%,
+    #1b3017 98.84%
+  );
+}
+
+.brownGradient {
+  background-image: linear-gradient(
+    179.609deg,
+    rgba(47, 41, 26, 0) 0.95526%,
+    #2f291a 98.84%
+  );
+}
+
+.cardLabel {
+  position: absolute;
+  left: 0;
+  right: 0;
+  top: 72.38%;
+  bottom: 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 0 20px 20px;
+  box-sizing: border-box;
+}
+
+.cardLabel h2 {
+  margin: 0;
+  width: 100%;
+  color: #ffffff;
+  font-family: "Figtree", "Nunito Sans", "Noto Sans KR", sans-serif;
+  font-size: 32px;
+  font-weight: 600;
+  line-height: normal;
+  letter-spacing: -0.7503px;
+  text-align: center;
+  word-break: break-word;
+}
+
+.directions {
+  position: absolute;
+  left: 0;
+  top: 1351.62px;
+  width: 1440px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 98px;
+}
+
+.directionsHeader {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 20px;
+}
+
+.addressRow {
+  width: 832px;
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+}
+
+.pinIcon {
+  flex: 0 0 auto;
+  width: 36px;
+  height: 48.551px;
+  display: block;
+}
+
+.addressRow p {
+  flex: 1 0 0;
+  min-width: 0;
+  margin: 0;
+  color: #000000;
+  font-family: "Figtree", "Nunito Sans", "Noto Sans KR", sans-serif;
+  font-size: 30px;
+  font-weight: 600;
+  line-height: 50px;
+  letter-spacing: -0.6565px;
+  text-align: center;
+  word-break: break-word;
+}
+
+.transportGroup {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 87px;
+}
+
+.carBlock {
+  width: 690px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 30px;
+}
+
+.carIconFrame {
+  position: relative;
+  width: 214.536px;
+  height: 69.141px;
+  margin-right: 44px;
+}
+
+.carIcon {
+  position: absolute;
+  left: -0.71%;
+  top: -12.07%;
+  width: 104.05%;
+  height: 122.75%;
+  display: block;
+  max-width: none;
+  object-fit: contain;
+}
+
+.transitBlock {
+  width: 100%;
+  padding: 0 120px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 30px;
+  box-sizing: border-box;
+}
+
+.trainIconFrame {
+  position: relative;
+  width: 198px;
+  height: 58px;
+  margin-right: 44px;
+}
+
+.trainIcon {
+  position: absolute;
+  left: -4%;
+  top: -14.46%;
+  width: 107.92%;
+  height: 128.78%;
+  display: block;
+  max-width: none;
+  object-fit: contain;
+}
+
+.transportCopy {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 26px;
+  color: rgba(0, 0, 0, 0.7);
+  font-family: "Nunito Sans", "Noto Sans KR", sans-serif;
+  letter-spacing: -0.6565px;
+  text-align: center;
+  word-break: break-word;
+}
+
+.transportCopy h3 {
+  width: 100%;
+  margin: 0;
+  font-family: "Figtree", "Nunito Sans", "Noto Sans KR", sans-serif;
+  font-size: 30px;
+  font-weight: 600;
+  line-height: 50px;
+}
+
+.carDetails,
+.transitDetails {
+  width: 100%;
+  min-height: 166px;
+  display: flex;
+  align-items: flex-start;
+  gap: 40px;
+  font-size: 21px;
+  font-weight: 400;
+  font-variation-settings: "YTLC" 500, "wdth" 100;
+}
+
+.parkingColumn {
+  flex: 1 0 0;
+  min-width: 0;
+}
+
+.parkingColumn:first-child {
+  flex: 0 0 auto;
+  white-space: nowrap;
+}
+
+.transitColumn {
+  flex: 1 0 0;
+  min-width: 0;
+}
+
+.transitColumn:first-child {
+  flex: 0 0 auto;
+  white-space: nowrap;
+}
+
+.parkingColumn p,
+.transitColumn p {
+  margin: 0;
+  line-height: 39px;
+}
+
+.detailHeading {
+  color: #000000;
+  font-weight: 700;
+}
