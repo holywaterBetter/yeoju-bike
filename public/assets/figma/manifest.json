@@ -1,0 +1,34 @@
+{
+  "sourceFileKey": "F1J4kYcSi9mRIZTnp1KhWP",
+  "strategy": "desktop-pixel-lock-reference-images",
+  "pages": [
+    {
+      "route": "/",
+      "name": "01_Landing",
+      "nodeId": "1:52",
+      "width": 1440,
+      "height": 5693,
+      "asset": "/assets/figma/reference/01-landing.png"
+    },
+    {
+      "route": "/courses",
+      "name": "02_Landing",
+      "nodeId": "24:253",
+      "width": 1440,
+      "height": 8472,
+      "asset": "/assets/figma/reference/02-courses.png"
+    },
+    {
+      "route": "/reservation",
+      "name": "04_Landing",
+      "nodeId": "38:860",
+      "width": 1440,
+      "height": 2415,
+      "asset": "/assets/figma/reference/04-reservation.png"
+    }
+  ],
+  "notes": [
+    "The current Figma Responsive node is an unrelated Enver template, so it is not used.",
+    "This baseline prioritizes exact desktop visual parity without original font files."
+  ]
+}

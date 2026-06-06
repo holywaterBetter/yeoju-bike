@@ -1,0 +1,782 @@
+.page {
+  position: relative;
+  width: 1440px;
+  height: 5693px;
+  overflow: hidden;
+  background: #ffffff;
+  color: #000000;
+  font-family: "Figtree", "Nunito Sans", Arial, sans-serif;
+}
+
+.page *,
+.page *::before,
+.page *::after {
+  box-sizing: border-box;
+}
+
+.page h1,
+.page h2,
+.page h3,
+.page p {
+  margin: 0;
+}
+
+.page img {
+  display: block;
+  max-width: none;
+}
+
+.fullImage {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.bg {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+}
+
+.glow {
+  position: absolute;
+  border-radius: 233.5px;
+  filter: blur(150px);
+}
+
+.glowOne {
+  left: 1060px;
+  top: 2750px;
+  width: 599.578px;
+  height: 652.853px;
+  transform: rotate(-125.63deg) scaleY(-1);
+  background: linear-gradient(180deg, rgba(84, 84, 212, 0.2), rgba(84, 84, 212, 0.08));
+}
+
+.glowTwo {
+  left: 960px;
+  top: -38px;
+  width: 467px;
+  height: 1399.298px;
+  transform: rotate(65.71deg);
+  background: linear-gradient(180deg, rgba(251, 168, 28, 0.11), rgba(224, 86, 136, 0.06));
+}
+
+.glowThree {
+  left: -18px;
+  top: 1731px;
+  width: 467px;
+  height: 1399.298px;
+  transform: rotate(65.71deg);
+  background: linear-gradient(180deg, rgba(251, 168, 28, 0.11), rgba(224, 86, 136, 0.06));
+}
+
+.glowFour {
+  left: 236px;
+  top: 1393px;
+  width: 860.002px;
+  height: 2576.87px;
+  transform: rotate(65.71deg);
+  background: linear-gradient(180deg, rgba(251, 168, 28, 0.05), rgba(224, 86, 136, 0.02));
+}
+
+.glowFive {
+  left: -49px;
+  top: 116px;
+  width: 467px;
+  height: 1233.793px;
+  transform: rotate(-54.37deg);
+  background: linear-gradient(180deg, rgba(84, 84, 212, 0.27), rgba(84, 84, 212, 0.11));
+}
+
+.glowSix {
+  left: -203px;
+  top: 1754px;
+  width: 467px;
+  height: 508.495px;
+  transform: rotate(-54.37deg);
+  background: linear-gradient(180deg, rgba(84, 84, 212, 0.21), rgba(84, 84, 212, 0.09));
+}
+
+.logoWrap {
+  position: absolute;
+  left: 120px;
+  top: 36.58px;
+  width: 78.67px;
+  height: 54.422px;
+}
+
+.nav {
+  position: absolute;
+  left: 1026px;
+  top: 50px;
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  gap: 40px;
+  color: rgba(0, 0, 0, 0.7);
+  font-family: "Nunito Sans", "Figtree", Arial, sans-serif;
+  font-size: 18px;
+  font-weight: 400;
+  line-height: normal;
+  text-align: right;
+  white-space: nowrap;
+}
+
+.navActive {
+  color: #030303;
+  font-family: "Figtree", "Nunito Sans", Arial, sans-serif;
+  font-weight: 800;
+  letter-spacing: -0.5002px;
+}
+
+.hero {
+  position: absolute;
+  inset: 0 auto auto 0;
+}
+
+.heroCopy {
+  position: absolute;
+  left: 0;
+  top: 231px;
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+  width: 823px;
+  padding-left: 120px;
+  word-break: break-word;
+}
+
+.heroTitle {
+  width: 100%;
+  font-family: "Figtree", "Nunito Sans", Arial, sans-serif;
+  font-size: 60px;
+  font-weight: 800;
+  line-height: 84px;
+}
+
+.heroDescription {
+  width: 100%;
+  color: rgba(0, 0, 0, 0.7);
+  font-family: "Nunito Sans", "Figtree", Arial, sans-serif;
+  font-size: 21px;
+  font-variation-settings: "YTLC" 500, "wdth" 100;
+  font-weight: 400;
+  letter-spacing: -0.6565px;
+  line-height: 39px;
+  white-space: pre-wrap;
+}
+
+.heroArt {
+  position: absolute;
+  left: 0;
+  top: 0;
+  pointer-events: none;
+}
+
+.heroOutline,
+.heroYellow {
+  position: absolute;
+  width: 387.427px;
+  height: 387.427px;
+  border: 16px solid #ffd500;
+  border-radius: 43px;
+  transform: rotate(23.93deg);
+}
+
+.heroOutline {
+  left: 884.922px;
+  top: 283.922px;
+}
+
+.heroYellow {
+  left: 922.922px;
+  top: 377.922px;
+  background: #ffd500;
+}
+
+.heroMaskOneWrap,
+.heroMaskTwoWrap {
+  position: absolute;
+  left: 708.41px;
+  top: 159.9px;
+  display: flex;
+  width: 721.602px;
+  height: 863.4px;
+  align-items: center;
+  justify-content: center;
+}
+
+.heroBikeMask {
+  position: relative;
+  width: 640.036px;
+  height: 799.76px;
+  overflow: hidden;
+  transform: rotate(6.12deg);
+  -webkit-mask-repeat: no-repeat;
+  mask-repeat: no-repeat;
+  -webkit-mask-mode: alpha;
+  mask-mode: alpha;
+}
+
+.heroBikeMask img {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.heroBikeMaskOne {
+  -webkit-mask-position: 158.219px 162.972px;
+  mask-position: 158.219px 162.972px;
+  -webkit-mask-size: 499.558px 490.66px;
+  mask-size: 499.558px 490.66px;
+}
+
+.heroBikeMaskTwo {
+  -webkit-mask-position: 69.209px 4px;
+  mask-position: 69.209px 4px;
+  -webkit-mask-size: 546.597px 846px;
+  mask-size: 546.597px 846px;
+}
+
+.yellowSpark {
+  position: absolute;
+  left: 470px;
+  top: 889px;
+  width: 164.392px;
+  height: 108.192px;
+  pointer-events: none;
+}
+
+.sparkOne,
+.sparkTwo,
+.sparkThree,
+.sparkFour {
+  position: absolute;
+  transform: rotate(22.66deg);
+}
+
+.sparkOne {
+  left: 0;
+  top: 21.02px;
+  width: 35.822px;
+  height: 29.125px;
+}
+
+.sparkTwo {
+  left: 102.76px;
+  top: 36.27px;
+  width: 29.974px;
+  height: 29.396px;
+}
+
+.sparkThree {
+  left: 131.26px;
+  top: 49.99px;
+  width: 24.15px;
+  height: 2.193px;
+}
+
+.sparkFour {
+  left: 154.72px;
+  top: 50.25px;
+  width: 24.125px;
+  height: 35.634px;
+}
+
+.riverSection {
+  position: absolute;
+  left: 50%;
+  top: 964px;
+  display: flex;
+  width: 1440px;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 42px;
+  padding: 0 120px;
+  transform: translateX(-50%);
+}
+
+.riverIntro {
+  display: flex;
+  width: 100%;
+  align-items: center;
+  justify-content: space-between;
+  word-break: break-word;
+}
+
+.sectionTitle {
+  width: 588px;
+  font-family: "Figtree", "Nunito Sans", Arial, sans-serif;
+  font-size: 60px;
+  font-weight: 800;
+  line-height: 84px;
+}
+
+.riverText {
+  width: 588px;
+  color: rgba(0, 0, 0, 0.7);
+  font-family: "Nunito Sans", "Figtree", Arial, sans-serif;
+  font-size: 21px;
+  font-variation-settings: "YTLC" 500, "wdth" 100;
+  font-weight: 400;
+  letter-spacing: -0.6565px;
+  line-height: 39px;
+}
+
+.riverHeroImage {
+  position: relative;
+  width: 100%;
+  height: 706px;
+  overflow: hidden;
+}
+
+.riverHeroPhoto {
+  position: absolute;
+  left: -27px;
+  top: -35px;
+  width: 1227px;
+  height: 921px;
+  object-fit: cover;
+}
+
+.riverCards {
+  display: flex;
+  width: 1204px;
+  align-items: flex-start;
+  justify-content: space-between;
+}
+
+.riverCard {
+  display: flex;
+  width: 600px;
+  flex-direction: column;
+  align-items: center;
+  gap: 28px;
+}
+
+.riverCardNarrow {
+  width: 560px;
+}
+
+.riverCardImage {
+  position: relative;
+  width: 100%;
+  height: 350px;
+  overflow: hidden;
+}
+
+.riverCardPhotoOne {
+  position: absolute;
+  left: -174px;
+  top: -41px;
+  width: 912px;
+  height: 515px;
+  object-fit: cover;
+}
+
+.riverCardPhotoTwo {
+  position: absolute;
+  left: -43px;
+  top: -22px;
+  width: 645px;
+  height: 484px;
+  object-fit: cover;
+}
+
+.riverCardTitle {
+  color: rgba(0, 0, 0, 0.7);
+  font-family: "Figtree", "Nunito Sans", Arial, sans-serif;
+  font-size: 30px;
+  font-weight: 600;
+  letter-spacing: -0.6565px;
+  line-height: 50px;
+  text-align: center;
+  white-space: nowrap;
+}
+
+.specialSection {
+  position: absolute;
+  left: -3px;
+  top: 2724px;
+  display: flex;
+  width: 1440px;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 100px;
+  padding: 0 120px;
+}
+
+.specialTitle {
+  min-width: 100%;
+  font-family: "Figtree", "Nunito Sans", Arial, sans-serif;
+  font-size: 60px;
+  font-weight: 800;
+  line-height: 84px;
+  word-break: break-word;
+}
+
+.specialList {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 52px;
+}
+
+.featureRow {
+  display: flex;
+  width: 1204px;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.featureImageFrame {
+  position: relative;
+  width: 540px;
+  height: 350px;
+  overflow: hidden;
+  background: #ffffff;
+}
+
+.featureImageFrame img {
+  position: absolute;
+  object-fit: cover;
+}
+
+.featurePhotoOne {
+  left: -1175px;
+  top: -634px;
+  width: 1783px;
+  height: 1189px;
+}
+
+.featurePhotoTwo {
+  left: 0;
+  top: -95px;
+  width: 593px;
+  height: 445px;
+}
+
+.featurePhotoThree {
+  left: 0;
+  top: -108px;
+  width: 553px;
+  height: 829px;
+}
+
+.featureCopy {
+  display: flex;
+  width: 623px;
+  flex-direction: column;
+  align-items: flex-start;
+  justify-content: flex-end;
+  gap: 12px;
+  letter-spacing: -0.6565px;
+  word-break: break-word;
+}
+
+.featureCopyRight {
+  align-items: flex-end;
+  justify-content: center;
+  text-align: right;
+}
+
+.featureCopy h3 {
+  font-family: "Figtree", "Nunito Sans", Arial, sans-serif;
+  font-size: 42px;
+  font-weight: 700;
+  line-height: 60px;
+  white-space: nowrap;
+}
+
+.featureCopy p {
+  width: 100%;
+  color: rgba(0, 0, 0, 0.7);
+  font-family: "Figtree", "Nunito Sans", Arial, sans-serif;
+  font-size: 21px;
+  font-weight: 600;
+  line-height: 39px;
+}
+
+.blueSquiggle {
+  position: absolute;
+  left: 543px;
+  top: 756px;
+  width: 202px;
+  height: 25px;
+}
+
+.blueMark {
+  position: absolute;
+  left: 315px;
+  top: 622px;
+  width: 56px;
+  height: 73px;
+}
+
+.smile {
+  position: absolute;
+  left: 1084px;
+  top: 201px;
+  width: 70px;
+  height: 70px;
+}
+
+.smileEyeOne,
+.smileEyeTwo,
+.smileMouth {
+  position: absolute;
+}
+
+.smileEyeOne {
+  left: 13.3px;
+  top: 0;
+  width: 4.256px;
+  height: 13.476px;
+}
+
+.smileEyeTwo {
+  left: 50.2px;
+  top: 17.02px;
+  width: 6.383px;
+  height: 12.767px;
+}
+
+.smileMouth {
+  left: 0;
+  top: 51.95px;
+  width: 53.196px;
+  height: 32.935px;
+}
+
+.redSquiggle {
+  position: absolute;
+  left: 62.84px;
+  top: 1096.71px;
+  width: 110.506px;
+  height: 26.339px;
+}
+
+.redDashOne {
+  position: absolute;
+  left: 937.61px;
+  top: 1011.4px;
+  width: 6.427px;
+  height: 22.036px;
+}
+
+.redDashTwo {
+  position: absolute;
+  left: 950.46px;
+  top: 1047.21px;
+  width: 27.545px;
+  height: 1.836px;
+}
+
+.journeySection {
+  position: absolute;
+  left: 1px;
+  top: 4304px;
+  display: flex;
+  width: 1440px;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 68px;
+  padding: 0 120px;
+}
+
+.journeyTitle {
+  width: 1200px;
+  font-family: "Figtree", "Nunito Sans", Arial, sans-serif;
+  font-size: 60px;
+  font-weight: 800;
+  line-height: 84px;
+  text-align: center;
+  word-break: break-word;
+}
+
+.journeyGrid {
+  display: grid;
+  width: 100%;
+  height: 602px;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  grid-template-rows: repeat(2, minmax(0, 1fr));
+  gap: 30px;
+}
+
+.journeyCard {
+  position: relative;
+  overflow: hidden;
+  background: #000000;
+}
+
+.journeyCard img {
+  position: absolute;
+  object-fit: cover;
+}
+
+.journeyPhotoOne {
+  left: -50px;
+  top: -127px;
+  width: 661px;
+  height: 496px;
+}
+
+.journeyPhotoTwo {
+  left: -230px;
+  top: -206px;
+  width: 944px;
+  height: 533px;
+}
+
+.journeyPhotoThree {
+  left: -59px;
+  top: -105px;
+  width: 747px;
+  height: 420px;
+}
+
+.journeyPhotoFour {
+  left: -22px;
+  top: -207px;
+  width: 755px;
+  height: 566px;
+}
+
+.journeyBlur {
+  position: absolute;
+  inset: 42.66% 0 0 0;
+  background: rgba(0, 0, 0, 0.01);
+  backdrop-filter: blur(32.75px);
+}
+
+.journeyGradient {
+  position: absolute;
+  inset: 35.71% 0 -0.05% 0;
+}
+
+.journeyGradientOne {
+  background: linear-gradient(179.609deg, rgba(0, 0, 0, 0) 0.955%, #000000 98.84%);
+}
+
+.journeyGradientTwo {
+  background: linear-gradient(179.609deg, rgba(41, 47, 23, 0) 0.955%, #292f17 98.84%);
+}
+
+.journeyGradientThree {
+  background: linear-gradient(179.609deg, rgba(110, 133, 160, 0) 0.955%, #1b3017 98.84%);
+}
+
+.journeyGradientFour {
+  background: linear-gradient(179.609deg, rgba(47, 41, 26, 0) 0.955%, #2f291a 98.84%);
+}
+
+.journeyCard h3 {
+  position: absolute;
+  inset: 72.38% 0 0 0;
+  width: 100%;
+  padding: 0 20px 20px;
+  color: #ffffff;
+  font-family: "Figtree", "Nunito Sans", Arial, sans-serif;
+  font-size: 32px;
+  font-weight: 600;
+  letter-spacing: -0.7503px;
+  line-height: normal;
+  text-align: center;
+  word-break: break-word;
+}
+
+.contactCta {
+  position: absolute;
+  left: -2px;
+  top: 5193px;
+  display: flex;
+  width: 1440px;
+  height: 500px;
+  align-items: center;
+  justify-content: space-between;
+  padding: 85px 120px 46px;
+}
+
+.contactBg {
+  position: absolute;
+  left: 0;
+  top: 0;
+  width: 1440px;
+  height: 500px;
+  background: rgba(30, 30, 32, 0.06);
+}
+
+.contactCopy {
+  position: relative;
+  display: flex;
+  width: 873px;
+  height: 369px;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 24px;
+  word-break: break-word;
+}
+
+.contactCopy h2 {
+  width: 100%;
+  font-family: "Figtree", "Nunito Sans", Arial, sans-serif;
+  font-size: 60px;
+  font-weight: 800;
+  line-height: 84px;
+}
+
+.contactCopy p {
+  width: 100%;
+  color: rgba(0, 0, 0, 0.7);
+  font-family: "Nunito Sans", "Figtree", Arial, sans-serif;
+  font-size: 21px;
+  font-variation-settings: "YTLC" 500, "wdth" 100;
+  font-weight: 400;
+  letter-spacing: -0.6565px;
+  line-height: 39px;
+  white-space: pre-wrap;
+}
+
+.kakaoButton {
+  position: relative;
+  display: flex;
+  height: 64.625px;
+  align-items: center;
+  gap: 10px;
+  overflow: hidden;
+  padding: 17px 16px;
+  border-radius: 5px;
+  background: #fbe300;
+  color: #000000;
+  font-family: "Nunito Sans", "Figtree", Arial, sans-serif;
+  font-size: 21px;
+  font-variation-settings: "YTLC" 500, "wdth" 100;
+  font-weight: 700;
+  line-height: normal;
+  text-align: center;
+  text-decoration: none;
+}
+
+.kakaoButton span:last-child {
+  width: 201px;
+}
+
+.kakaoIcon {
+  position: relative;
+  width: 33px;
+  height: 33px;
+  flex: 0 0 auto;
+  overflow: hidden;
+}
+
+.kakaoIcon img {
+  position: absolute;
+  left: -15.15%;
+  top: -15.15%;
+  width: 130.3%;
+  height: 130.3%;
+  object-fit: cover;
+}
