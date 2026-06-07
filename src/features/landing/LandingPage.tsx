@@ -1,33 +1,34 @@
 import type { ReactNode } from "react";
+import { withBasePath } from "@/lib/sitePaths";
 import styles from "./LandingPage.module.css";
 
-const imgImage30 = "/assets/figma/mcp/6e173378-eb7c-4df3-936b-d8007b404ad4.png";
-const imgKakaoTalk20250905103329489281 = "/assets/figma/mcp/6953c77a-4366-4c08-95a5-b18a1e6a7cee.jpg";
-const img001P1 = "/assets/figma/mcp/8d01a7f6-43e6-4989-be27-7bff9861bf36.jpg";
-const imgF5550E6E0A054A92B6DbAae059C455821 = "/assets/figma/mcp/7126efd5-5893-4db5-a348-932564b7fd20.jpg";
-const imgKakaoTalk202511171151172981 = "/assets/figma/mcp/461689e3-dc4a-47ac-8fc9-7f9928a9fed4.jpg";
-const imgKakaoTalk202511171152391871 = "/assets/figma/mcp/c57dbe85-295b-4130-9b84-401993be52c4.jpg";
-const imgKakaoTalk20251117115117298071 = "/assets/figma/mcp/da8bc77c-6a74-4345-98b6-f0941f96579e.jpg";
-const imgHeroArt = "/assets/figma/crops/landing-hero-art.png";
-const imgHeroArtMobile = "/assets/figma/crops/landing-hero-art-mobile.png";
-const img21 = "/assets/figma/mcp/72885cc4-ed18-4afb-b62b-331a13bdcd30.jpg";
-const img001P2 = "/assets/figma/crops/landing-journey-2.png";
-const img321 = "/assets/figma/mcp/6463445a-2b7e-4012-a734-ef5f4c61265a.jpg";
-const imgKakaoTalk202512101008513031221 = "/assets/figma/mcp/506cf519-70a9-4392-802b-96ae31af2f6e.jpg";
-const imgImage40 = "/assets/figma/mcp/efb2b323-a460-4830-a947-ad0427775610.png";
-const imgVector36 = "/assets/figma/mcp/17b7eb28-4867-4d74-a8bd-e6899da0f967.svg";
-const imgVector21 = "/assets/figma/mcp/7424fa6c-9d52-426c-acf0-36708e7cc0ff.svg";
-const imgVector22 = "/assets/figma/mcp/e4d437c1-8d13-4eed-b3b8-261456c5848b.svg";
-const imgVector23 = "/assets/figma/mcp/a7cc0556-21cd-47e2-86f7-3b12fc67b491.svg";
-const imgVector24 = "/assets/figma/mcp/8478e406-1a1b-48ff-bba1-b941fe80d055.svg";
-const imgVector20 = "/assets/figma/mcp/1fb74ddd-3cfd-4e66-a342-349511268172.svg";
-const imgVector113 = "/assets/figma/mcp/74dd63a5-99e2-4abe-bc00-67d6d428faa3.svg";
-const imgVector114 = "/assets/figma/mcp/ef83f09a-2df0-4951-a579-9ff037607938.svg";
-const imgVector25 = "/assets/figma/mcp/7d2cf0bf-b3fb-43b2-bc61-1b1045e20f0b.svg";
-const imgVector26 = "/assets/figma/mcp/b3c465b3-8d47-47a5-ac93-e7ef97aac84d.svg";
-const imgVector27 = "/assets/figma/mcp/27134f66-7a03-4a75-aec4-7c8abd05bddf.svg";
-const imgVector28 = "/assets/figma/mcp/b2ae60b3-db5f-431a-8e64-bef9ba186ae9.svg";
-const referenceImage = "/assets/figma/reference/01-landing.png";
+const imgImage30 = withBasePath("/assets/figma/mcp/6e173378-eb7c-4df3-936b-d8007b404ad4.png");
+const imgKakaoTalk20250905103329489281 = withBasePath("/assets/figma/mcp/6953c77a-4366-4c08-95a5-b18a1e6a7cee.jpg");
+const img001P1 = withBasePath("/assets/figma/mcp/8d01a7f6-43e6-4989-be27-7bff9861bf36.jpg");
+const imgF5550E6E0A054A92B6DbAae059C455821 = withBasePath("/assets/figma/mcp/7126efd5-5893-4db5-a348-932564b7fd20.jpg");
+const imgKakaoTalk202511171151172981 = withBasePath("/assets/figma/mcp/461689e3-dc4a-47ac-8fc9-7f9928a9fed4.jpg");
+const imgKakaoTalk202511171152391871 = withBasePath("/assets/figma/mcp/c57dbe85-295b-4130-9b84-401993be52c4.jpg");
+const imgKakaoTalk20251117115117298071 = withBasePath("/assets/figma/mcp/da8bc77c-6a74-4345-98b6-f0941f96579e.jpg");
+const imgHeroArt = withBasePath("/assets/figma/crops/landing-hero-art.png");
+const imgHeroArtMobile = withBasePath("/assets/figma/crops/landing-hero-art-mobile.png");
+const img21 = withBasePath("/assets/figma/mcp/72885cc4-ed18-4afb-b62b-331a13bdcd30.jpg");
+const img001P2 = withBasePath("/assets/figma/crops/landing-journey-2.png");
+const img321 = withBasePath("/assets/figma/mcp/6463445a-2b7e-4012-a734-ef5f4c61265a.jpg");
+const imgKakaoTalk202512101008513031221 = withBasePath("/assets/figma/mcp/506cf519-70a9-4392-802b-96ae31af2f6e.jpg");
+const imgImage40 = withBasePath("/assets/figma/mcp/efb2b323-a460-4830-a947-ad0427775610.png");
+const imgVector36 = withBasePath("/assets/figma/mcp/17b7eb28-4867-4d74-a8bd-e6899da0f967.svg");
+const imgVector21 = withBasePath("/assets/figma/mcp/7424fa6c-9d52-426c-acf0-36708e7cc0ff.svg");
+const imgVector22 = withBasePath("/assets/figma/mcp/e4d437c1-8d13-4eed-b3b8-261456c5848b.svg");
+const imgVector23 = withBasePath("/assets/figma/mcp/a7cc0556-21cd-47e2-86f7-3b12fc67b491.svg");
+const imgVector24 = withBasePath("/assets/figma/mcp/8478e406-1a1b-48ff-bba1-b941fe80d055.svg");
+const imgVector20 = withBasePath("/assets/figma/mcp/1fb74ddd-3cfd-4e66-a342-349511268172.svg");
+const imgVector113 = withBasePath("/assets/figma/mcp/74dd63a5-99e2-4abe-bc00-67d6d428faa3.svg");
+const imgVector114 = withBasePath("/assets/figma/mcp/ef83f09a-2df0-4951-a579-9ff037607938.svg");
+const imgVector25 = withBasePath("/assets/figma/mcp/7d2cf0bf-b3fb-43b2-bc61-1b1045e20f0b.svg");
+const imgVector26 = withBasePath("/assets/figma/mcp/b3c465b3-8d47-47a5-ac93-e7ef97aac84d.svg");
+const imgVector27 = withBasePath("/assets/figma/mcp/27134f66-7a03-4a75-aec4-7c8abd05bddf.svg");
+const imgVector28 = withBasePath("/assets/figma/mcp/b2ae60b3-db5f-431a-8e64-bef9ba186ae9.svg");
+const referenceImage = withBasePath("/assets/figma/reference/01-landing.png");
 
 type LandingPageProps = {
   className?: string;
@@ -53,13 +54,13 @@ export default function LandingPage({ className }: LandingPageProps) {
 function Header() {
   return (
     <>
-      <a className={styles.logoWrap} href="/" aria-label="따르릉 여주 홈" data-node-id="7:101" data-name="image 30">
+      <a className={styles.logoWrap} href={withBasePath("/")} aria-label="따르릉 여주 홈" data-node-id="7:101" data-name="image 30">
         <img className={styles.fullImage} src={imgImage30} alt="따르릉 여주 로고" />
       </a>
       <nav className={styles.nav} aria-label="주요 메뉴" data-node-id="35:956">
-        <a className={styles.navActive} href="/" aria-current="page">투어 소개</a>
-        <a href="/courses">코스 안내</a>
-        <a href="/reservation">투어 예약</a>
+        <a className={styles.navActive} href={withBasePath("/")} aria-current="page">투어 소개</a>
+        <a href={withBasePath("/courses/")}>코스 안내</a>
+        <a href={withBasePath("/reservation/")}>투어 예약</a>
       </nav>
     </>
   );
