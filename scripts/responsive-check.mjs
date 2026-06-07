@@ -13,6 +13,7 @@ const desktopViewports = [
   { width: 1366, height: 768 },
   { width: 1440, height: 900 },
   { width: 1920, height: 1080 },
+  { width: 2100, height: 1100 },
   { width: 2560, height: 1440 }
 ];
 
@@ -62,24 +63,30 @@ async function checkPage(pageSpec, viewport, mode) {
       ({ mode, pageSpec }) => {
         const main = document.querySelector("main[data-node-id]");
         const surface = document.querySelector("[data-responsive-page]");
-        const reference = document.querySelector("img[class*='referenceLayer']");
         const mainRect = main?.getBoundingClientRect();
         const surfaceRect = surface?.getBoundingClientRect();
-        const referenceStyle = reference ? getComputedStyle(reference) : null;
+        const runtimeReferenceImages = Array.from(document.images)
+          .map((image) => image.currentSrc || image.src)
+          .filter((src) => src.includes("/assets/figma/reference/"));
+        const runtimeCropImages = Array.from(document.images)
+          .map((image) => image.currentSrc || image.src)
+          .filter((src) => src.includes("/assets/figma/crops/"));
         const brokenImages = Array.from(document.images)
           .filter((image) => !image.complete || image.naturalWidth === 0)
           .map((image) => image.getAttribute("src"));
         const links = Array.from(document.querySelectorAll("a[href]")).map((link) => {
           const rect = link.getBoundingClientRect();
+          const style = getComputedStyle(link);
           return {
             href: link.getAttribute("href"),
             text: link.textContent?.trim() || link.getAttribute("aria-label") || "",
             width: rect.width,
             height: rect.height,
             top: rect.top,
-            left: rect.left
+            left: rect.left,
+            visible: rect.width > 0 && rect.height > 0 && style.display !== "none" && style.visibility !== "hidden"
           };
-        });
+        }).filter((link) => link.visible);
         const ctas = links.filter((link) =>
           link.href === "/reservation" ||
           link.href === "#" ||
@@ -95,10 +102,8 @@ async function checkPage(pageSpec, viewport, mode) {
           scrollHeight: document.documentElement.scrollHeight,
           mainRect,
           surfaceRect,
-          referenceDisplay: referenceStyle?.display || null,
-          referenceNatural: reference
-            ? [reference.naturalWidth, reference.naturalHeight]
-            : null,
+          runtimeReferenceImages,
+          runtimeCropImages,
           brokenImages,
           links,
           ctas,
@@ -133,6 +138,14 @@ function validate(result, pageSpec, viewport, mode) {
     failures.push(`${label}: broken images ${result.brokenImages.join(", ")}`);
   }
 
+  if (result.runtimeReferenceImages.length > 0) {
+    failures.push(`${label}: runtime reference images ${result.runtimeReferenceImages.join(", ")}`);
+  }
+
+  if (result.runtimeCropImages.length > 0) {
+    failures.push(`${label}: runtime crop images ${result.runtimeCropImages.join(", ")}`);
+  }
+
   if (!result.mainRect || !result.surfaceRect) {
     failures.push(`${label}: missing main or responsive surface`);
     return;
@@ -152,21 +165,7 @@ function validate(result, pageSpec, viewport, mode) {
       failures.push(`${label}: main left ${result.mainRect.left.toFixed(2)} expected ${expectedLeft}`);
     }
 
-    if (result.referenceDisplay === "none") {
-      failures.push(`${label}: reference layer hidden on desktop`);
-    }
-
-    if (
-      result.referenceNatural?.[0] !== pageSpec.designWidth ||
-      result.referenceNatural?.[1] !== pageSpec.designHeight
-    ) {
-      failures.push(`${label}: reference natural size mismatch ${result.referenceNatural}`);
-    }
   } else {
-    if (result.referenceDisplay !== "none") {
-      failures.push(`${label}: reference layer visible on mobile`);
-    }
-
     if (Math.abs(result.mainRect.width - viewport.width) > 1.5) {
       failures.push(`${label}: mobile main width ${result.mainRect.width.toFixed(2)}`);
     }

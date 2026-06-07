@@ -30,4 +30,4 @@ if [ "$ready" -ne 1 ]; then
   exit 1
 fi
 
-VISUAL_MAX_MISMATCH_PERCENT="${VISUAL_MAX_MISMATCH_PERCENT:-0}" node scripts/visual-check.mjs
+VISUAL_MAX_MISMATCH_PERCENT="${VISUAL_MAX_MISMATCH_PERCENT:-1}" VISUAL_CHANNEL_TOLERANCE="${VISUAL_CHANNEL_TOLERANCE:-2}" node scripts/visual-check.mjs

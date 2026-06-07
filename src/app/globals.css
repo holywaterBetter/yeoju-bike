@@ -23,6 +23,9 @@ body {
 
 body {
   background: #ffffff;
+  -webkit-font-smoothing: antialiased;
+  font-synthesis: none;
+  text-rendering: geometricPrecision;
 }
 
 a {

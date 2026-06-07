@@ -1,6 +1,6 @@
 {
   "sourceFileKey": "F1J4kYcSi9mRIZTnp1KhWP",
-  "strategy": "desktop-pixel-lock-reference-images",
+  "strategy": "componentized-figma-assets-with-reference-only-visual-tests",
   "pages": [
     {
       "route": "/",
@@ -27,8 +27,71 @@
       "asset": "/assets/figma/reference/04-reservation.png"
     }
   ],
+  "componentAssets": [
+    {
+      "name": "landing hero artwork",
+      "nodeId": "1:199",
+      "asset": "/assets/figma/groups/landing-hero-group.png"
+    },
+    {
+      "name": "landing yellow spark",
+      "nodeId": "10:173",
+      "asset": "/assets/figma/groups/landing-yellow-spark.png"
+    },
+    {
+      "name": "landing smile",
+      "nodeId": "24:149",
+      "asset": "/assets/figma/groups/landing-smile.png"
+    },
+    {
+      "name": "landing sena pink dash one",
+      "nodeId": "37:785",
+      "asset": "/assets/figma/groups/landing-red-dash-1.png"
+    },
+    {
+      "name": "landing sena pink dash two",
+      "nodeId": "37:786",
+      "asset": "/assets/figma/groups/landing-red-dash-2.png"
+    },
+    {
+      "name": "courses hangul letters",
+      "nodeId": "24:123",
+      "asset": "/assets/figma/groups/courses-hangul-letters.png"
+    },
+    {
+      "name": "courses bell",
+      "nodeId": "28:148",
+      "asset": "/assets/figma/groups/courses-bell.png"
+    },
+    {
+      "name": "courses taegeuk",
+      "nodeId": "28:206",
+      "asset": "/assets/figma/groups/courses-taegeuk.png"
+    },
+    {
+      "name": "courses bike decoration",
+      "nodeId": "28:169",
+      "asset": "/assets/figma/groups/courses-bike-decoration.png"
+    },
+    {
+      "name": "courses gift decoration",
+      "nodeId": "31:453",
+      "asset": "/assets/figma/groups/courses-gift-decoration.png"
+    },
+    {
+      "name": "reservation and journey card media",
+      "nodeIds": ["36:659", "36:666", "36:673", "36:680"],
+      "assets": [
+        "/assets/figma/groups/tour-card-hangul-media.png",
+        "/assets/figma/groups/tour-card-golden-media.png",
+        "/assets/figma/groups/tour-card-k-yeoju-media.png",
+        "/assets/figma/groups/tour-card-club-media.png"
+      ]
+    }
+  ],
   "notes": [
-    "The current Figma Responsive node is an unrelated Enver template, so it is not used.",
-    "This baseline prioritizes exact desktop visual parity without original font files."
+    "Reference PNGs are kept only for visual regression tests and must not be rendered in the application.",
+    "Desktop and mobile pages use Figma-exported element assets plus DOM/CSS layout rather than full-page screenshots.",
+    "Component assets above were checked against current Figma node screenshots and are expected to remain separate from page reference images."
   ]
 }

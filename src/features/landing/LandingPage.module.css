@@ -43,10 +43,28 @@
   width: 100%;
   height: 5693px;
   overflow: hidden;
-  background:
-    radial-gradient(circle at calc(50% - 760px) 18%, rgba(84, 84, 212, 0.13), transparent 34vw),
-    radial-gradient(circle at calc(50% + 760px) 20%, rgba(251, 168, 28, 0.11), transparent 32vw),
-    #ffffff;
+  background: #ffffff;
+}
+
+.surface::before,
+.surface::after {
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  z-index: 0;
+  width: max(0px, calc((100vw - 1440px) / 2));
+  pointer-events: none;
+  content: "";
+}
+
+.surface::before {
+  left: 0;
+  background: var(--edge-left-bg);
+}
+
+.surface::after {
+  right: 0;
+  background: var(--edge-right-bg);
 }
 
 .page {
@@ -58,24 +76,28 @@
   transform-origin: top center;
   width: 1440px;
   height: 5693px;
-  overflow: hidden;
-  background: #ffffff;
+  overflow: visible;
+  background: transparent;
   color: #000000;
   font-family: "Figtree", "Nunito Sans", "Noto Sans KR", Arial, sans-serif;
   z-index: 1;
 }
 
-.referenceLayer {
-  position: absolute;
-  inset: 0;
-  z-index: 0;
-  width: 100%;
-  height: 100%;
-  pointer-events: none;
+.desktopLayers {
+  position: relative;
+  z-index: 1;
 }
 
-.page > :not(.referenceLayer) {
-  opacity: 0;
+.desktopLayers p {
+  filter: contrast(1.04);
+}
+
+.desktopLayers h3 {
+  opacity: 0.96;
+}
+
+.mobileFrame {
+  display: none;
 }
 
 .page *,
@@ -106,6 +128,15 @@
   position: absolute;
   inset: 0;
   pointer-events: none;
+}
+
+.bgImage {
+  position: absolute;
+  left: 0;
+  top: 0;
+  width: 1440px;
+  height: 3828px;
+  object-fit: fill;
 }
 
 .glow {
@@ -246,67 +277,73 @@
 
 .heroArt {
   position: absolute;
-  left: 688px;
-  top: 106px;
+  inset: 0;
   pointer-events: none;
 }
 
-.heroArt picture {
-  display: block;
-}
-
 .heroArtImage {
-  display: block;
+  position: absolute;
+  left: 688px;
+  top: 106px;
   width: 726px;
-  height: 862px;
+  height: 962px;
+  object-fit: contain;
 }
 
-.heroOutline,
-.heroYellow {
+.heroYellowOutlineFrame,
+.heroYellowFillFrame,
+.heroBikeLayer {
   position: absolute;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.heroYellowOutlineFrame {
+  left: 823px;
+  top: 222px;
+  width: 511.271px;
+  height: 511.271px;
+}
+
+.heroYellowFillFrame {
+  left: 861px;
+  top: 316px;
+  width: 511.271px;
+  height: 511.271px;
+}
+
+.heroYellowOutline,
+.heroYellowFill {
   width: 387.427px;
   height: 387.427px;
+  flex: 0 0 auto;
   border: 16px solid #ffd500;
   border-radius: 43px;
   transform: rotate(23.93deg);
 }
 
-.heroOutline {
-  left: 884.922px;
-  top: 283.922px;
-}
-
-.heroYellow {
-  left: 922.922px;
-  top: 377.922px;
+.heroYellowFill {
   background: #ffd500;
 }
 
-.heroMaskOneWrap,
-.heroMaskTwoWrap {
-  position: absolute;
+.heroBikeLayer {
   left: 708.41px;
   top: 159.9px;
-  display: flex;
   width: 721.602px;
   height: 863.4px;
-  align-items: center;
-  justify-content: center;
 }
 
-.heroBikeMask {
+.heroBikeRotated {
   position: relative;
   width: 640.036px;
   height: 799.76px;
-  overflow: hidden;
+  flex: 0 0 auto;
+  overflow: visible;
   transform: rotate(6.12deg);
-  -webkit-mask-repeat: no-repeat;
-  mask-repeat: no-repeat;
-  -webkit-mask-mode: alpha;
-  mask-mode: alpha;
 }
 
-.heroBikeMask img {
+.heroBikeRotated img {
   position: absolute;
   inset: 0;
   width: 100%;
@@ -314,63 +351,14 @@
   object-fit: cover;
 }
 
-.heroBikeMaskOne {
-  -webkit-mask-position: 158.219px 162.972px;
-  mask-position: 158.219px 162.972px;
-  -webkit-mask-size: 499.558px 490.66px;
-  mask-size: 499.558px 490.66px;
-}
-
-.heroBikeMaskTwo {
-  -webkit-mask-position: 69.209px 4px;
-  mask-position: 69.209px 4px;
-  -webkit-mask-size: 546.597px 846px;
-  mask-size: 546.597px 846px;
-}
-
 .yellowSpark {
   position: absolute;
   left: 470px;
   top: 889px;
-  width: 164.392px;
-  height: 108.192px;
+  width: 172px;
+  height: 109px;
+  object-fit: contain;
   pointer-events: none;
-}
-
-.sparkOne,
-.sparkTwo,
-.sparkThree,
-.sparkFour {
-  position: absolute;
-  transform: rotate(22.66deg);
-}
-
-.sparkOne {
-  left: 0;
-  top: 21.02px;
-  width: 35.822px;
-  height: 29.125px;
-}
-
-.sparkTwo {
-  left: 102.76px;
-  top: 36.27px;
-  width: 29.974px;
-  height: 29.396px;
-}
-
-.sparkThree {
-  left: 131.26px;
-  top: 49.99px;
-  width: 24.15px;
-  height: 2.193px;
-}
-
-.sparkFour {
-  left: 154.72px;
-  top: 50.25px;
-  width: 24.125px;
-  height: 35.634px;
 }
 
 .riverSection {
@@ -422,10 +410,10 @@
 
 .riverHeroPhoto {
   position: absolute;
-  left: -27px;
-  top: -35px;
-  width: 1227px;
-  height: 921px;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
   object-fit: cover;
 }
 
@@ -457,19 +445,19 @@
 
 .riverCardPhotoOne {
   position: absolute;
-  left: -174px;
-  top: -41px;
-  width: 912px;
-  height: 515px;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
   object-fit: cover;
 }
 
 .riverCardPhotoTwo {
   position: absolute;
-  left: -43px;
-  top: -22px;
-  width: 645px;
-  height: 484px;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
   object-fit: cover;
 }
 
@@ -533,24 +521,24 @@
 }
 
 .featurePhotoOne {
-  left: -1175px;
-  top: -634px;
-  width: 1783px;
-  height: 1189px;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
 }
 
 .featurePhotoTwo {
   left: 0;
-  top: -95px;
-  width: 593px;
-  height: 445px;
+  top: 0;
+  width: 100%;
+  height: 100%;
 }
 
 .featurePhotoThree {
   left: 0;
-  top: -108px;
-  width: 553px;
-  height: 829px;
+  top: 0;
+  width: 100%;
+  height: 100%;
 }
 
 .featureCopy {
@@ -605,37 +593,11 @@
 
 .smile {
   position: absolute;
-  left: 1084px;
-  top: 201px;
-  width: 70px;
-  height: 70px;
-}
-
-.smileEyeOne,
-.smileEyeTwo,
-.smileMouth {
-  position: absolute;
-}
-
-.smileEyeOne {
-  left: 13.3px;
-  top: 0;
-  width: 4.256px;
-  height: 13.476px;
-}
-
-.smileEyeTwo {
-  left: 50.2px;
-  top: 17.02px;
-  width: 6.383px;
-  height: 12.767px;
-}
-
-.smileMouth {
-  left: 0;
-  top: 51.95px;
-  width: 53.196px;
-  height: 32.935px;
+  left: 1081px;
+  top: 198px;
+  width: 76px;
+  height: 76px;
+  object-fit: contain;
 }
 
 .redSquiggle {
@@ -648,18 +610,20 @@
 
 .redDashOne {
   position: absolute;
-  left: 937.61px;
-  top: 1011.4px;
-  width: 6.427px;
-  height: 22.036px;
+  left: 930px;
+  top: 1003px;
+  width: 22px;
+  height: 38px;
+  object-fit: contain;
 }
 
 .redDashTwo {
   position: absolute;
-  left: 950.46px;
-  top: 1047.21px;
-  width: 27.545px;
-  height: 1.836px;
+  left: 946px;
+  top: 1039px;
+  width: 41px;
+  height: 19px;
+  object-fit: contain;
 }
 
 .journeySection {
@@ -704,67 +668,11 @@
   object-fit: cover;
 }
 
-.journeyPhotoOne {
-  left: -50px;
-  top: -127px;
-  width: 661px;
-  height: 496px;
-}
-
-.journeyPhotoTwo {
-  left: -230px;
-  top: -206px;
-  width: 944px;
-  height: 533px;
-}
-
-.journeyBakedImage {
+.journeyMediaImage {
   left: 0;
   top: 0;
   width: 100%;
   height: 100%;
-}
-
-.journeyPhotoThree {
-  left: -59px;
-  top: -105px;
-  width: 747px;
-  height: 420px;
-}
-
-.journeyPhotoFour {
-  left: -22px;
-  top: -207px;
-  width: 755px;
-  height: 566px;
-}
-
-.journeyBlur {
-  position: absolute;
-  inset: 42.66% 0 0 0;
-  background: rgba(0, 0, 0, 0.01);
-  backdrop-filter: blur(32.75px);
-}
-
-.journeyGradient {
-  position: absolute;
-  inset: 35.71% 0 -0.05% 0;
-}
-
-.journeyGradientOne {
-  background: linear-gradient(179.609deg, rgba(0, 0, 0, 0) 0.955%, #000000 98.84%);
-}
-
-.journeyGradientTwo {
-  background: linear-gradient(179.609deg, rgba(41, 47, 23, 0) 0.955%, #292f17 98.84%);
-}
-
-.journeyGradientThree {
-  background: linear-gradient(179.609deg, rgba(110, 133, 160, 0) 0.955%, #1b3017 98.84%);
-}
-
-.journeyGradientFour {
-  background: linear-gradient(179.609deg, rgba(47, 41, 26, 0) 0.955%, #2f291a 98.84%);
 }
 
 .journeyCard h3 {
@@ -892,29 +800,6 @@
   }
 }
 
-@media (min-width: 1441px) {
-  .surface::before,
-  .surface::after {
-    position: absolute;
-    top: 0;
-    bottom: 0;
-    z-index: 0;
-    width: calc((100vw - 1440px) / 2 + 2px);
-    content: "";
-    pointer-events: none;
-  }
-
-  .surface::before {
-    left: 0;
-    background: var(--edge-left-bg);
-  }
-
-  .surface::after {
-    right: 0;
-    background: var(--edge-right-bg);
-  }
-}
-
 @supports (transform: scale(calc(100vw / 1440px))) {
   @media (min-width: 768px) and (max-width: 1439px) {
     .surface {
@@ -929,286 +814,667 @@
     height: auto;
     min-height: 100vh;
     overflow: visible;
-    background:
-      radial-gradient(circle at 0 14%, rgba(84, 84, 212, 0.16), transparent 58%),
-      radial-gradient(circle at 100% 36%, rgba(251, 168, 28, 0.13), transparent 54%),
-      #ffffff;
+    background: #ffffff;
   }
 
   .page {
     position: relative;
     left: auto;
     top: auto;
-    display: flex;
     width: 100%;
     height: auto;
     min-height: 100vh;
     margin-left: 0;
     overflow: hidden;
+    background: #ffffff;
     transform: none;
-    flex-direction: column;
-    padding-bottom: 0;
   }
 
-  .surface .referenceLayer {
-    display: none !important;
+  .desktopLayers {
+    position: absolute;
+    inset: 0;
+    z-index: 0;
+    overflow: hidden;
+    opacity: 0;
+    pointer-events: none;
   }
 
-  .surface .page > :not(.referenceLayer) {
-    opacity: 1;
-  }
-
-  .bg,
-  .yellowSpark,
-  .blueSquiggle,
-  .blueMark,
-  .smile,
-  .redSquiggle,
-  .redDashOne,
-  .redDashTwo {
-    display: none;
-  }
-
-  .logoWrap {
-    position: relative;
-    left: auto;
-    top: auto;
-    order: 1;
-    width: 64px;
-    height: 44px;
-    margin: 18px 22px 0;
-  }
-
-  .nav {
-    position: relative;
-    left: auto;
-    top: auto;
-    order: 2;
-    justify-content: flex-start;
-    gap: 8px;
-    margin: 10px 18px 0;
-    font-size: 15px;
-    white-space: normal;
-  }
-
-  .nav a {
+  .desktopLayers .nav a,
+  .desktopLayers .kakaoButton {
+    display: inline-flex;
+    min-width: 44px;
     min-height: 44px;
-    padding: 12px 6px;
+    align-items: center;
   }
 
-  .hero,
-  .riverSection,
-  .specialSection,
-  .journeySection,
-  .contactCta {
+  .mobileFrame {
+    --mobile-unit: clamp(0.8955px, 0.248756vw, 1.0697px);
     position: relative;
-    left: auto;
-    top: auto;
+    z-index: 1;
+    display: block;
     width: 100%;
-    transform: none;
+    min-height: 4560em;
+    overflow: hidden;
+    background: #ffffff;
+    color: #000000;
+    font-family: "Figtree", "Nunito Sans", "Noto Sans KR", Arial, sans-serif;
+    font-size: var(--mobile-unit);
   }
 
-  .hero {
-    order: 3;
-    padding: 36px 22px 0;
+  .mobileFrame img {
+    display: block;
+    max-width: none;
   }
 
-  .heroCopy {
+  .mobileHeader,
+  .mobileMenuHeader {
     position: relative;
-    left: auto;
-    top: auto;
+    z-index: 5;
+    display: flex;
     width: 100%;
-    gap: 16px;
-    padding-left: 0;
+    height: 103em;
+    align-items: center;
+    justify-content: space-between;
+    padding: 0 24em;
   }
 
-  .heroTitle,
-  .sectionTitle,
-  .specialTitle,
-  .journeyTitle,
-  .contactCopy h2 {
-    width: 100%;
-    font-size: 32px;
-    line-height: 1.35;
-    letter-spacing: 0;
-    word-break: keep-all;
+  .mobileHeader::before {
+    position: absolute;
+    inset: 0;
+    z-index: -1;
+    background: linear-gradient(180deg, #ffffff 65.517%, rgba(255, 255, 255, 0));
+    content: "";
+    pointer-events: none;
   }
 
-  .heroDescription,
-  .riverText,
-  .featureCopy p,
-  .contactCopy p {
-    width: 100%;
-    font-size: 16px;
-    line-height: 1.75;
-    letter-spacing: 0;
-    word-break: keep-all;
-  }
-
-  .heroDescription br,
-  .riverText br,
-  .featureCopy p br,
-  .contactCopy p br {
-    display: none;
-  }
-
-  .heroArt {
+  .mobileLogo {
     position: relative;
-    left: auto;
-    top: auto;
-    width: min(100%, 360px);
-    margin: 26px auto 0;
+    display: block;
+    width: 47.703em;
+    height: 33em;
+    flex: 0 0 auto;
   }
 
-  .heroArtImage {
+  .mobileLogo img {
     width: 100%;
-    height: auto;
+    height: 100%;
+    object-fit: cover;
   }
 
-  .riverSection {
-    order: 4;
-    gap: 28px;
-    padding: 64px 22px 0;
+  .mobileMenuButton,
+  .mobileMenuClose {
+    display: inline-flex;
+    width: 44px;
+    height: 44px;
+    align-items: center;
+    justify-content: center;
+    padding: 0;
+    border: 0;
+    background: transparent;
+    color: #000000;
+    cursor: pointer;
+    font-size: var(--mobile-unit);
   }
 
-  .riverIntro,
-  .riverCards,
-  .featureRow {
+  .mobileMenuBars {
+    position: relative;
+    display: block;
+    width: 22px;
+    height: 16px;
+  }
+
+  .mobileMenuBars span {
+    position: absolute;
+    right: 0;
+    height: 2px;
+    border-radius: 999px;
+    background: currentColor;
+  }
+
+  .mobileMenuBars span:nth-child(1) {
+    top: 0;
+    width: 22px;
+  }
+
+  .mobileMenuBars span:nth-child(2) {
+    top: 7px;
+    width: 17px;
+  }
+
+  .mobileMenuBars span:nth-child(3) {
+    bottom: 0;
+    width: 11px;
+  }
+
+  .mobileMenuOverlay {
+    position: fixed;
+    inset: 0;
+    z-index: 30;
+    overflow: hidden;
+    background: transparent;
+    opacity: 0;
+    pointer-events: none;
+    visibility: hidden;
+  }
+
+  .mobileMenuOverlayOpen {
+    opacity: 1;
+    pointer-events: auto;
+    visibility: visible;
+  }
+
+  .mobileMenuBackdrop {
+    position: absolute;
+    inset: 0;
+    background: rgba(255, 255, 255, 0.96);
+    backdrop-filter: blur(8px);
+  }
+
+  .mobileMenuHeader {
+    font-size: var(--mobile-unit);
+  }
+
+  .mobileArrowIcon {
+    display: block;
+    width: 19.988em;
+    height: 15.314em;
+    object-fit: contain;
+    transform: rotate(180deg) scaleY(-1);
+  }
+
+  .mobileMenuNav {
+    position: absolute;
+    top: 144em;
+    left: calc(50% + 0.5em);
+    display: flex;
+    min-width: 95em;
+    transform: translateX(-50%);
+    flex-direction: column;
+    align-items: flex-end;
+    gap: 49em;
+    color: rgba(0, 0, 0, 0.7);
+    font-family: "Nunito Sans", "Figtree", "Noto Sans KR", Arial, sans-serif;
+    font-size: var(--mobile-unit);
+    font-weight: 400;
+    line-height: normal;
+    text-align: right;
+    white-space: nowrap;
+  }
+
+  .mobileMenuNav a {
+    display: inline-flex;
+    min-width: 44px;
+    min-height: 44px;
+    align-items: center;
+    color: inherit;
+    font-size: 24em;
+    text-decoration: none;
+  }
+
+  .mobileMenuNav .mobileMenuActive {
+    color: #030303;
+    font-family: "Figtree", "Nunito Sans", "Noto Sans KR", Arial, sans-serif;
+    font-weight: 800;
+    letter-spacing: -0.0208em;
+  }
+
+  .mobileHero,
+  .mobileRiver,
+  .mobileSpecial,
+  .mobileJourney,
+  .mobileContact {
+    position: relative;
+    z-index: 1;
+    width: 100%;
+    padding-right: 24em;
+    padding-left: 24em;
+  }
+
+  .mobileHero {
+    padding-top: 3em;
+  }
+
+  .mobileCopyBlock {
+    display: flex;
     width: 100%;
     flex-direction: column;
-    align-items: stretch;
-    gap: 20px;
-  }
-
-  .riverHeroImage,
-  .riverCardImage,
-  .featureImageFrame {
-    width: 100%;
-    height: auto;
-    aspect-ratio: 16 / 10;
-    border-radius: 0;
-  }
-
-  .riverHeroPhoto,
-  .riverCardPhotoOne,
-  .riverCardPhotoTwo,
-  .featureImageFrame img {
-    left: 0;
-    top: 0;
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
-  }
-
-  .riverCard,
-  .riverCardNarrow {
-    width: 100%;
-    gap: 14px;
-  }
-
-  .riverCardTitle {
-    font-size: 21px;
-    line-height: 1.45;
-    white-space: normal;
-  }
-
-  .specialSection {
-    order: 5;
-    gap: 34px;
-    padding: 72px 22px 0;
-  }
-
-  .specialList {
-    width: 100%;
-    gap: 36px;
-  }
-
-  .featureImageFrame {
-    order: 1;
-  }
-
-  .featureCopy {
-    order: 2;
-    width: 100%;
     align-items: flex-start;
-    gap: 10px;
-    text-align: left;
+    gap: 14.4em;
+    word-break: break-word;
   }
 
-  .featureCopyRight {
-    align-items: flex-start;
-    text-align: left;
-  }
-
-  .featureCopy h3 {
-    font-size: 25px;
-    line-height: 1.45;
-    white-space: normal;
-  }
-
-  .journeySection {
-    order: 6;
-    gap: 28px;
-    padding: 72px 22px 0;
-  }
-
-  .journeyGrid {
+  .mobileHeroTitle,
+  .mobileSectionTitle,
+  .mobileCenteredTitle {
     width: 100%;
-    height: auto;
-    grid-template-columns: 1fr;
-    grid-template-rows: none;
-    gap: 16px;
+    margin: 0;
+    font-family: "Figtree", "Nunito Sans", "Noto Sans KR", Arial, sans-serif;
+    font-size: 36em;
+    font-weight: 800;
+    line-height: 1.4;
+    word-break: keep-all;
   }
 
-  .journeyCard {
-    min-height: 168px;
-    aspect-ratio: 16 / 9;
+  .mobileHeroTitle {
+    font-size: 34em;
+    width: min(378px, calc(100vw - 24px));
   }
 
-  .journeyCard img {
-    left: 0;
-    top: 0;
+  .mobileBodyText {
     width: 100%;
-    height: 100%;
-    object-fit: cover;
+    margin: 0;
+    color: rgba(0, 0, 0, 0.7);
+    font-family: "Nunito Sans", "Figtree", "Noto Sans KR", Arial, sans-serif;
+    font-size: 12.6em;
+    font-variation-settings: "YTLC" 500, "wdth" 100;
+    font-weight: 400;
+    letter-spacing: -0.03126em;
+    line-height: 1.8571428571;
+    word-break: break-word;
   }
 
-  .journeyCard h3 {
+  .mobileHeroArt {
+    position: relative;
+    width: 435.506em;
+    height: 577.086em;
+    margin: 8em 0 0 -58em;
+    overflow: visible;
+    pointer-events: none;
+  }
+
+  .mobileHeroYellowOutline,
+  .mobileHeroYellowFill {
+    position: absolute;
+    width: 232.456em;
+    height: 232.456em;
+    border: 9.6em solid #ffd500;
+    border-radius: 25.8em;
+    transform: rotate(23.93deg);
+    transform-origin: center;
+  }
+
+  .mobileHeroYellowOutline {
+    left: 81em;
+    top: 69.6em;
+  }
+
+  .mobileHeroYellowFill {
+    left: 103.8em;
+    top: 126em;
+    background: #ffd500;
+  }
+
+  .mobileHeroBikeImage {
+    position: absolute;
+    left: 40em;
+    top: 43em;
+    width: 384.022em;
+    height: 479.856em;
+    object-fit: contain;
+    transform: rotate(6.12deg);
+    transform-origin: center;
+  }
+
+  .mobileRiver {
     display: flex;
+    flex-direction: column;
+    gap: 25.2em;
+    margin-top: 29em;
+  }
+
+  .mobilePhotoFrame {
+    position: relative;
+    width: 100%;
+    height: 200em;
+    overflow: hidden;
+    background: #ffffff;
+  }
+
+  .mobilePhotoFrame img {
+    position: absolute;
+    object-fit: cover;
+  }
+
+  .mobileRiverHeroPhoto img {
+    left: -199.2em;
+    top: -133em;
+    width: 736.118em;
+    height: 552.6em;
+  }
+
+  .mobileRiverCards {
+    display: flex;
+    width: 100%;
+    flex-direction: column;
+    gap: 16em;
+  }
+
+  .mobileRiverCard {
+    display: flex;
+    width: 100%;
+    flex-direction: column;
+    align-items: center;
+    gap: 16.8em;
+  }
+
+  .mobileRiverCard h3 {
+    width: 100%;
+    margin: 0;
+    color: rgba(0, 0, 0, 0.7);
+    font-family: "Figtree", "Nunito Sans", "Noto Sans KR", Arial, sans-serif;
+    font-size: 18em;
+    font-weight: 600;
+    letter-spacing: -0.02188em;
+    line-height: 1.6666666667;
+    text-align: center;
+    word-break: break-word;
+  }
+
+  .mobileRiverCardPhotoOne img {
+    left: -104.4em;
+    top: -24.6em;
+    width: 547.306em;
+    height: 309em;
+  }
+
+  .mobileRiverCardPhotoTwo img {
+    left: -25.8em;
+    top: -13.2em;
+    width: 387.2em;
+    height: 290.4em;
+  }
+
+  .mobileSpecial {
+    display: flex;
+    flex-direction: column;
+    gap: 36em;
+    margin-top: 23em;
+  }
+
+  .mobileFeatureList {
+    display: flex;
+    width: 100%;
+    flex-direction: column;
+    gap: 31.2em;
+  }
+
+  .mobileFeature {
+    display: flex;
+    width: 100%;
+    flex-direction: column;
+    gap: 24em;
+  }
+
+  .mobileFeatureImage {
+    position: relative;
+    width: 100%;
+    height: 210em;
+    overflow: hidden;
+    background: #ffffff;
+  }
+
+  .mobileFeatureImage img {
+    position: absolute;
+    max-width: none;
+    object-fit: cover;
+  }
+
+  .mobileFeaturePhotoOne {
+    left: -639em;
+    top: -357em;
+    width: 1069.8em;
+    height: 713.4em;
+  }
+
+  .mobileFeaturePhotoTwo {
+    left: 0;
+    top: -57em;
+    width: 356em;
+    height: 267em;
+  }
+
+  .mobileFeaturePhotoThree {
+    left: 0;
+    top: -90.8em;
+    width: 354em;
+    height: 530em;
+  }
+
+  .mobileFeatureCopy {
+    display: flex;
+    width: 100%;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 7.2em;
+    letter-spacing: -0.01563em;
+    text-align: left;
+    word-break: break-word;
+  }
+
+  .mobileFeatureCopyRight {
+    align-items: flex-end;
+    text-align: right;
+  }
+
+  .mobileFeatureCopy h3 {
+    margin: 0;
+    font-family: "Figtree", "Nunito Sans", "Noto Sans KR", Arial, sans-serif;
+    font-size: 25.2em;
+    font-weight: 700;
+    line-height: 1.4285714286;
+    white-space: nowrap;
+  }
+
+  .mobileFeatureCopy p {
+    width: 100%;
+    margin: 0;
+    color: rgba(0, 0, 0, 0.7);
+    font-family: "Figtree", "Nunito Sans", "Noto Sans KR", Arial, sans-serif;
+    font-size: 12.6em;
+    font-weight: 600;
+    letter-spacing: -0.03126em;
+    line-height: 1.8571428571;
+  }
+
+  .mobileJourney {
+    display: flex;
+    flex-direction: column;
+    gap: 40.8em;
+    margin-top: 101em;
+  }
+
+  .mobileCenteredTitle {
+    text-align: center;
+  }
+
+  .mobileJourneyGrid {
+    display: grid;
+    width: 100%;
+    height: 361.2em;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    grid-template-rows: repeat(2, minmax(0, 1fr));
+    gap: 18em;
+  }
+
+  .mobileJourneyCard {
+    position: relative;
+    overflow: hidden;
+    background: #000000;
+  }
+
+  .mobileJourneyImageLayer,
+  .mobileJourneyImageLayer img {
+    position: absolute;
+  }
+
+  .mobileJourneyImageLayer {
+    inset: 0;
+    overflow: hidden;
+  }
+
+  .mobileJourneyMediaImage {
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+  }
+
+  .mobileJourneyBlur {
+    position: absolute;
+    inset: 42.66% 0 0;
+    background: rgba(0, 0, 0, 0.01);
+    backdrop-filter: blur(19.65em);
+  }
+
+  .mobileJourneyGradient {
+    position: absolute;
+    inset: 35.71% 0 -0.05%;
+    background: linear-gradient(179.183deg, rgba(0, 0, 0, 0) 0.955%, #000000 98.84%);
+  }
+
+  .mobileJourneyCard h3 {
+    position: absolute;
+    inset: 63.87% 0 8.51%;
+    display: flex;
+    width: 100%;
     align-items: flex-end;
     justify-content: center;
-    font-size: 20px;
-    line-height: 1.35;
+    margin: 0;
+    padding: 0 12em 12em;
+    color: #ffffff;
+    font-family: "Figtree", "Nunito Sans", "Noto Sans KR", Arial, sans-serif;
+    font-size: var(--mobile-unit);
+    font-weight: 600;
+    letter-spacing: -0.02345em;
+    line-height: normal;
+    text-align: center;
+    word-break: break-word;
   }
 
-  .contactCta {
-    order: 7;
-    height: auto;
+  .mobileJourneyTitleText {
+    font-size: 19.2em;
+  }
+
+  .mobileContact {
+    display: flex;
     flex-direction: column;
-    align-items: stretch;
-    gap: 26px;
-    margin-top: 72px;
-    padding: 42px 22px;
+    align-items: center;
+    gap: 30em;
+    margin-top: 101em;
+    padding-top: 51em;
+    padding-bottom: 27.6em;
     background: rgba(30, 30, 32, 0.06);
   }
 
-  .contactBg {
-    display: none;
-  }
-
-  .contactCopy {
-    width: 100%;
-    height: auto;
-    gap: 14px;
-  }
-
-  .kakaoButton {
-    width: 100%;
-    height: 56px;
+  .mobileKakaoButton {
+    position: relative;
+    display: inline-flex;
+    min-width: 44px;
+    min-height: 44px;
+    align-items: center;
     justify-content: center;
+    gap: 6em;
+    overflow: hidden;
+    padding: 10.2em 9.6em;
+    border-radius: 8.4em;
+    background: #fbe300;
+    color: #000000;
+    font-family: "Nunito Sans", "Figtree", "Noto Sans KR", Arial, sans-serif;
+    font-size: var(--mobile-unit);
+    font-variation-settings: "YTLC" 500, "wdth" 100;
+    font-weight: 700;
+    line-height: normal;
+    text-align: center;
+    text-decoration: none;
   }
 
-  .kakaoButton span:last-child {
-    width: auto;
+  .mobileKakaoButton span:last-child {
+    font-size: 12.6em;
   }
+
+  .mobileKakaoIcon {
+    position: relative;
+    width: 19.8em;
+    height: 19.8em;
+    flex: 0 0 auto;
+    overflow: hidden;
+  }
+
+  .mobileKakaoIcon img {
+    position: absolute;
+    left: -15.15%;
+    top: -15.15%;
+    width: 130.3%;
+    height: 130.3%;
+    object-fit: cover;
+  }
+
+  .mobileDecorations {
+    position: absolute;
+    inset: 0;
+    z-index: 2;
+    pointer-events: none;
+  }
+
+  .mobileDecorations .yellowSpark {
+    display: block;
+    left: 209.88em;
+    top: 917.64em;
+    width: 98.635em;
+    height: 64.915em;
+    transform: scale(0.6);
+    transform-origin: top left;
+  }
+
+  .mobileBlueSquiggle {
+    position: absolute;
+    left: 258.08em;
+    top: 2923.41em;
+    width: 121.2em;
+    height: 15em;
+  }
+
+  .mobileBlueMark {
+    position: absolute;
+    left: 121.28em;
+    top: 2843.01em;
+    width: 33.6em;
+    height: 43.8em;
+  }
+
+  .mobileSmile {
+    position: absolute;
+    left: 254.68em;
+    top: 2429.41em;
+    width: 35.747em;
+    height: 35.932em;
+    transform: scale(0.51);
+    transform-origin: top left;
+  }
+
+  .mobileRedSquiggle {
+    position: absolute;
+    left: 13.99em;
+    top: 3096.84em;
+    width: 66.304em;
+    height: 15.804em;
+  }
+
+  .mobileRedDashOne {
+    position: absolute;
+    left: 162.85em;
+    top: 3264.65em;
+    width: 3.856em;
+    height: 13.221em;
+  }
+
+  .mobileRedDashTwo {
+    position: absolute;
+    left: 170.56em;
+    top: 3286.14em;
+    width: 16.527em;
+    height: 1.102em;
+  }
+
 }
