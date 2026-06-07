@@ -533,30 +533,32 @@ function GiftSection() {
 
 export function CoursesPage({ className }: CoursesPageProps) {
   return (
-    <main className={className ? `${styles.page} ${className}` : styles.page} data-node-id="24:253" data-name="02_Landing">
-      <img className={styles.referenceLayer} src={assets.reference} alt="" aria-hidden="true" />
-      <div className={styles.blurOne} />
-      <div className={styles.blurTwo} />
-      <div className={styles.blurThree} />
-      <div className={styles.blurFour} />
-      <div className={styles.blurFive} />
-      <a className={styles.logoLink} href="/" aria-label="따르릉 여주 홈">
-        <img className={styles.logo} src={assets.logo} alt="" />
-      </a>
-      <nav className={styles.nav} aria-label="주요 메뉴">
-        <a href="/">투어 소개</a>
-        <a className={styles.activeNav} href="/courses" aria-current="page">
-          코스 안내
+    <div className={styles.surface} data-responsive-page="courses">
+      <main className={className ? `${styles.page} ${className}` : styles.page} data-node-id="24:253" data-name="02_Landing">
+        <img className={styles.referenceLayer} src={assets.reference} alt="" aria-hidden="true" />
+        <div className={styles.blurOne} />
+        <div className={styles.blurTwo} />
+        <div className={styles.blurThree} />
+        <div className={styles.blurFour} />
+        <div className={styles.blurFive} />
+        <a className={styles.logoLink} href="/" aria-label="따르릉 여주 홈">
+          <img className={styles.logo} src={assets.logo} alt="" />
         </a>
-        <a href="/reservation">투어 예약</a>
-      </nav>
-      <div className={styles.contentStack}>
-        {sections.map((section) => (
-          <TourSectionView section={section} key={section.nodeId} />
-        ))}
-        <GiftSection />
-      </div>
-    </main>
+        <nav className={styles.nav} aria-label="주요 메뉴">
+          <a href="/">투어 소개</a>
+          <a className={styles.activeNav} href="/courses" aria-current="page">
+            코스 안내
+          </a>
+          <a href="/reservation">투어 예약</a>
+        </nav>
+        <div className={styles.contentStack}>
+          {sections.map((section) => (
+            <TourSectionView section={section} key={section.nodeId} />
+          ))}
+          <GiftSection />
+        </div>
+      </main>
+    </div>
   );
 }
 

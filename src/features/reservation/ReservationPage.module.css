@@ -1,5 +1,22 @@
-.page {
+.surface {
+  --pc-scale: 1;
   position: relative;
+  width: 100%;
+  height: 2415px;
+  overflow: hidden;
+  background:
+    radial-gradient(circle at calc(50% - 760px) 18%, rgba(84, 84, 212, 0.13), transparent 34vw),
+    radial-gradient(circle at calc(50% + 760px) 24%, rgba(251, 168, 28, 0.11), transparent 32vw),
+    #ffffff;
+}
+
+.page {
+  position: absolute;
+  left: 50%;
+  top: 0;
+  margin-left: -720px;
+  transform: scale(var(--pc-scale));
+  transform-origin: top center;
   width: 1440px;
   height: 2415px;
   overflow: hidden;
@@ -565,4 +582,217 @@
   position: absolute;
   white-space: nowrap;
   width: 1px;
+}
+
+@media (min-width: 768px) and (max-width: 1439px) {
+  .surface {
+    --pc-scale: 0.9486111111;
+    height: 2290.895833px;
+  }
+}
+
+@supports (transform: scale(calc(100vw / 1440px))) {
+  @media (min-width: 768px) and (max-width: 1439px) {
+    .surface {
+      --pc-scale: calc(100vw / 1440px);
+      height: 167.708333vw;
+    }
+  }
+}
+
+@media (max-width: 767px) {
+  .surface {
+    height: auto;
+    min-height: 100vh;
+    overflow: visible;
+    background:
+      radial-gradient(circle at 0 14%, rgba(84, 84, 212, 0.16), transparent 58%),
+      radial-gradient(circle at 100% 36%, rgba(251, 168, 28, 0.13), transparent 54%),
+      #ffffff;
+  }
+
+  .page {
+    position: relative;
+    left: auto;
+    top: auto;
+    display: flex;
+    width: 100%;
+    height: auto;
+    min-height: 100vh;
+    margin-left: 0;
+    overflow: hidden;
+    transform: none;
+    flex-direction: column;
+  }
+
+  .surface .referenceLayer {
+    display: none !important;
+  }
+
+  .surface .page > :not(.referenceLayer) {
+    opacity: 1;
+  }
+
+  .background {
+    display: none;
+  }
+
+  .header {
+    position: relative;
+    left: auto;
+    top: auto;
+    width: 100%;
+    order: 1;
+  }
+
+  .logoLink {
+    position: relative;
+    left: auto;
+    top: auto;
+    width: 64px;
+    height: 44px;
+    margin: 18px 22px 0;
+  }
+
+  .navigation {
+    position: relative;
+    left: auto;
+    top: auto;
+    justify-content: flex-start;
+    gap: 8px;
+    margin: 10px 18px 0;
+    font-size: 15px;
+    white-space: normal;
+  }
+
+  .navItem {
+    min-height: 44px;
+    padding: 12px 6px;
+  }
+
+  .reservationIntro,
+  .directions {
+    position: relative;
+    left: auto;
+    top: auto;
+    width: 100%;
+    transform: none;
+  }
+
+  .reservationIntro {
+    order: 2;
+    gap: 28px;
+    padding: 48px 22px 0;
+  }
+
+  .copyBlock {
+    gap: 14px;
+  }
+
+  .pageTitle,
+  .sectionTitle {
+    font-size: 32px;
+    line-height: 1.35;
+    word-break: keep-all;
+  }
+
+  .description,
+  .addressRow p,
+  .transportCopy h3 {
+    font-size: 17px;
+    line-height: 1.65;
+    letter-spacing: 0;
+    word-break: keep-all;
+  }
+
+  .cardGrid {
+    height: auto;
+    grid-template-columns: 1fr;
+    grid-template-rows: none;
+    gap: 16px;
+  }
+
+  .tourCard {
+    min-height: 176px;
+    aspect-ratio: 16 / 9;
+  }
+
+  .cardImage {
+    left: 0 !important;
+    top: 0 !important;
+    width: 100% !important;
+    height: 100% !important;
+    transform: none !important;
+    object-fit: cover;
+  }
+
+  .cardLabel h2 {
+    font-size: 21px;
+    line-height: 1.35;
+  }
+
+  .directions {
+    order: 3;
+    gap: 42px;
+    padding: 70px 22px 56px;
+  }
+
+  .directionsHeader {
+    gap: 16px;
+  }
+
+  .addressRow {
+    width: 100%;
+    justify-content: center;
+    gap: 8px;
+  }
+
+  .pinIcon {
+    width: 28px;
+    height: auto;
+  }
+
+  .transportGroup {
+    gap: 46px;
+  }
+
+  .carBlock,
+  .transitBlock {
+    width: 100%;
+    padding: 0;
+    gap: 20px;
+  }
+
+  .carIconFrame,
+  .trainIconFrame {
+    width: 150px;
+    height: 54px;
+    margin-right: 0;
+  }
+
+  .transportCopy {
+    gap: 16px;
+  }
+
+  .carDetails,
+  .transitDetails {
+    min-height: 0;
+    flex-direction: column;
+    align-items: stretch;
+    gap: 16px;
+    font-size: 16px;
+  }
+
+  .parkingColumn,
+  .parkingColumn:first-child,
+  .transitColumn,
+  .transitColumn:first-child {
+    flex: 1 1 auto;
+    white-space: normal;
+  }
+
+  .parkingColumn p,
+  .transitColumn p {
+    line-height: 1.65;
+  }
 }

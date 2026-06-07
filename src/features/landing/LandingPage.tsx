@@ -9,6 +9,7 @@ const imgKakaoTalk202511171151172981 = "/assets/figma/mcp/461689e3-dc4a-47ac-8fc
 const imgKakaoTalk202511171152391871 = "/assets/figma/mcp/c57dbe85-295b-4130-9b84-401993be52c4.jpg";
 const imgKakaoTalk20251117115117298071 = "/assets/figma/mcp/da8bc77c-6a74-4345-98b6-f0941f96579e.jpg";
 const imgHeroArt = "/assets/figma/crops/landing-hero-art.png";
+const imgHeroArtMobile = "/assets/figma/crops/landing-hero-art-mobile.png";
 const img21 = "/assets/figma/mcp/72885cc4-ed18-4afb-b62b-331a13bdcd30.jpg";
 const img001P2 = "/assets/figma/crops/landing-journey-2.png";
 const img321 = "/assets/figma/mcp/6463445a-2b7e-4012-a734-ef5f4c61265a.jpg";
@@ -34,16 +35,18 @@ type LandingPageProps = {
 
 export default function LandingPage({ className }: LandingPageProps) {
   return (
-    <main className={[styles.page, className].filter(Boolean).join(" ")} data-node-id="1:52" data-name="01_Landing">
-      <img className={styles.referenceLayer} src={referenceImage} alt="" aria-hidden="true" />
-      <BackgroundGlow />
-      <Header />
-      <Hero />
-      <RiverSection />
-      <SpecialSection />
-      <JourneySection />
-      <ContactCta />
-    </main>
+    <div className={styles.surface} data-responsive-page="landing">
+      <main className={[styles.page, className].filter(Boolean).join(" ")} data-node-id="1:52" data-name="01_Landing">
+        <img className={styles.referenceLayer} src={referenceImage} alt="" aria-hidden="true" />
+        <BackgroundGlow />
+        <Header />
+        <Hero />
+        <RiverSection />
+        <SpecialSection />
+        <JourneySection />
+        <ContactCta />
+      </main>
+    </div>
   );
 }
 
@@ -86,7 +89,10 @@ function Hero() {
         </p>
       </div>
       <div className={styles.heroArt} aria-hidden="true" data-node-id="1:199">
-        <img className={styles.heroArtImage} src={imgHeroArt} alt="" />
+        <picture>
+          <source media="(max-width: 767px)" srcSet={imgHeroArtMobile} />
+          <img className={styles.heroArtImage} src={imgHeroArt} alt="" />
+        </picture>
       </div>
       <YellowSpark />
     </section>

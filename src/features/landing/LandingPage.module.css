@@ -1,5 +1,22 @@
-.page {
+.surface {
+  --pc-scale: 1;
   position: relative;
+  width: 100%;
+  height: 5693px;
+  overflow: hidden;
+  background:
+    radial-gradient(circle at calc(50% - 760px) 18%, rgba(84, 84, 212, 0.13), transparent 34vw),
+    radial-gradient(circle at calc(50% + 760px) 20%, rgba(251, 168, 28, 0.11), transparent 32vw),
+    #ffffff;
+}
+
+.page {
+  position: absolute;
+  left: 50%;
+  top: 0;
+  margin-left: -720px;
+  transform: scale(var(--pc-scale));
+  transform-origin: top center;
   width: 1440px;
   height: 5693px;
   overflow: hidden;
@@ -194,7 +211,12 @@
   pointer-events: none;
 }
 
+.heroArt picture {
+  display: block;
+}
+
 .heroArtImage {
+  display: block;
   width: 726px;
   height: 862px;
 }
@@ -821,4 +843,309 @@
   padding: 0;
   white-space: nowrap;
   width: 1px;
+}
+
+@media (min-width: 768px) and (max-width: 1439px) {
+  .surface {
+    --pc-scale: 0.9486111111;
+    height: 5400.443056px;
+  }
+}
+
+@supports (transform: scale(calc(100vw / 1440px))) {
+  @media (min-width: 768px) and (max-width: 1439px) {
+    .surface {
+      --pc-scale: calc(100vw / 1440px);
+      height: 395.347222vw;
+    }
+  }
+}
+
+@media (max-width: 767px) {
+  .surface {
+    height: auto;
+    min-height: 100vh;
+    overflow: visible;
+    background:
+      radial-gradient(circle at 0 14%, rgba(84, 84, 212, 0.16), transparent 58%),
+      radial-gradient(circle at 100% 36%, rgba(251, 168, 28, 0.13), transparent 54%),
+      #ffffff;
+  }
+
+  .page {
+    position: relative;
+    left: auto;
+    top: auto;
+    display: flex;
+    width: 100%;
+    height: auto;
+    min-height: 100vh;
+    margin-left: 0;
+    overflow: hidden;
+    transform: none;
+    flex-direction: column;
+    padding-bottom: 0;
+  }
+
+  .surface .referenceLayer {
+    display: none !important;
+  }
+
+  .surface .page > :not(.referenceLayer) {
+    opacity: 1;
+  }
+
+  .bg,
+  .yellowSpark,
+  .blueSquiggle,
+  .blueMark,
+  .smile,
+  .redSquiggle,
+  .redDashOne,
+  .redDashTwo {
+    display: none;
+  }
+
+  .logoWrap {
+    position: relative;
+    left: auto;
+    top: auto;
+    order: 1;
+    width: 64px;
+    height: 44px;
+    margin: 18px 22px 0;
+  }
+
+  .nav {
+    position: relative;
+    left: auto;
+    top: auto;
+    order: 2;
+    justify-content: flex-start;
+    gap: 8px;
+    margin: 10px 18px 0;
+    font-size: 15px;
+    white-space: normal;
+  }
+
+  .nav a {
+    min-height: 44px;
+    padding: 12px 6px;
+  }
+
+  .hero,
+  .riverSection,
+  .specialSection,
+  .journeySection,
+  .contactCta {
+    position: relative;
+    left: auto;
+    top: auto;
+    width: 100%;
+    transform: none;
+  }
+
+  .hero {
+    order: 3;
+    padding: 36px 22px 0;
+  }
+
+  .heroCopy {
+    position: relative;
+    left: auto;
+    top: auto;
+    width: 100%;
+    gap: 16px;
+    padding-left: 0;
+  }
+
+  .heroTitle,
+  .sectionTitle,
+  .specialTitle,
+  .journeyTitle,
+  .contactCopy h2 {
+    width: 100%;
+    font-size: 32px;
+    line-height: 1.35;
+    letter-spacing: 0;
+    word-break: keep-all;
+  }
+
+  .heroDescription,
+  .riverText,
+  .featureCopy p,
+  .contactCopy p {
+    width: 100%;
+    font-size: 16px;
+    line-height: 1.75;
+    letter-spacing: 0;
+    word-break: keep-all;
+  }
+
+  .heroDescription br,
+  .riverText br,
+  .featureCopy p br,
+  .contactCopy p br {
+    display: none;
+  }
+
+  .heroArt {
+    position: relative;
+    left: auto;
+    top: auto;
+    width: min(100%, 360px);
+    margin: 26px auto 0;
+  }
+
+  .heroArtImage {
+    width: 100%;
+    height: auto;
+  }
+
+  .riverSection {
+    order: 4;
+    gap: 28px;
+    padding: 64px 22px 0;
+  }
+
+  .riverIntro,
+  .riverCards,
+  .featureRow {
+    width: 100%;
+    flex-direction: column;
+    align-items: stretch;
+    gap: 20px;
+  }
+
+  .riverHeroImage,
+  .riverCardImage,
+  .featureImageFrame {
+    width: 100%;
+    height: auto;
+    aspect-ratio: 16 / 10;
+    border-radius: 0;
+  }
+
+  .riverHeroPhoto,
+  .riverCardPhotoOne,
+  .riverCardPhotoTwo,
+  .featureImageFrame img {
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+  }
+
+  .riverCard,
+  .riverCardNarrow {
+    width: 100%;
+    gap: 14px;
+  }
+
+  .riverCardTitle {
+    font-size: 21px;
+    line-height: 1.45;
+    white-space: normal;
+  }
+
+  .specialSection {
+    order: 5;
+    gap: 34px;
+    padding: 72px 22px 0;
+  }
+
+  .specialList {
+    width: 100%;
+    gap: 36px;
+  }
+
+  .featureImageFrame {
+    order: 1;
+  }
+
+  .featureCopy {
+    order: 2;
+    width: 100%;
+    align-items: flex-start;
+    gap: 10px;
+    text-align: left;
+  }
+
+  .featureCopyRight {
+    align-items: flex-start;
+    text-align: left;
+  }
+
+  .featureCopy h3 {
+    font-size: 25px;
+    line-height: 1.45;
+    white-space: normal;
+  }
+
+  .journeySection {
+    order: 6;
+    gap: 28px;
+    padding: 72px 22px 0;
+  }
+
+  .journeyGrid {
+    width: 100%;
+    height: auto;
+    grid-template-columns: 1fr;
+    grid-template-rows: none;
+    gap: 16px;
+  }
+
+  .journeyCard {
+    min-height: 168px;
+    aspect-ratio: 16 / 9;
+  }
+
+  .journeyCard img {
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+  }
+
+  .journeyCard h3 {
+    display: flex;
+    align-items: flex-end;
+    justify-content: center;
+    font-size: 20px;
+    line-height: 1.35;
+  }
+
+  .contactCta {
+    order: 7;
+    height: auto;
+    flex-direction: column;
+    align-items: stretch;
+    gap: 26px;
+    margin-top: 72px;
+    padding: 42px 22px;
+    background: rgba(30, 30, 32, 0.06);
+  }
+
+  .contactBg {
+    display: none;
+  }
+
+  .contactCopy {
+    width: 100%;
+    height: auto;
+    gap: 14px;
+  }
+
+  .kakaoButton {
+    width: 100%;
+    height: 56px;
+    justify-content: center;
+  }
+
+  .kakaoButton span:last-child {
+    width: auto;
+  }
 }
