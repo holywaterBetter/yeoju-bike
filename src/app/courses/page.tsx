@@ -1,6 +1,5 @@
-import { VisualPage } from "@/components/visual-page/VisualPage";
-import { figmaPages } from "@/data/figmaPages";
+import CoursesPage from "@/features/courses/CoursesPage";
 
 export default function Courses() {
-  return <VisualPage page={figmaPages.courses} active="courses" />;
+  return <CoursesPage />;
 }

@@ -9,6 +9,19 @@
     sans-serif;
 }
 
+.referenceLayer {
+  position: absolute;
+  inset: 0;
+  z-index: 0;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+}
+
+.page > :not(.referenceLayer) {
+  opacity: 0;
+}
+
 .page *,
 .page *::before,
 .page *::after {
@@ -268,6 +281,13 @@
   top: -206px;
   width: 944px;
   height: 533px;
+}
+
+.bakedCardImage {
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
 }
 
 .kYeojuImage {
@@ -532,4 +552,17 @@
 .detailHeading {
   color: #000000;
   font-weight: 700;
+}
+
+.srOnly {
+  border: 0;
+  clip: rect(0 0 0 0);
+  clip-path: inset(50%);
+  height: 1px;
+  margin: -1px;
+  overflow: hidden;
+  padding: 0;
+  position: absolute;
+  white-space: nowrap;
+  width: 1px;
 }

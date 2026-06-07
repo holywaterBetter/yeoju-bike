@@ -1,6 +1,5 @@
-import { VisualPage } from "@/components/visual-page/VisualPage";
-import { figmaPages } from "@/data/figmaPages";
+import LandingPage from "@/features/landing/LandingPage";
 
 export default function Home() {
-  return <VisualPage page={figmaPages.landing} active="landing" />;
+  return <LandingPage />;
 }

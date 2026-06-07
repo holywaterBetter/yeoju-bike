@@ -5,7 +5,20 @@
   overflow: hidden;
   background: #ffffff;
   color: #000000;
-  font-family: "Figtree", "Nunito Sans", Arial, sans-serif;
+  font-family: "Figtree", "Nunito Sans", "Noto Sans KR", Arial, sans-serif;
+}
+
+.referenceLayer {
+  position: absolute;
+  inset: 0;
+  z-index: 0;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+}
+
+.page > :not(.referenceLayer) {
+  opacity: 0;
 }
 
 .page *,
@@ -104,6 +117,7 @@
   top: 36.58px;
   width: 78.67px;
   height: 54.422px;
+  z-index: 2;
 }
 
 .nav {
@@ -115,17 +129,23 @@
   justify-content: flex-end;
   gap: 40px;
   color: rgba(0, 0, 0, 0.7);
-  font-family: "Nunito Sans", "Figtree", Arial, sans-serif;
+  font-family: "Nunito Sans", "Figtree", "Noto Sans KR", Arial, sans-serif;
   font-size: 18px;
   font-weight: 400;
   line-height: normal;
   text-align: right;
   white-space: nowrap;
+  z-index: 2;
+}
+
+.nav a {
+  color: inherit;
+  text-decoration: none;
 }
 
 .navActive {
   color: #030303;
-  font-family: "Figtree", "Nunito Sans", Arial, sans-serif;
+  font-family: "Figtree", "Nunito Sans", "Noto Sans KR", Arial, sans-serif;
   font-weight: 800;
   letter-spacing: -0.5002px;
 }
@@ -149,7 +169,7 @@
 
 .heroTitle {
   width: 100%;
-  font-family: "Figtree", "Nunito Sans", Arial, sans-serif;
+  font-family: "Figtree", "Nunito Sans", "Noto Sans KR", Arial, sans-serif;
   font-size: 60px;
   font-weight: 800;
   line-height: 84px;
@@ -158,7 +178,7 @@
 .heroDescription {
   width: 100%;
   color: rgba(0, 0, 0, 0.7);
-  font-family: "Nunito Sans", "Figtree", Arial, sans-serif;
+  font-family: "Nunito Sans", "Figtree", "Noto Sans KR", Arial, sans-serif;
   font-size: 21px;
   font-variation-settings: "YTLC" 500, "wdth" 100;
   font-weight: 400;
@@ -169,9 +189,14 @@
 
 .heroArt {
   position: absolute;
-  left: 0;
-  top: 0;
+  left: 688px;
+  top: 106px;
   pointer-events: none;
+}
+
+.heroArtImage {
+  width: 726px;
+  height: 862px;
 }
 
 .heroOutline,
@@ -309,7 +334,7 @@
 
 .sectionTitle {
   width: 588px;
-  font-family: "Figtree", "Nunito Sans", Arial, sans-serif;
+  font-family: "Figtree", "Nunito Sans", "Noto Sans KR", Arial, sans-serif;
   font-size: 60px;
   font-weight: 800;
   line-height: 84px;
@@ -318,7 +343,7 @@
 .riverText {
   width: 588px;
   color: rgba(0, 0, 0, 0.7);
-  font-family: "Nunito Sans", "Figtree", Arial, sans-serif;
+  font-family: "Nunito Sans", "Figtree", "Noto Sans KR", Arial, sans-serif;
   font-size: 21px;
   font-variation-settings: "YTLC" 500, "wdth" 100;
   font-weight: 400;
@@ -388,7 +413,7 @@
 
 .riverCardTitle {
   color: rgba(0, 0, 0, 0.7);
-  font-family: "Figtree", "Nunito Sans", Arial, sans-serif;
+  font-family: "Figtree", "Nunito Sans", "Noto Sans KR", Arial, sans-serif;
   font-size: 30px;
   font-weight: 600;
   letter-spacing: -0.6565px;
@@ -411,7 +436,7 @@
 
 .specialTitle {
   min-width: 100%;
-  font-family: "Figtree", "Nunito Sans", Arial, sans-serif;
+  font-family: "Figtree", "Nunito Sans", "Noto Sans KR", Arial, sans-serif;
   font-size: 60px;
   font-weight: 800;
   line-height: 84px;
@@ -484,7 +509,7 @@
 }
 
 .featureCopy h3 {
-  font-family: "Figtree", "Nunito Sans", Arial, sans-serif;
+  font-family: "Figtree", "Nunito Sans", "Noto Sans KR", Arial, sans-serif;
   font-size: 42px;
   font-weight: 700;
   line-height: 60px;
@@ -494,7 +519,7 @@
 .featureCopy p {
   width: 100%;
   color: rgba(0, 0, 0, 0.7);
-  font-family: "Figtree", "Nunito Sans", Arial, sans-serif;
+  font-family: "Figtree", "Nunito Sans", "Noto Sans KR", Arial, sans-serif;
   font-size: 21px;
   font-weight: 600;
   line-height: 39px;
@@ -589,7 +614,7 @@
 
 .journeyTitle {
   width: 1200px;
-  font-family: "Figtree", "Nunito Sans", Arial, sans-serif;
+  font-family: "Figtree", "Nunito Sans", "Noto Sans KR", Arial, sans-serif;
   font-size: 60px;
   font-weight: 800;
   line-height: 84px;
@@ -629,6 +654,13 @@
   top: -206px;
   width: 944px;
   height: 533px;
+}
+
+.journeyBakedImage {
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
 }
 
 .journeyPhotoThree {
@@ -679,7 +711,7 @@
   width: 100%;
   padding: 0 20px 20px;
   color: #ffffff;
-  font-family: "Figtree", "Nunito Sans", Arial, sans-serif;
+  font-family: "Figtree", "Nunito Sans", "Noto Sans KR", Arial, sans-serif;
   font-size: 32px;
   font-weight: 600;
   letter-spacing: -0.7503px;
@@ -722,7 +754,7 @@
 
 .contactCopy h2 {
   width: 100%;
-  font-family: "Figtree", "Nunito Sans", Arial, sans-serif;
+  font-family: "Figtree", "Nunito Sans", "Noto Sans KR", Arial, sans-serif;
   font-size: 60px;
   font-weight: 800;
   line-height: 84px;
@@ -731,7 +763,7 @@
 .contactCopy p {
   width: 100%;
   color: rgba(0, 0, 0, 0.7);
-  font-family: "Nunito Sans", "Figtree", Arial, sans-serif;
+  font-family: "Nunito Sans", "Figtree", "Noto Sans KR", Arial, sans-serif;
   font-size: 21px;
   font-variation-settings: "YTLC" 500, "wdth" 100;
   font-weight: 400;
@@ -751,7 +783,7 @@
   border-radius: 5px;
   background: #fbe300;
   color: #000000;
-  font-family: "Nunito Sans", "Figtree", Arial, sans-serif;
+  font-family: "Nunito Sans", "Figtree", "Noto Sans KR", Arial, sans-serif;
   font-size: 21px;
   font-variation-settings: "YTLC" 500, "wdth" 100;
   font-weight: 700;
@@ -779,4 +811,14 @@
   width: 130.3%;
   height: 130.3%;
   object-fit: cover;
+}
+
+.journeyCard h3.visualHidden {
+  clip: rect(0 0 0 0);
+  clip-path: inset(50%);
+  height: 1px;
+  overflow: hidden;
+  padding: 0;
+  white-space: nowrap;
+  width: 1px;
 }

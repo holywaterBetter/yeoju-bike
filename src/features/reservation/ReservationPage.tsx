@@ -1,21 +1,22 @@
 import styles from "./ReservationPage.module.css";
 
 const logoImage =
-  "https://www.figma.com/api/mcp/asset/6b90eb4f-12f6-4bac-94f6-a67f6ca5bab7";
+  "/assets/figma/mcp/6b90eb4f-12f6-4bac-94f6-a67f6ca5bab7.png";
 const hangulTourImage =
-  "https://www.figma.com/api/mcp/asset/d265d34a-2975-4fe3-9638-87193f9a4dd1";
+  "/assets/figma/mcp/d265d34a-2975-4fe3-9638-87193f9a4dd1.jpg";
 const goldenBellImage =
-  "https://www.figma.com/api/mcp/asset/da9f9229-eed2-4608-abb9-cc294c65fcde";
+  "/assets/figma/crops/reservation-card-2.png";
 const kYeojuImage =
-  "https://www.figma.com/api/mcp/asset/494b6b6b-309c-44dd-a146-ef42b47dbfd9";
+  "/assets/figma/mcp/494b6b6b-309c-44dd-a146-ef42b47dbfd9.jpg";
 const clubCourseImage =
-  "https://www.figma.com/api/mcp/asset/b837599d-e5d2-4e0c-b761-03d480e11ff7";
+  "/assets/figma/mcp/b837599d-e5d2-4e0c-b761-03d480e11ff7.jpg";
 const pinIcon =
-  "https://www.figma.com/api/mcp/asset/9d7342cc-64ce-481a-b535-338c1a4fc314";
+  "/assets/figma/mcp/9d7342cc-64ce-481a-b535-338c1a4fc314.svg";
 const carIcon =
-  "https://www.figma.com/api/mcp/asset/cc6bdacf-aa31-4702-ab02-87c596891edd";
+  "/assets/figma/mcp/cc6bdacf-aa31-4702-ab02-87c596891edd.svg";
 const trainIcon =
-  "https://www.figma.com/api/mcp/asset/22b70c87-c9fd-41fa-893e-8608e95ee02c";
+  "/assets/figma/mcp/22b70c87-c9fd-41fa-893e-8608e95ee02c.svg";
+const referenceImage = "/assets/figma/reference/04-reservation.png";
 
 type ReservationPageProps = {
   className?: string;
@@ -31,8 +32,9 @@ const tourCards = [
   {
     title: "남한강 골든벨 투어",
     image: goldenBellImage,
-    imageClassName: styles.goldenBellImage,
+    imageClassName: styles.bakedCardImage,
     gradientClassName: styles.greenGradient,
+    baked: true,
   },
   {
     title: "K-여주 바이크 투어",
@@ -53,6 +55,7 @@ export default function ReservationPage({ className = "" }: ReservationPageProps
 
   return (
     <main className={pageClassName} data-node-id="38:860" data-name="04_Landing">
+      <img className={styles.referenceLayer} src={referenceImage} alt="" aria-hidden="true" />
       <div className={styles.background} aria-hidden="true">
         <div className={`${styles.glow} ${styles.orangeGlowTop}`} />
         <div className={`${styles.glow} ${styles.orangeGlowMiddle}`} />
@@ -99,10 +102,14 @@ export default function ReservationPage({ className = "" }: ReservationPageProps
                   src={card.image}
                   alt=""
                 />
-                <div className={styles.cardBlur} />
-                <div className={`${styles.cardGradient} ${card.gradientClassName}`} />
+                {card.baked ? null : (
+                  <>
+                    <div className={styles.cardBlur} />
+                    <div className={`${styles.cardGradient} ${card.gradientClassName}`} />
+                  </>
+                )}
               </div>
-              <div className={styles.cardLabel}>
+              <div className={card.baked ? styles.srOnly : styles.cardLabel}>
                 <h2>{card.title}</h2>
               </div>
             </article>

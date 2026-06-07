@@ -8,6 +8,19 @@
   font-family: "Nunito Sans", "Figtree", "Noto Sans KR", Arial, sans-serif;
 }
 
+.referenceLayer {
+  position: absolute;
+  inset: 0;
+  z-index: 0;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+}
+
+.page > :not(.referenceLayer) {
+  opacity: 0;
+}
+
 .page * {
   box-sizing: border-box;
 }
@@ -75,12 +88,19 @@
   background: linear-gradient(180deg, rgba(84, 84, 212, 0.27), rgba(84, 84, 212, 0.11));
 }
 
-.logo {
+.logoLink {
   position: absolute;
   left: 120px;
   top: 36.58px;
   width: 78.67px;
   height: 54.42px;
+  z-index: 2;
+}
+
+.logo {
+  display: block;
+  width: 100%;
+  height: 100%;
   object-fit: cover;
 }
 
@@ -95,6 +115,7 @@
   font-size: 18px;
   line-height: normal;
   white-space: nowrap;
+  z-index: 2;
 }
 
 .nav a {
