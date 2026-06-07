@@ -1,6 +1,45 @@
 .surface {
   --pc-scale: 1;
+  --edge-left-bg: linear-gradient(
+    to bottom,
+    #ffffff 0,
+    #ffffff 40px,
+    #fefeff 100px,
+    #f9f9fc 180px,
+    #f3f3fc 260px,
+    #e8e8f9 360px,
+    #dedef6 500px,
+    #dcdcf6 600px,
+    #dfdff7 700px,
+    #efeffb 900px,
+    #fbfbfe 1050px,
+    #ffffff 1300px,
+    #f1f1fb 1800px,
+    #fcf4f4 2400px,
+    #fefbfb 3000px,
+    #ffffff 4200px
+  );
+  --edge-right-bg: linear-gradient(
+    to bottom,
+    #ffffff 0,
+    #fefefe 40px,
+    #fffefc 100px,
+    #fffcfb 180px,
+    #fffbf7 260px,
+    #fef8f2 360px,
+    #fef6ee 500px,
+    #fef5ee 600px,
+    #fff8f3 700px,
+    #fffefb 900px,
+    #ffffff 1300px,
+    #fffefc 1800px,
+    #fffbf6 2400px,
+    #e6e5f8 3000px,
+    #fefeff 3600px,
+    #ffffff 4200px
+  );
   position: relative;
+  isolation: isolate;
   width: 100%;
   height: 8472px;
   overflow: hidden;
@@ -23,6 +62,7 @@
   background: #fff;
   color: #000;
   font-family: "Nunito Sans", "Figtree", "Noto Sans KR", Arial, sans-serif;
+  z-index: 1;
 }
 
 .referenceLayer {
@@ -524,6 +564,29 @@
   .surface {
     --pc-scale: 0.9486111111;
     height: 8036.633333px;
+  }
+}
+
+@media (min-width: 1441px) {
+  .surface::before,
+  .surface::after {
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    z-index: 0;
+    width: calc((100vw - 1440px) / 2 + 2px);
+    content: "";
+    pointer-events: none;
+  }
+
+  .surface::before {
+    left: 0;
+    background: var(--edge-left-bg);
+  }
+
+  .surface::after {
+    right: 0;
+    background: var(--edge-right-bg);
   }
 }
 
