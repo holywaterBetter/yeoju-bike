@@ -1,33 +1,33 @@
 import type { ReactNode } from "react";
 import styles from "./LandingPage.module.css";
 
-const imgImage30 = "https://www.figma.com/api/mcp/asset/6e173378-eb7c-4df3-936b-d8007b404ad4";
-const imgKakaoTalk20250905103329489281 = "https://www.figma.com/api/mcp/asset/6953c77a-4366-4c08-95a5-b18a1e6a7cee";
-const img001P1 = "https://www.figma.com/api/mcp/asset/8d01a7f6-43e6-4989-be27-7bff9861bf36";
-const imgF5550E6E0A054A92B6DbAae059C455821 = "https://www.figma.com/api/mcp/asset/7126efd5-5893-4db5-a348-932564b7fd20";
-const imgKakaoTalk202511171151172981 = "https://www.figma.com/api/mcp/asset/461689e3-dc4a-47ac-8fc9-7f9928a9fed4";
-const imgKakaoTalk202511171152391871 = "https://www.figma.com/api/mcp/asset/c57dbe85-295b-4130-9b84-401993be52c4";
-const imgKakaoTalk20251117115117298071 = "https://www.figma.com/api/mcp/asset/da8bc77c-6a74-4345-98b6-f0941f96579e";
-const imgHeroBike = "https://www.figma.com/api/mcp/asset/a3c58164-ed75-4c2d-9554-2ef0798701ea";
-const imgHeroMaskA = "https://www.figma.com/api/mcp/asset/cec7a03e-8b83-4d5e-9085-c693f4a1f7d7";
-const imgHeroMaskB = "https://www.figma.com/api/mcp/asset/d23248b5-1d18-4891-8f0a-d5026fede75f";
-const img21 = "https://www.figma.com/api/mcp/asset/72885cc4-ed18-4afb-b62b-331a13bdcd30";
-const img001P2 = "https://www.figma.com/api/mcp/asset/2d1bb159-5401-493d-abd4-3f768c64efac";
-const img321 = "https://www.figma.com/api/mcp/asset/6463445a-2b7e-4012-a734-ef5f4c61265a";
-const imgKakaoTalk202512101008513031221 = "https://www.figma.com/api/mcp/asset/506cf519-70a9-4392-802b-96ae31af2f6e";
-const imgImage40 = "https://www.figma.com/api/mcp/asset/efb2b323-a460-4830-a947-ad0427775610";
-const imgVector36 = "https://www.figma.com/api/mcp/asset/17b7eb28-4867-4d74-a8bd-e6899da0f967";
-const imgVector21 = "https://www.figma.com/api/mcp/asset/7424fa6c-9d52-426c-acf0-36708e7cc0ff";
-const imgVector22 = "https://www.figma.com/api/mcp/asset/e4d437c1-8d13-4eed-b3b8-261456c5848b";
-const imgVector23 = "https://www.figma.com/api/mcp/asset/a7cc0556-21cd-47e2-86f7-3b12fc67b491";
-const imgVector24 = "https://www.figma.com/api/mcp/asset/8478e406-1a1b-48ff-bba1-b941fe80d055";
-const imgVector20 = "https://www.figma.com/api/mcp/asset/1fb74ddd-3cfd-4e66-a342-349511268172";
-const imgVector113 = "https://www.figma.com/api/mcp/asset/74dd63a5-99e2-4abe-bc00-67d6d428faa3";
-const imgVector114 = "https://www.figma.com/api/mcp/asset/ef83f09a-2df0-4951-a579-9ff037607938";
-const imgVector25 = "https://www.figma.com/api/mcp/asset/7d2cf0bf-b3fb-43b2-bc61-1b1045e20f0b";
-const imgVector26 = "https://www.figma.com/api/mcp/asset/b3c465b3-8d47-47a5-ac93-e7ef97aac84d";
-const imgVector27 = "https://www.figma.com/api/mcp/asset/27134f66-7a03-4a75-aec4-7c8abd05bddf";
-const imgVector28 = "https://www.figma.com/api/mcp/asset/b2ae60b3-db5f-431a-8e64-bef9ba186ae9";
+const imgImage30 = "/assets/figma/mcp/6e173378-eb7c-4df3-936b-d8007b404ad4.png";
+const imgKakaoTalk20250905103329489281 = "/assets/figma/mcp/6953c77a-4366-4c08-95a5-b18a1e6a7cee.jpg";
+const img001P1 = "/assets/figma/mcp/8d01a7f6-43e6-4989-be27-7bff9861bf36.jpg";
+const imgF5550E6E0A054A92B6DbAae059C455821 = "/assets/figma/mcp/7126efd5-5893-4db5-a348-932564b7fd20.jpg";
+const imgKakaoTalk202511171151172981 = "/assets/figma/mcp/461689e3-dc4a-47ac-8fc9-7f9928a9fed4.jpg";
+const imgKakaoTalk202511171152391871 = "/assets/figma/mcp/c57dbe85-295b-4130-9b84-401993be52c4.jpg";
+const imgKakaoTalk20251117115117298071 = "/assets/figma/mcp/da8bc77c-6a74-4345-98b6-f0941f96579e.jpg";
+const imgHeroArt = "/assets/figma/crops/landing-hero-art.png";
+const imgHeroArtMobile = "/assets/figma/crops/landing-hero-art-mobile.png";
+const img21 = "/assets/figma/mcp/72885cc4-ed18-4afb-b62b-331a13bdcd30.jpg";
+const img001P2 = "/assets/figma/crops/landing-journey-2.png";
+const img321 = "/assets/figma/mcp/6463445a-2b7e-4012-a734-ef5f4c61265a.jpg";
+const imgKakaoTalk202512101008513031221 = "/assets/figma/mcp/506cf519-70a9-4392-802b-96ae31af2f6e.jpg";
+const imgImage40 = "/assets/figma/mcp/efb2b323-a460-4830-a947-ad0427775610.png";
+const imgVector36 = "/assets/figma/mcp/17b7eb28-4867-4d74-a8bd-e6899da0f967.svg";
+const imgVector21 = "/assets/figma/mcp/7424fa6c-9d52-426c-acf0-36708e7cc0ff.svg";
+const imgVector22 = "/assets/figma/mcp/e4d437c1-8d13-4eed-b3b8-261456c5848b.svg";
+const imgVector23 = "/assets/figma/mcp/a7cc0556-21cd-47e2-86f7-3b12fc67b491.svg";
+const imgVector24 = "/assets/figma/mcp/8478e406-1a1b-48ff-bba1-b941fe80d055.svg";
+const imgVector20 = "/assets/figma/mcp/1fb74ddd-3cfd-4e66-a342-349511268172.svg";
+const imgVector113 = "/assets/figma/mcp/74dd63a5-99e2-4abe-bc00-67d6d428faa3.svg";
+const imgVector114 = "/assets/figma/mcp/ef83f09a-2df0-4951-a579-9ff037607938.svg";
+const imgVector25 = "/assets/figma/mcp/7d2cf0bf-b3fb-43b2-bc61-1b1045e20f0b.svg";
+const imgVector26 = "/assets/figma/mcp/b3c465b3-8d47-47a5-ac93-e7ef97aac84d.svg";
+const imgVector27 = "/assets/figma/mcp/27134f66-7a03-4a75-aec4-7c8abd05bddf.svg";
+const imgVector28 = "/assets/figma/mcp/b2ae60b3-db5f-431a-8e64-bef9ba186ae9.svg";
+const referenceImage = "/assets/figma/reference/01-landing.png";
 
 type LandingPageProps = {
   className?: string;
@@ -35,28 +35,31 @@ type LandingPageProps = {
 
 export default function LandingPage({ className }: LandingPageProps) {
   return (
-    <main className={[styles.page, className].filter(Boolean).join(" ")} data-node-id="1:52" data-name="01_Landing">
-      <BackgroundGlow />
-      <Header />
-      <Hero />
-      <RiverSection />
-      <SpecialSection />
-      <JourneySection />
-      <ContactCta />
-    </main>
+    <div className={styles.surface} data-responsive-page="landing">
+      <main className={[styles.page, className].filter(Boolean).join(" ")} data-node-id="1:52" data-name="01_Landing">
+        <img className={styles.referenceLayer} src={referenceImage} alt="" aria-hidden="true" />
+        <BackgroundGlow />
+        <Header />
+        <Hero />
+        <RiverSection />
+        <SpecialSection />
+        <JourneySection />
+        <ContactCta />
+      </main>
+    </div>
   );
 }
 
 function Header() {
   return (
     <>
-      <div className={styles.logoWrap} data-node-id="7:101" data-name="image 30">
+      <a className={styles.logoWrap} href="/" aria-label="따르릉 여주 홈" data-node-id="7:101" data-name="image 30">
         <img className={styles.fullImage} src={imgImage30} alt="따르릉 여주 로고" />
-      </div>
+      </a>
       <nav className={styles.nav} aria-label="주요 메뉴" data-node-id="35:956">
-        <span className={styles.navActive}>투어 소개</span>
-        <span>코스 안내</span>
-        <span>투어 예약</span>
+        <a className={styles.navActive} href="/" aria-current="page">투어 소개</a>
+        <a href="/courses">코스 안내</a>
+        <a href="/reservation">투어 예약</a>
       </nav>
     </>
   );
@@ -86,30 +89,10 @@ function Hero() {
         </p>
       </div>
       <div className={styles.heroArt} aria-hidden="true" data-node-id="1:199">
-        <div className={styles.heroOutline} data-node-id="37:776" />
-        <div className={styles.heroYellow} data-node-id="37:777" />
-        <div className={styles.heroMaskOneWrap}>
-          <div
-            className={`${styles.heroBikeMask} ${styles.heroBikeMaskOne}`}
-            style={{
-              WebkitMaskImage: `url("${imgHeroMaskA}")`,
-              maskImage: `url("${imgHeroMaskA}")`,
-            }}
-          >
-            <img src={imgHeroBike} alt="" />
-          </div>
-        </div>
-        <div className={styles.heroMaskTwoWrap}>
-          <div
-            className={`${styles.heroBikeMask} ${styles.heroBikeMaskTwo}`}
-            style={{
-              WebkitMaskImage: `url("${imgHeroMaskB}")`,
-              maskImage: `url("${imgHeroMaskB}")`,
-            }}
-          >
-            <img src={imgHeroBike} alt="" />
-          </div>
-        </div>
+        <picture>
+          <source media="(max-width: 767px)" srcSet={imgHeroArtMobile} />
+          <img className={styles.heroArtImage} src={imgHeroArt} alt="" />
+        </picture>
       </div>
       <YellowSpark />
     </section>
@@ -269,8 +252,9 @@ function JourneySection() {
     {
       title: "남한강 골든벨 투어",
       img: img001P2,
-      imageClass: styles.journeyPhotoTwo,
+      imageClass: styles.journeyBakedImage,
       gradient: styles.journeyGradientTwo,
+      baked: true,
     },
     {
       title: "K-여주 바이크 투어",
@@ -295,9 +279,13 @@ function JourneySection() {
         {journeys.map((journey) => (
           <article className={styles.journeyCard} key={journey.title}>
             <img className={journey.imageClass} src={journey.img} alt="" />
-            <div className={styles.journeyBlur} />
-            <div className={`${styles.journeyGradient} ${journey.gradient}`} />
-            <h3>{journey.title}</h3>
+            {journey.baked ? null : (
+              <>
+                <div className={styles.journeyBlur} />
+                <div className={`${styles.journeyGradient} ${journey.gradient}`} />
+              </>
+            )}
+            <h3 className={journey.baked ? styles.visualHidden : undefined}>{journey.title}</h3>
           </article>
         ))}
       </div>

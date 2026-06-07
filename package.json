@@ -10,6 +10,9 @@
     "visual:check:production": "bash scripts/visual-check-production.sh"
   },
   "dependencies": {
+    "@fontsource/figtree": "^5.2.10",
+    "@fontsource/noto-sans-kr": "^5.2.9",
+    "@fontsource/nunito-sans": "^5.2.7",
     "next": "^15.3.3",
     "react": "^19.1.0",
     "react-dom": "^19.1.0"
@@ -19,6 +22,7 @@
     "@types/react": "^19.1.6",
     "@types/react-dom": "^19.1.6",
     "playwright": "^1.52.0",
+    "sharp": "^0.34.5",
     "typescript": "^5.8.3"
   }
 }
