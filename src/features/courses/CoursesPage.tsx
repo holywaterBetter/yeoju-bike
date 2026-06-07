@@ -1,4 +1,5 @@
 import type { CSSProperties } from "react";
+import { withBasePath } from "@/lib/sitePaths";
 import styles from "./CoursesPage.module.css";
 
 type CoursesPageProps = {
@@ -39,43 +40,43 @@ type BleedAsset = {
 };
 
 const assets = {
-  reference: "/assets/figma/reference/02-courses.png",
-  logo: "/assets/figma/mcp/8fa42453-1f1e-4981-b9ac-b829a4af9936.png",
-  hangulCardRack: "/assets/figma/mcp/00b7bd70-c408-4d3a-a406-af105b4ac999.jpg",
-  geumeunCamping: "/assets/figma/crops/courses-gallery-geumeun.png",
-  marketGate: "/assets/figma/mcp/a59ed984-b4a2-49bb-b115-545a58f5587d.jpg",
-  goldenBellHero: "/assets/figma/crops/courses-golden-hero.png",
-  goldenBellPark: "/assets/figma/mcp/6fce6fb9-9633-4f3c-a61e-333e7379652f.jpg",
-  goldenBellPathA: "/assets/figma/mcp/d600f0af-7cb1-49fd-af7b-50a1dd19bbb9.jpg",
-  goldenBellPathB: "/assets/figma/mcp/86c6b08c-50e8-43e7-aff9-ca1f8c222be3.jpg",
-  potteryHero: "/assets/figma/mcp/f0665e81-942a-4315-b59c-aa7d93089c94.png",
-  riverBoat: "/assets/figma/mcp/20b6ccb5-2d34-4fc6-a162-f22c4f40e927.jpg",
-  riceField: "/assets/figma/mcp/b57a7126-550f-4fdd-9a42-cffeaf81ca71.jpg",
-  mapBase: "/assets/figma/mcp/a2321fec-bb87-4fe9-8a3e-d29a0b39c6ed.png",
-  route76: "/assets/figma/mcp/f0b2d57e-232c-41c8-b25b-137943bdf1d9.svg",
-  route77: "/assets/figma/mcp/370b1f90-e915-472d-8b21-704fa205aa84.svg",
-  route78: "/assets/figma/mcp/df34b272-6d01-4bc4-9421-32c9c220c45c.svg",
-  route79: "/assets/figma/mcp/28b73b83-8b51-4990-9310-8995561411cd.svg",
-  route80: "/assets/figma/mcp/b5206afc-87d7-453d-b9b7-8fe8b4abb5ac.svg",
-  route81: "/assets/figma/mcp/a3608a9e-a4ec-46df-a80a-c2c661a5460b.svg",
-  route82: "/assets/figma/mcp/2ae22c5f-7764-441e-b78f-ffae9756fd69.svg",
-  route83: "/assets/figma/mcp/19eec02a-1dd0-4f3c-9bc9-06a2acb61d7a.svg",
-  route84: "/assets/figma/mcp/6459d6fb-a668-4089-afb2-27298df5ab68.svg",
-  route85: "/assets/figma/mcp/f752d370-025b-4712-b434-f7875ab36b85.svg",
-  route86: "/assets/figma/mcp/05cf6b3e-83bc-4dc2-b9c9-df1cfe1e1bb2.svg",
-  route87: "/assets/figma/mcp/4fa9954b-e853-40a0-b327-3c022205ed10.svg",
-  route88: "/assets/figma/mcp/e6db3c06-3210-4404-99e1-9237b358736a.svg",
-  route89: "/assets/figma/mcp/3ac24298-cafb-4bb0-8a90-458b572a55ec.svg",
-  mapPin: "/assets/figma/mcp/1e00ddda-db3c-41a5-b946-4d2bf9c82ced.svg",
-  mapPinCircle: "/assets/figma/mcp/fb567974-586c-4cfb-a091-0711dce760cc.svg",
-  giftMask: "/assets/figma/mcp/93cbe394-9c05-4d99-8f39-3f425e6a6e0d.svg",
-  giftOvalBlue: "/assets/figma/mcp/261415ef-f7ad-469f-a2bb-df9d47e5b520.svg",
-  giftKeyring: "/assets/figma/mcp/fe34cedf-8ce0-479e-963b-52c04a0c10bc.svg",
-  giftOvalYellow: "/assets/figma/mcp/a44d3d69-27a3-4600-8d86-50bfbf9b607d.svg",
-  giftCamera: "/assets/figma/mcp/e404ea38-5482-46ba-8e86-274235ce055d.svg",
-  giftPen: "/assets/figma/mcp/c224118b-862d-40a4-a45a-f71a4dcc63d1.svg",
-  giftPottery: "/assets/figma/mcp/a8826322-e68e-48d8-af03-4e09ce44411c.svg",
-  giftBottle: "/assets/figma/mcp/ef35a27c-7d1f-41ff-8292-26f9974ca576.svg",
+  reference: withBasePath("/assets/figma/reference/02-courses.png"),
+  logo: withBasePath("/assets/figma/mcp/8fa42453-1f1e-4981-b9ac-b829a4af9936.png"),
+  hangulCardRack: withBasePath("/assets/figma/mcp/00b7bd70-c408-4d3a-a406-af105b4ac999.jpg"),
+  geumeunCamping: withBasePath("/assets/figma/crops/courses-gallery-geumeun.png"),
+  marketGate: withBasePath("/assets/figma/mcp/a59ed984-b4a2-49bb-b115-545a58f5587d.jpg"),
+  goldenBellHero: withBasePath("/assets/figma/crops/courses-golden-hero.png"),
+  goldenBellPark: withBasePath("/assets/figma/mcp/6fce6fb9-9633-4f3c-a61e-333e7379652f.jpg"),
+  goldenBellPathA: withBasePath("/assets/figma/mcp/d600f0af-7cb1-49fd-af7b-50a1dd19bbb9.jpg"),
+  goldenBellPathB: withBasePath("/assets/figma/mcp/86c6b08c-50e8-43e7-aff9-ca1f8c222be3.jpg"),
+  potteryHero: withBasePath("/assets/figma/mcp/f0665e81-942a-4315-b59c-aa7d93089c94.png"),
+  riverBoat: withBasePath("/assets/figma/mcp/20b6ccb5-2d34-4fc6-a162-f22c4f40e927.jpg"),
+  riceField: withBasePath("/assets/figma/mcp/b57a7126-550f-4fdd-9a42-cffeaf81ca71.jpg"),
+  mapBase: withBasePath("/assets/figma/mcp/a2321fec-bb87-4fe9-8a3e-d29a0b39c6ed.png"),
+  route76: withBasePath("/assets/figma/mcp/f0b2d57e-232c-41c8-b25b-137943bdf1d9.svg"),
+  route77: withBasePath("/assets/figma/mcp/370b1f90-e915-472d-8b21-704fa205aa84.svg"),
+  route78: withBasePath("/assets/figma/mcp/df34b272-6d01-4bc4-9421-32c9c220c45c.svg"),
+  route79: withBasePath("/assets/figma/mcp/28b73b83-8b51-4990-9310-8995561411cd.svg"),
+  route80: withBasePath("/assets/figma/mcp/b5206afc-87d7-453d-b9b7-8fe8b4abb5ac.svg"),
+  route81: withBasePath("/assets/figma/mcp/a3608a9e-a4ec-46df-a80a-c2c661a5460b.svg"),
+  route82: withBasePath("/assets/figma/mcp/2ae22c5f-7764-441e-b78f-ffae9756fd69.svg"),
+  route83: withBasePath("/assets/figma/mcp/19eec02a-1dd0-4f3c-9bc9-06a2acb61d7a.svg"),
+  route84: withBasePath("/assets/figma/mcp/6459d6fb-a668-4089-afb2-27298df5ab68.svg"),
+  route85: withBasePath("/assets/figma/mcp/f752d370-025b-4712-b434-f7875ab36b85.svg"),
+  route86: withBasePath("/assets/figma/mcp/05cf6b3e-83bc-4dc2-b9c9-df1cfe1e1bb2.svg"),
+  route87: withBasePath("/assets/figma/mcp/4fa9954b-e853-40a0-b327-3c022205ed10.svg"),
+  route88: withBasePath("/assets/figma/mcp/e6db3c06-3210-4404-99e1-9237b358736a.svg"),
+  route89: withBasePath("/assets/figma/mcp/3ac24298-cafb-4bb0-8a90-458b572a55ec.svg"),
+  mapPin: withBasePath("/assets/figma/mcp/1e00ddda-db3c-41a5-b946-4d2bf9c82ced.svg"),
+  mapPinCircle: withBasePath("/assets/figma/mcp/fb567974-586c-4cfb-a091-0711dce760cc.svg"),
+  giftMask: withBasePath("/assets/figma/mcp/93cbe394-9c05-4d99-8f39-3f425e6a6e0d.svg"),
+  giftOvalBlue: withBasePath("/assets/figma/mcp/261415ef-f7ad-469f-a2bb-df9d47e5b520.svg"),
+  giftKeyring: withBasePath("/assets/figma/mcp/fe34cedf-8ce0-479e-963b-52c04a0c10bc.svg"),
+  giftOvalYellow: withBasePath("/assets/figma/mcp/a44d3d69-27a3-4600-8d86-50bfbf9b607d.svg"),
+  giftCamera: withBasePath("/assets/figma/mcp/e404ea38-5482-46ba-8e86-274235ce055d.svg"),
+  giftPen: withBasePath("/assets/figma/mcp/c224118b-862d-40a4-a45a-f71a4dcc63d1.svg"),
+  giftPottery: withBasePath("/assets/figma/mcp/a8826322-e68e-48d8-af03-4e09ce44411c.svg"),
+  giftBottle: withBasePath("/assets/figma/mcp/ef35a27c-7d1f-41ff-8292-26f9974ca576.svg"),
 };
 
 const sections: TourSection[] = [
@@ -410,7 +411,7 @@ function SectionTitle({ title, width }: { title: string | string[]; width: numbe
 
 function ReservationButton() {
   return (
-    <a className={styles.reserveButton} href="/reservation">
+    <a className={styles.reserveButton} href={withBasePath("/reservation/")}>
       예약 하기
     </a>
   );
@@ -541,15 +542,15 @@ export function CoursesPage({ className }: CoursesPageProps) {
         <div className={styles.blurThree} />
         <div className={styles.blurFour} />
         <div className={styles.blurFive} />
-        <a className={styles.logoLink} href="/" aria-label="따르릉 여주 홈">
+        <a className={styles.logoLink} href={withBasePath("/")} aria-label="따르릉 여주 홈">
           <img className={styles.logo} src={assets.logo} alt="" />
         </a>
         <nav className={styles.nav} aria-label="주요 메뉴">
-          <a href="/">투어 소개</a>
-          <a className={styles.activeNav} href="/courses" aria-current="page">
+          <a href={withBasePath("/")}>투어 소개</a>
+          <a className={styles.activeNav} href={withBasePath("/courses/")} aria-current="page">
             코스 안내
           </a>
-          <a href="/reservation">투어 예약</a>
+          <a href={withBasePath("/reservation/")}>투어 예약</a>
         </nav>
         <div className={styles.contentStack}>
           {sections.map((section) => (

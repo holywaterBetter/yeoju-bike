@@ -1,22 +1,23 @@
+import { withBasePath } from "@/lib/sitePaths";
 import styles from "./ReservationPage.module.css";
 
 const logoImage =
-  "/assets/figma/mcp/6b90eb4f-12f6-4bac-94f6-a67f6ca5bab7.png";
+  withBasePath("/assets/figma/mcp/6b90eb4f-12f6-4bac-94f6-a67f6ca5bab7.png");
 const hangulTourImage =
-  "/assets/figma/mcp/d265d34a-2975-4fe3-9638-87193f9a4dd1.jpg";
+  withBasePath("/assets/figma/mcp/d265d34a-2975-4fe3-9638-87193f9a4dd1.jpg");
 const goldenBellImage =
-  "/assets/figma/crops/reservation-card-2.png";
+  withBasePath("/assets/figma/crops/reservation-card-2.png");
 const kYeojuImage =
-  "/assets/figma/mcp/494b6b6b-309c-44dd-a146-ef42b47dbfd9.jpg";
+  withBasePath("/assets/figma/mcp/494b6b6b-309c-44dd-a146-ef42b47dbfd9.jpg");
 const clubCourseImage =
-  "/assets/figma/mcp/b837599d-e5d2-4e0c-b761-03d480e11ff7.jpg";
+  withBasePath("/assets/figma/mcp/b837599d-e5d2-4e0c-b761-03d480e11ff7.jpg");
 const pinIcon =
-  "/assets/figma/mcp/9d7342cc-64ce-481a-b535-338c1a4fc314.svg";
+  withBasePath("/assets/figma/mcp/9d7342cc-64ce-481a-b535-338c1a4fc314.svg");
 const carIcon =
-  "/assets/figma/mcp/cc6bdacf-aa31-4702-ab02-87c596891edd.svg";
+  withBasePath("/assets/figma/mcp/cc6bdacf-aa31-4702-ab02-87c596891edd.svg");
 const trainIcon =
-  "/assets/figma/mcp/22b70c87-c9fd-41fa-893e-8608e95ee02c.svg";
-const referenceImage = "/assets/figma/reference/04-reservation.png";
+  withBasePath("/assets/figma/mcp/22b70c87-c9fd-41fa-893e-8608e95ee02c.svg");
+const referenceImage = withBasePath("/assets/figma/reference/04-reservation.png");
 
 type ReservationPageProps = {
   className?: string;
@@ -67,17 +68,17 @@ export default function ReservationPage({ className = "" }: ReservationPageProps
         </div>
 
         <header className={styles.header} aria-label="Site navigation">
-          <a className={styles.logoLink} href="/" aria-label="여주 바이크 홈">
+          <a className={styles.logoLink} href={withBasePath("/")} aria-label="여주 바이크 홈">
             <img className={styles.logoImage} src={logoImage} alt="" />
           </a>
           <nav className={styles.navigation}>
-            <a className={styles.navItem} href="/">
+            <a className={styles.navItem} href={withBasePath("/")}>
               투어 소개
             </a>
-            <a className={styles.navItem} href="/courses">
+            <a className={styles.navItem} href={withBasePath("/courses/")}>
               코스 안내
             </a>
-            <a className={`${styles.navItem} ${styles.activeNavItem}`} href="/reservation">
+            <a className={`${styles.navItem} ${styles.activeNavItem}`} href={withBasePath("/reservation/")}>
               투어 예약
             </a>
           </nav>
