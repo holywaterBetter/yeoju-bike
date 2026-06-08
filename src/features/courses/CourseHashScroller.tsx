@@ -23,7 +23,7 @@ export default function CourseHashScroller() {
       requestAnimationFrame(() => {
         getVisibleCourseSection(hash as CourseAnchor)?.scrollIntoView({
           block: "start",
-          behavior: "smooth",
+          behavior: "auto",
         });
       });
     }

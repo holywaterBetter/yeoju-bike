@@ -1,5 +1,6 @@
 import { withBasePath } from "@/lib/sitePaths";
 import { type CourseAnchor, courseAnchors } from "@/lib/courseAnchors";
+import { getTourReservationUrl } from "@/lib/tourLinks";
 import CourseHashScroller from "./CourseHashScroller";
 import styles from "./CoursesPage.module.css";
 
@@ -337,9 +338,19 @@ function SectionTitle({ title, width }: { title: string | string[]; width: numbe
   );
 }
 
-function ReservationButton() {
+function ReservationButton({ section }: { section: TourSection }) {
+  const reservationUrl = getTourReservationUrl(section.anchor);
+
+  if (!reservationUrl) {
+    return (
+      <span className={`${styles.reserveButton} ${styles.reserveButtonDisabled}`} aria-disabled="true">
+        준비 중입니다
+      </span>
+    );
+  }
+
   return (
-    <a className={styles.reserveButton} href={withBasePath("/reservation/")}>
+    <a className={styles.reserveButton} href={reservationUrl}>
       예약 하기
     </a>
   );
@@ -364,7 +375,7 @@ function TourSectionView({ section }: { section: TourSection }) {
       <div className={styles.sectionIntro}>
         <div className={styles.titleGroup}>
           <SectionTitle title={section.title} width={section.titleWidth} />
-          <ReservationButton />
+          <ReservationButton section={section} />
         </div>
         <div className={styles.copyGroup}>
           <div className={styles.summaryCopy}>
@@ -479,9 +490,19 @@ function MobileSectionTitle({ title }: { title: string | string[] }) {
   );
 }
 
-function MobileReserveButton() {
+function MobileReserveButton({ section }: { section: TourSection }) {
+  const reservationUrl = getTourReservationUrl(section.anchor);
+
+  if (!reservationUrl) {
+    return (
+      <span className={`${styles.mobileReserveButton} ${styles.mobileReserveButtonDisabled}`} aria-disabled="true">
+        <span>준비 중입니다</span>
+      </span>
+    );
+  }
+
   return (
-    <a className={styles.mobileReserveButton} href={withBasePath("/reservation/")}>
+    <a className={styles.mobileReserveButton} href={reservationUrl}>
       <span>예약 하기</span>
     </a>
   );
@@ -530,7 +551,7 @@ function MobileCourseSectionView({ section, index }: { section: TourSection; ind
       <div className={styles.mobileCourseInfo}>
         <div className={styles.mobileTitleGroup}>
           <MobileSectionTitle title={section.title} />
-          <MobileReserveButton />
+          <MobileReserveButton section={section} />
         </div>
         <div className={styles.mobileCopyGroup}>
           <div className={styles.mobileSummaryCopy}>

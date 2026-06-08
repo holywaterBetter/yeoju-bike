@@ -1,11 +1,11 @@
-import type { CSSProperties } from "react";
+import type { ReactNode } from "react";
+import { type CourseAnchor, courseAnchors } from "@/lib/courseAnchors";
 import { withBasePath } from "@/lib/sitePaths";
+import { getTourReservationUrl } from "@/lib/tourLinks";
 import styles from "./ReservationPage.module.css";
 
 const logoImage =
   withBasePath("/assets/figma/mcp/6b90eb4f-12f6-4bac-94f6-a67f6ca5bab7.png");
-const backgroundImage =
-  withBasePath("/assets/figma/groups/reservation-bg.png");
 const hangulTourMedia =
   withBasePath("/assets/figma/groups/tour-card-hangul-media.png");
 const goldenBellMedia =
@@ -35,35 +35,48 @@ type ReservationPageProps = {
   className?: string;
 };
 
-type ReservationSurfaceStyle = CSSProperties & {
-  "--reservation-bg": string;
+type TourCardData = {
+  anchor: CourseAnchor;
+  title: string;
+  image: string;
 };
 
-const reservationSurfaceStyle: ReservationSurfaceStyle = {
-  "--reservation-bg": `url("${backgroundImage}")`,
+type MobileTourCardData = {
+  anchor: CourseAnchor;
+  title: ReactNode;
+  plainTitle: string;
+  image: string;
+  imageClassName: string;
+  gradientClassName: string;
 };
 
-const tourCards = [
+const tourCards: TourCardData[] = [
   {
+    anchor: courseAnchors.hangul,
     title: "따르릉 여주 한글길 투어",
     image: hangulTourMedia,
   },
   {
+    anchor: courseAnchors.goldenBell,
     title: "남한강 골든벨 투어",
     image: goldenBellMedia,
   },
   {
+    anchor: courseAnchors.kYeoju,
     title: "K-여주 바이크 투어",
     image: kYeojuMedia,
   },
   {
+    anchor: courseAnchors.club,
     title: "따르릉 동호회 코스",
     image: clubCourseMedia,
   },
 ];
 
-const mobileTourCards = [
+const mobileTourCards: MobileTourCardData[] = [
   {
+    anchor: courseAnchors.hangul,
+    plainTitle: "따르릉 여주 한글길 투어",
     title: (
       <>
         따르릉
@@ -76,6 +89,8 @@ const mobileTourCards = [
     gradientClassName: "mobileCardGradientBlack",
   },
   {
+    anchor: courseAnchors.goldenBell,
+    plainTitle: "남한강 골든벨 투어",
     title: (
       <>
         남한강
@@ -88,6 +103,8 @@ const mobileTourCards = [
     gradientClassName: "mobileCardGradientOlive",
   },
   {
+    anchor: courseAnchors.kYeoju,
+    plainTitle: "K-여주 바이크 투어",
     title: (
       <>
         K-여주
@@ -100,6 +117,8 @@ const mobileTourCards = [
     gradientClassName: "mobileCardGradientGreen",
   },
   {
+    anchor: courseAnchors.club,
+    plainTitle: "따르릉 동호회 코스",
     title: (
       <>
         따르릉
@@ -133,10 +152,11 @@ function MobileHeader() {
 function MobileTourCard({
   card,
 }: {
-  card: (typeof mobileTourCards)[number];
+  card: MobileTourCardData;
 }) {
-  return (
-    <article className={styles.mobileTourCard}>
+  const reservationUrl = getTourReservationUrl(card.anchor);
+  const content = (
+    <>
       <div className={styles.mobileCardMedia}>
         <img className={styles[card.imageClassName as keyof typeof styles]} src={card.image} alt="" />
         <div className={styles.mobileCardBlur} />
@@ -144,8 +164,56 @@ function MobileTourCard({
       </div>
       <h2>
         <span>{card.title}</span>
+        {!reservationUrl && <span className={styles.mobileCardStatus}>준비 중입니다</span>}
       </h2>
-    </article>
+    </>
+  );
+
+  if (!reservationUrl) {
+    return (
+      <article className={`${styles.mobileTourCard} ${styles.mobileTourCardDisabled}`} aria-disabled="true">
+        {content}
+      </article>
+    );
+  }
+
+  return (
+    <a className={styles.mobileTourCard} href={reservationUrl} aria-label={`${card.plainTitle} 예약하기`}>
+      {content}
+    </a>
+  );
+}
+
+function ReservationTourCard({ card }: { card: TourCardData }) {
+  const reservationUrl = getTourReservationUrl(card.anchor);
+  const content = (
+    <>
+      <div className={styles.cardMedia}>
+        <img
+          className={`${styles.cardImage} ${styles.cardMediaImage}`}
+          src={card.image}
+          alt=""
+        />
+      </div>
+      <div className={styles.cardLabel}>
+        <h2>{card.title}</h2>
+        {!reservationUrl && <p className={styles.cardStatus}>준비 중입니다</p>}
+      </div>
+    </>
+  );
+
+  if (!reservationUrl) {
+    return (
+      <article className={`${styles.tourCard} ${styles.tourCardDisabled}`} aria-disabled="true">
+        {content}
+      </article>
+    );
+  }
+
+  return (
+    <a className={styles.tourCard} href={reservationUrl} aria-label={`${card.title} 예약하기`}>
+      {content}
+    </a>
   );
 }
 
@@ -164,7 +232,7 @@ function MobileReservationPage() {
           </div>
           <div className={styles.mobileCardGrid} aria-label="투어 코스 선택">
             {mobileTourCards.map((card) => (
-              <MobileTourCard card={card} key={card.image} />
+              <MobileTourCard card={card} key={card.plainTitle} />
             ))}
           </div>
         </section>
@@ -230,7 +298,7 @@ export default function ReservationPage({ className = "" }: ReservationPageProps
   const pageClassName = className ? `${styles.page} ${className}` : styles.page;
 
   return (
-    <div className={styles.surface} style={reservationSurfaceStyle} data-responsive-page="reservation">
+    <div className={styles.surface} data-responsive-page="reservation">
       <main className={pageClassName} data-node-id="38:860" data-name="04_Landing">
         <div className={styles.desktopPageContent}>
           <header className={styles.header} aria-label="Site navigation">
@@ -263,18 +331,7 @@ export default function ReservationPage({ className = "" }: ReservationPageProps
 
             <div className={styles.cardGrid} aria-label="투어 코스 선택">
               {tourCards.map((card) => (
-                <article className={styles.tourCard} key={card.title}>
-                  <div className={styles.cardMedia}>
-                    <img
-                      className={`${styles.cardImage} ${styles.cardMediaImage}`}
-                      src={card.image}
-                      alt=""
-                    />
-                  </div>
-                  <div className={styles.cardLabel}>
-                    <h2>{card.title}</h2>
-                  </div>
-                </article>
+                <ReservationTourCard card={card} key={card.title} />
               ))}
             </div>
           </section>

@@ -5,7 +5,7 @@
   width: 100%;
   height: 8472px;
   overflow: hidden;
-  background: #ffffff;
+  background: transparent;
 }
 
 .page {
@@ -335,6 +335,12 @@
   text-align: center;
   text-decoration: none;
   font-variation-settings: "YTLC" 500, "wdth" 100;
+}
+
+.reserveButtonDisabled {
+  background: rgba(0, 0, 0, 0.18);
+  color: rgba(255, 255, 255, 0.88);
+  cursor: default;
 }
 
 .copyGroup {
@@ -997,6 +1003,12 @@
 
   .mobileReserveButton span {
     font-size: 12.6em;
+  }
+
+  .mobileReserveButtonDisabled {
+    background: rgba(0, 0, 0, 0.18);
+    color: rgba(255, 255, 255, 0.88);
+    cursor: default;
   }
 
   .mobileCopyGroup {

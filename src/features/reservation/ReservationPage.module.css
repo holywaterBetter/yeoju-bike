@@ -1,15 +1,11 @@
 .surface {
   --pc-scale: 1;
-  --reservation-bg: none;
   position: relative;
   isolation: isolate;
   width: 100%;
   height: 2415px;
   overflow: hidden;
-  background-image: var(--reservation-bg);
-  background-position: top center;
-  background-repeat: no-repeat;
-  background-size: 100% 2415px;
+  background: transparent;
 }
 
 .page {
@@ -268,9 +264,34 @@
 
 .tourCard {
   position: relative;
+  display: block;
   min-width: 0;
   overflow: hidden;
   background: #ffa2ab;
+  color: inherit;
+  text-decoration: none;
+  transition:
+    filter 160ms ease,
+    transform 160ms ease;
+}
+
+.tourCard[href]:hover,
+.tourCard[href]:focus-visible {
+  filter: brightness(1.06);
+  transform: translateY(-2px);
+}
+
+.tourCard[href]:focus-visible {
+  outline: 3px solid #fba81c;
+  outline-offset: 4px;
+}
+
+.tourCardDisabled {
+  cursor: default;
+}
+
+.tourCardDisabled .cardMedia {
+  opacity: 0.72;
 }
 
 .cardMedia {
@@ -319,6 +340,16 @@
   letter-spacing: -0.7503px;
   text-align: center;
   word-break: break-word;
+}
+
+.cardStatus {
+  margin: 10px 0 0;
+  color: #ffffff;
+  font-family: "Figtree", "Nunito Sans", "Noto Sans KR", sans-serif;
+  font-size: 20px;
+  font-weight: 700;
+  line-height: normal;
+  text-align: center;
 }
 
 .directions {
@@ -881,9 +912,20 @@
 
   .mobileTourCard {
     position: relative;
+    display: block;
     min-width: 0;
     overflow: hidden;
     background: #ffa2ab;
+    color: inherit;
+    text-decoration: none;
+  }
+
+  .mobileTourCardDisabled {
+    cursor: default;
+  }
+
+  .mobileTourCardDisabled .mobileCardMedia {
+    opacity: 0.72;
   }
 
   .mobileCardMedia {
@@ -960,7 +1002,9 @@
     inset: 63.87% 0 8.51%;
     display: flex;
     width: 100%;
-    align-items: flex-end;
+    align-items: center;
+    flex-direction: column;
+    gap: 4em;
     justify-content: center;
     margin: 0;
     padding: 0 12em 12em;
@@ -976,6 +1020,11 @@
 
   .mobileTourCard h2 span {
     font-size: 19.2em;
+  }
+
+  .mobileTourCard h2 .mobileCardStatus {
+    font-size: 12.6em;
+    font-weight: 700;
   }
 
   .mobileDirections {

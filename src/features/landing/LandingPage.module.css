@@ -1,15 +1,11 @@
 .surface {
   --pc-scale: 1;
-  --landing-bg: none;
   position: relative;
   isolation: isolate;
   width: 100%;
   height: 5693px;
   overflow: hidden;
-  background-image: var(--landing-bg);
-  background-position: top center;
-  background-repeat: no-repeat;
-  background-size: 100% 3828px;
+  background: transparent;
 }
 
 .page {

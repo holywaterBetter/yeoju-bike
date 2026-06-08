@@ -28,6 +28,22 @@ body {
   text-rendering: geometricPrecision;
 }
 
+.site-shell {
+  --site-bg: none;
+  min-height: 100vh;
+  background-color: #ffffff;
+  background-image: var(--site-bg);
+  background-position: top center;
+  background-repeat: no-repeat;
+  background-size: 100% auto;
+}
+
 a {
   color: inherit;
+}
+
+@media (max-width: 767px) {
+  .site-shell {
+    background-image: none;
+  }
 }

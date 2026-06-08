@@ -1,8 +1,9 @@
 "use client";
 
-import { useState, type CSSProperties, type MouseEvent, type ReactNode } from "react";
+import { useState, type MouseEvent, type ReactNode } from "react";
 import { courseAnchorHref, courseAnchors } from "@/lib/courseAnchors";
 import { withBasePath } from "@/lib/sitePaths";
+import { kakaoChannelUrl } from "@/lib/tourLinks";
 import styles from "./LandingPage.module.css";
 
 const imgImage30 = withBasePath("/assets/figma/mcp/6e173378-eb7c-4df3-936b-d8007b404ad4.png");
@@ -15,7 +16,6 @@ const imgKakaoTalk20251117115117298071 = withBasePath("/assets/figma/mcp/da8bc77
 const imgHeroBikeSource = withBasePath("/assets/figma/groups/landing-hero-bike-source.png");
 const imgHeroGroup = withBasePath("/assets/figma/groups/landing-hero-group.png");
 const imgImage40 = withBasePath("/assets/figma/mcp/efb2b323-a460-4830-a947-ad0427775610.png");
-const imgLandingBg = withBasePath("/assets/figma/groups/landing-bg.png");
 const imgRiverHeroFrame = withBasePath("/assets/figma/groups/landing-river-hero-frame.png");
 const imgRiverCardOneFrame = withBasePath("/assets/figma/groups/landing-river-card-one-frame.png");
 const imgRiverCardTwoFrame = withBasePath("/assets/figma/groups/landing-river-card-two-frame.png");
@@ -39,14 +39,6 @@ const mobileMenuArrow = withBasePath("/assets/figma/mobile/menu-arrow.svg");
 
 type LandingPageProps = {
   className?: string;
-};
-
-type LandingSurfaceStyle = CSSProperties & {
-  "--landing-bg": string;
-};
-
-const landingSurfaceStyle: LandingSurfaceStyle = {
-  "--landing-bg": `url("${imgLandingBg}")`,
 };
 
 const journeyCards = [
@@ -83,7 +75,7 @@ function handleJourneyCardClick(event: MouseEvent<HTMLAnchorElement>, href: stri
 
 export default function LandingPage({ className }: LandingPageProps) {
   return (
-    <div className={styles.surface} style={landingSurfaceStyle} data-responsive-page="landing">
+    <div className={styles.surface} data-responsive-page="landing">
       <main className={[styles.page, className].filter(Boolean).join(" ")} data-node-id="1:52" data-name="01_Landing">
         <div className={styles.desktopLayers}>
           <Header />
@@ -330,7 +322,7 @@ function ContactCta() {
           상담 운영 시간 -  평일 9:00~18:00
         </p>
       </div>
-      <a className={styles.kakaoButton} href="#" data-node-id="1:84" data-name="Button">
+      <a className={styles.kakaoButton} href={kakaoChannelUrl} data-node-id="1:84" data-name="Button">
         <span className={styles.kakaoIcon}>
           <img src={imgImage40} alt="" />
         </span>
@@ -455,7 +447,7 @@ function MobileLanding() {
             코스 문의, 단체 예약, 자전거 이용 방법 등 따르릉 여주 시티투어에 대한 모든 궁금증을 환영합니다.
           </p>
         </div>
-        <a className={styles.mobileKakaoButton} href="#">
+        <a className={styles.mobileKakaoButton} href={kakaoChannelUrl}>
           <span className={styles.mobileKakaoIcon}>
             <img src={imgImage40} alt="" />
           </span>
