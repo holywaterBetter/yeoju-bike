@@ -1,52 +1,11 @@
 .surface {
   --pc-scale: 1;
-  --edge-left-bg: linear-gradient(
-    to bottom,
-    #ffffff 0,
-    #ffffff 40px,
-    #fefeff 100px,
-    #f9f9fc 180px,
-    #f3f3fc 260px,
-    #e8e8f9 360px,
-    #dedef6 500px,
-    #dcdcf6 600px,
-    #dfdff7 700px,
-    #efeffb 900px,
-    #fbfbfe 1050px,
-    #ffffff 1300px,
-    #f1f1fb 1800px,
-    #fcf4f4 2400px,
-    #fefbfb 3000px,
-    #ffffff 4200px
-  );
-  --edge-right-bg: linear-gradient(
-    to bottom,
-    #ffffff 0,
-    #fefefe 40px,
-    #fffefc 100px,
-    #fffcfb 180px,
-    #fffbf7 260px,
-    #fef8f2 360px,
-    #fef6ee 500px,
-    #fef5ee 600px,
-    #fff8f3 700px,
-    #fffefb 900px,
-    #ffffff 1300px,
-    #fffefc 1800px,
-    #fffbf6 2400px,
-    #e6e5f8 3000px,
-    #fefeff 3600px,
-    #ffffff 4200px
-  );
   position: relative;
   isolation: isolate;
   width: 100%;
   height: 2415px;
   overflow: hidden;
-  background:
-    radial-gradient(circle at calc(50% - 760px) 18%, rgba(84, 84, 212, 0.13), transparent 34vw),
-    radial-gradient(circle at calc(50% + 760px) 24%, rgba(251, 168, 28, 0.11), transparent 32vw),
-    #ffffff;
+  background: transparent;
 }
 
 .page {
@@ -58,25 +17,12 @@
   transform-origin: top center;
   width: 1440px;
   height: 2415px;
-  overflow: hidden;
-  background: #ffffff;
+  overflow: visible;
+  background: transparent;
   color: #000000;
   font-family: "Figtree", "Nunito Sans", "Noto Sans KR", "Apple SD Gothic Neo",
     sans-serif;
   z-index: 1;
-}
-
-.referenceLayer {
-  position: absolute;
-  inset: 0;
-  z-index: 0;
-  width: 100%;
-  height: 100%;
-  pointer-events: none;
-}
-
-.page > :not(.referenceLayer) {
-  opacity: 0;
 }
 
 .page *,
@@ -92,15 +38,27 @@
   margin: 0;
 }
 
+.desktopPageContent {
+  display: contents;
+}
+
+.desktopPageContent p {
+  filter: contrast(1.04);
+}
+
+.desktopPageContent h1,
+.desktopPageContent h2,
+.desktopPageContent h3 {
+  opacity: 0.96;
+}
+
+.mobilePage {
+  display: none;
+}
+
 .page img {
   display: block;
   max-width: none;
-}
-
-.background {
-  position: absolute;
-  inset: 0;
-  pointer-events: none;
 }
 
 .glow {
@@ -306,9 +264,34 @@
 
 .tourCard {
   position: relative;
+  display: block;
   min-width: 0;
   overflow: hidden;
   background: #ffa2ab;
+  color: inherit;
+  text-decoration: none;
+  transition:
+    filter 160ms ease,
+    transform 160ms ease;
+}
+
+.tourCard[href]:hover,
+.tourCard[href]:focus-visible {
+  filter: brightness(1.06);
+  transform: translateY(-2px);
+}
+
+.tourCard[href]:focus-visible {
+  outline: 3px solid #fba81c;
+  outline-offset: 4px;
+}
+
+.tourCardDisabled {
+  cursor: default;
+}
+
+.tourCardDisabled .cardMedia {
+  opacity: 0.72;
 }
 
 .cardMedia {
@@ -326,90 +309,11 @@
   pointer-events: none;
 }
 
-.hangulTourImage {
-  left: -50px;
-  top: -127px;
-  width: 661px;
-  height: 496px;
-}
-
-.goldenBellImage {
-  left: -230px;
-  top: -206px;
-  width: 944px;
-  height: 533px;
-}
-
-.bakedCardImage {
+.cardMediaImage {
   left: 0;
   top: 0;
   width: 100%;
   height: 100%;
-}
-
-.kYeojuImage {
-  left: calc(50% + 22px);
-  top: -105px;
-  width: 747px;
-  height: 420px;
-  transform: translateX(-50%);
-}
-
-.clubCourseImage {
-  left: -22px;
-  top: -207px;
-  width: 755px;
-  height: 566px;
-}
-
-.cardBlur {
-  position: absolute;
-  left: 0;
-  right: 0;
-  top: 42.66%;
-  bottom: 0;
-  background: rgba(0, 0, 0, 0.01);
-  backdrop-filter: blur(32.75px);
-}
-
-.cardGradient {
-  position: absolute;
-  left: 0;
-  right: 0;
-  top: 35.71%;
-  bottom: -0.05%;
-}
-
-.blackGradient {
-  background-image: linear-gradient(
-    179.609deg,
-    rgba(0, 0, 0, 0) 0.95526%,
-    #000000 98.84%
-  );
-}
-
-.greenGradient {
-  background-image: linear-gradient(
-    179.609deg,
-    rgba(41, 47, 23, 0) 0.95526%,
-    #292f17 98.84%
-  );
-}
-
-.deepGreenGradient {
-  background-image: linear-gradient(
-    179.609deg,
-    rgba(110, 133, 160, 0) 0.95526%,
-    #1b3017 98.84%
-  );
-}
-
-.brownGradient {
-  background-image: linear-gradient(
-    179.609deg,
-    rgba(47, 41, 26, 0) 0.95526%,
-    #2f291a 98.84%
-  );
 }
 
 .cardLabel {
@@ -436,6 +340,16 @@
   letter-spacing: -0.7503px;
   text-align: center;
   word-break: break-word;
+}
+
+.cardStatus {
+  margin: 10px 0 0;
+  color: #ffffff;
+  font-family: "Figtree", "Nunito Sans", "Noto Sans KR", sans-serif;
+  font-size: 20px;
+  font-weight: 700;
+  line-height: normal;
+  text-align: center;
 }
 
 .directions {
@@ -611,46 +525,10 @@
   font-weight: 700;
 }
 
-.srOnly {
-  border: 0;
-  clip: rect(0 0 0 0);
-  clip-path: inset(50%);
-  height: 1px;
-  margin: -1px;
-  overflow: hidden;
-  padding: 0;
-  position: absolute;
-  white-space: nowrap;
-  width: 1px;
-}
-
 @media (min-width: 768px) and (max-width: 1439px) {
   .surface {
     --pc-scale: 0.9486111111;
     height: 2290.895833px;
-  }
-}
-
-@media (min-width: 1441px) {
-  .surface::before,
-  .surface::after {
-    position: absolute;
-    top: 0;
-    bottom: 0;
-    z-index: 0;
-    width: calc((100vw - 1440px) / 2 + 2px);
-    content: "";
-    pointer-events: none;
-  }
-
-  .surface::before {
-    left: 0;
-    background: var(--edge-left-bg);
-  }
-
-  .surface::after {
-    right: 0;
-    background: var(--edge-right-bg);
   }
 }
 
@@ -686,18 +564,6 @@
     overflow: hidden;
     transform: none;
     flex-direction: column;
-  }
-
-  .surface .referenceLayer {
-    display: none !important;
-  }
-
-  .surface .page > :not(.referenceLayer) {
-    opacity: 1;
-  }
-
-  .background {
-    display: none;
   }
 
   .header {
@@ -857,5 +723,430 @@
   .parkingColumn p,
   .transitColumn p {
     line-height: 1.65;
+  }
+}
+
+@media (max-width: 767px) {
+  .surface {
+    height: auto;
+    overflow: visible;
+    background: #ffffff;
+  }
+
+  .page {
+    position: relative;
+    left: auto;
+    top: auto;
+    display: block;
+    width: 100%;
+    height: auto;
+    min-height: 100vh;
+    margin-left: 0;
+    overflow: hidden;
+    background: #ffffff;
+    transform: none;
+  }
+
+  .desktopPageContent {
+    display: none;
+  }
+
+  .mobilePage {
+    --mobile-unit: clamp(0.8955px, 0.248756vw, 1.0697px);
+    position: relative;
+    display: block;
+    width: 100%;
+    min-height: 1615em;
+    overflow: hidden;
+    background: #ffffff;
+    color: #000000;
+    font-family: "Figtree", "Nunito Sans", "Noto Sans KR", Arial, sans-serif;
+    font-size: var(--mobile-unit);
+  }
+
+  .mobilePage img {
+    display: block;
+    max-width: none;
+  }
+
+  .mobileHeader {
+    position: relative;
+    z-index: 5;
+    display: flex;
+    width: 100%;
+    height: 103em;
+    align-items: center;
+    justify-content: space-between;
+    padding: 0 24em;
+  }
+
+  .mobileHeader::before {
+    position: absolute;
+    inset: 0;
+    z-index: -1;
+    background: linear-gradient(180deg, #ffffff 65.517%, rgba(255, 255, 255, 0));
+    content: "";
+  }
+
+  .mobileLogo {
+    position: relative;
+    display: block;
+    width: 47.703em;
+    height: 33em;
+    flex: 0 0 auto;
+  }
+
+  .mobileLogo img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+  }
+
+  .mobileMenuButton {
+    display: inline-flex;
+    width: 44px;
+    height: 44px;
+    align-items: center;
+    justify-content: center;
+    padding: 0;
+    border: 0;
+    background: transparent;
+    color: #000000;
+    cursor: pointer;
+    font-size: var(--mobile-unit);
+  }
+
+  .mobileMenuBars {
+    position: relative;
+    display: block;
+    width: 22px;
+    height: 16px;
+  }
+
+  .mobileMenuBars span {
+    position: absolute;
+    right: 0;
+    height: 2px;
+    border-radius: 999px;
+    background: currentColor;
+  }
+
+  .mobileMenuBars span:nth-child(1) {
+    top: 0;
+    width: 22px;
+  }
+
+  .mobileMenuBars span:nth-child(2) {
+    top: 7px;
+    width: 17px;
+  }
+
+  .mobileMenuBars span:nth-child(3) {
+    bottom: 0;
+    width: 11px;
+  }
+
+  .mobileContentStack {
+    position: absolute;
+    left: 0;
+    top: 106em;
+    z-index: 2;
+    display: flex;
+    width: 100%;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 100em;
+    padding: 0 24em;
+  }
+
+  .mobileReservationIntro {
+    display: flex;
+    width: 100%;
+    flex-direction: column;
+    align-items: center;
+    gap: 24em;
+  }
+
+  .mobileCopyBlock {
+    display: flex;
+    width: 100%;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 12em;
+    text-align: center;
+    word-break: break-word;
+  }
+
+  .mobileCopyBlock h1,
+  .mobileDirectionsHeader h2 {
+    width: 100%;
+    margin: 0;
+    color: #000000;
+    font-family: "Figtree", "Nunito Sans", "Noto Sans KR", Arial, sans-serif;
+    font-size: 36em;
+    font-weight: 800;
+    line-height: 1.4;
+    text-align: center;
+  }
+
+  .mobileCopyBlock p {
+    width: 100%;
+    margin: 0;
+    color: rgba(0, 0, 0, 0.7);
+    font-family: "Nunito Sans", "Figtree", "Noto Sans KR", Arial, sans-serif;
+    font-size: 12.6em;
+    font-variation-settings: "YTLC" 500, "wdth" 100;
+    font-weight: 400;
+    letter-spacing: -0.03126em;
+    line-height: 1.8571428571;
+  }
+
+  .mobileCardGrid {
+    display: grid;
+    width: 100%;
+    height: 361.2em;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    grid-template-rows: repeat(2, minmax(0, 1fr));
+    gap: 18em;
+  }
+
+  .mobileTourCard {
+    position: relative;
+    display: block;
+    min-width: 0;
+    overflow: hidden;
+    background: #ffa2ab;
+    color: inherit;
+    text-decoration: none;
+  }
+
+  .mobileTourCardDisabled {
+    cursor: default;
+  }
+
+  .mobileTourCardDisabled .mobileCardMedia {
+    opacity: 0.72;
+  }
+
+  .mobileCardMedia {
+    position: absolute;
+    inset: 0;
+    overflow: hidden;
+    background: #000000;
+  }
+
+  .mobileCardMedia img {
+    position: absolute;
+    object-fit: cover;
+    pointer-events: none;
+  }
+
+  .mobileCardHangulImage {
+    left: -30em;
+    top: -76.2em;
+    width: 396.8em;
+    height: 297.6em;
+  }
+
+  .mobileCardGoldenImage {
+    left: -138em;
+    top: -123.6em;
+    width: 566.4em;
+    height: 319.8em;
+  }
+
+  .mobileCardKYeojuImage {
+    left: -127.3em;
+    top: -63em;
+    width: 448em;
+    height: 252em;
+  }
+
+  .mobileCardClubImage {
+    left: -13.2em;
+    top: -124.2em;
+    width: 452.8em;
+    height: 339.6em;
+  }
+
+  .mobileCardBlur {
+    position: absolute;
+    inset: 42.66% 0 0;
+    background: rgba(0, 0, 0, 0.01);
+    backdrop-filter: blur(19.65em);
+  }
+
+  .mobileCardGradient {
+    position: absolute;
+    inset: 35.71% 0 -0.05%;
+  }
+
+  .mobileCardGradientBlack {
+    background: linear-gradient(179.183deg, rgba(0, 0, 0, 0) 0.955%, #000000 98.84%);
+  }
+
+  .mobileCardGradientOlive {
+    background: linear-gradient(179.183deg, rgba(41, 47, 23, 0) 0.955%, #292f17 98.84%);
+  }
+
+  .mobileCardGradientGreen {
+    background: linear-gradient(179.183deg, rgba(110, 133, 160, 0) 0.955%, #1b3017 98.84%);
+  }
+
+  .mobileCardGradientBrown {
+    background: linear-gradient(179.183deg, rgba(47, 41, 26, 0) 0.955%, #2f291a 98.84%);
+  }
+
+  .mobileTourCard h2 {
+    position: absolute;
+    inset: 63.87% 0 8.51%;
+    display: flex;
+    width: 100%;
+    align-items: center;
+    flex-direction: column;
+    gap: 4em;
+    justify-content: center;
+    margin: 0;
+    padding: 0 12em 12em;
+    color: #ffffff;
+    font-family: "Figtree", "Nunito Sans", "Noto Sans KR", Arial, sans-serif;
+    font-size: var(--mobile-unit);
+    font-weight: 600;
+    letter-spacing: -0.02345em;
+    line-height: normal;
+    text-align: center;
+    word-break: break-word;
+  }
+
+  .mobileTourCard h2 span {
+    font-size: 19.2em;
+  }
+
+  .mobileTourCard h2 .mobileCardStatus {
+    font-size: 12.6em;
+    font-weight: 700;
+  }
+
+  .mobileDirections {
+    display: flex;
+    width: 100%;
+    flex-direction: column;
+    align-items: center;
+    gap: 58.8em;
+  }
+
+  .mobileDirectionsHeader {
+    display: flex;
+    width: 100%;
+    flex-direction: column;
+    align-items: center;
+    gap: 12em;
+  }
+
+  .mobileAddressRow {
+    display: flex;
+    width: 100%;
+    align-items: flex-start;
+    justify-content: space-between;
+    gap: 0;
+  }
+
+  .mobileAddressRow img {
+    width: 21.6em;
+    height: 29.131em;
+    flex: 0 0 auto;
+  }
+
+  .mobileAddressRow p {
+    flex: 1 0 0;
+    min-width: 0;
+    margin: 0;
+    color: #000000;
+    font-family: "Figtree", "Nunito Sans", "Noto Sans KR", Arial, sans-serif;
+    font-size: 18em;
+    font-weight: 600;
+    letter-spacing: -0.02188em;
+    line-height: 1.6666666667;
+    text-align: center;
+    word-break: break-word;
+  }
+
+  .mobileTransportGroup {
+    display: flex;
+    width: 100%;
+    flex-direction: column;
+    align-items: center;
+    gap: 72em;
+  }
+
+  .mobileTransportBlock {
+    display: flex;
+    width: 100%;
+    flex-direction: column;
+    align-items: center;
+    gap: 18em;
+  }
+
+  .mobileCarIcon {
+    width: 128.722em;
+    height: 41.485em;
+    margin-right: 26.4em;
+    object-fit: contain;
+  }
+
+  .mobileTrainIcon {
+    width: 118.8em;
+    height: 34.8em;
+    margin-right: 26.4em;
+    object-fit: contain;
+  }
+
+  .mobileTransportCopy {
+    display: flex;
+    width: 100%;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 15.6em;
+    color: rgba(0, 0, 0, 0.7);
+    font-family: "Nunito Sans", "Figtree", "Noto Sans KR", Arial, sans-serif;
+    letter-spacing: -0.03126em;
+    text-align: center;
+    word-break: break-word;
+  }
+
+  .mobileTransportCopy h3 {
+    width: 100%;
+    margin: 0;
+    font-family: "Figtree", "Nunito Sans", "Noto Sans KR", Arial, sans-serif;
+    font-size: 18em;
+    font-weight: 600;
+    line-height: 1.6666666667;
+  }
+
+  .mobileTransportDetails {
+    display: flex;
+    width: 100%;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 24em;
+    font-size: var(--mobile-unit);
+    font-variation-settings: "YTLC" 500, "wdth" 100;
+    font-weight: 400;
+    line-height: 1.8571428571;
+  }
+
+  .mobileTransportDetails div,
+  .mobileTransportDetails p {
+    width: 100%;
+    margin: 0;
+  }
+
+  .mobileTransportDetails div {
+    font-size: 12.6em;
+  }
+
+  .mobileDetailHeading {
+    color: #000000;
+    font-weight: 700;
   }
 }

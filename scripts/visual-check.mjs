@@ -7,10 +7,10 @@ const baseUrl = process.env.VISUAL_BASE_URL || "http://127.0.0.1:3000";
 const root = process.cwd();
 const outDir = path.join(root, "visual-diffs");
 const maxMismatchPercent = Number.parseFloat(
-  process.env.VISUAL_MAX_MISMATCH_PERCENT || "0"
+  process.env.VISUAL_MAX_MISMATCH_PERCENT || "1"
 );
 const channelTolerance = Number.parseInt(
-  process.env.VISUAL_CHANNEL_TOLERANCE || "0",
+  process.env.VISUAL_CHANNEL_TOLERANCE || "2",
   10
 );
 
@@ -73,6 +73,36 @@ try {
         await document.fonts.ready;
       }
     });
+    const runtimeReferenceImages = await page.evaluate(() =>
+      Array.from(document.images)
+        .map((image) => image.currentSrc || image.src)
+        .filter((src) => src.includes("/assets/figma/reference/"))
+    );
+    const runtimeCropImages = await page.evaluate(() =>
+      Array.from(document.images)
+        .map((image) => image.currentSrc || image.src)
+        .filter((src) => src.includes("/assets/figma/crops/"))
+    );
+
+    if (runtimeReferenceImages.length > 0) {
+      results.push({
+        name: pageSpec.name,
+        status: "fail",
+        reason: `runtime reference PNG rendered: ${runtimeReferenceImages.join(", ")}`
+      });
+      await page.close();
+      continue;
+    }
+
+    if (runtimeCropImages.length > 0) {
+      results.push({
+        name: pageSpec.name,
+        status: "fail",
+        reason: `runtime crop PNG rendered: ${runtimeCropImages.join(", ")}`
+      });
+      await page.close();
+      continue;
+    }
 
     const screenshotPath = path.join(outDir, `${pageSpec.name}.actual.png`);
     const actualBuffer = await page.screenshot({

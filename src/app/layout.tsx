@@ -1,5 +1,5 @@
 import type { Metadata } from "next";
-import type { ReactNode } from "react";
+import type { CSSProperties, ReactNode } from "react";
 import "@fontsource/figtree/400.css";
 import "@fontsource/figtree/600.css";
 import "@fontsource/figtree/700.css";
@@ -12,11 +12,20 @@ import "@fontsource/nunito-sans/400.css";
 import "@fontsource/nunito-sans/600.css";
 import "@fontsource/nunito-sans/700.css";
 import "@fontsource/nunito-sans/800.css";
+import { withBasePath } from "@/lib/sitePaths";
 import "./globals.css";
 
 export const metadata: Metadata = {
   title: "따르릉 여주 시티투어",
   description: "가이드와 함께 전기 자전거로 달리는 여주 시티투어"
+};
+
+type SiteShellStyle = CSSProperties & {
+  "--site-bg": string;
+};
+
+const siteShellStyle: SiteShellStyle = {
+  "--site-bg": `url("${withBasePath("/assets/figma/groups/landing-bg.png")}")`
 };
 
 export default function RootLayout({
@@ -26,7 +35,11 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="ko">
-      <body>{children}</body>
+      <body>
+        <div className="site-shell" style={siteShellStyle}>
+          {children}
+        </div>
+      </body>
     </html>
   );
 }
