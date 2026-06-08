@@ -272,6 +272,7 @@
   text-decoration: none;
   transition:
     filter 160ms ease,
+    box-shadow 160ms ease,
     transform 160ms ease;
 }
 
@@ -290,8 +291,16 @@
   cursor: default;
 }
 
-.tourCardDisabled .cardMedia {
-  opacity: 0.72;
+.tourCardDisabled:hover,
+.tourCardDisabled:focus-visible {
+  filter: brightness(1.04);
+  box-shadow: 0 18px 40px rgba(0, 0, 0, 0.16);
+  transform: translateY(-2px);
+}
+
+.tourCardDisabled:focus-visible {
+  outline: 3px solid #fba81c;
+  outline-offset: 4px;
 }
 
 .cardMedia {
@@ -301,12 +310,26 @@
   background: #000000;
 }
 
+.cardMedia::after {
+  position: absolute;
+  inset: 0;
+  background: rgba(0, 0, 0, 0);
+  content: "";
+  transition: background 180ms ease;
+}
+
+.tourCardDisabled:hover .cardMedia::after,
+.tourCardDisabled:focus-visible .cardMedia::after {
+  background: rgba(0, 0, 0, 0.2);
+}
+
 .cardImage {
   position: absolute;
   display: block;
   max-width: none;
   object-fit: cover;
   pointer-events: none;
+  transition: transform 220ms ease;
 }
 
 .cardMediaImage {
@@ -314,6 +337,11 @@
   top: 0;
   width: 100%;
   height: 100%;
+}
+
+.tourCardDisabled:hover .cardMediaImage,
+.tourCardDisabled:focus-visible .cardMediaImage {
+  transform: scale(1.03);
 }
 
 .cardLabel {
@@ -349,7 +377,18 @@
   font-size: 20px;
   font-weight: 700;
   line-height: normal;
+  opacity: 0;
   text-align: center;
+  transform: translateY(8px);
+  transition:
+    opacity 160ms ease,
+    transform 160ms ease;
+}
+
+.tourCardDisabled:hover .cardStatus,
+.tourCardDisabled:focus-visible .cardStatus {
+  opacity: 1;
+  transform: translateY(0);
 }
 
 .directions {
@@ -918,14 +957,27 @@
     background: #ffa2ab;
     color: inherit;
     text-decoration: none;
+    transition:
+      filter 160ms ease,
+      box-shadow 160ms ease,
+      transform 160ms ease;
   }
 
   .mobileTourCardDisabled {
     cursor: default;
   }
 
-  .mobileTourCardDisabled .mobileCardMedia {
-    opacity: 0.72;
+  .mobileTourCardDisabled:hover,
+  .mobileTourCardDisabled:focus-visible,
+  .mobileTourCardDisabled:active {
+    filter: brightness(1.04);
+    box-shadow: 0 10em 24em rgba(0, 0, 0, 0.16);
+    transform: translateY(-1.2em);
+  }
+
+  .mobileTourCardDisabled:focus-visible {
+    outline: 1.8em solid #fba81c;
+    outline-offset: 2.4em;
   }
 
   .mobileCardMedia {
@@ -935,10 +987,31 @@
     background: #000000;
   }
 
+  .mobileCardMedia::after {
+    position: absolute;
+    inset: 0;
+    background: rgba(0, 0, 0, 0);
+    content: "";
+    transition: background 180ms ease;
+  }
+
+  .mobileTourCardDisabled:hover .mobileCardMedia::after,
+  .mobileTourCardDisabled:focus-visible .mobileCardMedia::after,
+  .mobileTourCardDisabled:active .mobileCardMedia::after {
+    background: rgba(0, 0, 0, 0.2);
+  }
+
   .mobileCardMedia img {
     position: absolute;
     object-fit: cover;
     pointer-events: none;
+    transition: transform 220ms ease;
+  }
+
+  .mobileTourCardDisabled:hover .mobileCardMedia img,
+  .mobileTourCardDisabled:focus-visible .mobileCardMedia img,
+  .mobileTourCardDisabled:active .mobileCardMedia img {
+    transform: scale(1.03);
   }
 
   .mobileCardHangulImage {
@@ -1025,6 +1098,18 @@
   .mobileTourCard h2 .mobileCardStatus {
     font-size: 12.6em;
     font-weight: 700;
+    opacity: 0;
+    transform: translateY(4em);
+    transition:
+      opacity 160ms ease,
+      transform 160ms ease;
+  }
+
+  .mobileTourCardDisabled:hover h2 .mobileCardStatus,
+  .mobileTourCardDisabled:focus-visible h2 .mobileCardStatus,
+  .mobileTourCardDisabled:active h2 .mobileCardStatus {
+    opacity: 1;
+    transform: translateY(0);
   }
 
   .mobileDirections {

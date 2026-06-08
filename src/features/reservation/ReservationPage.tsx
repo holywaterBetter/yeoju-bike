@@ -171,7 +171,11 @@ function MobileTourCard({
 
   if (!reservationUrl) {
     return (
-      <article className={`${styles.mobileTourCard} ${styles.mobileTourCardDisabled}`} aria-disabled="true">
+      <article
+        className={`${styles.mobileTourCard} ${styles.mobileTourCardDisabled}`}
+        aria-disabled="true"
+        tabIndex={0}
+      >
         {content}
       </article>
     );
@@ -204,7 +208,11 @@ function ReservationTourCard({ card }: { card: TourCardData }) {
 
   if (!reservationUrl) {
     return (
-      <article className={`${styles.tourCard} ${styles.tourCardDisabled}`} aria-disabled="true">
+      <article
+        className={`${styles.tourCard} ${styles.tourCardDisabled}`}
+        aria-disabled="true"
+        tabIndex={0}
+      >
         {content}
       </article>
     );
