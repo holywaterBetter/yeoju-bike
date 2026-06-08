@@ -10,5 +10,9 @@ export const courseAnchors = {
 export type CourseAnchor = (typeof courseAnchors)[keyof typeof courseAnchors];
 
 export function courseAnchorHref(anchor: CourseAnchor) {
+  if (anchor === courseAnchors.hangul) {
+    return withBasePath("/courses");
+  }
+
   return `${withBasePath("/courses")}#${anchor}`;
 }

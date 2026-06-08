@@ -1,9 +1,17 @@
 "use client";
 
-import { useEffect } from "react";
+import { useLayoutEffect } from "react";
 import { type CourseAnchor, courseAnchors } from "@/lib/courseAnchors";
 
-const validAnchors = new Set<CourseAnchor>(Object.values(courseAnchors));
+const validScrollAnchors = new Set<CourseAnchor>(
+  Object.values(courseAnchors).filter((anchor) => anchor !== courseAnchors.hangul),
+);
+
+function resetCourseContainerScroll() {
+  document.querySelectorAll<HTMLElement>('[data-responsive-page="courses"]').forEach((element) => {
+    element.scrollTop = 0;
+  });
+}
 
 function getVisibleCourseSection(anchor: CourseAnchor) {
   return Array.from(document.querySelectorAll<HTMLElement>("[data-course-anchor]")).find(
@@ -12,30 +20,45 @@ function getVisibleCourseSection(anchor: CourseAnchor) {
 }
 
 export default function CourseHashScroller() {
-  useEffect(() => {
+  useLayoutEffect(() => {
     function scrollToCurrentHash() {
       const hash = decodeURIComponent(window.location.hash.slice(1));
 
-      if (!validAnchors.has(hash as CourseAnchor)) {
+      resetCourseContainerScroll();
+
+      if (hash === courseAnchors.hangul) {
+        window.history.replaceState(window.history.state, "", `${window.location.pathname}${window.location.search}`);
+        window.scrollTo({ top: 0, left: 0, behavior: "auto" });
+        resetCourseContainerScroll();
+        return;
+      }
+
+      if (!validScrollAnchors.has(hash as CourseAnchor)) {
         return;
       }
 
       requestAnimationFrame(() => {
-        getVisibleCourseSection(hash as CourseAnchor)?.scrollIntoView({
-          block: "start",
-          behavior: "auto",
-        });
+        resetCourseContainerScroll();
+
+        const section = getVisibleCourseSection(hash as CourseAnchor);
+
+        if (!section) {
+          return;
+        }
+
+        const scrollMarginTop = Number.parseFloat(window.getComputedStyle(section).scrollMarginTop) || 0;
+        const top = Math.max(0, window.scrollY + section.getBoundingClientRect().top - scrollMarginTop);
+
+        window.scrollTo({ top, left: 0, behavior: "smooth" });
+        resetCourseContainerScroll();
       });
     }
 
-    const retryDelays = [0, 100, 300, 700, 1200, 1800];
-    const retryTimers = retryDelays.map((delay) => window.setTimeout(scrollToCurrentHash, delay));
-
+    scrollToCurrentHash();
     window.addEventListener("hashchange", scrollToCurrentHash);
     window.addEventListener("popstate", scrollToCurrentHash);
 
     return () => {
-      retryTimers.forEach((timer) => window.clearTimeout(timer));
       window.removeEventListener("hashchange", scrollToCurrentHash);
       window.removeEventListener("popstate", scrollToCurrentHash);
     };
