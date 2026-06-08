@@ -1,6 +1,8 @@
 "use client";
 
-import { useState, type MouseEvent, type ReactNode } from "react";
+import { type MouseEvent, type ReactNode } from "react";
+import MobileSiteHeader from "@/components/MobileSiteHeader";
+import MobileTourCardGrid from "@/components/MobileTourCardGrid";
 import { courseAnchorHref, courseAnchors } from "@/lib/courseAnchors";
 import { withBasePath } from "@/lib/sitePaths";
 import { kakaoChannelUrl } from "@/lib/tourLinks";
@@ -35,7 +37,6 @@ const imgRedDashTwo = withBasePath("/assets/figma/groups/landing-red-dash-2.png"
 const imgMobileRedDashOne = withBasePath("/assets/figma/mobile/landing-red-dash-one.svg");
 const imgMobileRedDashTwo = withBasePath("/assets/figma/mobile/landing-red-dash-two.svg");
 const imgYellowSpark = withBasePath("/assets/figma/groups/landing-yellow-spark.png");
-const mobileMenuArrow = withBasePath("/assets/figma/mobile/menu-arrow.svg");
 
 type LandingPageProps = {
   className?: string;
@@ -333,15 +334,9 @@ function ContactCta() {
 }
 
 function MobileLanding() {
-  const [isMenuOpen, setIsMenuOpen] = useState(false);
-
   return (
     <div className={styles.mobileFrame} data-node-id="57:134" data-name="01_landing_M">
-      <MobileHeader
-        isMenuOpen={isMenuOpen}
-        onOpen={() => setIsMenuOpen(true)}
-        onClose={() => setIsMenuOpen(false)}
-      />
+      <MobileSiteHeader active="landing" />
       <section className={styles.mobileHero} aria-labelledby="mobile-landing-title">
         <div className={styles.mobileCopyBlock}>
           <h1 id="mobile-landing-title" className={styles.mobileHeroTitle}>
@@ -352,7 +347,7 @@ function MobileLanding() {
             가장 완벽한 여주 시티투어
           </h1>
           <p className={styles.mobileBodyText}>
-            전기 자전거에 몸을 싣고 여주의 풍경 속으로 들어와 보세요. 발길이 닿지 않던 샛길부터 탁 트인 남한강변까지, 바퀴가 구르는 곳마다 흥미로운 이야기가 펼쳐집니다.
+            전기 자전거에 몸을 싣고 여주의 풍경 속으로 들어와 보세요. 발길이 닿지 않던 샛길부터 탁 트인 남한강변까지, 바퀴가 구르는 곳마다 흥미로운 이야기가 펼쳐집니다. 여주의 구석구석을 가장 잘 아는 든든한 '자전거 가이드'가 여러분의 안전하고 즐거운 여행을 책임집니다. 우리 가족, 친구, 연인과 여주에서 잊지 못할 낭만을 완성해 보세요.
           </p>
         </div>
         <div className={styles.mobileHeroArt} aria-hidden="true">
@@ -371,7 +366,7 @@ function MobileLanding() {
             그리고 세종대왕
           </h2>
           <p className={styles.mobileBodyText}>
-            여주는 탁 트인 자연과 깊은 역사가 평탄한 길 위에 나란히 놓여 있어, 자전거 여행에 최적화된 완벽한 무대입니다.
+            "자전거를 타기 위해 만들어진 도시가 아닐까?" 여주 남한강변을 한 번이라도 달려본 분들이라면 모두 고개를 끄덕이실 겁니다. 여주는 탁 트인 자연과 깊은 역사가 평탄한 길 위에 나란히 놓여 있어, 자전거 여행에 최적화된 완벽한 무대입니다.
           </p>
         </div>
         <div className={`${styles.mobilePhotoFrame} ${styles.mobileRiverHeroPhoto}`}>
@@ -402,14 +397,14 @@ function MobileLanding() {
             imageAlt="PAS 전기 자전거"
             imageClassName={styles.mobileFeaturePhotoOne}
             title="힘들이지 않고 가뿐하게, PAS 전기 자전거"
-            body="페달을 밟으면 모터가 힘을 더해주는 PAS 전용 전기 자전거를 이용합니다."
+            body="페달을 밟으면 모터가 힘을 더해주는 PAS 전용 전기 자전거를 이용합니다. 가파른 오르막이나 체력 부담 걱정 없이, 남한강 자전거길의 평지 코스를 누구나 여유롭고 안전하게 완주할 수 있습니다."
           />
           <MobileFeature
             imageSrc={imgKakaoTalk202511171152391871}
             imageAlt="가이드 크루와 함께하는 주행"
             imageClassName={styles.mobileFeaturePhotoTwo}
             title="안전과 감동을 책임지는 가이드 크루"
-            body="전문 가이드가 대열의 선두와 후미에서 동행하며 투어를 지켜드립니다."
+            body="전문 가이드가 대열의 선두와 후미에서 밀착 동행 합니다. 안전 관리부터 명소 해설까지 투어의 처음과 끝을 든든하게 지켜드립니다."
             alignRight
           />
           <MobileFeature
@@ -417,7 +412,7 @@ function MobileLanding() {
             imageAlt="세나 인터콤 헬멧"
             imageClassName={styles.mobileFeaturePhotoThree}
             title="달리는 라디오, 세나인터콤"
-            body="주행 중에도 가이드의 실시간 길 안내와 이야기를 라디오처럼 들을 수 있습니다."
+            body="특수 헬멧에 장착된 인터콤 시스템을 활용하여, 주행 중에도 가이드의 실시간 길 안내와 흥미진진한 여주 역사 이야기를 라디오 방송처럼 생생하게 들으며 즐길 수 있습니다."
           />
         </div>
       </section>
@@ -425,18 +420,7 @@ function MobileLanding() {
         <h2 id="mobile-journey-title" className={`${styles.mobileCenteredTitle} ${styles.mobileSectionTitle}`}>
           이야기를 따라 달리는 4가지 여정
         </h2>
-        <div className={styles.mobileJourneyGrid}>
-          {journeyCards.map((journey) => (
-            <MobileJourneyCard
-              href={journey.href}
-              imageSrc={journey.img}
-              imageClassName={styles.mobileJourneyMediaImage}
-              title={journey.title}
-              key={`mobile-${journey.title}`}
-              overlayBaked
-            />
-          ))}
-        </div>
+        <MobileTourCardGrid mode="courses" />
       </section>
       <section className={styles.mobileContact} aria-labelledby="mobile-contact-title">
         <div className={styles.mobileCopyBlock}>
@@ -444,7 +428,7 @@ function MobileLanding() {
             궁금한 점이 있으신가요?
           </h2>
           <p className={styles.mobileBodyText}>
-            코스 문의, 단체 예약, 자전거 이용 방법 등 따르릉 여주 시티투어에 대한 모든 궁금증을 환영합니다.
+            코스 문의, 단체 예약, 자전거 이용 방법 등 따르릉 여주 시티투어에 대한 모든 궁금증을 환영합니다. 카카오톡 채널로 메시지를 남겨주시면 친절하게 안내해 드리겠습니다. 주말 / 공휴일에는 가이드들이 현장에서 신나게 투어를 진행하고 있어 실시간 응대가 어려울 수 있습니다. 상담 운영 시간 - 평일 9:00~18:00
           </p>
         </div>
         <a className={styles.mobileKakaoButton} href={kakaoChannelUrl}>
@@ -456,61 +440,6 @@ function MobileLanding() {
       </section>
       <MobileDecorations />
     </div>
-  );
-}
-
-type MobileHeaderProps = {
-  isMenuOpen: boolean;
-  onOpen: () => void;
-  onClose: () => void;
-};
-
-function MobileHeader({ isMenuOpen, onOpen, onClose }: MobileHeaderProps) {
-  return (
-    <>
-      <header className={styles.mobileHeader} data-node-id="57:108" data-name="header">
-        <a className={styles.mobileLogo} href={withBasePath("/")} aria-label="따르릉 여주 홈" data-node-id="57:67">
-          <img src={imgImage30} alt="따르릉 여주 로고" />
-        </a>
-        <button
-          className={styles.mobileMenuButton}
-          type="button"
-          aria-label="메뉴 열기"
-          aria-controls="landing-mobile-menu"
-          aria-expanded={isMenuOpen}
-          onClick={onOpen}
-        >
-          <span className={styles.mobileMenuBars} aria-hidden="true">
-            <span />
-            <span />
-            <span />
-          </span>
-        </button>
-      </header>
-
-      <div
-        id="landing-mobile-menu"
-        className={`${styles.mobileMenuOverlay} ${isMenuOpen ? styles.mobileMenuOverlayOpen : ""}`}
-        aria-hidden={!isMenuOpen}
-      >
-        <div className={styles.mobileMenuBackdrop} />
-        <header className={styles.mobileMenuHeader}>
-          <a className={styles.mobileLogo} href={withBasePath("/")} aria-label="따르릉 여주 홈" onClick={onClose}>
-            <img src={imgImage30} alt="따르릉 여주 로고" />
-          </a>
-          <button className={styles.mobileMenuClose} type="button" aria-label="메뉴 닫기" onClick={onClose}>
-            <img className={styles.mobileArrowIcon} src={mobileMenuArrow} alt="" aria-hidden="true" />
-          </button>
-        </header>
-        <nav className={styles.mobileMenuNav} aria-label="모바일 주요 메뉴">
-          <a className={styles.mobileMenuActive} href={withBasePath("/")} aria-current="page" onClick={onClose}>
-            투어 소개
-          </a>
-          <a href={withBasePath("/courses/")} onClick={onClose}>코스 안내</a>
-          <a href={withBasePath("/reservation/")} onClick={onClose}>투어 예약</a>
-        </nav>
-      </div>
-    </>
   );
 }
 
@@ -534,39 +463,6 @@ function MobileFeature({ imageSrc, imageAlt, imageClassName, title, body, alignR
         <p>{body}</p>
       </div>
     </article>
-  );
-}
-
-type MobileJourneyCardProps = {
-  href: string;
-  imageSrc: string;
-  imageClassName: string;
-  title: ReactNode;
-  gradientClassName?: string;
-  overlayBaked?: boolean;
-};
-
-function MobileJourneyCard({ href, imageSrc, imageClassName, title, gradientClassName, overlayBaked }: MobileJourneyCardProps) {
-  return (
-    <a
-      className={styles.mobileJourneyCard}
-      href={href}
-      aria-label={typeof title === "string" ? `${title} 코스 안내 보기` : undefined}
-      onClick={(event) => handleJourneyCardClick(event, href)}
-    >
-      <div className={styles.mobileJourneyImageLayer}>
-        <img className={imageClassName} src={imageSrc} alt="" />
-        {overlayBaked ? null : (
-          <>
-            <div className={styles.mobileJourneyBlur} />
-            <div className={`${styles.mobileJourneyGradient} ${gradientClassName || ""}`} />
-          </>
-        )}
-      </div>
-      <h3>
-        <span className={styles.mobileJourneyTitleText}>{title}</span>
-      </h3>
-    </a>
   );
 }
 

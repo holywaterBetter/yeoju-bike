@@ -786,18 +786,13 @@
     height: auto;
     min-height: 100vh;
     margin-left: 0;
-    overflow: hidden;
+    overflow: visible;
     background: #ffffff;
     transform: none;
   }
 
   .desktopLayers {
-    position: absolute;
-    inset: 0;
-    z-index: 0;
-    overflow: hidden;
-    opacity: 0;
-    pointer-events: none;
+    display: none;
   }
 
   .desktopLayers .nav a,
@@ -815,7 +810,7 @@
     display: block;
     width: 100%;
     min-height: 4560em;
-    overflow: hidden;
+    overflow: visible;
     background: #ffffff;
     color: #000000;
     font-family: "Figtree", "Nunito Sans", "Noto Sans KR", Arial, sans-serif;
@@ -992,6 +987,7 @@
   }
 
   .mobileHero {
+    overflow: hidden;
     padding-top: 3em;
   }
 
@@ -1218,12 +1214,14 @@
   }
 
   .mobileFeatureCopy h3 {
+    width: 100%;
     margin: 0;
     font-family: "Figtree", "Nunito Sans", "Noto Sans KR", Arial, sans-serif;
     font-size: 25.2em;
     font-weight: 700;
     line-height: 1.4285714286;
-    white-space: nowrap;
+    white-space: normal;
+    word-break: keep-all;
   }
 
   .mobileFeatureCopy p {
@@ -1398,6 +1396,7 @@
     position: absolute;
     inset: 0;
     z-index: 0;
+    overflow: hidden;
     pointer-events: none;
   }
 

@@ -1,3 +1,4 @@
+import MobileSiteHeader from "@/components/MobileSiteHeader";
 import { withBasePath } from "@/lib/sitePaths";
 import { type CourseAnchor, courseAnchors } from "@/lib/courseAnchors";
 import { getTourReservationUrl } from "@/lib/tourLinks";
@@ -461,25 +462,15 @@ function DecorativeAssets() {
   );
 }
 
-function MobileHeader() {
-  return (
-    <header className={styles.mobileHeader} data-node-id="57:575" data-name="header">
-      <a className={styles.mobileLogo} href={withBasePath("/")} aria-label="따르릉 여주 홈">
-        <img src={assets.logo} alt="따르릉 여주 로고" />
-      </a>
-      <button className={styles.mobileMenuButton} type="button" aria-label="메뉴 열기">
-        <span className={styles.mobileMenuBars} aria-hidden="true">
-          <span />
-          <span />
-          <span />
-        </span>
-      </button>
-    </header>
-  );
-}
-
-function MobileSectionTitle({ title }: { title: string | string[] }) {
-  const lines = Array.isArray(title) ? title : [title];
+function MobileSectionTitle({ section }: { section: TourSection }) {
+  const lines =
+    section.anchor === courseAnchors.hangul
+      ? ["따르릉 여주", "한글길 투어", "ㄱ부터 ㅎ까지"]
+      : section.anchor === courseAnchors.club
+        ? ["따르릉 동호회 코스", "(자율 라이딩)"]
+        : Array.isArray(section.title)
+          ? section.title
+          : [section.title];
 
   return (
     <h1 className={styles.mobileCourseTitle}>
@@ -550,7 +541,7 @@ function MobileCourseSectionView({ section, index }: { section: TourSection; ind
     <section className={styles.mobileCourseSection} data-course-anchor={section.anchor} data-node-id={section.nodeId}>
       <div className={styles.mobileCourseInfo}>
         <div className={styles.mobileTitleGroup}>
-          <MobileSectionTitle title={section.title} />
+          <MobileSectionTitle section={section} />
           <MobileReserveButton section={section} />
         </div>
         <div className={styles.mobileCopyGroup}>
@@ -612,7 +603,7 @@ function MobileDecorativeAssets() {
 function MobileCoursesPage() {
   return (
     <div className={styles.mobilePage} data-node-id="57:904" data-name="02_landing_M">
-      <MobileHeader />
+      <MobileSiteHeader active="courses" />
       <MobileDecorativeAssets />
       <div className={styles.mobileContentStack}>
         {sections.map((section, index) => (

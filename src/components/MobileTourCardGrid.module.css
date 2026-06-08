@@ -1,0 +1,184 @@
+.grid {
+  display: grid;
+  width: 100%;
+  height: 361.2em;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  grid-template-rows: repeat(2, minmax(0, 1fr));
+  gap: 18em;
+}
+
+.card {
+  position: relative;
+  display: block;
+  min-width: 0;
+  overflow: hidden;
+  background: #ffa2ab;
+  color: inherit;
+  cursor: pointer;
+  text-decoration: none;
+  transition:
+    filter 160ms ease,
+    box-shadow 160ms ease,
+    transform 160ms ease;
+}
+
+.card:hover,
+.card:focus-visible {
+  filter: brightness(1.06);
+  transform: translateY(-1.5em);
+}
+
+.card:focus-visible {
+  outline: 3em solid #fba81c;
+  outline-offset: 4em;
+}
+
+.card:active {
+  filter: brightness(0.95);
+  transform: translateY(0);
+}
+
+.disabled {
+  cursor: default;
+}
+
+.disabled:hover,
+.disabled:focus-visible,
+.disabled:active {
+  filter: brightness(1.04);
+  box-shadow: 0 10em 24em rgba(0, 0, 0, 0.16);
+  transform: translateY(-1.2em);
+}
+
+.media {
+  position: absolute;
+  inset: 0;
+  overflow: hidden;
+  background: #000000;
+}
+
+.media::after {
+  position: absolute;
+  inset: 0;
+  background: rgba(0, 0, 0, 0);
+  content: "";
+  transition: background 180ms ease;
+}
+
+.disabled:hover .media::after,
+.disabled:focus-visible .media::after,
+.disabled:active .media::after {
+  background: rgba(0, 0, 0, 0.2);
+}
+
+.media img {
+  position: absolute;
+  object-fit: cover;
+  pointer-events: none;
+  transition: transform 220ms ease;
+}
+
+.disabled:hover .media img,
+.disabled:focus-visible .media img,
+.disabled:active .media img {
+  transform: scale(1.03);
+}
+
+.cardHangulImage {
+  left: -30em;
+  top: -76.2em;
+  width: 396.8em;
+  height: 297.6em;
+}
+
+.cardGoldenImage {
+  left: -138em;
+  top: -123.6em;
+  width: 566.4em;
+  height: 319.8em;
+}
+
+.cardKYeojuImage {
+  left: -127.3em;
+  top: -63em;
+  width: 448em;
+  height: 252em;
+}
+
+.cardClubImage {
+  left: -13.2em;
+  top: -124.2em;
+  width: 452.8em;
+  height: 339.6em;
+}
+
+.blur {
+  position: absolute;
+  inset: 42.66% 0 0;
+  background: rgba(0, 0, 0, 0.01);
+  backdrop-filter: blur(19.65em);
+  -webkit-backdrop-filter: blur(19.65em);
+}
+
+.gradient {
+  position: absolute;
+  inset: 35.71% 0 -0.05%;
+}
+
+.gradientBlack {
+  background: linear-gradient(179.183deg, rgba(0, 0, 0, 0) 0.955%, #000000 98.84%);
+}
+
+.gradientOlive {
+  background: linear-gradient(179.183deg, rgba(41, 47, 23, 0) 0.955%, #292f17 98.84%);
+}
+
+.gradientGreen {
+  background: linear-gradient(179.183deg, rgba(110, 133, 160, 0) 0.955%, #1b3017 98.84%);
+}
+
+.gradientBrown {
+  background: linear-gradient(179.183deg, rgba(47, 41, 26, 0) 0.955%, #2f291a 98.84%);
+}
+
+.title {
+  position: absolute;
+  inset: 63.87% 0 8.51%;
+  display: flex;
+  width: 100%;
+  align-items: center;
+  flex-direction: column;
+  gap: 4em;
+  justify-content: center;
+  margin: 0;
+  padding: 0 12em 12em;
+  color: #ffffff;
+  font-family: "Figtree", "Nunito Sans", "Noto Sans KR", Arial, sans-serif;
+  font-size: inherit;
+  font-weight: 600;
+  letter-spacing: -0.02345em;
+  line-height: normal;
+  text-align: center;
+  word-break: break-word;
+}
+
+.titleLine {
+  font-size: 19.2em;
+}
+
+.status {
+  font-size: 12.6em;
+  font-weight: 700;
+  opacity: 0;
+  transform: translateY(4em);
+  transition:
+    opacity 160ms ease,
+    transform 160ms ease;
+}
+
+.disabled:hover .status,
+.disabled:focus-visible .status,
+.disabled:active .status {
+  opacity: 1;
+  transform: translateY(0);
+}

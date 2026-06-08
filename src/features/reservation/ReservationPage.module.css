@@ -600,7 +600,7 @@
     height: auto;
     min-height: 100vh;
     margin-left: 0;
-    overflow: hidden;
+    overflow: visible;
     transform: none;
     flex-direction: column;
   }
@@ -781,7 +781,7 @@
     height: auto;
     min-height: 100vh;
     margin-left: 0;
-    overflow: hidden;
+    overflow: visible;
     background: #ffffff;
     transform: none;
   }
@@ -796,7 +796,7 @@
     display: block;
     width: 100%;
     min-height: 1615em;
-    overflow: hidden;
+    overflow: visible;
     background: #ffffff;
     color: #000000;
     font-family: "Figtree", "Nunito Sans", "Noto Sans KR", Arial, sans-serif;

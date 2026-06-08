@@ -619,7 +619,7 @@
     height: auto;
     min-height: 100vh;
     margin-left: 0;
-    overflow: hidden;
+    overflow: visible;
     transform: none;
     flex-direction: column;
   }
@@ -824,7 +824,7 @@
     height: auto;
     min-height: 100vh;
     margin-left: 0;
-    overflow: hidden;
+    overflow: visible;
     background: #ffffff;
     transform: none;
   }
@@ -839,7 +839,7 @@
     display: block;
     width: 100%;
     min-height: 5562em;
-    overflow: hidden;
+    overflow: visible;
     background: #ffffff;
     color: #000000;
     font-family: "Figtree", "Nunito Sans", "Noto Sans KR", Arial, sans-serif;
@@ -977,7 +977,8 @@
     font-weight: 800;
     line-height: 1.4;
     text-align: center;
-    word-break: break-word;
+    overflow-wrap: normal;
+    word-break: keep-all;
   }
 
   .mobileReserveButton {

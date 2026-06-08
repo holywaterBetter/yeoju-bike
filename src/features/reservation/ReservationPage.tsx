@@ -1,4 +1,5 @@
-import type { ReactNode } from "react";
+import MobileSiteHeader from "@/components/MobileSiteHeader";
+import MobileTourCardGrid from "@/components/MobileTourCardGrid";
 import { type CourseAnchor, courseAnchors } from "@/lib/courseAnchors";
 import { withBasePath } from "@/lib/sitePaths";
 import { getTourReservationUrl } from "@/lib/tourLinks";
@@ -22,10 +23,6 @@ const trainIcon =
   withBasePath("/assets/figma/mcp/22b70c87-c9fd-41fa-893e-8608e95ee02c.svg");
 
 const mobileAssets = {
-  hangulCard: withBasePath("/assets/figma/mobile/reservation-card-hangul.png"),
-  goldenCard: withBasePath("/assets/figma/mcp/8d01a7f6-43e6-4989-be27-7bff9861bf36.jpg"),
-  kYeojuCard: withBasePath("/assets/figma/mobile/reservation-card-k.png"),
-  clubCard: withBasePath("/assets/figma/mobile/reservation-card-club.png"),
   pin: withBasePath("/assets/figma/mobile/reservation-pin.svg"),
   car: withBasePath("/assets/figma/mobile/reservation-car.svg"),
   train: withBasePath("/assets/figma/mobile/reservation-train.svg"),
@@ -39,15 +36,6 @@ type TourCardData = {
   anchor: CourseAnchor;
   title: string;
   image: string;
-};
-
-type MobileTourCardData = {
-  anchor: CourseAnchor;
-  title: ReactNode;
-  plainTitle: string;
-  image: string;
-  imageClassName: string;
-  gradientClassName: string;
 };
 
 const tourCards: TourCardData[] = [
@@ -72,121 +60,6 @@ const tourCards: TourCardData[] = [
     image: clubCourseMedia,
   },
 ];
-
-const mobileTourCards: MobileTourCardData[] = [
-  {
-    anchor: courseAnchors.hangul,
-    plainTitle: "따르릉 여주 한글길 투어",
-    title: (
-      <>
-        따르릉
-        <br />
-        여주 한글길 투어
-      </>
-    ),
-    image: mobileAssets.hangulCard,
-    imageClassName: "mobileCardHangulImage",
-    gradientClassName: "mobileCardGradientBlack",
-  },
-  {
-    anchor: courseAnchors.goldenBell,
-    plainTitle: "남한강 골든벨 투어",
-    title: (
-      <>
-        남한강
-        <br />
-        골든벨 투어
-      </>
-    ),
-    image: mobileAssets.goldenCard,
-    imageClassName: "mobileCardGoldenImage",
-    gradientClassName: "mobileCardGradientOlive",
-  },
-  {
-    anchor: courseAnchors.kYeoju,
-    plainTitle: "K-여주 바이크 투어",
-    title: (
-      <>
-        K-여주
-        <br />
-        바이크 투어
-      </>
-    ),
-    image: mobileAssets.kYeojuCard,
-    imageClassName: "mobileCardKYeojuImage",
-    gradientClassName: "mobileCardGradientGreen",
-  },
-  {
-    anchor: courseAnchors.club,
-    plainTitle: "따르릉 동호회 코스",
-    title: (
-      <>
-        따르릉
-        <br />
-        동호회 코스
-      </>
-    ),
-    image: mobileAssets.clubCard,
-    imageClassName: "mobileCardClubImage",
-    gradientClassName: "mobileCardGradientBrown",
-  },
-];
-
-function MobileHeader() {
-  return (
-    <header className={styles.mobileHeader} data-node-id="57:1549" data-name="header">
-      <a className={styles.mobileLogo} href={withBasePath("/")} aria-label="따르릉 여주 홈">
-        <img src={logoImage} alt="따르릉 여주 로고" />
-      </a>
-      <button className={styles.mobileMenuButton} type="button" aria-label="메뉴 열기">
-        <span className={styles.mobileMenuBars} aria-hidden="true">
-          <span />
-          <span />
-          <span />
-        </span>
-      </button>
-    </header>
-  );
-}
-
-function MobileTourCard({
-  card,
-}: {
-  card: MobileTourCardData;
-}) {
-  const reservationUrl = getTourReservationUrl(card.anchor);
-  const content = (
-    <>
-      <div className={styles.mobileCardMedia}>
-        <img className={styles[card.imageClassName as keyof typeof styles]} src={card.image} alt="" />
-        <div className={styles.mobileCardBlur} />
-        <div className={`${styles.mobileCardGradient} ${styles[card.gradientClassName as keyof typeof styles]}`} />
-      </div>
-      <h2>
-        <span>{card.title}</span>
-        {!reservationUrl && <span className={styles.mobileCardStatus}>준비 중입니다</span>}
-      </h2>
-    </>
-  );
-
-  if (!reservationUrl) {
-    return (
-      <article
-        className={`${styles.mobileTourCard} ${styles.mobileTourCardDisabled}`}
-        aria-disabled="true"
-        tabIndex={0}
-      >
-        {content}
-      </article>
-    );
-  }
-
-  return (
-    <a className={styles.mobileTourCard} href={reservationUrl} aria-label={`${card.plainTitle} 예약하기`}>
-      {content}
-    </a>
-  );
-}
 
 function ReservationTourCard({ card }: { card: TourCardData }) {
   const reservationUrl = getTourReservationUrl(card.anchor);
@@ -228,7 +101,7 @@ function ReservationTourCard({ card }: { card: TourCardData }) {
 function MobileReservationPage() {
   return (
     <div className={styles.mobilePage} data-node-id="57:1951" data-name="03_landing_M">
-      <MobileHeader />
+      <MobileSiteHeader active="reservation" />
       <div className={styles.mobileContentStack}>
         <section className={styles.mobileReservationIntro} aria-labelledby="mobile-reservation-title">
           <div className={styles.mobileCopyBlock}>
@@ -238,11 +111,7 @@ function MobileReservationPage() {
               <p>담당자가 확인 후, 예약 확정 및 안내 문자를 빠르게 발송해드립니다. </p>
             </div>
           </div>
-          <div className={styles.mobileCardGrid} aria-label="투어 코스 선택">
-            {mobileTourCards.map((card) => (
-              <MobileTourCard card={card} key={card.plainTitle} />
-            ))}
-          </div>
+          <MobileTourCardGrid mode="reservation" />
         </section>
 
         <section className={styles.mobileDirections} aria-labelledby="mobile-directions-title">
