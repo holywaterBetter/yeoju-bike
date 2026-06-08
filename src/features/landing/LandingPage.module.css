@@ -1,70 +1,15 @@
 .surface {
   --pc-scale: 1;
-  --edge-left-bg: linear-gradient(
-    to bottom,
-    #ffffff 0,
-    #ffffff 40px,
-    #fefeff 100px,
-    #f9f9fc 180px,
-    #f3f3fc 260px,
-    #e8e8f9 360px,
-    #dedef6 500px,
-    #dcdcf6 600px,
-    #dfdff7 700px,
-    #efeffb 900px,
-    #fbfbfe 1050px,
-    #ffffff 1300px,
-    #f1f1fb 1800px,
-    #fcf4f4 2400px,
-    #fefbfb 3000px,
-    #ffffff 4200px
-  );
-  --edge-right-bg: linear-gradient(
-    to bottom,
-    #ffffff 0,
-    #fefefe 40px,
-    #fffefc 100px,
-    #fffcfb 180px,
-    #fffbf7 260px,
-    #fef8f2 360px,
-    #fef6ee 500px,
-    #fef5ee 600px,
-    #fff8f3 700px,
-    #fffefb 900px,
-    #ffffff 1300px,
-    #fffefc 1800px,
-    #fffbf6 2400px,
-    #e6e5f8 3000px,
-    #fefeff 3600px,
-    #ffffff 4200px
-  );
+  --landing-bg: none;
   position: relative;
   isolation: isolate;
   width: 100%;
   height: 5693px;
   overflow: hidden;
-  background: #ffffff;
-}
-
-.surface::before,
-.surface::after {
-  position: absolute;
-  top: 0;
-  bottom: 0;
-  z-index: 0;
-  width: max(0px, calc((100vw - 1440px) / 2));
-  pointer-events: none;
-  content: "";
-}
-
-.surface::before {
-  left: 0;
-  background: var(--edge-left-bg);
-}
-
-.surface::after {
-  right: 0;
-  background: var(--edge-right-bg);
+  background-image: var(--landing-bg);
+  background-position: top center;
+  background-repeat: no-repeat;
+  background-size: 100% 3828px;
 }
 
 .page {
@@ -122,21 +67,6 @@
   width: 100%;
   height: 100%;
   object-fit: cover;
-}
-
-.bg {
-  position: absolute;
-  inset: 0;
-  pointer-events: none;
-}
-
-.bgImage {
-  position: absolute;
-  left: 0;
-  top: 0;
-  width: 1440px;
-  height: 3828px;
-  object-fit: fill;
 }
 
 .glow {
@@ -474,6 +404,7 @@
 
 .specialSection {
   position: absolute;
+  isolation: isolate;
   left: -3px;
   top: 2724px;
   display: flex;
@@ -485,6 +416,8 @@
 }
 
 .specialTitle {
+  position: relative;
+  z-index: 2;
   min-width: 100%;
   font-family: "Figtree", "Nunito Sans", "Noto Sans KR", Arial, sans-serif;
   font-size: 60px;
@@ -498,6 +431,13 @@
   flex-direction: column;
   align-items: flex-start;
   gap: 52px;
+}
+
+.specialDecorations {
+  position: absolute;
+  inset: 0;
+  z-index: 1;
+  pointer-events: none;
 }
 
 .featureRow {
@@ -542,6 +482,8 @@
 }
 
 .featureCopy {
+  position: relative;
+  z-index: 2;
   display: flex;
   width: 623px;
   flex-direction: column;
@@ -659,8 +601,31 @@
 
 .journeyCard {
   position: relative;
+  display: block;
   overflow: hidden;
   background: #000000;
+  color: inherit;
+  cursor: pointer;
+  text-decoration: none;
+  transition:
+    filter 160ms ease,
+    transform 160ms ease;
+}
+
+.journeyCard:hover,
+.journeyCard:focus-visible {
+  filter: brightness(1.06);
+  transform: translateY(-2px);
+}
+
+.journeyCard:focus-visible {
+  outline: 3px solid #fba81c;
+  outline-offset: 4px;
+}
+
+.journeyCard:active {
+  filter: brightness(0.95);
+  transform: translateY(0);
 }
 
 .journeyCard img {
@@ -1298,8 +1263,31 @@
 
   .mobileJourneyCard {
     position: relative;
+    display: block;
     overflow: hidden;
     background: #000000;
+    color: inherit;
+    cursor: pointer;
+    text-decoration: none;
+    transition:
+      filter 160ms ease,
+      transform 160ms ease;
+  }
+
+  .mobileJourneyCard:hover,
+  .mobileJourneyCard:focus-visible {
+    filter: brightness(1.06);
+    transform: translateY(-1.5em);
+  }
+
+  .mobileJourneyCard:focus-visible {
+    outline: 3em solid #fba81c;
+    outline-offset: 4em;
+  }
+
+  .mobileJourneyCard:active {
+    filter: brightness(0.95);
+    transform: translateY(0);
   }
 
   .mobileJourneyImageLayer,
@@ -1413,7 +1401,7 @@
   .mobileDecorations {
     position: absolute;
     inset: 0;
-    z-index: 2;
+    z-index: 0;
     pointer-events: none;
   }
 

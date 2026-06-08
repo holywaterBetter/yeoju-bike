@@ -1,4 +1,6 @@
 import { withBasePath } from "@/lib/sitePaths";
+import { type CourseAnchor, courseAnchors } from "@/lib/courseAnchors";
+import CourseHashScroller from "./CourseHashScroller";
 import styles from "./CoursesPage.module.css";
 
 type CoursesPageProps = {
@@ -15,6 +17,7 @@ type PositionedMedia = {
 };
 
 type TourSection = {
+  anchor: CourseAnchor;
   nodeId: string;
   title: string | string[];
   titleWidth: number;
@@ -72,6 +75,7 @@ const mobileAssets = {
 
 const sections: TourSection[] = [
   {
+    anchor: courseAnchors.hangul,
     nodeId: "23:896",
     title: ["따르릉 여주 한글길 투어", "ㄱ부터 ㅎ까지"],
     titleWidth: 632,
@@ -120,6 +124,7 @@ const sections: TourSection[] = [
     },
   },
   {
+    anchor: courseAnchors.goldenBell,
     nodeId: "24:156",
     title: "남한강 골든벨 투어",
     titleWidth: 632,
@@ -165,6 +170,7 @@ const sections: TourSection[] = [
     },
   },
   {
+    anchor: courseAnchors.kYeoju,
     nodeId: "24:183",
     title: "K-여주 바이크 투어",
     titleWidth: 632,
@@ -214,6 +220,7 @@ const sections: TourSection[] = [
     },
   },
   {
+    anchor: courseAnchors.club,
     nodeId: "24:423",
     title: "따르릉 동호회 코스 (자율 라이딩)",
     titleWidth: 822,
@@ -353,7 +360,7 @@ function InfoColumn({ heading, lines }: { heading: string; lines: string[] }) {
 
 function TourSectionView({ section }: { section: TourSection }) {
   return (
-    <section className={styles.tourSection} data-node-id={section.nodeId}>
+    <section className={styles.tourSection} data-course-anchor={section.anchor} data-node-id={section.nodeId}>
       <div className={styles.sectionIntro}>
         <div className={styles.titleGroup}>
           <SectionTitle title={section.title} width={section.titleWidth} />
@@ -519,7 +526,7 @@ function MobileCourseMap() {
 
 function MobileCourseSectionView({ section, index }: { section: TourSection; index: number }) {
   return (
-    <section className={styles.mobileCourseSection} data-node-id={section.nodeId}>
+    <section className={styles.mobileCourseSection} data-course-anchor={section.anchor} data-node-id={section.nodeId}>
       <div className={styles.mobileCourseInfo}>
         <div className={styles.mobileTitleGroup}>
           <MobileSectionTitle title={section.title} />
@@ -599,14 +606,17 @@ function MobileCoursesPage() {
 export function CoursesPage({ className }: CoursesPageProps) {
   return (
     <div className={styles.surface} data-responsive-page="courses">
+      <CourseHashScroller />
+      <div className={styles.desktopBackground} aria-hidden="true">
+        <div className={styles.blurOne} />
+        <div className={styles.blurTwo} />
+        <div className={styles.blurThree} />
+        <div className={styles.blurFour} />
+        <div className={styles.blurFive} />
+        <div className={styles.blurSix} />
+      </div>
       <main className={className ? `${styles.page} ${className}` : styles.page} data-node-id="24:253" data-name="02_Landing">
         <div className={styles.desktopPageContent}>
-          <div className={styles.blurOne} />
-          <div className={styles.blurTwo} />
-          <div className={styles.blurThree} />
-          <div className={styles.blurFour} />
-          <div className={styles.blurFive} />
-          <div className={styles.blurSix} />
           <DecorativeAssets />
           <a className={styles.logoLink} href={withBasePath("/")} aria-label="따르릉 여주 홈">
             <img className={styles.logo} src={assets.logo} alt="" />

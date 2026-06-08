@@ -1,3 +1,4 @@
+import type { CSSProperties } from "react";
 import { withBasePath } from "@/lib/sitePaths";
 import styles from "./ReservationPage.module.css";
 
@@ -32,6 +33,14 @@ const mobileAssets = {
 
 type ReservationPageProps = {
   className?: string;
+};
+
+type ReservationSurfaceStyle = CSSProperties & {
+  "--reservation-bg": string;
+};
+
+const reservationSurfaceStyle: ReservationSurfaceStyle = {
+  "--reservation-bg": `url("${backgroundImage}")`,
 };
 
 const tourCards = [
@@ -221,13 +230,9 @@ export default function ReservationPage({ className = "" }: ReservationPageProps
   const pageClassName = className ? `${styles.page} ${className}` : styles.page;
 
   return (
-    <div className={styles.surface} data-responsive-page="reservation">
+    <div className={styles.surface} style={reservationSurfaceStyle} data-responsive-page="reservation">
       <main className={pageClassName} data-node-id="38:860" data-name="04_Landing">
         <div className={styles.desktopPageContent}>
-          <div className={styles.background} aria-hidden="true">
-            <img className={styles.backgroundImage} src={backgroundImage} alt="" />
-          </div>
-
           <header className={styles.header} aria-label="Site navigation">
             <a className={styles.logoLink} href={withBasePath("/")} aria-label="여주 바이크 홈">
               <img className={styles.logoImage} src={logoImage} alt="" />

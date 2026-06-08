@@ -1,6 +1,7 @@
 "use client";
 
-import { useState, type ReactNode } from "react";
+import { useState, type CSSProperties, type MouseEvent, type ReactNode } from "react";
+import { courseAnchorHref, courseAnchors } from "@/lib/courseAnchors";
 import { withBasePath } from "@/lib/sitePaths";
 import styles from "./LandingPage.module.css";
 
@@ -40,12 +41,51 @@ type LandingPageProps = {
   className?: string;
 };
 
+type LandingSurfaceStyle = CSSProperties & {
+  "--landing-bg": string;
+};
+
+const landingSurfaceStyle: LandingSurfaceStyle = {
+  "--landing-bg": `url("${imgLandingBg}")`,
+};
+
+const journeyCards = [
+  {
+    title: "따르릉 여주 한글길 투어",
+    img: imgTourCardHangulMedia,
+    href: courseAnchorHref(courseAnchors.hangul),
+  },
+  {
+    title: "남한강 골든벨 투어",
+    img: imgTourCardGoldenMedia,
+    href: courseAnchorHref(courseAnchors.goldenBell),
+  },
+  {
+    title: "K-여주 바이크 투어",
+    img: imgTourCardKYeojuMedia,
+    href: courseAnchorHref(courseAnchors.kYeoju),
+  },
+  {
+    title: "따르릉 동호회 코스",
+    img: imgTourCardClubMedia,
+    href: courseAnchorHref(courseAnchors.club),
+  },
+];
+
+function handleJourneyCardClick(event: MouseEvent<HTMLAnchorElement>, href: string) {
+  if (event.defaultPrevented || event.button !== 0 || event.metaKey || event.altKey || event.ctrlKey || event.shiftKey) {
+    return;
+  }
+
+  event.preventDefault();
+  window.location.assign(href);
+}
+
 export default function LandingPage({ className }: LandingPageProps) {
   return (
-    <div className={styles.surface} data-responsive-page="landing">
+    <div className={styles.surface} style={landingSurfaceStyle} data-responsive-page="landing">
       <main className={[styles.page, className].filter(Boolean).join(" ")} data-node-id="1:52" data-name="01_Landing">
         <div className={styles.desktopLayers}>
-          <BackgroundGlow />
           <Header />
           <Hero />
           <RiverSection />
@@ -248,40 +288,23 @@ function FeatureRow({ imageSrc, imageAlt, imageClassName, title, body, reversed 
 }
 
 function JourneySection() {
-  const journeys = [
-    {
-      title: "따르릉 여주 한글길 투어",
-      img: imgTourCardHangulMedia,
-      imageClass: styles.journeyMediaImage,
-    },
-    {
-      title: "남한강 골든벨 투어",
-      img: imgTourCardGoldenMedia,
-      imageClass: styles.journeyMediaImage,
-    },
-    {
-      title: "K-여주 바이크 투어",
-      img: imgTourCardKYeojuMedia,
-      imageClass: styles.journeyMediaImage,
-    },
-    {
-      title: "따르릉 동호회 코스",
-      img: imgTourCardClubMedia,
-      imageClass: styles.journeyMediaImage,
-    },
-  ];
-
   return (
     <section className={styles.journeySection} aria-labelledby="journey-title" data-node-id="21:366">
       <h2 id="journey-title" className={styles.journeyTitle} data-node-id="19:101">
         이야기를 따라 달리는 4가지 여정
       </h2>
       <div className={styles.journeyGrid} data-node-id="21:364">
-        {journeys.map((journey) => (
-          <article className={styles.journeyCard} key={journey.title}>
-            <img className={journey.imageClass} src={journey.img} alt="" />
+        {journeyCards.map((journey) => (
+          <a
+            className={styles.journeyCard}
+            href={journey.href}
+            key={journey.title}
+            aria-label={`${journey.title} 코스 안내 보기`}
+            onClick={(event) => handleJourneyCardClick(event, journey.href)}
+          >
+            <img className={styles.journeyMediaImage} src={journey.img} alt="" />
             <h3>{journey.title}</h3>
-          </article>
+          </a>
         ))}
       </div>
     </section>
@@ -411,10 +434,16 @@ function MobileLanding() {
           이야기를 따라 달리는 4가지 여정
         </h2>
         <div className={styles.mobileJourneyGrid}>
-          <MobileJourneyCard imageSrc={imgTourCardHangulMedia} imageClassName={styles.mobileJourneyMediaImage} title="따르릉 여주 한글길 투어" overlayBaked />
-          <MobileJourneyCard imageSrc={imgTourCardGoldenMedia} imageClassName={styles.mobileJourneyMediaImage} title="남한강 골든벨 투어" overlayBaked />
-          <MobileJourneyCard imageSrc={imgTourCardKYeojuMedia} imageClassName={styles.mobileJourneyMediaImage} title="K-여주 바이크 투어" overlayBaked />
-          <MobileJourneyCard imageSrc={imgTourCardClubMedia} imageClassName={styles.mobileJourneyMediaImage} title="따르릉 동호회 코스" overlayBaked />
+          {journeyCards.map((journey) => (
+            <MobileJourneyCard
+              href={journey.href}
+              imageSrc={journey.img}
+              imageClassName={styles.mobileJourneyMediaImage}
+              title={journey.title}
+              key={`mobile-${journey.title}`}
+              overlayBaked
+            />
+          ))}
         </div>
       </section>
       <section className={styles.mobileContact} aria-labelledby="mobile-contact-title">
@@ -517,6 +546,7 @@ function MobileFeature({ imageSrc, imageAlt, imageClassName, title, body, alignR
 }
 
 type MobileJourneyCardProps = {
+  href: string;
   imageSrc: string;
   imageClassName: string;
   title: ReactNode;
@@ -524,9 +554,14 @@ type MobileJourneyCardProps = {
   overlayBaked?: boolean;
 };
 
-function MobileJourneyCard({ imageSrc, imageClassName, title, gradientClassName, overlayBaked }: MobileJourneyCardProps) {
+function MobileJourneyCard({ href, imageSrc, imageClassName, title, gradientClassName, overlayBaked }: MobileJourneyCardProps) {
   return (
-    <article className={styles.mobileJourneyCard}>
+    <a
+      className={styles.mobileJourneyCard}
+      href={href}
+      aria-label={typeof title === "string" ? `${title} 코스 안내 보기` : undefined}
+      onClick={(event) => handleJourneyCardClick(event, href)}
+    >
       <div className={styles.mobileJourneyImageLayer}>
         <img className={imageClassName} src={imageSrc} alt="" />
         {overlayBaked ? null : (
@@ -539,7 +574,7 @@ function MobileJourneyCard({ imageSrc, imageClassName, title, gradientClassName,
       <h3>
         <span className={styles.mobileJourneyTitleText}>{title}</span>
       </h3>
-    </article>
+    </a>
   );
 }
 
@@ -557,14 +592,6 @@ function MobileDecorations() {
   );
 }
 
-function BackgroundGlow() {
-  return (
-    <div className={styles.bg} aria-hidden="true" data-node-id="37:770" data-name="BG">
-      <img className={styles.bgImage} src={imgLandingBg} alt="" />
-    </div>
-  );
-}
-
 function YellowSpark() {
   return (
     <img className={styles.yellowSpark} src={imgYellowSpark} alt="" aria-hidden="true" data-node-id="10:173" />
@@ -573,7 +600,7 @@ function YellowSpark() {
 
 function Decorations() {
   return (
-    <div aria-hidden="true">
+    <div className={styles.specialDecorations} aria-hidden="true">
       <img className={styles.blueSquiggle} src={imgVector36} alt="" data-node-id="10:170" />
       <img className={styles.blueMark} src={imgVector21} alt="" data-node-id="24:154" />
       <img className={styles.smile} src={imgSmile} alt="" data-node-id="24:149" data-name="스마일" />
