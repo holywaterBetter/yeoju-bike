@@ -12,12 +12,36 @@ import "@fontsource/nunito-sans/400.css";
 import "@fontsource/nunito-sans/600.css";
 import "@fontsource/nunito-sans/700.css";
 import "@fontsource/nunito-sans/800.css";
+import { absoluteSiteUrl, siteDescription, siteKeywords, siteName, siteTitle, siteUrl } from "@/lib/siteMetadata";
 import { withBasePath } from "@/lib/sitePaths";
 import "./globals.css";
 
 export const metadata: Metadata = {
-  title: "따르릉 여주 시티투어",
-  description: "가이드와 함께 전기 자전거로 달리는 여주 시티투어",
+  metadataBase: new URL(siteUrl),
+  applicationName: siteName,
+  title: {
+    default: `${siteTitle} | ${siteName}`,
+    template: `%s | ${siteName}`,
+  },
+  description: siteDescription,
+  keywords: siteKeywords,
+  alternates: {
+    canonical: siteUrl,
+  },
+  openGraph: {
+    type: "website",
+    locale: "ko_KR",
+    siteName,
+    title: `${siteTitle} | ${siteName}`,
+    description: siteDescription,
+    url: siteUrl,
+    images: [
+      {
+        url: absoluteSiteUrl("/assets/figma/groups/landing-hero-group.png"),
+        alt: "여주 자전거 시티투어 라이딩",
+      },
+    ],
+  },
 };
 
 type SiteShellStyle = CSSProperties & {
