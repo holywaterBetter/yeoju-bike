@@ -20,7 +20,7 @@
   overflow: visible;
   background: transparent;
   color: #000;
-  font-family: "Nunito Sans", "Figtree", "Noto Sans KR", Arial, sans-serif;
+  font-family: var(--font-accent);
   z-index: 1;
 }
 
@@ -265,7 +265,7 @@
 
 .nav .activeNav {
   color: #030303;
-  font-family: "Figtree", "Nunito Sans", "Noto Sans KR", Arial, sans-serif;
+  font-family: var(--font-primary);
   font-weight: 800;
   letter-spacing: -0.5002px;
 }
@@ -312,7 +312,7 @@
   display: flex;
   flex-direction: column;
   align-items: center;
-  font-family: "Figtree", "Nunito Sans", "Noto Sans KR", Arial, sans-serif;
+  font-family: var(--font-primary);
   font-size: 60px;
   font-weight: 800;
   line-height: 84px;
@@ -366,7 +366,7 @@
 .infoColumn h3 {
   width: 100%;
   color: rgba(0, 0, 0, 0.7);
-  font-family: "Figtree", "Nunito Sans", "Noto Sans KR", Arial, sans-serif;
+  font-family: var(--font-primary);
   font-size: 30px;
   font-weight: 600;
   line-height: 50px;
@@ -474,7 +474,7 @@
 
 .giftHeading h2 {
   width: 705px;
-  font-family: "Figtree", "Nunito Sans", "Noto Sans KR", Arial, sans-serif;
+  font-family: var(--font-primary);
   font-size: 60px;
   font-weight: 800;
   line-height: 84px;
@@ -483,7 +483,7 @@
 .giftHeading p {
   width: 705px;
   color: rgba(0, 0, 0, 0.7);
-  font-family: "Figtree", "Nunito Sans", "Noto Sans KR", Arial, sans-serif;
+  font-family: var(--font-primary);
   font-size: 21px;
   font-weight: 600;
   line-height: 39px;
@@ -842,7 +842,7 @@
     overflow: visible;
     background: #ffffff;
     color: #000000;
-    font-family: "Figtree", "Nunito Sans", "Noto Sans KR", Arial, sans-serif;
+    font-family: var(--font-primary);
     font-size: var(--mobile-unit);
   }
 
@@ -896,7 +896,7 @@
     align-items: center;
     flex: 0 0 auto;
     margin: 0;
-    font-family: "Figtree", "Nunito Sans", "Noto Sans KR", Arial, sans-serif;
+    font-family: var(--font-primary);
     font-size: 36em;
     font-weight: 800;
     line-height: 1.4;
@@ -917,7 +917,7 @@
     border-radius: 8.4em;
     background: #52a6ff;
     color: #ffffff;
-    font-family: "Nunito Sans", "Figtree", "Noto Sans KR", Arial, sans-serif;
+    font-family: var(--font-accent);
     font-size: var(--mobile-unit);
     font-variation-settings: "YTLC" 500, "wdth" 100;
     font-weight: 700;
@@ -961,7 +961,7 @@
     width: 100%;
     margin: 0;
     color: rgba(0, 0, 0, 0.7);
-    font-family: "Figtree", "Nunito Sans", "Noto Sans KR", Arial, sans-serif;
+    font-family: var(--font-primary);
     font-size: 18em;
     font-weight: 600;
     line-height: 1.6666666667;
@@ -972,7 +972,7 @@
     width: 100%;
     margin: 0;
     color: rgba(0, 0, 0, 0.7);
-    font-family: "Nunito Sans", "Figtree", "Noto Sans KR", Arial, sans-serif;
+    font-family: var(--font-accent);
     font-size: 12.6em;
     font-variation-settings: "YTLC" 500, "wdth" 100;
     font-weight: 400;
@@ -1135,7 +1135,7 @@
   .mobileGiftHeading h2 {
     width: 100%;
     margin: 0;
-    font-family: "Figtree", "Nunito Sans", "Noto Sans KR", Arial, sans-serif;
+    font-family: var(--font-primary);
     font-size: 36em;
     font-weight: 800;
     line-height: 1.4;
@@ -1145,7 +1145,7 @@
     width: 100%;
     margin: 0;
     color: rgba(0, 0, 0, 0.7);
-    font-family: "Figtree", "Nunito Sans", "Noto Sans KR", Arial, sans-serif;
+    font-family: var(--font-primary);
     font-size: 12.6em;
     font-weight: 600;
     letter-spacing: -0.03126em;
@@ -1214,7 +1214,7 @@
     width: 100%;
     margin: 0;
     color: #000000;
-    font-family: "Nunito Sans", "Figtree", "Noto Sans KR", Arial, sans-serif;
+    font-family: var(--font-accent);
     font-size: 16.8em;
     font-variation-settings: "YTLC" 500, "wdth" 100;
     font-weight: 600;
@@ -1226,7 +1226,7 @@
     width: 100%;
     margin: 0;
     color: rgba(0, 0, 0, 0.7);
-    font-family: "Nunito Sans", "Figtree", "Noto Sans KR", Arial, sans-serif;
+    font-family: var(--font-accent);
     font-size: 12em;
     font-variation-settings: "YTLC" 500, "wdth" 100;
     font-weight: 400;

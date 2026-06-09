@@ -20,8 +20,7 @@
   overflow: visible;
   background: transparent;
   color: #000000;
-  font-family: "Figtree", "Nunito Sans", "Noto Sans KR", "Apple SD Gothic Neo",
-    sans-serif;
+  font-family: var(--font-primary);
   z-index: 1;
 }
 
@@ -179,7 +178,7 @@
   justify-content: flex-end;
   gap: 40px;
   color: rgba(0, 0, 0, 0.7);
-  font-family: "Nunito Sans", "Noto Sans KR", sans-serif;
+  font-family: var(--font-korean);
   font-size: 18px;
   font-weight: 400;
   line-height: normal;
@@ -196,7 +195,7 @@
 
 .activeNavItem {
   color: #030303;
-  font-family: "Figtree", "Nunito Sans", "Noto Sans KR", sans-serif;
+  font-family: var(--font-primary);
   font-weight: 800;
   letter-spacing: -0.5002px;
 }
@@ -228,7 +227,7 @@
   margin: 0;
   width: 100%;
   color: #000000;
-  font-family: "Figtree", "Nunito Sans", "Noto Sans KR", sans-serif;
+  font-family: var(--font-primary);
   font-size: 60px;
   font-weight: 800;
   line-height: 84px;
@@ -239,7 +238,7 @@
 .description {
   width: 100%;
   color: rgba(0, 0, 0, 0.7);
-  font-family: "Nunito Sans", "Noto Sans KR", sans-serif;
+  font-family: var(--font-korean);
   font-size: 21px;
   font-weight: 400;
   letter-spacing: -0.6565px;
@@ -361,7 +360,7 @@
   margin: 0;
   width: 100%;
   color: #ffffff;
-  font-family: "Figtree", "Nunito Sans", "Noto Sans KR", sans-serif;
+  font-family: var(--font-primary);
   font-size: 32px;
   font-weight: 600;
   line-height: normal;
@@ -373,7 +372,7 @@
 .cardStatus {
   margin: 10px 0 0;
   color: #ffffff;
-  font-family: "Figtree", "Nunito Sans", "Noto Sans KR", sans-serif;
+  font-family: var(--font-primary);
   font-size: 20px;
   font-weight: 700;
   line-height: normal;
@@ -428,7 +427,7 @@
   min-width: 0;
   margin: 0;
   color: #000000;
-  font-family: "Figtree", "Nunito Sans", "Noto Sans KR", sans-serif;
+  font-family: var(--font-primary);
   font-size: 30px;
   font-weight: 600;
   line-height: 50px;
@@ -506,7 +505,7 @@
   align-items: flex-start;
   gap: 26px;
   color: rgba(0, 0, 0, 0.7);
-  font-family: "Nunito Sans", "Noto Sans KR", sans-serif;
+  font-family: var(--font-korean);
   letter-spacing: -0.6565px;
   text-align: center;
   word-break: break-word;
@@ -515,7 +514,7 @@
 .transportCopy h3 {
   width: 100%;
   margin: 0;
-  font-family: "Figtree", "Nunito Sans", "Noto Sans KR", sans-serif;
+  font-family: var(--font-primary);
   font-size: 30px;
   font-weight: 600;
   line-height: 50px;
@@ -799,7 +798,7 @@
     overflow: visible;
     background: #ffffff;
     color: #000000;
-    font-family: "Figtree", "Nunito Sans", "Noto Sans KR", Arial, sans-serif;
+    font-family: var(--font-primary);
     font-size: var(--mobile-unit);
   }
 
@@ -844,7 +843,7 @@
     width: 100%;
     margin: 0;
     color: #000000;
-    font-family: "Figtree", "Nunito Sans", "Noto Sans KR", Arial, sans-serif;
+    font-family: var(--font-primary);
     font-size: 36em;
     font-weight: 800;
     line-height: 1.4;
@@ -855,7 +854,7 @@
     width: 100%;
     margin: 0;
     color: rgba(0, 0, 0, 0.7);
-    font-family: "Nunito Sans", "Figtree", "Noto Sans KR", Arial, sans-serif;
+    font-family: var(--font-accent);
     font-size: 12.6em;
     font-variation-settings: "YTLC" 500, "wdth" 100;
     font-weight: 400;
@@ -1005,7 +1004,7 @@
     margin: 0;
     padding: 0 12em 12em;
     color: #ffffff;
-    font-family: "Figtree", "Nunito Sans", "Noto Sans KR", Arial, sans-serif;
+    font-family: var(--font-primary);
     font-size: var(--mobile-unit);
     font-weight: 600;
     letter-spacing: -0.02345em;
@@ -1070,7 +1069,7 @@
     min-width: 0;
     margin: 0;
     color: #000000;
-    font-family: "Figtree", "Nunito Sans", "Noto Sans KR", Arial, sans-serif;
+    font-family: var(--font-primary);
     font-size: 18em;
     font-weight: 600;
     letter-spacing: -0.02188em;
@@ -1116,7 +1115,7 @@
     align-items: flex-start;
     gap: 15.6em;
     color: rgba(0, 0, 0, 0.7);
-    font-family: "Nunito Sans", "Figtree", "Noto Sans KR", Arial, sans-serif;
+    font-family: var(--font-accent);
     letter-spacing: -0.03126em;
     text-align: center;
     word-break: break-word;
@@ -1125,7 +1124,7 @@
   .mobileTransportCopy h3 {
     width: 100%;
     margin: 0;
-    font-family: "Figtree", "Nunito Sans", "Noto Sans KR", Arial, sans-serif;
+    font-family: var(--font-primary);
     font-size: 18em;
     font-weight: 600;
     line-height: 1.6666666667;

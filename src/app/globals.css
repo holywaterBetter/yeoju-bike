@@ -1,13 +1,10 @@
 :root {
   color-scheme: light;
   background: #ffffff;
-  font-family:
-    Figtree,
-    "Nunito Sans",
-    "Noto Sans KR",
-    "Apple SD Gothic Neo",
-    "Malgun Gothic",
-    sans-serif;
+  --font-primary: Figtree, "Nunito Sans", "Noto Sans KR", "Apple SD Gothic Neo", "Malgun Gothic", Arial, sans-serif;
+  --font-accent: "Nunito Sans", Figtree, "Noto Sans KR", "Apple SD Gothic Neo", "Malgun Gothic", Arial, sans-serif;
+  --font-korean: "Nunito Sans", "Noto Sans KR", "Apple SD Gothic Neo", "Malgun Gothic", Arial, sans-serif;
+  font-family: var(--font-primary);
 }
 
 * {

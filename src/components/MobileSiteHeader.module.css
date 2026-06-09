@@ -107,7 +107,7 @@
   align-items: flex-end;
   gap: 60em;
   color: rgba(0, 0, 0, 0.7);
-  font-family: "Nunito Sans", "Figtree", "Noto Sans KR", Arial, sans-serif;
+  font-family: var(--font-accent);
   font-size: inherit;
   font-weight: 400;
   line-height: normal;
@@ -128,7 +128,7 @@
 
 .menuNav .active {
   color: #030303;
-  font-family: "Figtree", "Nunito Sans", "Noto Sans KR", Arial, sans-serif;
+  font-family: var(--font-primary);
   font-weight: 800;
   letter-spacing: -0.0208em;
 }

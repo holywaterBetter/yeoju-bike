@@ -167,7 +167,7 @@
   margin: 0;
   padding: 0 12em 12em;
   color: #ffffff;
-  font-family: "Figtree", "Nunito Sans", "Noto Sans KR", Arial, sans-serif;
+  font-family: var(--font-primary);
   font-size: inherit;
   font-weight: 600;
   letter-spacing: -0.02345em;

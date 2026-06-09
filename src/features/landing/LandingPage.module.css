@@ -20,7 +20,7 @@
   overflow: visible;
   background: transparent;
   color: #000000;
-  font-family: "Figtree", "Nunito Sans", "Noto Sans KR", Arial, sans-serif;
+  font-family: var(--font-primary);
   z-index: 1;
 }
 
@@ -143,7 +143,7 @@
   justify-content: flex-end;
   gap: 40px;
   color: rgba(0, 0, 0, 0.7);
-  font-family: "Nunito Sans", "Figtree", "Noto Sans KR", Arial, sans-serif;
+  font-family: var(--font-accent);
   font-size: 18px;
   font-weight: 400;
   line-height: normal;
@@ -159,7 +159,7 @@
 
 .navActive {
   color: #030303;
-  font-family: "Figtree", "Nunito Sans", "Noto Sans KR", Arial, sans-serif;
+  font-family: var(--font-primary);
   font-weight: 800;
   letter-spacing: -0.5002px;
 }
@@ -183,7 +183,7 @@
 
 .heroTitle {
   width: 100%;
-  font-family: "Figtree", "Nunito Sans", "Noto Sans KR", Arial, sans-serif;
+  font-family: var(--font-primary);
   font-size: 60px;
   font-weight: 800;
   line-height: 84px;
@@ -192,7 +192,7 @@
 .heroDescription {
   width: 100%;
   color: rgba(0, 0, 0, 0.7);
-  font-family: "Nunito Sans", "Figtree", "Noto Sans KR", Arial, sans-serif;
+  font-family: var(--font-accent);
   font-size: 21px;
   font-variation-settings: "YTLC" 500, "wdth" 100;
   font-weight: 400;
@@ -310,7 +310,7 @@
 
 .sectionTitle {
   width: 588px;
-  font-family: "Figtree", "Nunito Sans", "Noto Sans KR", Arial, sans-serif;
+  font-family: var(--font-primary);
   font-size: 60px;
   font-weight: 800;
   line-height: 84px;
@@ -319,7 +319,7 @@
 .riverText {
   width: 588px;
   color: rgba(0, 0, 0, 0.7);
-  font-family: "Nunito Sans", "Figtree", "Noto Sans KR", Arial, sans-serif;
+  font-family: var(--font-accent);
   font-size: 21px;
   font-variation-settings: "YTLC" 500, "wdth" 100;
   font-weight: 400;
@@ -389,7 +389,7 @@
 
 .riverCardTitle {
   color: rgba(0, 0, 0, 0.7);
-  font-family: "Figtree", "Nunito Sans", "Noto Sans KR", Arial, sans-serif;
+  font-family: var(--font-primary);
   font-size: 30px;
   font-weight: 600;
   letter-spacing: -0.6565px;
@@ -415,7 +415,7 @@
   position: relative;
   z-index: 2;
   min-width: 100%;
-  font-family: "Figtree", "Nunito Sans", "Noto Sans KR", Arial, sans-serif;
+  font-family: var(--font-primary);
   font-size: 60px;
   font-weight: 800;
   line-height: 84px;
@@ -497,7 +497,7 @@
 }
 
 .featureCopy h3 {
-  font-family: "Figtree", "Nunito Sans", "Noto Sans KR", Arial, sans-serif;
+  font-family: var(--font-primary);
   font-size: 42px;
   font-weight: 700;
   line-height: 60px;
@@ -507,7 +507,7 @@
 .featureCopy p {
   width: 100%;
   color: rgba(0, 0, 0, 0.7);
-  font-family: "Figtree", "Nunito Sans", "Noto Sans KR", Arial, sans-serif;
+  font-family: var(--font-primary);
   font-size: 21px;
   font-weight: 600;
   line-height: 39px;
@@ -603,7 +603,7 @@
 
 .journeyTitle {
   width: 1200px;
-  font-family: "Figtree", "Nunito Sans", "Noto Sans KR", Arial, sans-serif;
+  font-family: var(--font-primary);
   font-size: 60px;
   font-weight: 800;
   line-height: 84px;
@@ -667,7 +667,7 @@
   width: 100%;
   padding: 0 20px 20px;
   color: #ffffff;
-  font-family: "Figtree", "Nunito Sans", "Noto Sans KR", Arial, sans-serif;
+  font-family: var(--font-primary);
   font-size: 32px;
   font-weight: 600;
   letter-spacing: -0.7503px;
@@ -710,7 +710,7 @@
 
 .contactCopy h2 {
   width: 100%;
-  font-family: "Figtree", "Nunito Sans", "Noto Sans KR", Arial, sans-serif;
+  font-family: var(--font-primary);
   font-size: 60px;
   font-weight: 800;
   line-height: 84px;
@@ -719,7 +719,7 @@
 .contactCopy p {
   width: 100%;
   color: rgba(0, 0, 0, 0.7);
-  font-family: "Nunito Sans", "Figtree", "Noto Sans KR", Arial, sans-serif;
+  font-family: var(--font-accent);
   font-size: 21px;
   font-variation-settings: "YTLC" 500, "wdth" 100;
   font-weight: 400;
@@ -739,7 +739,7 @@
   border-radius: 5px;
   background: #fbe300;
   color: #000000;
-  font-family: "Nunito Sans", "Figtree", "Noto Sans KR", Arial, sans-serif;
+  font-family: var(--font-accent);
   font-size: 21px;
   font-variation-settings: "YTLC" 500, "wdth" 100;
   font-weight: 700;
@@ -838,7 +838,7 @@
     overflow: visible;
     background: #ffffff;
     color: #000000;
-    font-family: "Figtree", "Nunito Sans", "Noto Sans KR", Arial, sans-serif;
+    font-family: var(--font-primary);
     font-size: var(--mobile-unit);
   }
 
@@ -907,7 +907,7 @@
   .mobileCenteredTitle {
     width: 100%;
     margin: 0;
-    font-family: "Figtree", "Nunito Sans", "Noto Sans KR", Arial, sans-serif;
+    font-family: var(--font-primary);
     font-size: 36em;
     font-weight: 800;
     line-height: 1.4;
@@ -923,7 +923,7 @@
     width: 100%;
     margin: 0;
     color: rgba(0, 0, 0, 0.7);
-    font-family: "Nunito Sans", "Figtree", "Noto Sans KR", Arial, sans-serif;
+    font-family: var(--font-accent);
     font-size: 12.6em;
     font-variation-settings: "YTLC" 500, "wdth" 100;
     font-weight: 400;
@@ -1020,7 +1020,7 @@
     width: 100%;
     margin: 0;
     color: rgba(0, 0, 0, 0.7);
-    font-family: "Figtree", "Nunito Sans", "Noto Sans KR", Arial, sans-serif;
+    font-family: var(--font-primary);
     font-size: 18em;
     font-weight: 600;
     letter-spacing: -0.02188em;
@@ -1126,7 +1126,7 @@
     position: relative;
     width: 100%;
     margin: 0;
-    font-family: "Figtree", "Nunito Sans", "Noto Sans KR", Arial, sans-serif;
+    font-family: var(--font-primary);
     font-size: 25.2em;
     font-weight: 700;
     line-height: 1.4285714286;
@@ -1232,7 +1232,7 @@
     width: 100%;
     margin: 0;
     color: rgba(0, 0, 0, 0.7);
-    font-family: "Figtree", "Nunito Sans", "Noto Sans KR", Arial, sans-serif;
+    font-family: var(--font-primary);
     font-size: 12.6em;
     font-weight: 600;
     letter-spacing: -0.03126em;
@@ -1329,7 +1329,7 @@
     margin: 0;
     padding: 0 12em 12em;
     color: #ffffff;
-    font-family: "Figtree", "Nunito Sans", "Noto Sans KR", Arial, sans-serif;
+    font-family: var(--font-primary);
     font-size: var(--mobile-unit);
     font-weight: 600;
     letter-spacing: -0.02345em;
@@ -1366,7 +1366,7 @@
     border-radius: 8.4em;
     background: #fbe300;
     color: #000000;
-    font-family: "Nunito Sans", "Figtree", "Noto Sans KR", Arial, sans-serif;
+    font-family: var(--font-accent);
     font-size: var(--mobile-unit);
     font-variation-settings: "YTLC" 500, "wdth" 100;
     font-weight: 700;
