@@ -59,6 +59,18 @@
   color: #000000;
   cursor: pointer;
   font-size: inherit;
+  transition:
+    filter var(--motion-fast) var(--ease-out),
+    scale var(--motion-fast) var(--ease-out);
+}
+
+.button:hover,
+.button:focus-visible {
+  filter: brightness(1.08);
+}
+
+.button:active {
+  scale: 0.94;
 }
 
 .icon {
@@ -90,6 +102,7 @@
   background: linear-gradient(180deg, #ffffff 43.628%, rgba(255, 255, 255, 0) 100%);
   backdrop-filter: blur(4px);
   -webkit-backdrop-filter: blur(4px);
+  opacity: 1;
 }
 
 .overlayHeader {
@@ -124,6 +137,8 @@
   color: inherit;
   font-size: 24em;
   text-decoration: none;
+  opacity: 1;
+  transition: color var(--motion-fast) var(--ease-out);
 }
 
 .menuNav .active {

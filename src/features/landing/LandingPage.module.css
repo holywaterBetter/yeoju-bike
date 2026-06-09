@@ -153,8 +153,29 @@
 }
 
 .nav a {
+  position: relative;
   color: inherit;
   text-decoration: none;
+}
+
+.nav a::after {
+  position: absolute;
+  left: 0;
+  top: calc(100% + 8px);
+  width: 100%;
+  height: 2px;
+  background: currentColor;
+  border-radius: 999px;
+  content: "";
+  scale: 0 1;
+  transform-origin: left center;
+  transition: scale var(--motion-base) var(--ease-out);
+}
+
+.nav a:hover::after,
+.nav a:focus-visible::after,
+.navActive::after {
+  scale: 1 1;
 }
 
 .navActive {
@@ -214,6 +235,40 @@
   width: 726px;
   height: 962px;
   object-fit: contain;
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  .heroCopy {
+    animation: landingHeroCopyIn var(--motion-slow) var(--ease-out) both;
+  }
+
+  .heroArtImage {
+    animation: landingHeroArtIn 520ms var(--ease-out) 90ms both;
+  }
+}
+
+@keyframes landingHeroCopyIn {
+  from {
+    opacity: 0;
+    translate: 0 18px;
+  }
+
+  to {
+    opacity: 1;
+    translate: 0 0;
+  }
+}
+
+@keyframes landingHeroArtIn {
+  from {
+    opacity: 0;
+    translate: 18px 10px;
+  }
+
+  to {
+    opacity: 1;
+    translate: 0 0;
+  }
 }
 
 .heroYellowOutlineFrame,
@@ -629,12 +684,14 @@
   cursor: pointer;
   text-decoration: none;
   transition:
-    filter 160ms ease,
-    transform 160ms ease;
+    box-shadow var(--motion-base) var(--ease-out),
+    filter var(--motion-fast) var(--ease-out),
+    transform var(--motion-fast) var(--ease-out);
 }
 
 .journeyCard:hover,
 .journeyCard:focus-visible {
+  box-shadow: var(--shadow-interactive);
   filter: brightness(1.06);
   transform: translateY(-2px);
 }
@@ -652,6 +709,12 @@
 .journeyCard img {
   position: absolute;
   object-fit: cover;
+  transition: transform var(--motion-base) var(--ease-out);
+}
+
+.journeyCard:hover img,
+.journeyCard:focus-visible img {
+  transform: scale(1.03);
 }
 
 .journeyMediaImage {
@@ -746,6 +809,29 @@
   line-height: normal;
   text-align: center;
   text-decoration: none;
+  transition:
+    background var(--motion-fast) var(--ease-out),
+    box-shadow var(--motion-base) var(--ease-out),
+    filter var(--motion-fast) var(--ease-out),
+    scale var(--motion-fast) var(--ease-out),
+    translate var(--motion-fast) var(--ease-out);
+}
+
+.kakaoButton:hover,
+.kakaoButton:focus-visible {
+  box-shadow: var(--shadow-interactive);
+  filter: brightness(1.03);
+  translate: 0 -2px;
+}
+
+.kakaoButton:focus-visible {
+  outline: 3px solid #fba81c;
+  outline-offset: 4px;
+}
+
+.kakaoButton:active {
+  scale: 0.985;
+  translate: 0 0;
 }
 
 .kakaoButton span:last-child {
@@ -1373,6 +1459,14 @@
     line-height: normal;
     text-align: center;
     text-decoration: none;
+    transition:
+      filter var(--motion-fast) var(--ease-out),
+      scale var(--motion-fast) var(--ease-out);
+  }
+
+  .mobileKakaoButton:active {
+    filter: brightness(0.96);
+    scale: 0.985;
   }
 
   .mobileKakaoButton span:last-child {

@@ -1,6 +1,7 @@
 import { type ReactNode } from "react";
 import MobileSiteHeader from "@/components/MobileSiteHeader";
 import MobileTourCardGrid from "@/components/MobileTourCardGrid";
+import RevealOnScroll from "@/components/RevealOnScroll";
 import { withBasePath } from "@/lib/sitePaths";
 import { kakaoChannelUrl } from "@/lib/tourLinks";
 import { tourCatalog } from "@/lib/tours";
@@ -41,6 +42,7 @@ const journeyCards = tourCatalog;
 export default function LandingPage({ className }: LandingPageProps) {
   return (
     <div className={styles.surface} data-responsive-page="landing">
+      <RevealOnScroll />
       <main className={[styles.page, className].filter(Boolean).join(" ")} data-node-id="1:52" data-name="01_Landing">
         <div className={styles.desktopLayers}>
           <Header />
@@ -104,7 +106,7 @@ function Hero() {
 
 function RiverSection() {
   return (
-    <section className={styles.riverSection} aria-labelledby="river-title" data-node-id="2:474">
+    <section className={styles.riverSection} aria-labelledby="river-title" data-node-id="2:474" data-reveal>
       <div className={styles.riverIntro} data-node-id="1:78">
         <h2 id="river-title" className={styles.sectionTitle} data-node-id="1:80">
           두 바퀴로 만나는
@@ -150,7 +152,7 @@ function RiverSection() {
 
 function SpecialSection() {
   return (
-    <section className={styles.specialSection} aria-labelledby="special-title" data-node-id="7:106">
+    <section className={styles.specialSection} aria-labelledby="special-title" data-node-id="7:106" data-reveal>
       <h2 id="special-title" className={styles.specialTitle} data-node-id="7:107">
         따르릉 투어의 특별함 세가지
       </h2>
@@ -246,7 +248,7 @@ function FeatureRow({ imageSrc, imageAlt, imageClassName, title, body, reversed 
 
 function JourneySection() {
   return (
-    <section className={styles.journeySection} aria-labelledby="journey-title" data-node-id="21:366">
+    <section className={styles.journeySection} aria-labelledby="journey-title" data-node-id="21:366" data-reveal>
       <h2 id="journey-title" className={styles.journeyTitle} data-node-id="19:101">
         이야기를 따라 달리는 4가지 여정
       </h2>
@@ -269,7 +271,7 @@ function JourneySection() {
 
 function ContactCta() {
   return (
-    <section className={styles.contactCta} aria-labelledby="contact-title" data-node-id="1:81" data-name="CTA">
+    <section className={styles.contactCta} aria-labelledby="contact-title" data-node-id="1:81" data-name="CTA" data-reveal>
       <div className={styles.contactBg} data-node-id="1:82" />
       <div className={styles.contactCopy} data-node-id="23:485" data-name="Content">
         <h2 id="contact-title" data-node-id="23:486">
@@ -319,7 +321,7 @@ function MobileLanding() {
           <img className={styles.mobileHeroBikeImage} src={imgHeroBikeSource} alt="" />
         </div>
       </section>
-      <section className={styles.mobileRiver} aria-labelledby="mobile-river-title">
+      <section className={styles.mobileRiver} aria-labelledby="mobile-river-title" data-reveal>
         <div className={styles.mobileCopyBlock}>
           <h2 id="mobile-river-title" className={styles.mobileSectionTitle}>
             두 바퀴로 <span className={styles.mobileRiverTitleAnchor}><span className={styles.mobileRiverTitleText}>만나는</span><img className={styles.mobileRiverSpark} src={imgYellowSpark} alt="" /></span>
@@ -350,7 +352,7 @@ function MobileLanding() {
           </article>
         </div>
       </section>
-      <section className={styles.mobileSpecial} aria-labelledby="mobile-special-title">
+      <section className={styles.mobileSpecial} aria-labelledby="mobile-special-title" data-reveal>
         <h2 id="mobile-special-title" className={styles.mobileSectionTitle}>
           따르릉 투어의 특별함 세가지
         </h2>
@@ -411,13 +413,13 @@ function MobileLanding() {
           />
         </div>
       </section>
-      <section className={styles.mobileJourney} aria-labelledby="mobile-journey-title">
+      <section className={styles.mobileJourney} aria-labelledby="mobile-journey-title" data-reveal>
         <h2 id="mobile-journey-title" className={`${styles.mobileCenteredTitle} ${styles.mobileSectionTitle}`}>
           이야기를 따라 달리는 4가지 여정
         </h2>
         <MobileTourCardGrid mode="courses" />
       </section>
-      <section className={styles.mobileContact} aria-labelledby="mobile-contact-title">
+      <section className={styles.mobileContact} aria-labelledby="mobile-contact-title" data-reveal>
         <div className={styles.mobileCopyBlock}>
           <h2 id="mobile-contact-title" className={styles.mobileSectionTitle}>
             궁금한 점이

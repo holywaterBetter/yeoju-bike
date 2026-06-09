@@ -21,12 +21,38 @@ function getVisibleCourseSection(anchor: CourseAnchor) {
 
 export default function CourseHashScroller() {
   useLayoutEffect(() => {
+    let highlightTimeout: number | undefined;
+
+    function clearHighlightedCourse() {
+      delete document.documentElement.dataset.highlightCourse;
+    }
+
+    function highlightSection(section: HTMLElement) {
+      const anchor = section.dataset.courseAnchor;
+
+      if (!anchor) {
+        return;
+      }
+
+      if (highlightTimeout) {
+        window.clearTimeout(highlightTimeout);
+      }
+
+      clearHighlightedCourse();
+      document.documentElement.dataset.highlightCourse = anchor;
+
+      highlightTimeout = window.setTimeout(() => {
+        clearHighlightedCourse();
+      }, 900);
+    }
+
     function scrollToCurrentHash() {
       const hash = decodeURIComponent(window.location.hash.slice(1));
 
       resetCourseContainerScroll();
 
       if (hash === courseAnchors.hangul) {
+        clearHighlightedCourse();
         window.history.replaceState(window.history.state, "", `${window.location.pathname}${window.location.search}`);
         window.scrollTo({ top: 0, left: 0, behavior: "auto" });
         resetCourseContainerScroll();
@@ -51,6 +77,7 @@ export default function CourseHashScroller() {
 
         window.scrollTo({ top, left: 0, behavior: "smooth" });
         resetCourseContainerScroll();
+        highlightSection(section);
       });
     }
 
@@ -59,6 +86,14 @@ export default function CourseHashScroller() {
     window.addEventListener("popstate", scrollToCurrentHash);
 
     return () => {
+      if (highlightTimeout) {
+        window.clearTimeout(highlightTimeout);
+      }
+
+      if (!window.location.pathname.includes("/courses")) {
+        clearHighlightedCourse();
+      }
+
       window.removeEventListener("hashchange", scrollToCurrentHash);
       window.removeEventListener("popstate", scrollToCurrentHash);
     };

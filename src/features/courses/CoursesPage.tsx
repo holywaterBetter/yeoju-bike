@@ -1,4 +1,5 @@
 import MobileSiteHeader from "@/components/MobileSiteHeader";
+import RevealOnScroll from "@/components/RevealOnScroll";
 import { withBasePath } from "@/lib/sitePaths";
 import { type CourseAnchor, courseAnchors } from "@/lib/courseAnchors";
 import { getTourReservationUrl } from "@/lib/tourLinks";
@@ -377,7 +378,7 @@ function InfoColumn({ heading, lines }: { heading: string; lines: string[] }) {
 
 function TourSectionView({ section }: { section: TourSection }) {
   return (
-    <section className={styles.tourSection} data-course-anchor={section.anchor} data-node-id={section.nodeId}>
+    <section className={styles.tourSection} data-course-anchor={section.anchor} data-node-id={section.nodeId} data-reveal>
       <div className={styles.sectionIntro}>
         <div className={styles.titleGroup}>
           <SectionTitle title={section.title} width={section.titleWidth} />
@@ -437,7 +438,7 @@ function CourseMap() {
 
 function GiftSection() {
   return (
-    <section className={styles.giftSection} data-node-id="30:215">
+    <section className={styles.giftSection} data-node-id="30:215" data-reveal>
       <div className={styles.giftHeading}>
         <h2>따르릉 투어만의 특별한 선물</h2>
         <p>투어마다 제공되는 선물이 다릅니다. </p>
@@ -543,7 +544,7 @@ function MobileCourseMap() {
 
 function MobileCourseSectionView({ section, index }: { section: TourSection; index: number }) {
   return (
-    <section className={styles.mobileCourseSection} data-course-anchor={section.anchor} data-node-id={section.nodeId}>
+    <section className={styles.mobileCourseSection} data-course-anchor={section.anchor} data-node-id={section.nodeId} data-reveal>
       <div className={styles.mobileCourseInfo}>
         <div className={styles.mobileTitleGroup}>
           <MobileSectionTitle section={section} />
@@ -571,7 +572,7 @@ function MobileCourseSectionView({ section, index }: { section: TourSection; ind
 
 function MobileGiftSection() {
   return (
-    <section className={styles.mobileGiftSection} data-node-id="57:815">
+    <section className={styles.mobileGiftSection} data-node-id="57:815" data-reveal>
       <div className={styles.mobileGiftHeading}>
         <h2>
           따르릉 투어만의
@@ -624,6 +625,7 @@ export function CoursesPage({ className }: CoursesPageProps) {
   return (
     <div className={styles.surface} data-responsive-page="courses">
       <CourseHashScroller />
+      <RevealOnScroll />
       <div className={styles.desktopBackground} aria-hidden="true">
         <div className={styles.blurOne} />
         <div className={styles.blurTwo} />

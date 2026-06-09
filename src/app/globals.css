@@ -4,6 +4,12 @@
   --font-primary: Figtree, "Nunito Sans", "Noto Sans KR", "Apple SD Gothic Neo", "Malgun Gothic", Arial, sans-serif;
   --font-accent: "Nunito Sans", Figtree, "Noto Sans KR", "Apple SD Gothic Neo", "Malgun Gothic", Arial, sans-serif;
   --font-korean: "Nunito Sans", "Noto Sans KR", "Apple SD Gothic Neo", "Malgun Gothic", Arial, sans-serif;
+  --motion-fast: 160ms;
+  --motion-base: 220ms;
+  --motion-slow: 420ms;
+  --ease-out: cubic-bezier(0.16, 1, 0.3, 1);
+  --ease-spring: cubic-bezier(0.2, 0.8, 0.2, 1);
+  --shadow-interactive: 0 18px 40px rgba(0, 0, 0, 0.14);
   font-family: var(--font-primary);
 }
 
@@ -39,8 +45,73 @@ a {
   color: inherit;
 }
 
+@media (prefers-reduced-motion: no-preference) {
+  [data-responsive-page] {
+    animation: pageEnter var(--motion-base) var(--ease-out) both;
+  }
+}
+
+html[data-motion-ready="true"] [data-reveal]:not([data-revealed="true"]) {
+  opacity: 0;
+  translate: 0 var(--reveal-distance, 18px);
+}
+
+[data-reveal] {
+  transition:
+    opacity var(--motion-slow) var(--ease-out),
+    translate var(--motion-slow) var(--ease-out),
+    filter var(--motion-slow) var(--ease-out);
+  will-change: opacity, translate;
+}
+
+[data-revealed="true"] {
+  opacity: 1;
+  translate: 0 0;
+}
+
+html[data-highlight-course="golden-bell-tour"] [data-course-anchor="golden-bell-tour"],
+html[data-highlight-course="k-yeoju-tour"] [data-course-anchor="k-yeoju-tour"],
+html[data-highlight-course="club-tour"] [data-course-anchor="club-tour"] {
+  animation: courseHighlight 900ms var(--ease-out) both;
+}
+
+@keyframes pageEnter {
+  from {
+    opacity: 0;
+  }
+
+  to {
+    opacity: 1;
+  }
+}
+
+@keyframes courseHighlight {
+  0% {
+    box-shadow: 0 0 0 rgba(251, 168, 28, 0);
+  }
+
+  24% {
+    box-shadow: 0 0 0 10px rgba(251, 168, 28, 0.16);
+  }
+
+  100% {
+    box-shadow: 0 0 0 24px rgba(251, 168, 28, 0);
+  }
+}
+
 @media (max-width: 767px) {
   .site-shell {
     background-image: none;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    scroll-behavior: auto !important;
+    animation-duration: 1ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 1ms !important;
   }
 }

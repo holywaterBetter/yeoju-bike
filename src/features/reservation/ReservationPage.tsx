@@ -1,5 +1,6 @@
 import MobileSiteHeader from "@/components/MobileSiteHeader";
 import MobileTourCardGrid from "@/components/MobileTourCardGrid";
+import RevealOnScroll from "@/components/RevealOnScroll";
 import { withBasePath } from "@/lib/sitePaths";
 import { getTourReservationUrl, tourCatalog } from "@/lib/tours";
 import styles from "./ReservationPage.module.css";
@@ -77,7 +78,7 @@ function MobileReservationPage() {
     <div className={styles.mobilePage} data-node-id="57:1951" data-name="03_landing_M">
       <MobileSiteHeader active="reservation" compact />
       <div className={styles.mobileContentStack}>
-        <section className={styles.mobileReservationIntro} aria-labelledby="mobile-reservation-title">
+        <section className={styles.mobileReservationIntro} aria-labelledby="mobile-reservation-title" data-reveal>
           <div className={styles.mobileCopyBlock}>
             <h1 id="mobile-reservation-title">투어 예약</h1>
             <div>
@@ -88,7 +89,7 @@ function MobileReservationPage() {
           <MobileTourCardGrid mode="reservation" />
         </section>
 
-        <section className={styles.mobileDirections} aria-labelledby="mobile-directions-title">
+        <section className={styles.mobileDirections} aria-labelledby="mobile-directions-title" data-reveal>
           <div className={styles.mobileDirectionsHeader}>
             <h2 id="mobile-directions-title">따르릉으로 오시는 길</h2>
             <div className={styles.mobileAddressRow}>
@@ -150,6 +151,7 @@ export default function ReservationPage({ className = "" }: ReservationPageProps
 
   return (
     <div className={styles.surface} data-responsive-page="reservation">
+      <RevealOnScroll />
       <main className={pageClassName} data-node-id="38:860" data-name="04_Landing">
         <div className={styles.desktopPageContent}>
           <header className={styles.header} aria-label="Site navigation">
@@ -169,7 +171,7 @@ export default function ReservationPage({ className = "" }: ReservationPageProps
             </nav>
           </header>
 
-          <section className={styles.reservationIntro} aria-labelledby="reservation-title">
+          <section className={styles.reservationIntro} aria-labelledby="reservation-title" data-reveal>
             <div className={styles.copyBlock}>
               <h1 className={styles.pageTitle} id="reservation-title">
                 투어 예약
@@ -187,7 +189,7 @@ export default function ReservationPage({ className = "" }: ReservationPageProps
             </div>
           </section>
 
-          <section className={styles.directions} aria-labelledby="directions-title">
+          <section className={styles.directions} aria-labelledby="directions-title" data-reveal>
             <div className={styles.directionsHeader}>
               <h2 className={styles.sectionTitle} id="directions-title">
                 따르릉으로 오시는 길

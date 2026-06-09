@@ -19,6 +19,7 @@
   transition:
     filter 160ms ease,
     box-shadow 160ms ease,
+    scale var(--motion-fast) var(--ease-out),
     transform 160ms ease;
 }
 
@@ -35,6 +36,7 @@
 
 .card:active {
   filter: brightness(0.95);
+  scale: 0.985;
   transform: translateY(0);
 }
 
@@ -75,7 +77,7 @@
   position: absolute;
   object-fit: cover;
   pointer-events: none;
-  transition: transform 220ms ease;
+  transition: transform var(--motion-base) var(--ease-out);
 }
 
 .reservationImage {
