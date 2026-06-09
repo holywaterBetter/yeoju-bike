@@ -426,7 +426,20 @@ function MobileLanding() {
             imageDecoration={<img className={styles.mobileSenaSquiggle} src={imgVector20} alt="" />}
             title={
               <>
-                달리는 <span className={styles.mobileRadioAnchor}>라디오,<img className={styles.mobileRadioDashOne} src={imgMobileRedDashOne} alt="" /><img className={styles.mobileRadioDashTwo} src={imgMobileRedDashTwo} alt="" /></span>
+                달리는{" "}
+                <span className={styles.mobileRadioAnchor}>
+                  라디오,
+                  <span className={styles.mobileRadioDashOne} data-node-id="57:430">
+                    <span className={styles.mobileRadioDashOneInner}>
+                      <img src={imgMobileRedDashOne} alt="" />
+                    </span>
+                  </span>
+                  <span className={styles.mobileRadioDashTwo} data-node-id="57:431">
+                    <span className={styles.mobileRadioDashTwoInner}>
+                      <img src={imgMobileRedDashTwo} alt="" />
+                    </span>
+                  </span>
+                </span>
                 <br />
                 세나인터콤
               </>
@@ -503,8 +516,16 @@ function Decorations() {
       <img className={styles.blueMark} src={imgVector21} alt="" data-node-id="24:154" />
       <img className={styles.smile} src={imgSmile} alt="" data-node-id="24:149" data-name="스마일" />
       <img className={styles.redSquiggle} src={imgVector20} alt="" data-node-id="10:119" />
-      <img className={styles.redDashOne} src={imgRedDashOne} alt="" data-node-id="37:785" />
-      <img className={styles.redDashTwo} src={imgRedDashTwo} alt="" data-node-id="37:786" />
+      <span className={styles.redDashOne} data-node-id="37:785">
+        <span className={styles.redDashOneInner}>
+          <img src={imgRedDashOne} alt="" />
+        </span>
+      </span>
+      <span className={styles.redDashTwo} data-node-id="37:786">
+        <span className={styles.redDashTwoInner}>
+          <img src={imgRedDashTwo} alt="" />
+        </span>
+      </span>
     </div>
   );
 }

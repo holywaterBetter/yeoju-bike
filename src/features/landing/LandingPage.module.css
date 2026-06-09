@@ -548,20 +548,45 @@
 
 .redDashOne {
   position: absolute;
-  left: 930px;
-  top: 1003px;
-  width: 22px;
-  height: 38px;
-  object-fit: contain;
+  left: 937.609px;
+  top: 1011.4px;
+  display: block;
+  width: 6.427px;
+  height: 22.036px;
+  overflow: visible;
 }
 
 .redDashTwo {
   position: absolute;
-  left: 946px;
-  top: 1039px;
-  width: 41px;
-  height: 19px;
-  object-fit: contain;
+  left: 950.464px;
+  top: 1047.208px;
+  display: block;
+  width: 27.545px;
+  height: 1.836px;
+  overflow: visible;
+}
+
+.redDashOneInner,
+.redDashTwoInner {
+  position: absolute;
+  display: block;
+}
+
+.redDashOneInner {
+  inset: -36.7% -113.55% -31.71% -113.47%;
+}
+
+.redDashTwoInner {
+  inset: -458.08% -26% -450.46% -21.03%;
+}
+
+.redDashOne img,
+.redDashTwo img {
+  display: block;
+  width: 100%;
+  height: 100%;
+  max-width: none;
+  object-fit: fill;
 }
 
 .journeySection {
@@ -1022,7 +1047,7 @@
     display: flex;
     flex-direction: column;
     gap: 36em;
-    margin-top: 23em;
+    margin-top: 90.4em;
   }
 
   .mobileFeatureList {
@@ -1161,23 +1186,46 @@
   .mobileRadioDashTwo {
     position: absolute;
     z-index: 3;
-    max-width: none;
-    object-fit: fill;
+    display: block;
+    overflow: visible;
     pointer-events: none;
   }
 
   .mobileRadioDashOne {
-    left: calc(100% + 0.12em);
-    top: -0.27em;
-    width: 0.28em;
-    height: 0.95em;
+    left: calc(100% - 0.5em);
+    top: 0.39em;
+    width: 0.153em;
+    height: 0.525em;
   }
 
   .mobileRadioDashTwo {
-    left: calc(100% + 0.46em);
-    top: 0.78em;
-    width: 1.02em;
-    height: 0.11em;
+    left: calc(100% - 0.19em);
+    top: 1.248em;
+    width: 0.656em;
+    height: 0.044em;
+  }
+
+  .mobileRadioDashOneInner,
+  .mobileRadioDashTwoInner {
+    position: absolute;
+    display: block;
+  }
+
+  .mobileRadioDashOneInner {
+    inset: -36.7% -113.55% -31.71% -113.47%;
+  }
+
+  .mobileRadioDashTwoInner {
+    inset: -458.08% -26% -450.46% -21.03%;
+  }
+
+  .mobileRadioDashOne img,
+  .mobileRadioDashTwo img {
+    display: block;
+    width: 100%;
+    height: 100%;
+    max-width: none;
+    object-fit: fill;
   }
 
   .mobileFeatureCopy p {
