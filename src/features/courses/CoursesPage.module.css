@@ -891,9 +891,10 @@
 
   .mobileCourseTitle {
     display: flex;
-    width: 100%;
+    width: min(calc(100% + 0.7em), 100vw);
     flex-direction: column;
     align-items: center;
+    flex: 0 0 auto;
     margin: 0;
     font-family: "Figtree", "Nunito Sans", "Noto Sans KR", Arial, sans-serif;
     font-size: 36em;
@@ -982,7 +983,7 @@
     display: flex;
     width: 100%;
     flex-direction: column;
-    align-items: flex-start;
+    align-items: center;
     gap: 18em;
   }
 
@@ -990,8 +991,13 @@
     display: flex;
     width: 348em;
     flex-direction: column;
-    align-items: flex-start;
+    align-items: center;
     gap: 6em;
+    text-align: center;
+  }
+
+  .mobileInfoBlock > div {
+    width: 100%;
   }
 
   .mobileMediaStack {
@@ -1100,10 +1106,9 @@
   }
 
   .mobileMapImage {
-    left: -14.8em;
-    top: -49.3em;
-    width: 383.7em;
-    height: 287.8em;
+    inset: 0;
+    width: 100%;
+    height: 100%;
   }
 
   .mobileGiftSection {

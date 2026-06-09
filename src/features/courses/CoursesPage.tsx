@@ -72,7 +72,7 @@ const mobileAssets = {
   kHero: withBasePath("/assets/figma/mobile/courses-k-hero.png"),
   kBoat: withBasePath("/assets/figma/mobile/courses-k-boat.png"),
   kRice: withBasePath("/assets/figma/mobile/courses-k-rice.png"),
-  clubMap: withBasePath("/assets/figma/mobile/courses-club-map.png"),
+  clubMapRoute: withBasePath("/assets/figma/mobile/courses-club-map-route.png"),
 };
 
 const sections: TourSection[] = [
@@ -465,7 +465,7 @@ function DecorativeAssets() {
 function MobileSectionTitle({ section }: { section: TourSection }) {
   const lines =
     section.anchor === courseAnchors.hangul
-      ? ["따르릉 여주", "한글길 투어", "ㄱ부터 ㅎ까지"]
+      ? ["따르릉 여주 한글길 투어", "ㄱ부터 ㅎ까지"]
       : section.anchor === courseAnchors.club
         ? ["따르릉 동호회 코스", "(자율 라이딩)"]
         : Array.isArray(section.title)
@@ -531,7 +531,7 @@ function MobileMediaStack({ sectionIndex }: { sectionIndex: number }) {
 function MobileCourseMap() {
   return (
     <div className={styles.mobileMapFrame} data-node-id="57:791">
-      <img className={styles.mobileMapImage} src={mobileAssets.clubMap} alt="동호회 자율 라이딩 추천 코스 지도" />
+      <img className={styles.mobileMapImage} src={mobileAssets.clubMapRoute} alt="동호회 자율 라이딩 추천 코스 지도" />
     </div>
   );
 }
