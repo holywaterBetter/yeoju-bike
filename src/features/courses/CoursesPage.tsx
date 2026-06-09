@@ -1,5 +1,6 @@
 import MobileSiteHeader from "@/components/MobileSiteHeader";
 import RevealOnScroll from "@/components/RevealOnScroll";
+import { eagerImageAttrs, lazyImageAttrs } from "@/lib/imageAttrs";
 import { withBasePath } from "@/lib/sitePaths";
 import { type CourseAnchor, courseAnchors } from "@/lib/courseAnchors";
 import { getTourReservationUrl } from "@/lib/tourLinks";
@@ -44,16 +45,16 @@ const assets = {
   taegeuk: withBasePath("/assets/figma/groups/courses-taegeuk.png"),
   bikeDecoration: withBasePath("/assets/figma/groups/courses-bike-decoration.png"),
   giftDecoration: withBasePath("/assets/figma/groups/courses-gift-decoration.png"),
-  hangulHeroFrame: withBasePath("/assets/figma/groups/courses-hangul-hero-frame.png"),
-  geumeunCampingFrame: withBasePath("/assets/figma/groups/courses-geumeun-camping-frame.png"),
-  marketGateFrame: withBasePath("/assets/figma/groups/courses-market-gate-frame.png"),
-  goldenBellHeroFrame: withBasePath("/assets/figma/groups/courses-golden-hero-frame.png"),
-  goldenBellGalleryLeftFrame: withBasePath("/assets/figma/groups/courses-golden-gallery-left-frame.png"),
-  goldenBellGalleryRightFrame: withBasePath("/assets/figma/groups/courses-golden-gallery-right-frame.png"),
-  kYeojuHeroFrame: withBasePath("/assets/figma/groups/courses-k-yeoju-hero-frame.png"),
-  kYeojuGalleryLeftFrame: withBasePath("/assets/figma/groups/courses-k-yeoju-gallery-left-frame.png"),
-  kYeojuGalleryRightFrame: withBasePath("/assets/figma/groups/courses-k-yeoju-gallery-right-frame.png"),
-  clubMapFrame: withBasePath("/assets/figma/groups/courses-club-map-frame.png"),
+  hangulHeroFrame: withBasePath("/assets/figma/groups/courses-hangul-hero-frame.webp"),
+  geumeunCampingFrame: withBasePath("/assets/figma/groups/courses-geumeun-camping-frame.webp"),
+  marketGateFrame: withBasePath("/assets/figma/groups/courses-market-gate-frame.webp"),
+  goldenBellHeroFrame: withBasePath("/assets/figma/groups/courses-golden-hero-frame.webp"),
+  goldenBellGalleryLeftFrame: withBasePath("/assets/figma/groups/courses-golden-gallery-left-frame.webp"),
+  goldenBellGalleryRightFrame: withBasePath("/assets/figma/groups/courses-golden-gallery-right-frame.webp"),
+  kYeojuHeroFrame: withBasePath("/assets/figma/groups/courses-k-yeoju-hero-frame.webp"),
+  kYeojuGalleryLeftFrame: withBasePath("/assets/figma/groups/courses-k-yeoju-gallery-left-frame.webp"),
+  kYeojuGalleryRightFrame: withBasePath("/assets/figma/groups/courses-k-yeoju-gallery-right-frame.webp"),
+  clubMapFrame: withBasePath("/assets/figma/groups/courses-club-map-frame.webp"),
   giftMask: withBasePath("/assets/figma/mcp/93cbe394-9c05-4d99-8f39-3f425e6a6e0d.svg"),
   giftOvalBlue: withBasePath("/assets/figma/mcp/261415ef-f7ad-469f-a2bb-df9d47e5b520.svg"),
   giftKeyring: withBasePath("/assets/figma/mcp/fe34cedf-8ce0-479e-963b-52c04a0c10bc.svg"),
@@ -65,20 +66,20 @@ const assets = {
 };
 
 const mobileAssets = {
-  hangulHero: withBasePath("/assets/figma/mobile/courses-hangul-hero.png"),
+  hangulHero: withBasePath("/assets/figma/mobile/courses-hangul-hero.webp"),
   hangulLettersDecoration: withBasePath("/assets/figma/mobile/courses-hangul-letters-decoration.png"),
   bellDecoration: withBasePath("/assets/figma/mobile/courses-bell-decoration.png"),
   taegeukDecoration: withBasePath("/assets/figma/mobile/courses-taegeuk-decoration.png"),
   bikeDecoration: withBasePath("/assets/figma/mobile/courses-bike-decoration.png"),
   giftDecoration: withBasePath("/assets/figma/mobile/courses-gift-decoration.png"),
-  market: withBasePath("/assets/figma/mobile/courses-market.png"),
-  goldenLeft: withBasePath("/assets/figma/mobile/courses-golden-left.png"),
-  goldenRightA: withBasePath("/assets/figma/mobile/courses-golden-right-a.png"),
-  goldenRightB: withBasePath("/assets/figma/mobile/courses-golden-right-b.png"),
-  kHero: withBasePath("/assets/figma/mobile/courses-k-hero.png"),
-  kBoat: withBasePath("/assets/figma/mobile/courses-k-boat.png"),
-  kRice: withBasePath("/assets/figma/mobile/courses-k-rice.png"),
-  clubMapRoute: withBasePath("/assets/figma/mobile/courses-club-map-route.png"),
+  market: withBasePath("/assets/figma/mobile/courses-market.webp"),
+  goldenLeft: withBasePath("/assets/figma/mobile/courses-golden-left.webp"),
+  goldenRightA: withBasePath("/assets/figma/mobile/courses-golden-right-a.webp"),
+  goldenRightB: withBasePath("/assets/figma/mobile/courses-golden-right-b.webp"),
+  kHero: withBasePath("/assets/figma/mobile/courses-k-hero.webp"),
+  kBoat: withBasePath("/assets/figma/mobile/courses-k-boat.webp"),
+  kRice: withBasePath("/assets/figma/mobile/courses-k-rice.webp"),
+  clubMapRoute: withBasePath("/assets/figma/mobile/courses-club-map-route.webp"),
 };
 
 const sections: TourSection[] = [
@@ -248,15 +249,15 @@ const gifts = [
   {
     title: "자전거 라이딩 마스크",
     course: "따르릉 여주 한글길 투어",
-    icon: <img className={styles.iconImage} src={assets.giftMask} alt="" />,
+    icon: <img className={styles.iconImage} src={assets.giftMask} alt="" width={69} height={69} {...lazyImageAttrs} />,
   },
   {
     title: "가챠 키링 만들기 세트",
     course: "따르릉 여주 한글길 투어",
     icon: (
       <span className={styles.iconStack}>
-        <img className={styles.iconOval} src={assets.giftOvalBlue} alt="" />
-        <img className={styles.keyringIcon} src={assets.giftKeyring} alt="" />
+        <img className={styles.iconOval} src={assets.giftOvalBlue} alt="" width={69} height={69} {...lazyImageAttrs} />
+        <img className={styles.keyringIcon} src={assets.giftKeyring} alt="" width={25} height={41} {...lazyImageAttrs} />
       </span>
     ),
   },
@@ -265,8 +266,8 @@ const gifts = [
     course: "남한강 골등벨 투어",
     icon: (
       <span className={styles.iconStack}>
-        <img className={styles.iconOval} src={assets.giftOvalYellow} alt="" />
-        <img className={styles.cameraIcon} src={assets.giftCamera} alt="" />
+        <img className={styles.iconOval} src={assets.giftOvalYellow} alt="" width={69} height={69} {...lazyImageAttrs} />
+        <img className={styles.cameraIcon} src={assets.giftCamera} alt="" width={31} height={24} {...lazyImageAttrs} />
       </span>
     ),
   },
@@ -275,46 +276,48 @@ const gifts = [
     course: "남한강 골등벨 투어",
     icon: (
       <span className={styles.iconStack}>
-        <img className={styles.iconOval} src={assets.giftOvalYellow} alt="" />
-        <img className={styles.penIcon} src={assets.giftPen} alt="" />
+        <img className={styles.iconOval} src={assets.giftOvalYellow} alt="" width={69} height={69} {...lazyImageAttrs} />
+        <img className={styles.penIcon} src={assets.giftPen} alt="" width={15} height={38} {...lazyImageAttrs} />
       </span>
     ),
   },
   {
     title: "여주 도자기 기념품",
     course: "K- 여주 바이크 투어 (외국인 맞춤형)",
-    icon: <img className={styles.iconImage} src={assets.giftPottery} alt="" />,
+    icon: <img className={styles.iconImage} src={assets.giftPottery} alt="" width={69} height={69} {...lazyImageAttrs} />,
   },
   {
     title: "여주 자전거 물통",
     course: "동호회 투어",
-    icon: <img className={styles.iconImage} src={assets.giftBottle} alt="" />,
+    icon: <img className={styles.iconImage} src={assets.giftBottle} alt="" width={69} height={69} {...lazyImageAttrs} />,
   },
 ];
 
 const mobileSectionMedia = [
   [
-    [{ src: mobileAssets.hangulHero, alt: "여주 한글길 카드 거치대", className: styles.mobileHangulHeroImage }],
-    [{ src: assets.geumeunCampingFrame, alt: "금은모래캠핑장", className: styles.mobileGeumeunFrameImage }],
-    [{ src: mobileAssets.market, alt: "한글시장 입구", className: styles.mobileMarketImage }],
+    [{ src: mobileAssets.hangulHero, alt: "여주 한글길 카드 거치대", className: styles.mobileHangulHeroImage, width: 1080, height: 1440 }],
+    [{ src: assets.geumeunCampingFrame, alt: "금은모래캠핑장", className: styles.mobileGeumeunFrameImage, width: 600, height: 324 }],
+    [{ src: mobileAssets.market, alt: "한글시장 입구", className: styles.mobileMarketImage, width: 600, height: 400 }],
   ],
   [
-    [{ src: assets.goldenBellHeroFrame, alt: "남한강 골든벨 투어 라이딩", className: styles.mobileGoldenHeroFrameImage }],
-    [{ src: mobileAssets.goldenLeft, alt: "남한강 공원", className: styles.mobileGoldenLeftImage }],
+    [{ src: assets.goldenBellHeroFrame, alt: "남한강 골든벨 투어 라이딩", className: styles.mobileGoldenHeroFrameImage, width: 1200, height: 619 }],
+    [{ src: mobileAssets.goldenLeft, alt: "남한강 공원", className: styles.mobileGoldenLeftImage, width: 1440, height: 813 }],
     [
-      { src: mobileAssets.goldenRightA, alt: "", className: styles.mobileGoldenRightImageA },
-      { src: mobileAssets.goldenRightB, alt: "남한강 산책길", className: styles.mobileGoldenRightImageB },
+      { src: mobileAssets.goldenRightA, alt: "", className: styles.mobileGoldenRightImageA, width: 1440, height: 1080 },
+      { src: mobileAssets.goldenRightB, alt: "남한강 산책길", className: styles.mobileGoldenRightImageB, width: 1440, height: 1081 },
     ],
   ],
   [
-    [{ src: mobileAssets.kHero, alt: "여주 도자기 체험", className: styles.mobileKHeroImage }],
-    [{ src: mobileAssets.kBoat, alt: "황포돛배", className: styles.mobileKBoatImage }],
-    [{ src: mobileAssets.kRice, alt: "유색벼 논 그림", className: styles.mobileKRiceImage }],
+    [{ src: mobileAssets.kHero, alt: "여주 도자기 체험", className: styles.mobileKHeroImage, width: 1400, height: 370 }],
+    [{ src: mobileAssets.kBoat, alt: "황포돛배", className: styles.mobileKBoatImage, width: 2048, height: 1152 }],
+    [{ src: mobileAssets.kRice, alt: "유색벼 논 그림", className: styles.mobileKRiceImage, width: 4096, height: 2729 }],
   ],
 ] satisfies {
   src: string;
   alt: string;
   className: string;
+  width: number;
+  height: number;
 }[][][];
 
 function PositionedMediaImage({ media }: { media: PositionedMedia }) {
@@ -323,12 +326,15 @@ function PositionedMediaImage({ media }: { media: PositionedMedia }) {
       className={styles.positionedMediaImage}
       src={media.src}
       alt={media.alt}
+      width={media.width}
+      height={media.height}
       style={{
         left: media.left,
         top: media.top,
         width: media.width,
         height: media.height,
       }}
+      {...lazyImageAttrs}
     />
   );
 }
@@ -431,7 +437,7 @@ function Gallery({ gallery }: { gallery: NonNullable<TourSection["gallery"]> }) 
 function CourseMap() {
   return (
     <div className={styles.mapRoot} data-node-id="32:535">
-      <img className={styles.mapFrameImage} src={assets.clubMapFrame} alt="동호회 자율 라이딩 추천 코스 지도" />
+      <img className={styles.mapFrameImage} src={assets.clubMapFrame} alt="동호회 자율 라이딩 추천 코스 지도" width={1200} height={734} {...lazyImageAttrs} />
     </div>
   );
 }
@@ -459,11 +465,11 @@ function GiftSection() {
 function DecorativeAssets() {
   return (
     <div className={styles.decorativeAssets} aria-hidden="true">
-      <img className={styles.hangulLettersDecoration} src={assets.hangulLetters} alt="" data-node-id="24:123" />
-      <img className={styles.bellDecoration} src={assets.bell} alt="" data-node-id="28:148" data-name="종" />
-      <img className={styles.taegeukDecoration} src={assets.taegeuk} alt="" data-node-id="28:206" data-name="태극기" />
-      <img className={styles.bikeDecoration} src={assets.bikeDecoration} alt="" data-node-id="28:169" data-name="자전거" />
-      <img className={styles.giftDecoration} src={assets.giftDecoration} alt="" data-node-id="31:453" data-name="선물" />
+      <img className={styles.hangulLettersDecoration} src={assets.hangulLetters} alt="" width={394} height={154} data-node-id="24:123" {...lazyImageAttrs} />
+      <img className={styles.bellDecoration} src={assets.bell} alt="" width={195} height={154} data-node-id="28:148" data-name="종" {...lazyImageAttrs} />
+      <img className={styles.taegeukDecoration} src={assets.taegeuk} alt="" width={108} height={113} data-node-id="28:206" data-name="태극기" {...lazyImageAttrs} />
+      <img className={styles.bikeDecoration} src={assets.bikeDecoration} alt="" width={233} height={152} data-node-id="28:169" data-name="자전거" {...lazyImageAttrs} />
+      <img className={styles.giftDecoration} src={assets.giftDecoration} alt="" width={143} height={156} data-node-id="31:453" data-name="선물" {...lazyImageAttrs} />
     </div>
   );
 }
@@ -526,7 +532,7 @@ function MobileMediaStack({ sectionIndex }: { sectionIndex: number }) {
       {mediaFrames.map((layers, index) => (
         <div className={styles.mobileMediaFrame} key={`${sectionIndex}-${index}`}>
           {layers.map((layer) => (
-            <img className={layer.className} src={layer.src} alt={layer.alt} key={layer.src} />
+            <img className={layer.className} src={layer.src} alt={layer.alt} width={layer.width} height={layer.height} key={layer.src} {...lazyImageAttrs} />
           ))}
         </div>
       ))}
@@ -537,7 +543,7 @@ function MobileMediaStack({ sectionIndex }: { sectionIndex: number }) {
 function MobileCourseMap() {
   return (
     <div className={styles.mobileMapFrame} data-node-id="57:791">
-      <img className={styles.mobileMapImage} src={mobileAssets.clubMapRoute} alt="동호회 자율 라이딩 추천 코스 지도" />
+      <img className={styles.mobileMapImage} src={mobileAssets.clubMapRoute} alt="동호회 자율 라이딩 추천 코스 지도" width={354} height={224} {...lazyImageAttrs} />
     </div>
   );
 }
@@ -597,11 +603,11 @@ function MobileGiftSection() {
 function MobileDecorativeAssets() {
   return (
     <div className={styles.mobileDecorativeAssets} aria-hidden="true">
-      <img className={styles.mobileHangulLettersDecoration} src={mobileAssets.hangulLettersDecoration} alt="" />
-      <img className={styles.mobileBellDecoration} src={mobileAssets.bellDecoration} alt="" />
-      <img className={styles.mobileTaegeukDecoration} src={mobileAssets.taegeukDecoration} alt="" />
-      <img className={styles.mobileBikeDecoration} src={mobileAssets.bikeDecoration} alt="" />
-      <img className={styles.mobileGiftDecoration} src={mobileAssets.giftDecoration} alt="" />
+      <img className={styles.mobileHangulLettersDecoration} src={mobileAssets.hangulLettersDecoration} alt="" width={237} height={92} {...lazyImageAttrs} />
+      <img className={styles.mobileBellDecoration} src={mobileAssets.bellDecoration} alt="" width={117} height={93} {...lazyImageAttrs} />
+      <img className={styles.mobileTaegeukDecoration} src={mobileAssets.taegeukDecoration} alt="" width={65} height={68} {...lazyImageAttrs} />
+      <img className={styles.mobileBikeDecoration} src={mobileAssets.bikeDecoration} alt="" width={140} height={91} {...lazyImageAttrs} />
+      <img className={styles.mobileGiftDecoration} src={mobileAssets.giftDecoration} alt="" width={86} height={94} {...lazyImageAttrs} />
     </div>
   );
 }
@@ -638,7 +644,7 @@ export function CoursesPage({ className }: CoursesPageProps) {
         <div className={styles.desktopPageContent}>
           <DecorativeAssets />
           <a className={styles.logoLink} href={withBasePath("/")} aria-label="따르릉 여주 홈">
-            <img className={styles.logo} src={assets.logo} alt="" />
+            <img className={styles.logo} src={assets.logo} alt="" width={146} height={101} {...eagerImageAttrs} />
           </a>
           <nav className={styles.nav} aria-label="주요 메뉴">
             <a href={withBasePath("/")}>투어 소개</a>

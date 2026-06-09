@@ -1,6 +1,7 @@
 "use client";
 
 import { useEffect, useId, useState } from "react";
+import { eagerImageAttrs, lazyImageAttrs } from "@/lib/imageAttrs";
 import { withBasePath } from "@/lib/sitePaths";
 import styles from "./MobileSiteHeader.module.css";
 
@@ -47,7 +48,7 @@ export default function MobileSiteHeader({ active, compact = true }: MobileSiteH
     <>
       <header className={headerClassName} data-name="header">
         <a className={styles.logo} href={withBasePath("/")} aria-label="따르릉 여주 홈">
-          <img src={logoImage} alt="따르릉 여주 로고" />
+          <img src={logoImage} alt="따르릉 여주 로고" width={146} height={101} {...eagerImageAttrs} />
         </a>
         <button
           className={styles.button}
@@ -57,7 +58,7 @@ export default function MobileSiteHeader({ active, compact = true }: MobileSiteH
           aria-expanded={isMenuOpen}
           onClick={() => setIsMenuOpen(true)}
         >
-          <img className={styles.icon} src={menuSortIcon} alt="" aria-hidden="true" />
+          <img className={styles.icon} src={menuSortIcon} alt="" width={37} height={32} aria-hidden="true" {...lazyImageAttrs} />
         </button>
       </header>
 
@@ -69,10 +70,10 @@ export default function MobileSiteHeader({ active, compact = true }: MobileSiteH
         <div className={styles.backdrop} />
         <header className={styles.overlayHeader} data-name="header">
           <a className={styles.logo} href={withBasePath("/")} aria-label="따르릉 여주 홈" onClick={() => setIsMenuOpen(false)}>
-            <img src={logoImage} alt="따르릉 여주 로고" />
+            <img src={logoImage} alt="따르릉 여주 로고" width={146} height={101} {...lazyImageAttrs} />
           </a>
           <button className={styles.button} type="button" aria-label="메뉴 닫기" onClick={() => setIsMenuOpen(false)}>
-            <img className={styles.icon} src={menuArrowIcon} alt="" aria-hidden="true" />
+            <img className={styles.icon} src={menuArrowIcon} alt="" width={37} height={32} aria-hidden="true" {...lazyImageAttrs} />
           </button>
         </header>
         <nav className={styles.menuNav} aria-label="모바일 주요 메뉴">

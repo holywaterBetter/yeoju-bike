@@ -49,7 +49,7 @@ type SiteShellStyle = CSSProperties & {
 };
 
 const siteShellStyle: SiteShellStyle = {
-  "--site-bg": `url("${withBasePath("/assets/figma/groups/landing-bg.png")}")`
+  "--site-bg": `url("${withBasePath("/assets/figma/groups/landing-bg.webp")}")`
 };
 
 export default function RootLayout({

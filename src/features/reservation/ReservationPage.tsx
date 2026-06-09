@@ -1,6 +1,7 @@
 import MobileSiteHeader from "@/components/MobileSiteHeader";
 import MobileTourCardGrid from "@/components/MobileTourCardGrid";
 import RevealOnScroll from "@/components/RevealOnScroll";
+import { eagerImageAttrs, lazyImageAttrs } from "@/lib/imageAttrs";
 import { withBasePath } from "@/lib/sitePaths";
 import { getTourReservationUrl, tourCatalog } from "@/lib/tours";
 import styles from "./ReservationPage.module.css";
@@ -45,6 +46,9 @@ function ReservationTourCard({ card }: { card: TourCardData }) {
           className={`${styles.cardImage} ${styles.cardMediaImage}`}
           src={card.image}
           alt=""
+          width={585}
+          height={286}
+          {...lazyImageAttrs}
         />
       </div>
       <div className={styles.cardLabel}>
@@ -93,13 +97,13 @@ function MobileReservationPage() {
           <div className={styles.mobileDirectionsHeader}>
             <h2 id="mobile-directions-title">따르릉으로 오시는 길</h2>
             <div className={styles.mobileAddressRow}>
-              <img src={mobileAssets.pin} alt="" />
+              <img src={mobileAssets.pin} alt="" width={22} height={29} {...lazyImageAttrs} />
               <p>경기도 여주시 강변유원지길 105 폰박물관 옆 따르릉 여주 사랑방</p>
             </div>
           </div>
           <div className={styles.mobileTransportGroup}>
             <div className={styles.mobileTransportBlock}>
-              <img className={styles.mobileCarIcon} src={mobileAssets.car} alt="" />
+              <img className={styles.mobileCarIcon} src={mobileAssets.car} alt="" width={134} height={51} {...lazyImageAttrs} />
               <div className={styles.mobileTransportCopy}>
                 <h3>자가 이용 시</h3>
                 <div className={styles.mobileTransportDetails}>
@@ -118,7 +122,7 @@ function MobileReservationPage() {
             </div>
 
             <div className={styles.mobileTransportBlock}>
-              <img className={styles.mobileTrainIcon} src={mobileAssets.train} alt="" />
+              <img className={styles.mobileTrainIcon} src={mobileAssets.train} alt="" width={128} height={45} {...lazyImageAttrs} />
               <div className={styles.mobileTransportCopy}>
                 <h3>대중교통 이용 시</h3>
                 <div className={styles.mobileTransportDetails}>
@@ -156,7 +160,7 @@ export default function ReservationPage({ className = "" }: ReservationPageProps
         <div className={styles.desktopPageContent}>
           <header className={styles.header} aria-label="Site navigation">
             <a className={styles.logoLink} href={withBasePath("/")} aria-label="여주 바이크 홈">
-              <img className={styles.logoImage} src={logoImage} alt="" />
+              <img className={styles.logoImage} src={logoImage} alt="" width={146} height={101} {...eagerImageAttrs} />
             </a>
             <nav className={styles.navigation}>
               <a className={styles.navItem} href={withBasePath("/")}>
@@ -195,7 +199,7 @@ export default function ReservationPage({ className = "" }: ReservationPageProps
                 따르릉으로 오시는 길
               </h2>
               <div className={styles.addressRow}>
-                <img className={styles.pinIcon} src={pinIcon} alt="" />
+                <img className={styles.pinIcon} src={pinIcon} alt="" width={36} height={49} {...lazyImageAttrs} />
                 <p>경기도 여주시 강변유원지길 105 폰박물관 옆 따르릉 여주 사랑방</p>
               </div>
             </div>
@@ -203,7 +207,7 @@ export default function ReservationPage({ className = "" }: ReservationPageProps
             <div className={styles.transportGroup}>
               <div className={styles.carBlock}>
                 <div className={styles.carIconFrame}>
-                  <img className={styles.carIcon} src={carIcon} alt="" />
+                  <img className={styles.carIcon} src={carIcon} alt="" width={134} height={51} {...lazyImageAttrs} />
                 </div>
                 <div className={styles.transportCopy}>
                   <h3>자가 이용 시</h3>
@@ -224,7 +228,7 @@ export default function ReservationPage({ className = "" }: ReservationPageProps
 
               <div className={styles.transitBlock}>
                 <div className={styles.trainIconFrame}>
-                  <img className={styles.trainIcon} src={trainIcon} alt="" />
+                  <img className={styles.trainIcon} src={trainIcon} alt="" width={128} height={45} {...lazyImageAttrs} />
                 </div>
                 <div className={styles.transportCopy}>
                   <h3>대중교통 이용 시</h3>

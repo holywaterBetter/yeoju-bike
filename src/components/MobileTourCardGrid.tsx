@@ -1,4 +1,5 @@
 import { getTourReservationUrl } from "@/lib/tourLinks";
+import { lazyImageAttrs } from "@/lib/imageAttrs";
 import { mobileTourCards, type MobileTourCard } from "@/lib/mobileTourCards";
 import styles from "./MobileTourCardGrid.module.css";
 
@@ -12,13 +13,23 @@ function MobileTourCardView({ card, mode }: { card: MobileTourCard; mode: Mobile
   const isDisabled = !href;
   const hasFigmaMediaImage = Boolean(card.figmaMediaImageSrc);
   const imageSrc = card.figmaMediaImageSrc ?? (mode === "reservation" ? (card.reservationImageSrc ?? card.imageSrc) : card.imageSrc);
+  const imageWidth = hasFigmaMediaImage
+    ? (card.figmaMediaImageWidth ?? card.imageWidth)
+    : mode === "reservation"
+      ? (card.reservationImageWidth ?? card.imageWidth)
+      : card.imageWidth;
+  const imageHeight = hasFigmaMediaImage
+    ? (card.figmaMediaImageHeight ?? card.imageHeight)
+    : mode === "reservation"
+      ? (card.reservationImageHeight ?? card.imageHeight)
+      : card.imageHeight;
   const imageClassName = hasFigmaMediaImage ? styles.figmaMediaImage : mode === "reservation" ? styles.reservationImage : styles[card.cropClassName];
   const className = `${styles.card} ${hasFigmaMediaImage ? styles.figmaMediaCard : ""} ${isDisabled ? styles.disabled : ""}`;
   const titleLineClassName = [styles.titleLine, card.hasEmbeddedTitle ? styles.embeddedTitleLine : ""].filter(Boolean).join(" ");
   const content = (
     <>
       <div className={styles.media}>
-        <img className={imageClassName} src={imageSrc} alt="" />
+        <img className={imageClassName} src={imageSrc} alt="" width={imageWidth} height={imageHeight} {...lazyImageAttrs} />
         <div className={styles.blur} />
         <div className={`${styles.gradient} ${styles[card.gradientClassName]}`} />
       </div>

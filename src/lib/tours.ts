@@ -7,8 +7,14 @@ export type MobileTourCard = {
   titleLines: string[];
   courseHref: string;
   imageSrc: string;
+  imageWidth: number;
+  imageHeight: number;
   figmaMediaImageSrc?: string;
+  figmaMediaImageWidth?: number;
+  figmaMediaImageHeight?: number;
   reservationImageSrc?: string;
+  reservationImageWidth?: number;
+  reservationImageHeight?: number;
   hasEmbeddedTitle?: boolean;
   cropClassName: "cardHangulImage" | "cardGoldenImage" | "cardKYeojuImage" | "cardClubImage";
   gradientClassName: "gradientBlack" | "gradientOlive" | "gradientGreen" | "gradientBrown";
@@ -37,11 +43,17 @@ export const tourCatalog: TourCatalogItem[] = [
     titleLines: ["따르릉", "여주 한글길 투어"],
     courseHref: courseAnchorHref(courseAnchors.hangul),
     reservationUrl: "https://form.naver.com/response/v7niAyUhIlKeoY2YjUv2ww",
-    desktopCardMedia: withBasePath("/assets/figma/groups/tour-card-hangul-media.png"),
+    desktopCardMedia: withBasePath("/assets/figma/groups/tour-card-hangul-media.webp"),
     mobileCard: {
-      imageSrc: withBasePath("/assets/figma/mobile/tour-card-hangul.png"),
-      figmaMediaImageSrc: withBasePath("/assets/figma/mobile/landing-journey-card-hangul.png"),
-      reservationImageSrc: withBasePath("/assets/figma/mobile/reservation-card-hangul.png"),
+      imageSrc: withBasePath("/assets/figma/mobile/tour-card-hangul.webp"),
+      imageWidth: 1440,
+      imageHeight: 1080,
+      figmaMediaImageSrc: withBasePath("/assets/figma/mobile/landing-journey-card-hangul.webp"),
+      figmaMediaImageWidth: 168,
+      figmaMediaImageHeight: 172,
+      reservationImageSrc: withBasePath("/assets/figma/mobile/reservation-card-hangul.webp"),
+      reservationImageWidth: 1440,
+      reservationImageHeight: 1080,
       cropClassName: "cardHangulImage",
       gradientClassName: "gradientBlack",
     },
@@ -58,10 +70,14 @@ export const tourCatalog: TourCatalogItem[] = [
     titleLines: ["남한강", "골든벨 투어"],
     courseHref: courseAnchorHref(courseAnchors.goldenBell),
     reservationUrl: "https://form.naver.com/response/zN4F5ETAfQtFaA7o8z5uUQ",
-    desktopCardMedia: withBasePath("/assets/figma/groups/tour-card-golden-media.png"),
+    desktopCardMedia: withBasePath("/assets/figma/groups/tour-card-golden-media.webp"),
     mobileCard: {
-      imageSrc: withBasePath("/assets/figma/mobile/tour-card-golden.png"),
-      figmaMediaImageSrc: withBasePath("/assets/figma/mobile/landing-journey-card-golden.png"),
+      imageSrc: withBasePath("/assets/figma/mobile/tour-card-golden.webp"),
+      imageWidth: 1440,
+      imageHeight: 813,
+      figmaMediaImageSrc: withBasePath("/assets/figma/mobile/landing-journey-card-golden.webp"),
+      figmaMediaImageWidth: 168,
+      figmaMediaImageHeight: 172,
       cropClassName: "cardGoldenImage",
       gradientClassName: "gradientOlive",
     },
@@ -77,11 +93,17 @@ export const tourCatalog: TourCatalogItem[] = [
     plainTitle: "K-여주 바이크 투어",
     titleLines: ["K-여주", "바이크 투어"],
     courseHref: courseAnchorHref(courseAnchors.kYeoju),
-    desktopCardMedia: withBasePath("/assets/figma/groups/tour-card-k-yeoju-media.png"),
+    desktopCardMedia: withBasePath("/assets/figma/groups/tour-card-k-yeoju-media.webp"),
     mobileCard: {
-      imageSrc: withBasePath("/assets/figma/mobile/tour-card-k-yeoju.png"),
-      figmaMediaImageSrc: withBasePath("/assets/figma/mobile/landing-journey-card-k-yeoju.png"),
-      reservationImageSrc: withBasePath("/assets/figma/mobile/reservation-card-k.png"),
+      imageSrc: withBasePath("/assets/figma/mobile/tour-card-k-yeoju.webp"),
+      imageWidth: 2048,
+      imageHeight: 1152,
+      figmaMediaImageSrc: withBasePath("/assets/figma/mobile/landing-journey-card-k-yeoju.webp"),
+      figmaMediaImageWidth: 168,
+      figmaMediaImageHeight: 172,
+      reservationImageSrc: withBasePath("/assets/figma/mobile/reservation-card-k.webp"),
+      reservationImageWidth: 2048,
+      reservationImageHeight: 1152,
       cropClassName: "cardKYeojuImage",
       gradientClassName: "gradientGreen",
     },
@@ -97,11 +119,17 @@ export const tourCatalog: TourCatalogItem[] = [
     plainTitle: "따르릉 동호회 코스",
     titleLines: ["따르릉", "동호회 코스"],
     courseHref: courseAnchorHref(courseAnchors.club),
-    desktopCardMedia: withBasePath("/assets/figma/groups/tour-card-club-media.png"),
+    desktopCardMedia: withBasePath("/assets/figma/groups/tour-card-club-media.webp"),
     mobileCard: {
-      imageSrc: withBasePath("/assets/figma/mobile/tour-card-club.png"),
-      figmaMediaImageSrc: withBasePath("/assets/figma/mobile/landing-journey-card-club.png"),
-      reservationImageSrc: withBasePath("/assets/figma/mobile/reservation-card-club.png"),
+      imageSrc: withBasePath("/assets/figma/mobile/tour-card-club.webp"),
+      imageWidth: 1080,
+      imageHeight: 810,
+      figmaMediaImageSrc: withBasePath("/assets/figma/mobile/landing-journey-card-club.webp"),
+      figmaMediaImageWidth: 168,
+      figmaMediaImageHeight: 172,
+      reservationImageSrc: withBasePath("/assets/figma/mobile/reservation-card-club.webp"),
+      reservationImageWidth: 1080,
+      reservationImageHeight: 810,
       hasEmbeddedTitle: true,
       cropClassName: "cardClubImage",
       gradientClassName: "gradientBrown",

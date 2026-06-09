@@ -2,27 +2,28 @@ import { type ReactNode } from "react";
 import MobileSiteHeader from "@/components/MobileSiteHeader";
 import MobileTourCardGrid from "@/components/MobileTourCardGrid";
 import RevealOnScroll from "@/components/RevealOnScroll";
+import { eagerImageAttrs, lazyImageAttrs } from "@/lib/imageAttrs";
 import { withBasePath } from "@/lib/sitePaths";
 import { kakaoChannelUrl } from "@/lib/tourLinks";
 import { tourCatalog } from "@/lib/tours";
 import styles from "./LandingPage.module.css";
 
 const imgImage30 = withBasePath("/assets/figma/mcp/6e173378-eb7c-4df3-936b-d8007b404ad4.png");
-const imgKakaoTalk20250905103329489281 = withBasePath("/assets/figma/mcp/6953c77a-4366-4c08-95a5-b18a1e6a7cee.jpg");
-const img001P1 = withBasePath("/assets/figma/mobile/tour-card-golden.png");
-const imgF5550E6E0A054A92B6DbAae059C455821 = withBasePath("/assets/figma/mcp/7126efd5-5893-4db5-a348-932564b7fd20.jpg");
-const imgKakaoTalk202511171151172981 = withBasePath("/assets/figma/mcp/461689e3-dc4a-47ac-8fc9-7f9928a9fed4.jpg");
-const imgKakaoTalk202511171152391871 = withBasePath("/assets/figma/mcp/c57dbe85-295b-4130-9b84-401993be52c4.jpg");
-const imgKakaoTalk20251117115117298071 = withBasePath("/assets/figma/mcp/da8bc77c-6a74-4345-98b6-f0941f96579e.jpg");
-const imgHeroBikeSource = withBasePath("/assets/figma/groups/landing-hero-bike-source.png");
-const imgHeroGroup = withBasePath("/assets/figma/groups/landing-hero-group.png");
+const imgKakaoTalk20250905103329489281 = withBasePath("/assets/figma/mcp/6953c77a-4366-4c08-95a5-b18a1e6a7cee.webp");
+const img001P1 = withBasePath("/assets/figma/mobile/tour-card-golden.webp");
+const imgF5550E6E0A054A92B6DbAae059C455821 = withBasePath("/assets/figma/mcp/7126efd5-5893-4db5-a348-932564b7fd20.webp");
+const imgKakaoTalk202511171151172981 = withBasePath("/assets/figma/mcp/461689e3-dc4a-47ac-8fc9-7f9928a9fed4.webp");
+const imgKakaoTalk202511171152391871 = withBasePath("/assets/figma/mcp/c57dbe85-295b-4130-9b84-401993be52c4.webp");
+const imgKakaoTalk20251117115117298071 = withBasePath("/assets/figma/mcp/da8bc77c-6a74-4345-98b6-f0941f96579e.webp");
+const imgHeroBikeSource = withBasePath("/assets/figma/groups/landing-hero-bike-source.webp");
+const imgHeroGroup = withBasePath("/assets/figma/groups/landing-hero-group.webp");
 const imgImage40 = withBasePath("/assets/figma/mcp/efb2b323-a460-4830-a947-ad0427775610.png");
-const imgRiverHeroFrame = withBasePath("/assets/figma/groups/landing-river-hero-frame.png");
-const imgRiverCardOneFrame = withBasePath("/assets/figma/groups/landing-river-card-one-frame.png");
-const imgRiverCardTwoFrame = withBasePath("/assets/figma/groups/landing-river-card-two-frame.png");
-const imgFeatureOneFrame = withBasePath("/assets/figma/groups/landing-feature-one-frame.png");
-const imgFeatureTwoFrame = withBasePath("/assets/figma/groups/landing-feature-two-frame.png");
-const imgFeatureThreeFrame = withBasePath("/assets/figma/groups/landing-feature-three-frame.png");
+const imgRiverHeroFrame = withBasePath("/assets/figma/groups/landing-river-hero-frame.webp");
+const imgRiverCardOneFrame = withBasePath("/assets/figma/groups/landing-river-card-one-frame.webp");
+const imgRiverCardTwoFrame = withBasePath("/assets/figma/groups/landing-river-card-two-frame.webp");
+const imgFeatureOneFrame = withBasePath("/assets/figma/groups/landing-feature-one-frame.webp");
+const imgFeatureTwoFrame = withBasePath("/assets/figma/groups/landing-feature-two-frame.webp");
+const imgFeatureThreeFrame = withBasePath("/assets/figma/groups/landing-feature-three-frame.webp");
 const imgVector36 = withBasePath("/assets/figma/mcp/17b7eb28-4867-4d74-a8bd-e6899da0f967.svg");
 const imgVector21 = withBasePath("/assets/figma/mcp/7424fa6c-9d52-426c-acf0-36708e7cc0ff.svg");
 const imgSmile = withBasePath("/assets/figma/groups/landing-smile.png");
@@ -62,7 +63,7 @@ function Header() {
   return (
     <>
       <a className={styles.logoWrap} href={withBasePath("/")} aria-label="따르릉 여주 홈" data-node-id="7:101" data-name="image 30">
-        <img className={styles.fullImage} src={imgImage30} alt="따르릉 여주 로고" />
+        <img className={styles.fullImage} src={imgImage30} alt="따르릉 여주 로고" width={146} height={101} {...eagerImageAttrs} />
       </a>
       <nav className={styles.nav} aria-label="주요 메뉴" data-node-id="35:956">
         <a className={styles.navActive} href={withBasePath("/")} aria-current="page">투어 소개</a>
@@ -97,7 +98,7 @@ function Hero() {
         </p>
       </div>
       <div className={styles.heroArt} aria-hidden="true" data-node-id="1:199">
-        <img className={styles.heroArtImage} src={imgHeroGroup} alt="" data-name="Group 162532" />
+        <img className={styles.heroArtImage} src={imgHeroGroup} alt="" width={726} height={962} data-name="Group 162532" {...eagerImageAttrs} />
       </div>
       <YellowSpark />
     </section>
@@ -122,12 +123,12 @@ function RiverSection() {
         </p>
       </div>
       <div className={styles.riverHeroImage} data-node-id="2:477">
-        <img className={styles.riverHeroPhoto} src={imgRiverHeroFrame} alt="남한강변 자전거길" />
+        <img className={styles.riverHeroPhoto} src={imgRiverHeroFrame} alt="남한강변 자전거길" width={1200} height={706} {...lazyImageAttrs} />
       </div>
       <div className={styles.riverCards} data-node-id="9:174">
         <article className={styles.riverCard} data-node-id="9:176">
           <div className={styles.riverCardImage} data-node-id="9:177">
-            <img className={styles.riverCardPhotoOne} src={imgRiverCardOneFrame} alt="남한강 자전거 코스" />
+            <img className={styles.riverCardPhotoOne} src={imgRiverCardOneFrame} alt="남한강 자전거 코스" width={600} height={350} {...lazyImageAttrs} />
           </div>
           <h3 className={styles.riverCardTitle} data-node-id="9:179">
             남한강에서 편안하게
@@ -137,7 +138,7 @@ function RiverSection() {
         </article>
         <article className={`${styles.riverCard} ${styles.riverCardNarrow}`} data-node-id="9:180">
           <div className={styles.riverCardImage} data-node-id="9:181">
-            <img className={styles.riverCardPhotoTwo} src={imgRiverCardTwoFrame} alt="세종대왕 관련 문화유산" />
+            <img className={styles.riverCardPhotoTwo} src={imgRiverCardTwoFrame} alt="세종대왕 관련 문화유산" width={560} height={350} {...lazyImageAttrs} />
           </div>
           <h3 className={styles.riverCardTitle} data-node-id="9:183">
             한글의 자음을 따라 달리는
@@ -228,7 +229,7 @@ type FeatureRowProps = {
 function FeatureRow({ imageSrc, imageAlt, imageClassName, title, body, reversed }: FeatureRowProps) {
   const image = (
     <div className={styles.featureImageFrame}>
-      <img className={imageClassName} src={imageSrc} alt={imageAlt} />
+      <img className={imageClassName} src={imageSrc} alt={imageAlt} width={540} height={350} {...lazyImageAttrs} />
     </div>
   );
   const copy = (
@@ -260,7 +261,7 @@ function JourneySection() {
             key={journey.anchor}
             aria-label={`${journey.plainTitle} 코스 안내 보기`}
           >
-            <img className={styles.journeyMediaImage} src={journey.desktopCardMedia} alt="" />
+            <img className={styles.journeyMediaImage} src={journey.desktopCardMedia} alt="" width={585} height={286} {...lazyImageAttrs} />
             <h3>{journey.plainTitle}</h3>
           </a>
         ))}
@@ -290,7 +291,7 @@ function ContactCta() {
       </div>
       <a className={styles.kakaoButton} href={kakaoChannelUrl} data-node-id="1:84" data-name="Button">
         <span className={styles.kakaoIcon}>
-          <img src={imgImage40} alt="" />
+          <img src={imgImage40} alt="" width={225} height={225} {...lazyImageAttrs} />
         </span>
         <span>카카오톡으로 문의하기</span>
       </a>
@@ -318,13 +319,13 @@ function MobileLanding() {
         <div className={styles.mobileHeroArt} aria-hidden="true">
           <div className={styles.mobileHeroYellowOutline} />
           <div className={styles.mobileHeroYellowFill} />
-          <img className={styles.mobileHeroBikeImage} src={imgHeroBikeSource} alt="" />
+          <img className={styles.mobileHeroBikeImage} src={imgHeroBikeSource} alt="" width={1122} height={1402} {...eagerImageAttrs} />
         </div>
       </section>
       <section className={styles.mobileRiver} aria-labelledby="mobile-river-title" data-reveal>
         <div className={styles.mobileCopyBlock}>
           <h2 id="mobile-river-title" className={styles.mobileSectionTitle}>
-            두 바퀴로 <span className={styles.mobileRiverTitleAnchor}><span className={styles.mobileRiverTitleText}>만나는</span><img className={styles.mobileRiverSpark} src={imgYellowSpark} alt="" /></span>
+            두 바퀴로 <span className={styles.mobileRiverTitleAnchor}><span className={styles.mobileRiverTitleText}>만나는</span><img className={styles.mobileRiverSpark} src={imgYellowSpark} alt="" width={172} height={109} {...lazyImageAttrs} /></span>
             <br />
             남한강의 선물
             <br />
@@ -335,18 +336,18 @@ function MobileLanding() {
           </p>
         </div>
         <div className={`${styles.mobilePhotoFrame} ${styles.mobileRiverHeroPhoto}`}>
-          <img src={imgKakaoTalk20250905103329489281} alt="남한강변 자전거길" />
+          <img src={imgKakaoTalk20250905103329489281} alt="남한강변 자전거길" width={1440} height={1081} {...lazyImageAttrs} />
         </div>
         <div className={styles.mobileRiverCards}>
           <article className={styles.mobileRiverCard}>
             <div className={`${styles.mobilePhotoFrame} ${styles.mobileRiverCardPhotoOne}`}>
-              <img src={img001P1} alt="남한강 자전거 코스" />
+              <img src={img001P1} alt="남한강 자전거 코스" width={1440} height={813} {...lazyImageAttrs} />
             </div>
             <h3>남한강에서 편안하게 달릴 수 있는 자전거 코스</h3>
           </article>
           <article className={styles.mobileRiverCard}>
             <div className={`${styles.mobilePhotoFrame} ${styles.mobileRiverCardPhotoTwo}`}>
-              <img src={imgF5550E6E0A054A92B6DbAae059C455821} alt="세종대왕 관련 문화유산" />
+              <img src={imgF5550E6E0A054A92B6DbAae059C455821} alt="세종대왕 관련 문화유산" width={1400} height={1050} {...lazyImageAttrs} />
             </div>
             <h3>한글의 자음을 따라 달리는 지붕 없는 박물관</h3>
           </article>
@@ -361,9 +362,11 @@ function MobileLanding() {
             imageSrc={imgKakaoTalk202511171151172981}
             imageAlt="PAS 전기 자전거"
             imageClassName={styles.mobileFeaturePhotoOne}
+            imageWidth={1441}
+            imageHeight={961}
             title={
               <>
-                힘들이지 않고 가뿐하<span className={styles.mobileSmileAnchor}><span className={styles.mobileSmileText}>게,</span><img className={styles.mobileSmileDecoration} src={imgSmile} alt="" /></span>
+                힘들이지 않고 가뿐하<span className={styles.mobileSmileAnchor}><span className={styles.mobileSmileText}>게,</span><img className={styles.mobileSmileDecoration} src={imgSmile} alt="" width={76} height={76} {...lazyImageAttrs} /></span>
                 <br />
                 PAS 전기 자전거
               </>
@@ -374,11 +377,13 @@ function MobileLanding() {
             imageSrc={imgKakaoTalk202511171152391871}
             imageAlt="가이드 크루와 함께하는 주행"
             imageClassName={styles.mobileFeaturePhotoTwo}
+            imageWidth={4032}
+            imageHeight={3024}
             title={
               <>
-                <span className={styles.mobileGuideFirstLine}><img className={styles.mobileGuideStar} src={imgVector21} alt="" /><span className={styles.mobileGuideText}>안전과 감동을 책임지는</span></span>
+                <span className={styles.mobileGuideFirstLine}><img className={styles.mobileGuideStar} src={imgVector21} alt="" width={71} height={88} {...lazyImageAttrs} /><span className={styles.mobileGuideText}>안전과 감동을 책임지는</span></span>
                 <br />
-                <span className={styles.mobileGuideCrewLine}><span className={styles.mobileGuideText}>가이드 크루</span><img className={styles.mobileGuideUnderline} src={imgVector36} alt="" /></span>
+                <span className={styles.mobileGuideCrewLine}><span className={styles.mobileGuideText}>가이드 크루</span><img className={styles.mobileGuideUnderline} src={imgVector36} alt="" width={216} height={40} {...lazyImageAttrs} /></span>
               </>
             }
             body="전문 가이드가 대열의 선두와 후미에서 밀착 동행 합니다. 안전 관리부터 명소 해설까지 투어의 처음과 끝을 든든하게 지켜드립니다."
@@ -388,7 +393,9 @@ function MobileLanding() {
             imageSrc={imgKakaoTalk20251117115117298071}
             imageAlt="세나 인터콤 헬멧"
             imageClassName={styles.mobileFeaturePhotoThree}
-            imageDecoration={<img className={styles.mobileSenaSquiggle} src={imgVector20} alt="" />}
+            imageWidth={961}
+            imageHeight={1440}
+            imageDecoration={<img className={styles.mobileSenaSquiggle} src={imgVector20} alt="" width={123} height={40} {...lazyImageAttrs} />}
             title={
               <>
                 달리는{" "}
@@ -396,12 +403,12 @@ function MobileLanding() {
                   라디오,
                   <span className={styles.mobileRadioDashOne} data-node-id="57:430">
                     <span className={styles.mobileRadioDashOneInner}>
-                      <img src={imgMobileRedDashOne} alt="" />
+                      <img src={imgMobileRedDashOne} alt="" width={13} height={22} {...lazyImageAttrs} />
                     </span>
                   </span>
                   <span className={styles.mobileRadioDashTwo} data-node-id="57:431">
                     <span className={styles.mobileRadioDashTwoInner}>
-                      <img src={imgMobileRedDashTwo} alt="" />
+                      <img src={imgMobileRedDashTwo} alt="" width={24} height={11} {...lazyImageAttrs} />
                     </span>
                   </span>
                 </span>
@@ -432,7 +439,7 @@ function MobileLanding() {
         </div>
         <a className={styles.mobileKakaoButton} href={kakaoChannelUrl}>
           <span className={styles.mobileKakaoIcon}>
-            <img src={imgImage40} alt="" />
+            <img src={imgImage40} alt="" width={225} height={225} {...lazyImageAttrs} />
           </span>
           <span>카카오톡으로 문의하기</span>
         </a>
@@ -445,18 +452,20 @@ type MobileFeatureProps = {
   imageSrc: string;
   imageAlt: string;
   imageClassName: string;
+  imageWidth: number;
+  imageHeight: number;
   title: ReactNode;
   body: string;
   alignRight?: boolean;
   imageDecoration?: ReactNode;
 };
 
-function MobileFeature({ imageSrc, imageAlt, imageClassName, title, body, alignRight, imageDecoration }: MobileFeatureProps) {
+function MobileFeature({ imageSrc, imageAlt, imageClassName, imageWidth, imageHeight, title, body, alignRight, imageDecoration }: MobileFeatureProps) {
   return (
     <article className={styles.mobileFeature}>
       <div className={styles.mobileFeatureImage}>
         <div className={styles.mobileFeatureImageClip}>
-          <img className={imageClassName} src={imageSrc} alt={imageAlt} />
+          <img className={imageClassName} src={imageSrc} alt={imageAlt} width={imageWidth} height={imageHeight} {...lazyImageAttrs} />
         </div>
         {imageDecoration}
       </div>
@@ -470,25 +479,25 @@ function MobileFeature({ imageSrc, imageAlt, imageClassName, title, body, alignR
 
 function YellowSpark() {
   return (
-    <img className={styles.yellowSpark} src={imgYellowSpark} alt="" aria-hidden="true" data-node-id="10:173" />
+    <img className={styles.yellowSpark} src={imgYellowSpark} alt="" width={172} height={109} aria-hidden="true" data-node-id="10:173" {...lazyImageAttrs} />
   );
 }
 
 function Decorations() {
   return (
     <div className={styles.specialDecorations} aria-hidden="true">
-      <img className={styles.blueSquiggle} src={imgVector36} alt="" data-node-id="10:170" />
-      <img className={styles.blueMark} src={imgVector21} alt="" data-node-id="24:154" />
-      <img className={styles.smile} src={imgSmile} alt="" data-node-id="24:149" data-name="스마일" />
-      <img className={styles.redSquiggle} src={imgVector20} alt="" data-node-id="10:119" />
+      <img className={styles.blueSquiggle} src={imgVector36} alt="" width={216} height={40} data-node-id="10:170" {...lazyImageAttrs} />
+      <img className={styles.blueMark} src={imgVector21} alt="" width={71} height={88} data-node-id="24:154" {...lazyImageAttrs} />
+      <img className={styles.smile} src={imgSmile} alt="" width={76} height={76} data-node-id="24:149" data-name="스마일" {...lazyImageAttrs} />
+      <img className={styles.redSquiggle} src={imgVector20} alt="" width={123} height={40} data-node-id="10:119" {...lazyImageAttrs} />
       <span className={styles.redDashOne} data-node-id="37:785">
         <span className={styles.redDashOneInner}>
-          <img src={imgRedDashOne} alt="" />
+          <img src={imgRedDashOne} alt="" width={22} height={38} {...lazyImageAttrs} />
         </span>
       </span>
       <span className={styles.redDashTwo} data-node-id="37:786">
         <span className={styles.redDashTwoInner}>
-          <img src={imgRedDashTwo} alt="" />
+          <img src={imgRedDashTwo} alt="" width={41} height={19} {...lazyImageAttrs} />
         </span>
       </span>
     </div>

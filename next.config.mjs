@@ -12,6 +12,10 @@ const nextConfig = {
   env: {
     NEXT_PUBLIC_BASE_PATH: basePath,
   },
+  experimental: {
+    parallelServerBuildTraces: false,
+    webpackBuildWorker: false,
+  },
   ...(isGithubPages
     ? {
         output: "export",
