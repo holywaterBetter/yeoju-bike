@@ -14,6 +14,7 @@ function MobileTourCardView({ card, mode }: { card: MobileTourCard; mode: Mobile
   const imageSrc = card.figmaMediaImageSrc ?? (mode === "reservation" ? (card.reservationImageSrc ?? card.imageSrc) : card.imageSrc);
   const imageClassName = hasFigmaMediaImage ? styles.figmaMediaImage : mode === "reservation" ? styles.reservationImage : styles[card.cropClassName];
   const className = `${styles.card} ${hasFigmaMediaImage ? styles.figmaMediaCard : ""} ${isDisabled ? styles.disabled : ""}`;
+  const titleLineClassName = [styles.titleLine, card.hasEmbeddedTitle ? styles.embeddedTitleLine : ""].filter(Boolean).join(" ");
   const content = (
     <>
       <div className={styles.media}>
@@ -23,7 +24,7 @@ function MobileTourCardView({ card, mode }: { card: MobileTourCard; mode: Mobile
       </div>
       <h2 className={styles.title}>
         {card.titleLines.map((line) => (
-          <span className={styles.titleLine} key={line}>
+          <span className={titleLineClassName} key={line}>
             {line}
           </span>
         ))}

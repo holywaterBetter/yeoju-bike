@@ -9,6 +9,7 @@ export type MobileTourCard = {
   imageSrc: string;
   figmaMediaImageSrc?: string;
   reservationImageSrc?: string;
+  hasEmbeddedTitle?: boolean;
   cropClassName: "cardHangulImage" | "cardGoldenImage" | "cardKYeojuImage" | "cardClubImage";
   gradientClassName: "gradientBlack" | "gradientOlive" | "gradientGreen" | "gradientBrown";
 };
@@ -101,6 +102,7 @@ export const tourCatalog: TourCatalogItem[] = [
       imageSrc: withBasePath("/assets/figma/mobile/tour-card-club.png"),
       figmaMediaImageSrc: withBasePath("/assets/figma/mobile/landing-journey-card-club.png"),
       reservationImageSrc: withBasePath("/assets/figma/mobile/reservation-card-club.png"),
+      hasEmbeddedTitle: true,
       cropClassName: "cardClubImage",
       gradientClassName: "gradientBrown",
     },

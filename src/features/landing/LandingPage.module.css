@@ -1185,22 +1185,22 @@
   .mobileRadioDashOne,
   .mobileRadioDashTwo {
     position: absolute;
-    z-index: 3;
+    z-index: -1;
     display: block;
     overflow: visible;
     pointer-events: none;
   }
 
   .mobileRadioDashOne {
-    left: calc(100% - 0.5em);
-    top: 0.39em;
+    left: calc(100% - 0.78em);
+    top: -0.12em;
     width: 0.153em;
     height: 0.525em;
   }
 
   .mobileRadioDashTwo {
-    left: calc(100% - 0.19em);
-    top: 1.248em;
+    left: calc(100% - 0.52em);
+    top: 0.55em;
     width: 0.656em;
     height: 0.044em;
   }

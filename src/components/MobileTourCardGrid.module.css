@@ -191,6 +191,16 @@
   font-size: 19.2em;
 }
 
+.embeddedTitleLine {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  overflow: hidden;
+  clip: rect(0 0 0 0);
+  clip-path: inset(50%);
+  white-space: nowrap;
+}
+
 .status {
   font-size: 12.6em;
   font-weight: 700;
