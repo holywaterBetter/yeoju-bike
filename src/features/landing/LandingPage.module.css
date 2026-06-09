@@ -1193,7 +1193,7 @@
     gap: 30em;
     margin-top: 101em;
     padding-top: 51em;
-    padding-bottom: calc(127.6em + max(0px, 432px - 100vw));
+    padding-bottom: 30em;
     background: rgba(30, 30, 32, 0.06);
   }
 

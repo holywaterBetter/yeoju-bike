@@ -396,14 +396,26 @@ function MobileLanding() {
             imageSrc={imgKakaoTalk202511171151172981}
             imageAlt="PAS 전기 자전거"
             imageClassName={styles.mobileFeaturePhotoOne}
-            title="힘들이지 않고 가뿐하게, PAS 전기 자전거"
+            title={
+              <>
+                힘들이지 않고 가뿐하게,
+                <br />
+                PAS 전기 자전거
+              </>
+            }
             body="페달을 밟으면 모터가 힘을 더해주는 PAS 전용 전기 자전거를 이용합니다. 가파른 오르막이나 체력 부담 걱정 없이, 남한강 자전거길의 평지 코스를 누구나 여유롭고 안전하게 완주할 수 있습니다."
           />
           <MobileFeature
             imageSrc={imgKakaoTalk202511171152391871}
             imageAlt="가이드 크루와 함께하는 주행"
             imageClassName={styles.mobileFeaturePhotoTwo}
-            title="안전과 감동을 책임지는 가이드 크루"
+            title={
+              <>
+                안전과 감동을 책임지는
+                <br />
+                가이드 크루
+              </>
+            }
             body="전문 가이드가 대열의 선두와 후미에서 밀착 동행 합니다. 안전 관리부터 명소 해설까지 투어의 처음과 끝을 든든하게 지켜드립니다."
             alignRight
           />
@@ -411,7 +423,13 @@ function MobileLanding() {
             imageSrc={imgKakaoTalk20251117115117298071}
             imageAlt="세나 인터콤 헬멧"
             imageClassName={styles.mobileFeaturePhotoThree}
-            title="달리는 라디오, 세나인터콤"
+            title={
+              <>
+                달리는 라디오,
+                <br />
+                세나인터콤
+              </>
+            }
             body="특수 헬멧에 장착된 인터콤 시스템을 활용하여, 주행 중에도 가이드의 실시간 길 안내와 흥미진진한 여주 역사 이야기를 라디오 방송처럼 생생하게 들으며 즐길 수 있습니다."
           />
         </div>
@@ -424,8 +442,10 @@ function MobileLanding() {
       </section>
       <section className={styles.mobileContact} aria-labelledby="mobile-contact-title">
         <div className={styles.mobileCopyBlock}>
-          <h2 id="mobile-contact-title" className={styles.mobileCenteredTitle}>
-            궁금한 점이 있으신가요?
+          <h2 id="mobile-contact-title" className={styles.mobileSectionTitle}>
+            궁금한 점이
+            <br />
+            있으신가요?
           </h2>
           <p className={styles.mobileBodyText}>
             코스 문의, 단체 예약, 자전거 이용 방법 등 따르릉 여주 시티투어에 대한 모든 궁금증을 환영합니다. 카카오톡 채널로 메시지를 남겨주시면 친절하게 안내해 드리겠습니다. 주말 / 공휴일에는 가이드들이 현장에서 신나게 투어를 진행하고 있어 실시간 응대가 어려울 수 있습니다. 상담 운영 시간 - 평일 9:00~18:00
