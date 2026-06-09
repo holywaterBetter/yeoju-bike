@@ -1192,15 +1192,15 @@
   }
 
   .mobileRadioDashOne {
-    left: calc(100% - 0.78em);
-    top: -0.12em;
+    left: calc(100% - 0.12em);
+    top: -0.18em;
     width: 0.153em;
     height: 0.525em;
   }
 
   .mobileRadioDashTwo {
-    left: calc(100% - 0.52em);
-    top: 0.55em;
+    left: calc(100% + 0.18em);
+    top: 0.72em;
     width: 0.656em;
     height: 0.044em;
   }
