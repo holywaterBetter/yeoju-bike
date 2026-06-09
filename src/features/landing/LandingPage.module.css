@@ -809,7 +809,7 @@
     z-index: 1;
     display: block;
     width: 100%;
-    min-height: 4560em;
+    min-height: 0;
     overflow: visible;
     background: #ffffff;
     color: #000000;
@@ -837,6 +837,35 @@
   .mobileHero {
     overflow: hidden;
     padding-top: 3em;
+  }
+
+  .mobileRiverTitleAnchor,
+  .mobileSmileAnchor,
+  .mobileGuideFirstLine,
+  .mobileGuideCrewLine,
+  .mobileRadioAnchor {
+    position: relative;
+    display: inline-block;
+    isolation: isolate;
+  }
+
+  .mobileRiverTitleText,
+  .mobileSmileText,
+  .mobileGuideText {
+    position: relative;
+    z-index: 2;
+  }
+
+  .mobileRiverSpark {
+    position: absolute;
+    left: calc(35 * var(--mobile-unit));
+    top: calc(-43 * var(--mobile-unit));
+    z-index: 1;
+    width: calc(98.635 * var(--mobile-unit));
+    height: calc(64.915 * var(--mobile-unit));
+    max-width: none;
+    object-fit: contain;
+    pointer-events: none;
   }
 
   .mobileCopyBlock {
@@ -1014,11 +1043,18 @@
     position: relative;
     width: 100%;
     height: 210em;
+    overflow: visible;
+    background: #ffffff;
+  }
+
+  .mobileFeatureImageClip {
+    position: absolute;
+    inset: 0;
     overflow: hidden;
     background: #ffffff;
   }
 
-  .mobileFeatureImage img {
+  .mobileFeatureImageClip img {
     position: absolute;
     max-width: none;
     object-fit: cover;
@@ -1062,6 +1098,7 @@
   }
 
   .mobileFeatureCopy h3 {
+    position: relative;
     width: 100%;
     margin: 0;
     font-family: "Figtree", "Nunito Sans", "Noto Sans KR", Arial, sans-serif;
@@ -1070,6 +1107,77 @@
     line-height: 1.4285714286;
     white-space: normal;
     word-break: keep-all;
+  }
+
+  .mobileSmileDecoration {
+    position: absolute;
+    left: 0.06em;
+    top: -0.58em;
+    z-index: 1;
+    width: 1.45em;
+    height: 1.45em;
+    max-width: none;
+    object-fit: contain;
+    pointer-events: none;
+  }
+
+  .mobileGuideStar {
+    position: absolute;
+    left: -0.92em;
+    top: -0.36em;
+    z-index: 1;
+    width: 1.33em;
+    height: 1.74em;
+    max-width: none;
+    object-fit: contain;
+    pointer-events: none;
+  }
+
+  .mobileGuideUnderline {
+    position: absolute;
+    right: -0.08em;
+    bottom: -0.5em;
+    z-index: 3;
+    width: 4.81em;
+    height: 1em;
+    max-width: none;
+    object-fit: fill;
+    pointer-events: none;
+  }
+
+  .mobileSenaSquiggle {
+    position: absolute;
+    left: -10em;
+    top: 82em;
+    z-index: 2;
+    width: 66.304em;
+    height: 15.804em;
+    max-width: none;
+    object-fit: fill;
+    pointer-events: none;
+  }
+
+  .mobileRadioDashOne,
+  .mobileRadioDashTwo {
+    position: absolute;
+    z-index: 3;
+    max-width: none;
+    object-fit: fill;
+    pointer-events: none;
+  }
+
+  .mobileRadioDashOne {
+    left: calc(100% + 0.12em);
+    top: -0.27em;
+    width: 0.28em;
+    height: 0.95em;
+  }
+
+  .mobileRadioDashTwo {
+    left: calc(100% + 0.46em);
+    top: 0.78em;
+    width: 1.02em;
+    height: 0.11em;
   }
 
   .mobileFeatureCopy p {
@@ -1238,74 +1346,6 @@
     width: 130.3%;
     height: 130.3%;
     object-fit: cover;
-  }
-
-  .mobileDecorations {
-    position: absolute;
-    inset: 0;
-    z-index: 0;
-    overflow: hidden;
-    pointer-events: none;
-  }
-
-  .mobileDecorations .yellowSpark {
-    display: block;
-    left: 209.88em;
-    top: 917.64em;
-    width: 98.635em;
-    height: 64.915em;
-    transform: scale(0.6);
-    transform-origin: top left;
-  }
-
-  .mobileBlueSquiggle {
-    position: absolute;
-    left: 258.08em;
-    top: 2923.41em;
-    width: 121.2em;
-    height: 15em;
-  }
-
-  .mobileBlueMark {
-    position: absolute;
-    left: 121.28em;
-    top: 2843.01em;
-    width: 33.6em;
-    height: 43.8em;
-  }
-
-  .mobileSmile {
-    position: absolute;
-    left: 254.68em;
-    top: 2429.41em;
-    width: 35.747em;
-    height: 35.932em;
-    transform: scale(0.51);
-    transform-origin: top left;
-  }
-
-  .mobileRedSquiggle {
-    position: absolute;
-    left: 13.99em;
-    top: 3096.84em;
-    width: 66.304em;
-    height: 15.804em;
-  }
-
-  .mobileRedDashOne {
-    position: absolute;
-    left: 162.85em;
-    top: 3264.65em;
-    width: 3.856em;
-    height: 13.221em;
-  }
-
-  .mobileRedDashTwo {
-    position: absolute;
-    left: 170.56em;
-    top: 3286.14em;
-    width: 16.527em;
-    height: 1.102em;
   }
 
 }

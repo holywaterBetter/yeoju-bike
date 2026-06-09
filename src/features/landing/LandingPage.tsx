@@ -336,7 +336,7 @@ function ContactCta() {
 function MobileLanding() {
   return (
     <div className={styles.mobileFrame} data-node-id="57:134" data-name="01_landing_M">
-      <MobileSiteHeader active="landing" />
+      <MobileSiteHeader active="landing" compact />
       <section className={styles.mobileHero} aria-labelledby="mobile-landing-title">
         <div className={styles.mobileCopyBlock}>
           <h1 id="mobile-landing-title" className={styles.mobileHeroTitle}>
@@ -359,7 +359,7 @@ function MobileLanding() {
       <section className={styles.mobileRiver} aria-labelledby="mobile-river-title">
         <div className={styles.mobileCopyBlock}>
           <h2 id="mobile-river-title" className={styles.mobileSectionTitle}>
-            두 바퀴로 만나는
+            두 바퀴로 <span className={styles.mobileRiverTitleAnchor}><span className={styles.mobileRiverTitleText}>만나는</span><img className={styles.mobileRiverSpark} src={imgYellowSpark} alt="" /></span>
             <br />
             남한강의 선물
             <br />
@@ -398,7 +398,7 @@ function MobileLanding() {
             imageClassName={styles.mobileFeaturePhotoOne}
             title={
               <>
-                힘들이지 않고 가뿐하게,
+                힘들이지 않고 가뿐하<span className={styles.mobileSmileAnchor}><span className={styles.mobileSmileText}>게,</span><img className={styles.mobileSmileDecoration} src={imgSmile} alt="" /></span>
                 <br />
                 PAS 전기 자전거
               </>
@@ -411,9 +411,9 @@ function MobileLanding() {
             imageClassName={styles.mobileFeaturePhotoTwo}
             title={
               <>
-                안전과 감동을 책임지는
+                <span className={styles.mobileGuideFirstLine}><img className={styles.mobileGuideStar} src={imgVector21} alt="" /><span className={styles.mobileGuideText}>안전과 감동을 책임지는</span></span>
                 <br />
-                가이드 크루
+                <span className={styles.mobileGuideCrewLine}><span className={styles.mobileGuideText}>가이드 크루</span><img className={styles.mobileGuideUnderline} src={imgVector36} alt="" /></span>
               </>
             }
             body="전문 가이드가 대열의 선두와 후미에서 밀착 동행 합니다. 안전 관리부터 명소 해설까지 투어의 처음과 끝을 든든하게 지켜드립니다."
@@ -423,9 +423,10 @@ function MobileLanding() {
             imageSrc={imgKakaoTalk20251117115117298071}
             imageAlt="세나 인터콤 헬멧"
             imageClassName={styles.mobileFeaturePhotoThree}
+            imageDecoration={<img className={styles.mobileSenaSquiggle} src={imgVector20} alt="" />}
             title={
               <>
-                달리는 라디오,
+                달리는 <span className={styles.mobileRadioAnchor}>라디오,<img className={styles.mobileRadioDashOne} src={imgMobileRedDashOne} alt="" /><img className={styles.mobileRadioDashTwo} src={imgMobileRedDashTwo} alt="" /></span>
                 <br />
                 세나인터콤
               </>
@@ -458,7 +459,6 @@ function MobileLanding() {
           <span>카카오톡으로 문의하기</span>
         </a>
       </section>
-      <MobileDecorations />
     </div>
   );
 }
@@ -470,33 +470,23 @@ type MobileFeatureProps = {
   title: ReactNode;
   body: string;
   alignRight?: boolean;
+  imageDecoration?: ReactNode;
 };
 
-function MobileFeature({ imageSrc, imageAlt, imageClassName, title, body, alignRight }: MobileFeatureProps) {
+function MobileFeature({ imageSrc, imageAlt, imageClassName, title, body, alignRight, imageDecoration }: MobileFeatureProps) {
   return (
     <article className={styles.mobileFeature}>
       <div className={styles.mobileFeatureImage}>
-        <img className={imageClassName} src={imageSrc} alt={imageAlt} />
+        <div className={styles.mobileFeatureImageClip}>
+          <img className={imageClassName} src={imageSrc} alt={imageAlt} />
+        </div>
+        {imageDecoration}
       </div>
       <div className={`${styles.mobileFeatureCopy} ${alignRight ? styles.mobileFeatureCopyRight : ""}`}>
         <h3>{title}</h3>
         <p>{body}</p>
       </div>
     </article>
-  );
-}
-
-function MobileDecorations() {
-  return (
-    <div className={styles.mobileDecorations} aria-hidden="true">
-      <YellowSpark />
-      <img className={styles.mobileBlueSquiggle} src={imgVector36} alt="" />
-      <img className={styles.mobileBlueMark} src={imgVector21} alt="" />
-      <img className={styles.mobileSmile} src={imgSmile} alt="" />
-      <img className={styles.mobileRedSquiggle} src={imgVector20} alt="" />
-      <img className={styles.mobileRedDashOne} src={imgMobileRedDashOne} alt="" />
-      <img className={styles.mobileRedDashTwo} src={imgMobileRedDashTwo} alt="" />
-    </div>
   );
 }
 

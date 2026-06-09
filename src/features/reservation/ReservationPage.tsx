@@ -101,7 +101,7 @@ function ReservationTourCard({ card }: { card: TourCardData }) {
 function MobileReservationPage() {
   return (
     <div className={styles.mobilePage} data-node-id="57:1951" data-name="03_landing_M">
-      <MobileSiteHeader active="reservation" />
+      <MobileSiteHeader active="reservation" compact />
       <div className={styles.mobileContentStack}>
         <section className={styles.mobileReservationIntro} aria-labelledby="mobile-reservation-title">
           <div className={styles.mobileCopyBlock}>

@@ -977,6 +977,9 @@
     font-variation-settings: "YTLC" 500, "wdth" 100;
     font-weight: 400;
     line-height: 1.8571428571;
+    overflow-wrap: normal;
+    word-break: keep-all;
+    line-break: strict;
   }
 
   .mobileInfoGroup {
@@ -1147,6 +1150,9 @@
     font-weight: 600;
     letter-spacing: -0.03126em;
     line-height: 1.8571428571;
+    overflow-wrap: normal;
+    word-break: keep-all;
+    line-break: strict;
   }
 
   .mobileGiftGrid {
@@ -1226,6 +1232,9 @@
     font-weight: 400;
     letter-spacing: -0.025em;
     line-height: 1.4;
+    overflow-wrap: normal;
+    word-break: keep-all;
+    line-break: strict;
   }
 
   .mobileDecorativeAssets {
@@ -1237,6 +1246,8 @@
 
   .mobileDecorativeAssets img {
     position: absolute;
+    display: block;
+    max-width: none;
     object-fit: contain;
   }
 
@@ -1245,37 +1256,33 @@
     top: 68em;
     width: 230.1em;
     height: 88.821em;
-    transform: rotate(-14.45deg);
   }
 
   .mobileBellDecoration {
     left: 15em;
-    top: 1306em;
+    top: 1334em;
     width: 116.48em;
     height: 92.143em;
-    transform: rotate(-14.6deg);
   }
 
   .mobileTaegeukDecoration {
-    left: 24em;
-    top: 2573em;
-    width: 62.742em;
-    height: 62.742em;
-    opacity: 0.48;
+    left: 39em;
+    top: 2600em;
+    width: 65em;
+    height: 68em;
   }
 
   .mobileBikeDecoration {
-    left: 49em;
-    top: 3849em;
-    width: 129.675em;
-    height: 81.229em;
+    left: 44.6em;
+    top: 3894em;
+    width: 139.2em;
+    height: 90.9em;
   }
 
   .mobileGiftDecoration {
-    left: 37em;
-    top: 4795em;
+    left: 41em;
+    top: 4832em;
     width: 85.754em;
     height: 91.036em;
-    transform: rotate(-16.32deg);
   }
 }

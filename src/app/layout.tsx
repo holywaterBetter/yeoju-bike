@@ -17,7 +17,7 @@ import "./globals.css";
 
 export const metadata: Metadata = {
   title: "따르릉 여주 시티투어",
-  description: "가이드와 함께 전기 자전거로 달리는 여주 시티투어"
+  description: "가이드와 함께 전기 자전거로 달리는 여주 시티투어",
 };
 
 type SiteShellStyle = CSSProperties & {
@@ -35,6 +35,9 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="ko">
+      <head>
+        <link rel="icon" href={withBasePath("/favicon.png")} sizes="512x512" type="image/png" />
+      </head>
       <body>
         <div className="site-shell" style={siteShellStyle}>
           {children}

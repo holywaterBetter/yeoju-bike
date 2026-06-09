@@ -8,9 +8,10 @@ export type MobileSiteHeaderActive = "landing" | "courses" | "reservation";
 
 type MobileSiteHeaderProps = {
   active: MobileSiteHeaderActive;
+  compact?: boolean;
 };
 
-const logoImage = withBasePath("/assets/figma/mcp/6e173378-eb7c-4df3-936b-d8007b404ad4.png");
+const logoImage = withBasePath("/assets/figma/mcp/6e173378-eb7c-4df3-936b-d8007b404ad4-transparent.png");
 const menuSortIcon = withBasePath("/assets/figma/mobile/menu-sort.png");
 const menuArrowIcon = withBasePath("/assets/figma/mobile/menu-arrow.png");
 
@@ -24,9 +25,10 @@ const menuItems: {
   { active: "reservation", label: "투어 예약", href: withBasePath("/reservation/") },
 ];
 
-export default function MobileSiteHeader({ active }: MobileSiteHeaderProps) {
+export default function MobileSiteHeader({ active, compact = true }: MobileSiteHeaderProps) {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const menuId = useId();
+  const headerClassName = compact ? `${styles.header} ${styles.headerCompact}` : styles.header;
 
   useEffect(() => {
     if (!isMenuOpen) {
@@ -43,7 +45,7 @@ export default function MobileSiteHeader({ active }: MobileSiteHeaderProps) {
 
   return (
     <>
-      <header className={styles.header} data-name="header">
+      <header className={headerClassName} data-name="header">
         <a className={styles.logo} href={withBasePath("/")} aria-label="따르릉 여주 홈">
           <img src={logoImage} alt="따르릉 여주 로고" />
         </a>

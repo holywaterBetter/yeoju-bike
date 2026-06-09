@@ -15,11 +15,21 @@
   position: absolute;
   inset: 0;
   z-index: -1;
-  background: linear-gradient(180deg, #ffffff 42%, rgba(255, 255, 255, 0) 100%);
+  background: linear-gradient(180deg, #ffffff 70%, rgba(255, 255, 255, 0) 100%);
   backdrop-filter: blur(4px);
   -webkit-backdrop-filter: blur(4px);
   content: "";
   pointer-events: none;
+}
+
+.headerCompact {
+  height: 78em;
+  align-items: flex-start;
+  padding-top: 35em;
+}
+
+.headerCompact .button {
+  margin-top: -5.5em;
 }
 
 .logo {

@@ -10,11 +10,14 @@ function MobileTourCardView({ card, mode }: { card: MobileTourCard; mode: Mobile
   const reservationUrl = getTourReservationUrl(card.anchor);
   const href = mode === "courses" ? card.courseHref : reservationUrl;
   const isDisabled = !href;
-  const className = `${styles.card} ${isDisabled ? styles.disabled : ""}`;
+  const hasFigmaMediaImage = Boolean(card.figmaMediaImageSrc);
+  const imageSrc = card.figmaMediaImageSrc ?? (mode === "reservation" ? (card.reservationImageSrc ?? card.imageSrc) : card.imageSrc);
+  const imageClassName = hasFigmaMediaImage ? styles.figmaMediaImage : mode === "reservation" ? styles.reservationImage : styles[card.cropClassName];
+  const className = `${styles.card} ${hasFigmaMediaImage ? styles.figmaMediaCard : ""} ${isDisabled ? styles.disabled : ""}`;
   const content = (
     <>
       <div className={styles.media}>
-        <img className={styles[card.cropClassName]} src={card.imageSrc} alt="" />
+        <img className={imageClassName} src={imageSrc} alt="" />
         <div className={styles.blur} />
         <div className={`${styles.gradient} ${styles[card.gradientClassName]}`} />
       </div>
@@ -45,8 +48,11 @@ function MobileTourCardView({ card, mode }: { card: MobileTourCard; mode: Mobile
 }
 
 export default function MobileTourCardGrid({ mode }: MobileTourCardGridProps) {
+  const modeClassName = mode === "courses" ? styles.courses : "";
+  const reservationClassName = mode === "reservation" ? styles.reservation : "";
+
   return (
-    <div className={styles.grid} aria-label={mode === "courses" ? "투어 코스 안내" : "투어 코스 선택"}>
+    <div className={[styles.grid, modeClassName, reservationClassName].filter(Boolean).join(" ")} aria-label={mode === "courses" ? "투어 코스 안내" : "투어 코스 선택"}>
       {mobileTourCards.map((card) => (
         <MobileTourCardView card={card} mode={mode} key={card.anchor} />
       ))}

@@ -65,6 +65,11 @@ const assets = {
 
 const mobileAssets = {
   hangulHero: withBasePath("/assets/figma/mobile/courses-hangul-hero.png"),
+  hangulLettersDecoration: withBasePath("/assets/figma/mobile/courses-hangul-letters-decoration.png"),
+  bellDecoration: withBasePath("/assets/figma/mobile/courses-bell-decoration.png"),
+  taegeukDecoration: withBasePath("/assets/figma/mobile/courses-taegeuk-decoration.png"),
+  bikeDecoration: withBasePath("/assets/figma/mobile/courses-bike-decoration.png"),
+  giftDecoration: withBasePath("/assets/figma/mobile/courses-gift-decoration.png"),
   market: withBasePath("/assets/figma/mobile/courses-market.png"),
   goldenLeft: withBasePath("/assets/figma/mobile/courses-golden-left.png"),
   goldenRightA: withBasePath("/assets/figma/mobile/courses-golden-right-a.png"),
@@ -591,11 +596,11 @@ function MobileGiftSection() {
 function MobileDecorativeAssets() {
   return (
     <div className={styles.mobileDecorativeAssets} aria-hidden="true">
-      <img className={styles.mobileHangulLettersDecoration} src={assets.hangulLetters} alt="" />
-      <img className={styles.mobileBellDecoration} src={assets.bell} alt="" />
-      <img className={styles.mobileTaegeukDecoration} src={assets.taegeuk} alt="" />
-      <img className={styles.mobileBikeDecoration} src={assets.bikeDecoration} alt="" />
-      <img className={styles.mobileGiftDecoration} src={assets.giftDecoration} alt="" />
+      <img className={styles.mobileHangulLettersDecoration} src={mobileAssets.hangulLettersDecoration} alt="" />
+      <img className={styles.mobileBellDecoration} src={mobileAssets.bellDecoration} alt="" />
+      <img className={styles.mobileTaegeukDecoration} src={mobileAssets.taegeukDecoration} alt="" />
+      <img className={styles.mobileBikeDecoration} src={mobileAssets.bikeDecoration} alt="" />
+      <img className={styles.mobileGiftDecoration} src={mobileAssets.giftDecoration} alt="" />
     </div>
   );
 }
@@ -603,7 +608,7 @@ function MobileDecorativeAssets() {
 function MobileCoursesPage() {
   return (
     <div className={styles.mobilePage} data-node-id="57:904" data-name="02_landing_M">
-      <MobileSiteHeader active="courses" />
+      <MobileSiteHeader active="courses" compact />
       <MobileDecorativeAssets />
       <div className={styles.mobileContentStack}>
         {sections.map((section, index) => (
