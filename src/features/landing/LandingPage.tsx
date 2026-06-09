@@ -9,13 +9,13 @@ import { tourCatalog } from "@/lib/tours";
 import styles from "./LandingPage.module.css";
 
 const imgImage30 = withBasePath("/assets/figma/mcp/6e173378-eb7c-4df3-936b-d8007b404ad4.png");
-const imgKakaoTalk20250905103329489281 = withBasePath("/assets/figma/mcp/6953c77a-4366-4c08-95a5-b18a1e6a7cee.webp");
-const img001P1 = withBasePath("/assets/figma/mobile/tour-card-golden.webp");
-const imgF5550E6E0A054A92B6DbAae059C455821 = withBasePath("/assets/figma/mcp/7126efd5-5893-4db5-a348-932564b7fd20.webp");
-const imgKakaoTalk202511171151172981 = withBasePath("/assets/figma/mcp/461689e3-dc4a-47ac-8fc9-7f9928a9fed4.webp");
-const imgKakaoTalk202511171152391871 = withBasePath("/assets/figma/mcp/c57dbe85-295b-4130-9b84-401993be52c4.webp");
-const imgKakaoTalk20251117115117298071 = withBasePath("/assets/figma/mcp/da8bc77c-6a74-4345-98b6-f0941f96579e.webp");
-const imgHeroBikeSource = withBasePath("/assets/figma/groups/landing-hero-bike-source.webp");
+const imgKakaoTalk20250905103329489281 = withBasePath("/assets/figma/mcp/6953c77a-4366-4c08-95a5-b18a1e6a7cee-mobile.webp");
+const img001P1 = withBasePath("/assets/figma/mobile/tour-card-golden-river-mobile.webp");
+const imgF5550E6E0A054A92B6DbAae059C455821 = withBasePath("/assets/figma/mcp/7126efd5-5893-4db5-a348-932564b7fd20-mobile.webp");
+const imgKakaoTalk202511171151172981 = withBasePath("/assets/figma/mcp/461689e3-dc4a-47ac-8fc9-7f9928a9fed4-mobile.webp");
+const imgKakaoTalk202511171152391871 = withBasePath("/assets/figma/mcp/c57dbe85-295b-4130-9b84-401993be52c4-mobile.webp");
+const imgKakaoTalk20251117115117298071 = withBasePath("/assets/figma/mcp/da8bc77c-6a74-4345-98b6-f0941f96579e-mobile.webp");
+const imgHeroBikeSource = withBasePath("/assets/figma/groups/landing-hero-bike-source-mobile.webp");
 const imgHeroGroup = withBasePath("/assets/figma/groups/landing-hero-group.webp");
 const imgImage40 = withBasePath("/assets/figma/mcp/efb2b323-a460-4830-a947-ad0427775610.png");
 const imgRiverHeroFrame = withBasePath("/assets/figma/groups/landing-river-hero-frame.webp");
@@ -319,7 +319,7 @@ function MobileLanding() {
         <div className={styles.mobileHeroArt} aria-hidden="true">
           <div className={styles.mobileHeroYellowOutline} />
           <div className={styles.mobileHeroYellowFill} />
-          <img className={styles.mobileHeroBikeImage} src={imgHeroBikeSource} alt="" width={1122} height={1402} {...eagerImageAttrs} />
+          <img className={styles.mobileHeroBikeImage} src={imgHeroBikeSource} alt="" width={760} height={950} {...eagerImageAttrs} />
         </div>
       </section>
       <section className={styles.mobileRiver} aria-labelledby="mobile-river-title" data-reveal>
@@ -336,18 +336,18 @@ function MobileLanding() {
           </p>
         </div>
         <div className={`${styles.mobilePhotoFrame} ${styles.mobileRiverHeroPhoto}`}>
-          <img src={imgKakaoTalk20250905103329489281} alt="남한강변 자전거길" width={1440} height={1081} {...lazyImageAttrs} />
+          <img src={imgKakaoTalk20250905103329489281} alt="남한강변 자전거길" width={1320} height={991} {...lazyImageAttrs} />
         </div>
         <div className={styles.mobileRiverCards}>
           <article className={styles.mobileRiverCard}>
             <div className={`${styles.mobilePhotoFrame} ${styles.mobileRiverCardPhotoOne}`}>
-              <img src={img001P1} alt="남한강 자전거 코스" width={1440} height={813} {...lazyImageAttrs} />
+              <img src={img001P1} alt="남한강 자전거 코스" width={1000} height={565} {...lazyImageAttrs} />
             </div>
             <h3>남한강에서 편안하게 달릴 수 있는 자전거 코스</h3>
           </article>
           <article className={styles.mobileRiverCard}>
             <div className={`${styles.mobilePhotoFrame} ${styles.mobileRiverCardPhotoTwo}`}>
-              <img src={imgF5550E6E0A054A92B6DbAae059C455821} alt="세종대왕 관련 문화유산" width={1400} height={1050} {...lazyImageAttrs} />
+              <img src={imgF5550E6E0A054A92B6DbAae059C455821} alt="세종대왕 관련 문화유산" width={900} height={675} {...lazyImageAttrs} />
             </div>
             <h3>한글의 자음을 따라 달리는 지붕 없는 박물관</h3>
           </article>
@@ -362,8 +362,8 @@ function MobileLanding() {
             imageSrc={imgKakaoTalk202511171151172981}
             imageAlt="PAS 전기 자전거"
             imageClassName={styles.mobileFeaturePhotoOne}
-            imageWidth={1441}
-            imageHeight={961}
+            imageWidth={1200}
+            imageHeight={800}
             title={
               <>
                 힘들이지 않고 가뿐하<span className={styles.mobileSmileAnchor}><span className={styles.mobileSmileText}>게,</span><img className={styles.mobileSmileDecoration} src={imgSmile} alt="" width={76} height={76} {...lazyImageAttrs} /></span>
@@ -377,8 +377,8 @@ function MobileLanding() {
             imageSrc={imgKakaoTalk202511171152391871}
             imageAlt="가이드 크루와 함께하는 주행"
             imageClassName={styles.mobileFeaturePhotoTwo}
-            imageWidth={4032}
-            imageHeight={3024}
+            imageWidth={900}
+            imageHeight={675}
             title={
               <>
                 <span className={styles.mobileGuideFirstLine}><img className={styles.mobileGuideStar} src={imgVector21} alt="" width={71} height={88} {...lazyImageAttrs} /><span className={styles.mobileGuideText}>안전과 감동을 책임지는</span></span>
@@ -393,8 +393,8 @@ function MobileLanding() {
             imageSrc={imgKakaoTalk20251117115117298071}
             imageAlt="세나 인터콤 헬멧"
             imageClassName={styles.mobileFeaturePhotoThree}
-            imageWidth={961}
-            imageHeight={1440}
+            imageWidth={720}
+            imageHeight={1079}
             imageDecoration={<img className={styles.mobileSenaSquiggle} src={imgVector20} alt="" width={123} height={40} {...lazyImageAttrs} />}
             title={
               <>
