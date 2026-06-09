@@ -60,6 +60,7 @@ export default function RootLayout({
   return (
     <html lang="ko">
       <head>
+        <meta name="naver-site-verification" content="5f5bfe3cf5cdfbf2f3f38a69b5fea26051d14069" />
         <link rel="icon" href={withBasePath("/favicon.png")} sizes="512x512" type="image/png" />
       </head>
       <body>
