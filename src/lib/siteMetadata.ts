@@ -2,7 +2,8 @@ import { courseAnchors, type CourseAnchor } from "./courseAnchors";
 import { getTourReservationUrl, tourCatalog } from "./tours";
 import { kakaoChannelUrl } from "./tourLinks";
 
-export const siteDomain = "www.여주자전거시티투어.com";
+export const siteDisplayDomain = "www.여주자전거시티투어.com";
+export const siteDomain = "www.xn--v69a683bo5blg28e5tag8cz18antb.com";
 export const siteUrl = `https://${siteDomain}/`;
 export const siteName = "따르릉 여주 시티투어";
 export const siteTitle = "여주 자전거 시티투어";
