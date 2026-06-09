@@ -6,7 +6,7 @@ export PATH="$PWD/.tools/node/bin:$PATH"
 
 mkdir -p .next
 
-scripts/dev-server.sh > .next/dev-server.log 2>&1 &
+bash scripts/dev-server.sh > .next/dev-server.log 2>&1 &
 server_pid=$!
 
 cleanup() {

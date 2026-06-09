@@ -37,7 +37,7 @@ type TourSection = {
 };
 
 const assets = {
-  logo: withBasePath("/assets/figma/mcp/8fa42453-1f1e-4981-b9ac-b829a4af9936.png"),
+  logo: withBasePath("/assets/figma/mcp/6e173378-eb7c-4df3-936b-d8007b404ad4.png"),
   hangulLetters: withBasePath("/assets/figma/groups/courses-hangul-letters.png"),
   bell: withBasePath("/assets/figma/groups/courses-bell.png"),
   taegeuk: withBasePath("/assets/figma/groups/courses-taegeuk.png"),

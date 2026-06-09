@@ -1,16 +1,14 @@
-"use client";
-
-import { type MouseEvent, type ReactNode } from "react";
+import { type ReactNode } from "react";
 import MobileSiteHeader from "@/components/MobileSiteHeader";
 import MobileTourCardGrid from "@/components/MobileTourCardGrid";
-import { courseAnchorHref, courseAnchors } from "@/lib/courseAnchors";
 import { withBasePath } from "@/lib/sitePaths";
 import { kakaoChannelUrl } from "@/lib/tourLinks";
+import { tourCatalog } from "@/lib/tours";
 import styles from "./LandingPage.module.css";
 
 const imgImage30 = withBasePath("/assets/figma/mcp/6e173378-eb7c-4df3-936b-d8007b404ad4.png");
 const imgKakaoTalk20250905103329489281 = withBasePath("/assets/figma/mcp/6953c77a-4366-4c08-95a5-b18a1e6a7cee.jpg");
-const img001P1 = withBasePath("/assets/figma/mcp/8d01a7f6-43e6-4989-be27-7bff9861bf36.jpg");
+const img001P1 = withBasePath("/assets/figma/mobile/tour-card-golden.png");
 const imgF5550E6E0A054A92B6DbAae059C455821 = withBasePath("/assets/figma/mcp/7126efd5-5893-4db5-a348-932564b7fd20.jpg");
 const imgKakaoTalk202511171151172981 = withBasePath("/assets/figma/mcp/461689e3-dc4a-47ac-8fc9-7f9928a9fed4.jpg");
 const imgKakaoTalk202511171152391871 = withBasePath("/assets/figma/mcp/c57dbe85-295b-4130-9b84-401993be52c4.jpg");
@@ -24,10 +22,6 @@ const imgRiverCardTwoFrame = withBasePath("/assets/figma/groups/landing-river-ca
 const imgFeatureOneFrame = withBasePath("/assets/figma/groups/landing-feature-one-frame.png");
 const imgFeatureTwoFrame = withBasePath("/assets/figma/groups/landing-feature-two-frame.png");
 const imgFeatureThreeFrame = withBasePath("/assets/figma/groups/landing-feature-three-frame.png");
-const imgTourCardHangulMedia = withBasePath("/assets/figma/groups/tour-card-hangul-media.png");
-const imgTourCardGoldenMedia = withBasePath("/assets/figma/groups/tour-card-golden-media.png");
-const imgTourCardKYeojuMedia = withBasePath("/assets/figma/groups/tour-card-k-yeoju-media.png");
-const imgTourCardClubMedia = withBasePath("/assets/figma/groups/tour-card-club-media.png");
 const imgVector36 = withBasePath("/assets/figma/mcp/17b7eb28-4867-4d74-a8bd-e6899da0f967.svg");
 const imgVector21 = withBasePath("/assets/figma/mcp/7424fa6c-9d52-426c-acf0-36708e7cc0ff.svg");
 const imgSmile = withBasePath("/assets/figma/groups/landing-smile.png");
@@ -42,37 +36,7 @@ type LandingPageProps = {
   className?: string;
 };
 
-const journeyCards = [
-  {
-    title: "따르릉 여주 한글길 투어",
-    img: imgTourCardHangulMedia,
-    href: courseAnchorHref(courseAnchors.hangul),
-  },
-  {
-    title: "남한강 골든벨 투어",
-    img: imgTourCardGoldenMedia,
-    href: courseAnchorHref(courseAnchors.goldenBell),
-  },
-  {
-    title: "K-여주 바이크 투어",
-    img: imgTourCardKYeojuMedia,
-    href: courseAnchorHref(courseAnchors.kYeoju),
-  },
-  {
-    title: "따르릉 동호회 코스",
-    img: imgTourCardClubMedia,
-    href: courseAnchorHref(courseAnchors.club),
-  },
-];
-
-function handleJourneyCardClick(event: MouseEvent<HTMLAnchorElement>, href: string) {
-  if (event.defaultPrevented || event.button !== 0 || event.metaKey || event.altKey || event.ctrlKey || event.shiftKey) {
-    return;
-  }
-
-  event.preventDefault();
-  window.location.assign(href);
-}
+const journeyCards = tourCatalog;
 
 export default function LandingPage({ className }: LandingPageProps) {
   return (
@@ -290,13 +254,12 @@ function JourneySection() {
         {journeyCards.map((journey) => (
           <a
             className={styles.journeyCard}
-            href={journey.href}
-            key={journey.title}
-            aria-label={`${journey.title} 코스 안내 보기`}
-            onClick={(event) => handleJourneyCardClick(event, journey.href)}
+            href={journey.courseHref}
+            key={journey.anchor}
+            aria-label={`${journey.plainTitle} 코스 안내 보기`}
           >
-            <img className={styles.journeyMediaImage} src={journey.img} alt="" />
-            <h3>{journey.title}</h3>
+            <img className={styles.journeyMediaImage} src={journey.desktopCardMedia} alt="" />
+            <h3>{journey.plainTitle}</h3>
           </a>
         ))}
       </div>

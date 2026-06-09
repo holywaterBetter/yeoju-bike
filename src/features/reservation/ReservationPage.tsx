@@ -1,26 +1,17 @@
 import MobileSiteHeader from "@/components/MobileSiteHeader";
 import MobileTourCardGrid from "@/components/MobileTourCardGrid";
-import { type CourseAnchor, courseAnchors } from "@/lib/courseAnchors";
 import { withBasePath } from "@/lib/sitePaths";
-import { getTourReservationUrl } from "@/lib/tourLinks";
+import { getTourReservationUrl, tourCatalog } from "@/lib/tours";
 import styles from "./ReservationPage.module.css";
 
 const logoImage =
-  withBasePath("/assets/figma/mcp/6b90eb4f-12f6-4bac-94f6-a67f6ca5bab7.png");
-const hangulTourMedia =
-  withBasePath("/assets/figma/groups/tour-card-hangul-media.png");
-const goldenBellMedia =
-  withBasePath("/assets/figma/groups/tour-card-golden-media.png");
-const kYeojuMedia =
-  withBasePath("/assets/figma/groups/tour-card-k-yeoju-media.png");
-const clubCourseMedia =
-  withBasePath("/assets/figma/groups/tour-card-club-media.png");
+  withBasePath("/assets/figma/mcp/6e173378-eb7c-4df3-936b-d8007b404ad4.png");
 const pinIcon =
   withBasePath("/assets/figma/mcp/9d7342cc-64ce-481a-b535-338c1a4fc314.svg");
 const carIcon =
-  withBasePath("/assets/figma/mcp/cc6bdacf-aa31-4702-ab02-87c596891edd.svg");
+  withBasePath("/assets/figma/mobile/reservation-car.svg");
 const trainIcon =
-  withBasePath("/assets/figma/mcp/22b70c87-c9fd-41fa-893e-8608e95ee02c.svg");
+  withBasePath("/assets/figma/mobile/reservation-train.svg");
 
 const mobileAssets = {
   pin: withBasePath("/assets/figma/mobile/reservation-pin.svg"),
@@ -33,33 +24,16 @@ type ReservationPageProps = {
 };
 
 type TourCardData = {
-  anchor: CourseAnchor;
+  anchor: (typeof tourCatalog)[number]["anchor"];
   title: string;
   image: string;
 };
 
-const tourCards: TourCardData[] = [
-  {
-    anchor: courseAnchors.hangul,
-    title: "따르릉 여주 한글길 투어",
-    image: hangulTourMedia,
-  },
-  {
-    anchor: courseAnchors.goldenBell,
-    title: "남한강 골든벨 투어",
-    image: goldenBellMedia,
-  },
-  {
-    anchor: courseAnchors.kYeoju,
-    title: "K-여주 바이크 투어",
-    image: kYeojuMedia,
-  },
-  {
-    anchor: courseAnchors.club,
-    title: "따르릉 동호회 코스",
-    image: clubCourseMedia,
-  },
-];
+const tourCards: TourCardData[] = tourCatalog.map((tour) => ({
+  anchor: tour.anchor,
+  title: tour.plainTitle,
+  image: tour.desktopCardMedia,
+}));
 
 function ReservationTourCard({ card }: { card: TourCardData }) {
   const reservationUrl = getTourReservationUrl(card.anchor);

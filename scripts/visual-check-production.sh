@@ -7,7 +7,7 @@ export PATH="$PWD/.tools/node/bin:$PATH"
 node node_modules/next/dist/bin/next build
 
 mkdir -p .next
-scripts/start-server.sh > .next/start-server.log 2>&1 &
+bash scripts/start-server.sh > .next/start-server.log 2>&1 &
 server_pid=$!
 
 cleanup() {
