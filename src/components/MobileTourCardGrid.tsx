@@ -1,3 +1,6 @@
+"use client";
+
+import { useState } from "react";
 import { getTourReservationUrl } from "@/lib/tourLinks";
 import { lazyImageAttrs } from "@/lib/imageAttrs";
 import { mobileTourCards, type MobileTourCard } from "@/lib/mobileTourCards";
@@ -7,7 +10,15 @@ type MobileTourCardGridProps = {
   mode: "courses" | "reservation";
 };
 
-function MobileTourCardView({ card, mode }: { card: MobileTourCard; mode: MobileTourCardGridProps["mode"] }) {
+type MobileTourCardViewProps = {
+  card: MobileTourCard;
+  mode: MobileTourCardGridProps["mode"];
+  isStatusVisible: boolean;
+  onDisabledActivate: (anchor: string) => void;
+  onDisabledDeactivate: () => void;
+};
+
+function MobileTourCardView({ card, mode, isStatusVisible, onDisabledActivate, onDisabledDeactivate }: MobileTourCardViewProps) {
   const reservationUrl = getTourReservationUrl(card.anchor);
   const href = mode === "courses" ? card.courseHref : reservationUrl;
   const isDisabled = !href;
@@ -39,16 +50,28 @@ function MobileTourCardView({ card, mode }: { card: MobileTourCard; mode: Mobile
             {line}
           </span>
         ))}
-        {isDisabled && mode === "reservation" ? <span className={styles.status}>준비 중입니다</span> : null}
       </h2>
+      {isDisabled && mode === "reservation" ? (
+        <span className={styles.status} aria-hidden="true">
+          준비 중입니다
+        </span>
+      ) : null}
     </>
   );
 
   if (isDisabled) {
     return (
-      <article className={className} aria-disabled="true" tabIndex={0}>
+      <button
+        className={className}
+        type="button"
+        aria-label={`${card.plainTitle} 예약 준비 중입니다`}
+        data-status-visible={isStatusVisible ? "true" : undefined}
+        onClick={() => onDisabledActivate(card.anchor)}
+        onFocus={() => onDisabledActivate(card.anchor)}
+        onBlur={onDisabledDeactivate}
+      >
         {content}
-      </article>
+      </button>
     );
   }
 
@@ -60,13 +83,21 @@ function MobileTourCardView({ card, mode }: { card: MobileTourCard; mode: Mobile
 }
 
 export default function MobileTourCardGrid({ mode }: MobileTourCardGridProps) {
+  const [activeDisabledAnchor, setActiveDisabledAnchor] = useState<string | null>(null);
   const modeClassName = mode === "courses" ? styles.courses : "";
   const reservationClassName = mode === "reservation" ? styles.reservation : "";
 
   return (
     <div className={[styles.grid, modeClassName, reservationClassName].filter(Boolean).join(" ")} aria-label={mode === "courses" ? "투어 코스 안내" : "투어 코스 선택"}>
       {mobileTourCards.map((card) => (
-        <MobileTourCardView card={card} mode={mode} key={card.anchor} />
+        <MobileTourCardView
+          card={card}
+          mode={mode}
+          isStatusVisible={activeDisabledAnchor === card.anchor}
+          onDisabledActivate={setActiveDisabledAnchor}
+          onDisabledDeactivate={() => setActiveDisabledAnchor(null)}
+          key={card.anchor}
+        />
       ))}
     </div>
   );
