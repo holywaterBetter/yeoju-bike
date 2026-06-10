@@ -45,6 +45,21 @@ a {
   color: inherit;
 }
 
+@media (hover: none), (pointer: coarse) {
+  a,
+  button,
+  [role="button"] {
+    -webkit-tap-highlight-color: transparent;
+    touch-action: manipulation;
+  }
+
+  button,
+  [role="button"] {
+    -webkit-user-select: none;
+    user-select: none;
+  }
+}
+
 @media (prefers-reduced-motion: no-preference) {
   [data-responsive-page] {
     animation: pageEnter var(--motion-base) var(--ease-out) both;

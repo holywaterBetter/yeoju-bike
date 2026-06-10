@@ -921,8 +921,7 @@
   }
 
   .mobileTourCardDisabled:hover,
-  .mobileTourCardDisabled:focus-visible,
-  .mobileTourCardDisabled:active {
+  .mobileTourCardDisabled:focus-visible {
     filter: brightness(1.04);
     box-shadow: 0 10em 24em rgba(0, 0, 0, 0.16);
     transform: translateY(-1.2em);
@@ -949,8 +948,7 @@
   }
 
   .mobileTourCardDisabled:hover .mobileCardMedia::after,
-  .mobileTourCardDisabled:focus-visible .mobileCardMedia::after,
-  .mobileTourCardDisabled:active .mobileCardMedia::after {
+  .mobileTourCardDisabled:focus-visible .mobileCardMedia::after {
     background: rgba(0, 0, 0, 0.2);
   }
 
@@ -962,8 +960,7 @@
   }
 
   .mobileTourCardDisabled:hover .mobileCardMedia img,
-  .mobileTourCardDisabled:focus-visible .mobileCardMedia img,
-  .mobileTourCardDisabled:active .mobileCardMedia img {
+  .mobileTourCardDisabled:focus-visible .mobileCardMedia img {
     transform: scale(1.03);
   }
 
@@ -1059,8 +1056,7 @@
   }
 
   .mobileTourCardDisabled:hover h2 .mobileCardStatus,
-  .mobileTourCardDisabled:focus-visible h2 .mobileCardStatus,
-  .mobileTourCardDisabled:active h2 .mobileCardStatus {
+  .mobileTourCardDisabled:focus-visible h2 .mobileCardStatus {
     opacity: 1;
     transform: translateY(0);
   }
@@ -1186,5 +1182,15 @@
   .mobileDetailHeading {
     color: #000000;
     font-weight: 700;
+  }
+}
+
+@media (max-width: 767px) {
+  .page > .desktopPageContent {
+    display: none !important;
+  }
+
+  .page > .mobilePage {
+    display: block;
   }
 }

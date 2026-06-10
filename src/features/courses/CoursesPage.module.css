@@ -377,6 +377,7 @@
 }
 
 .reserveButton:not(.reserveButtonDisabled):active {
+  filter: brightness(0.96);
   scale: 0.985;
   translate: 0 0;
 }
@@ -1337,5 +1338,15 @@
     top: 4832em;
     width: 85.754em;
     height: 91.036em;
+  }
+}
+
+@media (max-width: 767px) {
+  .page > .desktopPageContent {
+    display: none !important;
+  }
+
+  .page > .mobilePage {
+    display: block;
   }
 }

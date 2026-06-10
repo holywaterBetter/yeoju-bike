@@ -686,6 +686,7 @@
   transition:
     box-shadow var(--motion-base) var(--ease-out),
     filter var(--motion-fast) var(--ease-out),
+    scale var(--motion-fast) var(--ease-out),
     transform var(--motion-fast) var(--ease-out);
 }
 
@@ -702,7 +703,8 @@
 }
 
 .journeyCard:active {
-  filter: brightness(0.95);
+  filter: brightness(0.96);
+  scale: 0.985;
   transform: translateY(0);
 }
 
@@ -830,6 +832,7 @@
 }
 
 .kakaoButton:active {
+  filter: brightness(0.96);
   scale: 0.985;
   translate: 0 0;
 }
@@ -1355,6 +1358,7 @@
     text-decoration: none;
     transition:
       filter 160ms ease,
+      scale var(--motion-fast) var(--ease-out),
       transform 160ms ease;
   }
 
@@ -1370,7 +1374,8 @@
   }
 
   .mobileJourneyCard:active {
-    filter: brightness(0.95);
+    filter: brightness(0.96);
+    scale: 0.985;
     transform: translateY(0);
   }
 
@@ -1490,4 +1495,14 @@
     object-fit: cover;
   }
 
+}
+
+@media (max-width: 767px) {
+  .page > .desktopLayers {
+    display: none !important;
+  }
+
+  .page > .mobileFrame {
+    display: block;
+  }
 }
