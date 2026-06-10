@@ -33,6 +33,7 @@ const imgRedDashTwo = withBasePath("/assets/figma/groups/landing-red-dash-2.png"
 const imgMobileRedDashOne = withBasePath("/assets/figma/mobile/landing-red-dash-one.svg");
 const imgMobileRedDashTwo = withBasePath("/assets/figma/mobile/landing-red-dash-two.svg");
 const imgYellowSpark = withBasePath("/assets/figma/groups/landing-yellow-spark.png");
+const transparentPixel = "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///ywAAAAAAQABAAACAUwAOw==";
 
 type LandingPageProps = {
   className?: string;
@@ -98,7 +99,10 @@ function Hero() {
         </p>
       </div>
       <div className={styles.heroArt} aria-hidden="true" data-node-id="1:199">
-        <img className={styles.heroArtImage} src={imgHeroGroup} alt="" width={726} height={962} data-name="Group 162532" {...eagerImageAttrs} />
+        <picture>
+          <source media="(min-width: 768px)" srcSet={imgHeroGroup} />
+          <img className={styles.heroArtImage} src={transparentPixel} alt="" width={726} height={962} data-name="Group 162532" {...eagerImageAttrs} />
+        </picture>
       </div>
       <YellowSpark />
     </section>
@@ -319,7 +323,10 @@ function MobileLanding() {
         <div className={styles.mobileHeroArt} aria-hidden="true">
           <div className={styles.mobileHeroYellowOutline} />
           <div className={styles.mobileHeroYellowFill} />
-          <img className={styles.mobileHeroBikeImage} src={imgHeroBikeSource} alt="" width={760} height={950} {...eagerImageAttrs} />
+          <picture>
+            <source media="(max-width: 767px)" srcSet={imgHeroBikeSource} />
+            <img className={styles.mobileHeroBikeImage} src={transparentPixel} alt="" width={760} height={950} {...eagerImageAttrs} />
+          </picture>
         </div>
       </section>
       <section className={styles.mobileRiver} aria-labelledby="mobile-river-title" data-reveal>

@@ -1,6 +1,4 @@
 export const eagerImageAttrs = {
-  loading: "eager",
-  fetchPriority: "high",
   decoding: "async",
 } as const;
 
