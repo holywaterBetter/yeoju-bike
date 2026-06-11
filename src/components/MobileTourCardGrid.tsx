@@ -22,20 +22,21 @@ function MobileTourCardView({ card, mode, isStatusVisible, onDisabledActivate, o
   const reservationUrl = getTourReservationUrl(card.anchor);
   const href = mode === "courses" ? card.courseHref : reservationUrl;
   const isDisabled = !href;
-  const hasFigmaMediaImage = Boolean(card.figmaMediaImageSrc);
-  const imageSrc = card.figmaMediaImageSrc ?? (mode === "reservation" ? (card.reservationImageSrc ?? card.imageSrc) : card.imageSrc);
-  const imageWidth = hasFigmaMediaImage
+  const usesFigmaMediaImage = mode !== "reservation" && Boolean(card.figmaMediaImageSrc);
+  const usesReservationImage = mode === "reservation";
+  const imageSrc = usesReservationImage ? (card.reservationImageSrc ?? card.imageSrc) : (card.figmaMediaImageSrc ?? card.imageSrc);
+  const imageWidth = usesFigmaMediaImage
     ? (card.figmaMediaImageWidth ?? card.imageWidth)
-    : mode === "reservation"
+    : usesReservationImage
       ? (card.reservationImageWidth ?? card.imageWidth)
       : card.imageWidth;
-  const imageHeight = hasFigmaMediaImage
+  const imageHeight = usesFigmaMediaImage
     ? (card.figmaMediaImageHeight ?? card.imageHeight)
-    : mode === "reservation"
+    : usesReservationImage
       ? (card.reservationImageHeight ?? card.imageHeight)
       : card.imageHeight;
-  const imageClassName = hasFigmaMediaImage ? styles.figmaMediaImage : mode === "reservation" ? styles.reservationImage : styles[card.cropClassName];
-  const className = `${styles.card} ${hasFigmaMediaImage ? styles.figmaMediaCard : ""} ${isDisabled ? styles.disabled : ""}`;
+  const imageClassName = usesFigmaMediaImage ? styles.figmaMediaImage : usesReservationImage ? styles.reservationImage : styles[card.cropClassName];
+  const className = `${styles.card} ${usesFigmaMediaImage ? styles.figmaMediaCard : ""} ${isDisabled ? styles.disabled : ""}`;
   const titleLineClassName = [styles.titleLine, card.hasEmbeddedTitle ? styles.embeddedTitleLine : ""].filter(Boolean).join(" ");
   const content = (
     <>
