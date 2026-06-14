@@ -25,6 +25,7 @@ type TourSection = {
   nodeId: string;
   title: string | string[];
   titleWidth: number;
+  badges: string[];
   subtitle: string;
   body: string[];
   audience: string[];
@@ -86,9 +87,10 @@ const sections: TourSection[] = [
   {
     anchor: courseAnchors.hangul,
     nodeId: "23:896",
-    title: ["따르릉 여주 한글길 투어", "ㄱ부터 ㅎ까지"],
+    title: ["한글길 이야기 코스", "(Story Course)"],
     titleWidth: 632,
-    subtitle: "여주의 숨은 이야기를 따라 달리는 자전거 여행",
+    badges: ["가이드형"],
+    subtitle: "여주의 숨은 역사와 문화를 초성 순서대로 만나는 인문 해설 투어",
     body: [
       "금은모래캠핑장(ㄱ)에서 출발해 한글시장(ㅎ)까지 시그니처 투어입니다.",
       "영월루, 세종대왕릉 등 아름다운 풍경 속에 숨겨진 여주의 역사와 문화 이야기를 따르릉 가이드의 재미있는 해설로 만나보세요.",
@@ -102,7 +104,7 @@ const sections: TourSection[] = [
     heroImages: [
       {
         src: assets.hangulHeroFrame,
-        alt: "여주 한글길 투어 카드 거치대",
+        alt: "한글길 이야기 코스 카드 거치대",
         left: 0,
         top: 0,
         width: 1200,
@@ -135,9 +137,10 @@ const sections: TourSection[] = [
   {
     anchor: courseAnchors.goldenBell,
     nodeId: "24:156",
-    title: "남한강 골든벨 투어",
+    title: ["한글길 수수께끼 코스", "(Quiz Course)"],
     titleWidth: 632,
-    subtitle: "남한강변에서 펼쳐지는 우리 가족 미션 어드벤처",
+    badges: ["가이드형"],
+    subtitle: "강변공원을 달리며 유쾌한 초성 퀴즈를 푸는 에듀테인먼트 투어",
     body: [
       "시원한 남한강변을 달리며 중간중간 주어지는 여주 관련 퀴즈를 풀어보는 참여형 액티비티 코스입니다. ",
       "가족이 함께 힘을 합쳐 문제를 풀고, 드론 촬영으로 평생 남을 특별한 추억도 남겨보세요.",
@@ -148,7 +151,7 @@ const sections: TourSection[] = [
     heroImages: [
       {
         src: assets.goldenBellHeroFrame,
-        alt: "남한강 골든벨 투어 라이딩 배경",
+        alt: "한글길 수수께끼 코스 라이딩 배경",
         left: 0,
         top: 0,
         width: 1200,
@@ -181,9 +184,10 @@ const sections: TourSection[] = [
   {
     anchor: courseAnchors.kYeoju,
     nodeId: "24:183",
-    title: "K-여주 바이크 투어",
+    title: ["K-컬쳐 코스", "(K-Culture Course)"],
     titleWidth: 632,
-    subtitle: "외국인 친구에게 소개하고 싶은 ‘가장 한국적인 하루’",
+    badges: ["가이드형", "개발중"],
+    subtitle: "외국인을 대상으로 K-문화의 집합, 여주의 매력을 전하는 글로벌 투어",
     body: [
       "한국의 아름다움을 만끽하고 싶은 외국인 방문객을 위한 맞춤형 글로벌 코스입니다. 평화로운 남한강 자전거길을 달리며",
       "한국의 아름다운 자연을 느끼고, 여주 도자기 문화를 접하며 한국의 전통매력에 깊이 빠져드는 시간을 선사합니다.",
@@ -231,9 +235,10 @@ const sections: TourSection[] = [
   {
     anchor: courseAnchors.club,
     nodeId: "24:423",
-    title: "따르릉 동호회 코스 (자율 라이딩)",
+    title: ["바이크 챌린지 코스", "(Challenge Course)"],
     titleWidth: 822,
-    subtitle: "우리만의 속도로 자유롭게 남한강을 누비는 라이더의 시간",
+    badges: ["자율형", "개발중"],
+    subtitle: "동호인을 위한 가이드 없는 자율 완주 인증 라이딩 투어",
     body: [
       "가이드 동행 없이 동호회원들끼리 자유롭게 여주의 아름다운 자전거길을 달리는 자율 주행 코스입니다. ",
       "따르릉이 추천하는 코스를 따라 남한강의 시원한 바람과 탁 트인 풍경을 오롯이 느끼며 그룹 라이딩의 쾌감을 만끽해보세요. ",
@@ -248,12 +253,12 @@ const sections: TourSection[] = [
 const gifts = [
   {
     title: "자전거 라이딩 마스크",
-    course: "따르릉 여주 한글길 투어",
+    course: "한글길 이야기 코스 (Story Course)",
     icon: <img className={styles.iconImage} src={assets.giftMask} alt="" width={69} height={69} {...lazyImageAttrs} />,
   },
   {
     title: "가챠 키링 만들기 세트",
-    course: "따르릉 여주 한글길 투어",
+    course: "한글길 이야기 코스 (Story Course)",
     icon: (
       <span className={styles.iconStack}>
         <img className={styles.iconOval} src={assets.giftOvalBlue} alt="" width={69} height={69} {...lazyImageAttrs} />
@@ -263,7 +268,7 @@ const gifts = [
   },
   {
     title: "스냅샷 & 드론 영상 촬영",
-    course: "남한강 골등벨 투어",
+    course: "한글길 수수께끼 코스 (Quiz Course)",
     icon: (
       <span className={styles.iconStack}>
         <img className={styles.iconOval} src={assets.giftOvalYellow} alt="" width={69} height={69} {...lazyImageAttrs} />
@@ -273,7 +278,7 @@ const gifts = [
   },
   {
     title: "나만의 여주 펜 꾸미기",
-    course: "남한강 골등벨 투어",
+    course: "한글길 수수께끼 코스 (Quiz Course)",
     icon: (
       <span className={styles.iconStack}>
         <img className={styles.iconOval} src={assets.giftOvalYellow} alt="" width={69} height={69} {...lazyImageAttrs} />
@@ -283,12 +288,12 @@ const gifts = [
   },
   {
     title: "여주 도자기 기념품",
-    course: "K- 여주 바이크 투어 (외국인 맞춤형)",
+    course: "K-컬쳐 코스 (K-Culture Course)",
     icon: <img className={styles.iconImage} src={assets.giftPottery} alt="" width={69} height={69} {...lazyImageAttrs} />,
   },
   {
     title: "여주 자전거 물통",
-    course: "동호회 투어",
+    course: "바이크 챌린지 코스 (Challenge Course)",
     icon: <img className={styles.iconImage} src={assets.giftBottle} alt="" width={69} height={69} {...lazyImageAttrs} />,
   },
 ];
@@ -300,7 +305,7 @@ const mobileSectionMedia = [
     [{ src: mobileAssets.market, alt: "한글시장 입구", className: styles.mobileMarketImage, width: 600, height: 400 }],
   ],
   [
-    [{ src: assets.goldenBellHeroFrame, alt: "남한강 골든벨 투어 라이딩", className: styles.mobileGoldenHeroFrameImage, width: 1200, height: 619 }],
+    [{ src: assets.goldenBellHeroFrame, alt: "한글길 수수께끼 코스 라이딩", className: styles.mobileGoldenHeroFrameImage, width: 1200, height: 619 }],
     [{ src: mobileAssets.goldenLeft, alt: "남한강 공원", className: styles.mobileGoldenLeftImage, width: 1440, height: 813 }],
     [
       { src: mobileAssets.goldenRightA, alt: "", className: styles.mobileGoldenRightImageA, width: 1440, height: 1080 },
@@ -344,11 +349,41 @@ function SectionTitle({ title, width }: { title: string | string[]; width: numbe
 
   return (
     <h1 className={styles.sectionTitle} style={{ width }}>
-      {lines.map((line) => (
-        <span key={line}>{line}</span>
+      {lines.map((line, index) => (
+        <span className={index > 0 ? styles.sectionTitleSecondary : undefined} key={line}>
+          {line}
+        </span>
       ))}
     </h1>
   );
+}
+
+function BadgeList({ badges, className = "" }: { badges: string[]; className?: string }) {
+  return (
+    <div className={[styles.badgeList, className].filter(Boolean).join(" ")}>
+      {badges.map((badge) => (
+        <span className={[styles.courseBadge, getBadgeClassName(badge)].filter(Boolean).join(" ")} key={badge}>
+          {badge}
+        </span>
+      ))}
+    </div>
+  );
+}
+
+function getBadgeClassName(badge: string) {
+  if (badge === "가이드형") {
+    return styles.courseBadgeGuided;
+  }
+
+  if (badge === "자율형") {
+    return styles.courseBadgeSelfGuided;
+  }
+
+  if (badge === "개발중") {
+    return styles.courseBadgePending;
+  }
+
+  return "";
 }
 
 function ReservationButton({ section }: { section: TourSection }) {
@@ -392,6 +427,7 @@ function TourSectionView({ section }: { section: TourSection }) {
         </div>
         <div className={styles.copyGroup}>
           <div className={styles.summaryCopy}>
+            <BadgeList badges={section.badges} />
             <h2>{section.subtitle}</h2>
             <div>
               {section.body.map((line) => (
@@ -475,19 +511,14 @@ function DecorativeAssets() {
 }
 
 function MobileSectionTitle({ section }: { section: TourSection }) {
-  const lines =
-    section.anchor === courseAnchors.hangul
-      ? ["따르릉 여주 한글길 투어", "ㄱ부터 ㅎ까지"]
-      : section.anchor === courseAnchors.club
-        ? ["따르릉 동호회 코스", "(자율 라이딩)"]
-        : Array.isArray(section.title)
-          ? section.title
-          : [section.title];
+  const lines = Array.isArray(section.title) ? section.title : [section.title];
 
   return (
     <h1 className={styles.mobileCourseTitle}>
-      {lines.map((line) => (
-        <span key={line}>{line}</span>
+      {lines.map((line, index) => (
+        <span className={index > 0 ? styles.mobileCourseTitleSecondary : undefined} key={line}>
+          {line}
+        </span>
       ))}
     </h1>
   );
@@ -558,6 +589,7 @@ function MobileCourseSectionView({ section, index }: { section: TourSection; ind
         </div>
         <div className={styles.mobileCopyGroup}>
           <div className={styles.mobileSummaryCopy}>
+            <BadgeList badges={section.badges} className={styles.mobileBadgeList} />
             <h2>{section.subtitle}</h2>
             <div>
               {section.body.map((line) => (
