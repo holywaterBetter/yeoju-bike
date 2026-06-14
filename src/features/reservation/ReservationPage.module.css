@@ -348,7 +348,7 @@
 
 .tourCardDisabled:hover .cardMedia::after,
 .tourCardDisabled:focus-visible .cardMedia::after {
-  background: rgba(0, 0, 0, 0.2);
+  background: rgba(0, 0, 0, 0.38);
 }
 
 .cardImage {
@@ -378,7 +378,7 @@
   position: absolute;
   left: 0;
   right: 0;
-  top: 72.38%;
+  top: 66%;
   bottom: 0;
   display: flex;
   flex-direction: column;
@@ -388,8 +388,12 @@
 }
 
 .cardLabel h2 {
+  display: flex;
   margin: 0;
   width: 100%;
+  flex-direction: column;
+  align-items: center;
+  gap: 2px;
   color: #ffffff;
   font-family: var(--font-primary);
   font-size: 32px;
@@ -400,16 +404,33 @@
   word-break: break-word;
 }
 
+.cardTitleSecondary {
+  font-size: 0.68em;
+  font-weight: 600;
+  line-height: 1.2;
+}
+
 .cardStatus {
-  margin: 10px 0 0;
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  z-index: 3;
+  min-width: 152px;
+  margin: 0;
+  padding: 10px 18px 11px;
+  border: 1px solid rgba(255, 255, 255, 0.44);
+  border-radius: 999px;
+  background: rgba(0, 0, 0, 0.78);
+  box-shadow: 0 14px 34px rgba(0, 0, 0, 0.32);
   color: #ffffff;
   font-family: var(--font-primary);
   font-size: 20px;
   font-weight: 700;
-  line-height: normal;
+  line-height: 1.2;
   opacity: 0;
+  pointer-events: none;
   text-align: center;
-  transform: translateY(8px);
+  transform: translate(-50%, -42%) scale(0.96);
   transition:
     opacity 160ms ease,
     transform 160ms ease;
@@ -418,7 +439,7 @@
 .tourCardDisabled:hover .cardStatus,
 .tourCardDisabled:focus-visible .cardStatus {
   opacity: 1;
-  transform: translateY(0);
+  transform: translate(-50%, -50%) scale(1);
 }
 
 .directions {
@@ -727,6 +748,10 @@
   .cardLabel h2 {
     font-size: 21px;
     line-height: 1.35;
+  }
+
+  .cardTitleSecondary {
+    font-size: 0.72em;
   }
 
   .directions {

@@ -728,8 +728,14 @@
 
 .journeyCard h3 {
   position: absolute;
-  inset: 72.38% 0 0 0;
+  inset: 66% 0 0 0;
+  display: flex;
   width: 100%;
+  flex-direction: column;
+  align-items: center;
+  justify-content: flex-start;
+  gap: 2px;
+  margin: 0;
   padding: 0 20px 20px;
   color: #ffffff;
   font-family: var(--font-primary);
@@ -739,6 +745,12 @@
   line-height: normal;
   text-align: center;
   word-break: break-word;
+}
+
+.journeyTitleSecondary {
+  font-size: 0.68em;
+  font-weight: 600;
+  line-height: 1.2;
 }
 
 .contactCta {

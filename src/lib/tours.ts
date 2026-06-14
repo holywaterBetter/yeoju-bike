@@ -15,7 +15,6 @@ export type MobileTourCard = {
   reservationImageSrc?: string;
   reservationImageWidth?: number;
   reservationImageHeight?: number;
-  hasEmbeddedTitle?: boolean;
   cropClassName: "cardHangulImage" | "cardGoldenImage" | "cardKYeojuImage" | "cardClubImage";
   gradientClassName: "gradientBlack" | "gradientOlive" | "gradientGreen" | "gradientBrown";
 };
@@ -39,8 +38,8 @@ export type TourCatalogItem = {
 export const tourCatalog: TourCatalogItem[] = [
   {
     anchor: courseAnchors.hangul,
-    plainTitle: "따르릉 여주 한글길 투어",
-    titleLines: ["따르릉", "여주 한글길 투어"],
+    plainTitle: "한글길 이야기 코스 (Story Course)",
+    titleLines: ["한글길 이야기 코스", "(Story Course)"],
     courseHref: courseAnchorHref(courseAnchors.hangul),
     reservationUrl: "https://form.naver.com/response/v7niAyUhIlKeoY2YjUv2ww",
     desktopCardMedia: withBasePath("/assets/figma/groups/tour-card-hangul-media.webp"),
@@ -58,16 +57,16 @@ export const tourCatalog: TourCatalogItem[] = [
       gradientClassName: "gradientBlack",
     },
     seo: {
-      description: "금은모래캠핑장에서 한글시장까지 여주의 역사와 문화를 따라 달리는 시그니처 전기자전거 투어입니다.",
+      description: "여주의 숨은 역사와 문화를 초성 순서대로 만나는 가이드형 인문 해설 전기자전거 투어입니다.",
       audience: "여주의 역사와 문화를 여유롭게 즐기고 싶은 여행객",
       duration: "약 5시간",
-      serviceType: "여주 자전거 시티투어",
+      serviceType: "한글길 이야기 코스",
     },
   },
   {
     anchor: courseAnchors.goldenBell,
-    plainTitle: "남한강 골든벨 투어",
-    titleLines: ["남한강", "골든벨 투어"],
+    plainTitle: "한글길 수수께끼 코스 (Quiz Course)",
+    titleLines: ["한글길 수수께끼 코스", "(Quiz Course)"],
     courseHref: courseAnchorHref(courseAnchors.goldenBell),
     reservationUrl: "https://form.naver.com/response/zN4F5ETAfQtFaA7o8z5uUQ",
     desktopCardMedia: withBasePath("/assets/figma/groups/tour-card-golden-media.webp"),
@@ -82,16 +81,16 @@ export const tourCatalog: TourCatalogItem[] = [
       gradientClassName: "gradientOlive",
     },
     seo: {
-      description: "남한강변 자전거길을 달리며 여주 퀴즈와 촬영 미션을 함께 즐기는 가족형 액티비티 투어입니다.",
+      description: "강변공원을 달리며 유쾌한 초성 퀴즈를 푸는 가이드형 에듀테인먼트 전기자전거 투어입니다.",
       audience: "아이와 함께 특별한 여주 여행 코스를 찾는 가족 여행객",
       duration: "약 30분",
-      serviceType: "남한강 자전거길 투어",
+      serviceType: "한글길 수수께끼 코스",
     },
   },
   {
     anchor: courseAnchors.kYeoju,
-    plainTitle: "K-여주 바이크 투어",
-    titleLines: ["K-여주", "바이크 투어"],
+    plainTitle: "K-컬쳐 코스 (K-Culture Course)",
+    titleLines: ["K-컬쳐 코스", "(K-Culture Course)"],
     courseHref: courseAnchorHref(courseAnchors.kYeoju),
     desktopCardMedia: withBasePath("/assets/figma/groups/tour-card-k-yeoju-media.webp"),
     mobileCard: {
@@ -108,37 +107,33 @@ export const tourCatalog: TourCatalogItem[] = [
       gradientClassName: "gradientGreen",
     },
     seo: {
-      description: "남한강 자전거길, 여주 도자기 문화, 한국적인 로컬 경험을 묶은 외국인 맞춤형 바이크 투어입니다.",
+      description: "외국인을 대상으로 K-문화의 집합, 여주의 매력을 전하는 개발 중인 글로벌 전기자전거 투어입니다.",
       audience: "한국 로컬 문화를 체험하고 싶은 외국인 관광객",
       duration: "약 5시간",
-      serviceType: "전기자전거 투어",
+      serviceType: "K-컬쳐 코스",
     },
   },
   {
     anchor: courseAnchors.club,
-    plainTitle: "따르릉 동호회 코스",
-    titleLines: ["따르릉", "동호회 코스"],
+    plainTitle: "바이크 챌린지 코스 (Challenge Course)",
+    titleLines: ["바이크 챌린지 코스", "(Challenge Course)"],
     courseHref: courseAnchorHref(courseAnchors.club),
     desktopCardMedia: withBasePath("/assets/figma/groups/tour-card-club-media.webp"),
     mobileCard: {
       imageSrc: withBasePath("/assets/figma/mobile/tour-card-club.webp"),
       imageWidth: 1080,
       imageHeight: 810,
-      figmaMediaImageSrc: withBasePath("/assets/figma/mobile/landing-journey-card-club.webp"),
-      figmaMediaImageWidth: 168,
-      figmaMediaImageHeight: 172,
       reservationImageSrc: withBasePath("/assets/figma/mobile/reservation-card-club.webp"),
       reservationImageWidth: 1080,
       reservationImageHeight: 810,
-      hasEmbeddedTitle: true,
       cropClassName: "cardClubImage",
       gradientClassName: "gradientBrown",
     },
     seo: {
-      description: "동호회원들이 여주의 남한강 자전거길을 자유롭게 달릴 수 있도록 추천 코스맵을 제공하는 자율 라이딩 코스입니다.",
+      description: "동호인을 위한 가이드 없는 자율 완주 인증 방식의 개발 중인 추천 라이딩 투어입니다.",
       audience: "자전거 동호회와 단체 라이더",
       duration: "자유 주행",
-      serviceType: "여주 자전거 투어",
+      serviceType: "바이크 챌린지 코스",
     },
   },
 ];

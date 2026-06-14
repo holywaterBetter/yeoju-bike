@@ -28,12 +28,14 @@ type ReservationPageProps = {
 type TourCardData = {
   anchor: (typeof tourCatalog)[number]["anchor"];
   title: string;
+  titleLines: string[];
   image: string;
 };
 
 const tourCards: TourCardData[] = tourCatalog.map((tour) => ({
   anchor: tour.anchor,
   title: tour.plainTitle,
+  titleLines: tour.titleLines,
   image: tour.desktopCardMedia,
 }));
 
@@ -52,9 +54,15 @@ function ReservationTourCard({ card }: { card: TourCardData }) {
         />
       </div>
       <div className={styles.cardLabel}>
-        <h2>{card.title}</h2>
-        {!reservationUrl && <p className={styles.cardStatus}>준비 중입니다</p>}
+        <h2>
+          {card.titleLines.map((line, index) => (
+            <span className={index > 0 ? styles.cardTitleSecondary : undefined} key={line}>
+              {line}
+            </span>
+          ))}
+        </h2>
       </div>
+      {!reservationUrl && <p className={styles.cardStatus}>준비 중입니다</p>}
     </>
   );
 

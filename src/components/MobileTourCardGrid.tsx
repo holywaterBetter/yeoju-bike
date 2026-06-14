@@ -41,7 +41,6 @@ function MobileTourCardView({ card, mode, isStatusVisible, onDisabledActivate, o
       : card.imageHeight;
   const imageClassName = usesFigmaMediaImage ? styles.figmaMediaImage : usesReservationImage ? styles.reservationImage : styles[card.cropClassName];
   const className = `${styles.card} ${usesFigmaMediaImage ? styles.figmaMediaCard : ""} ${isDisabled ? styles.disabled : ""}`;
-  const titleLineClassName = [styles.titleLine, card.hasEmbeddedTitle ? styles.embeddedTitleLine : ""].filter(Boolean).join(" ");
   const content = (
     <>
       <div className={styles.media}>
@@ -50,8 +49,8 @@ function MobileTourCardView({ card, mode, isStatusVisible, onDisabledActivate, o
         <div className={`${styles.gradient} ${styles[card.gradientClassName]}`} />
       </div>
       <h2 className={styles.title}>
-        {card.titleLines.map((line) => (
-          <span className={titleLineClassName} key={line}>
+        {card.titleLines.map((line, index) => (
+          <span className={[styles.titleLine, index > 0 ? styles.titleLineSecondary : ""].filter(Boolean).join(" ")} key={line}>
             {line}
           </span>
         ))}

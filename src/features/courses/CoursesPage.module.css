@@ -192,11 +192,10 @@
 }
 
 .hangulLettersDecoration {
-  left: 410px;
-  top: 206px;
-  width: 372px;
-  height: 143.6px;
-  opacity: 0.82;
+  left: 234px;
+  top: 200px;
+  width: 383.5px;
+  height: 148.03px;
 }
 
 .bellDecoration {
@@ -216,19 +215,19 @@
 }
 
 .bikeDecoration {
-  left: 382px;
-  top: 6096px;
-  width: 250px;
-  height: 163px;
+  left: 289px;
+  top: 6017px;
+  width: 233px;
+  height: 152px;
   opacity: 0.9;
   transform: rotate(-4deg);
 }
 
 .giftDecoration {
-  left: 385px;
+  left: 270px;
   top: 7810px;
-  width: 160px;
-  height: 169.8px;
+  width: 128px;
+  height: 135.88px;
   opacity: 0.9;
   transform: rotate(-6deg);
 }
@@ -1381,16 +1380,15 @@
   }
 
   .mobileHangulLettersDecoration {
-    left: 34em;
-    top: 82em;
-    width: 210em;
-    height: 81.064em;
-    opacity: 0.84;
+    left: 16em;
+    top: 48em;
+    width: 230em;
+    height: 88.769em;
   }
 
   .mobileBellDecoration {
     left: 15em;
-    top: 1424em;
+    top: 1364em;
     width: 116.48em;
     height: 92.143em;
   }
@@ -1405,19 +1403,19 @@
   }
 
   .mobileBikeDecoration {
-    left: 36em;
-    top: 4084em;
-    width: 154em;
-    height: 100.577em;
+    left: 47em;
+    top: 4059em;
+    width: 140em;
+    height: 91.436em;
     opacity: 0.88;
     transform: rotate(-4deg);
   }
 
   .mobileGiftDecoration {
-    left: 82em;
-    top: 5100em;
-    width: 98em;
-    height: 104.036em;
+    left: 30em;
+    top: 5036em;
+    width: 78em;
+    height: 82.766em;
     opacity: 0.9;
     transform: rotate(-6deg);
   }

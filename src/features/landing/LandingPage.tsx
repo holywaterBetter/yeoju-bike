@@ -266,7 +266,13 @@ function JourneySection() {
             aria-label={`${journey.plainTitle} 코스 안내 보기`}
           >
             <img className={styles.journeyMediaImage} src={journey.desktopCardMedia} alt="" width={585} height={286} {...lazyImageAttrs} />
-            <h3>{journey.plainTitle}</h3>
+            <h3>
+              {journey.titleLines.map((line, index) => (
+                <span className={index > 0 ? styles.journeyTitleSecondary : undefined} key={line}>
+                  {line}
+                </span>
+              ))}
+            </h3>
           </a>
         ))}
       </div>
