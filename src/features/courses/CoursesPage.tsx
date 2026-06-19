@@ -58,7 +58,7 @@ const assets = {
   kYeojuHeroFrame: withBasePath("/assets/figma/groups/courses-k-yeoju-hero-frame.webp"),
   kYeojuGalleryLeftFrame: withBasePath("/assets/figma/groups/courses-k-yeoju-gallery-left-frame.webp"),
   kYeojuGalleryRightFrame: withBasePath("/assets/figma/groups/courses-k-yeoju-gallery-right-frame.webp"),
-  clubMapFrame: withBasePath("/assets/figma/groups/courses-club-map-frame-updated.svg"),
+  clubMapFrame: withBasePath("/assets/figma/groups/courses-club-map-frame.webp"),
   giftMask: withBasePath("/assets/figma/mcp/93cbe394-9c05-4d99-8f39-3f425e6a6e0d.svg"),
   giftOvalBlue: withBasePath("/assets/figma/mcp/261415ef-f7ad-469f-a2bb-df9d47e5b520.svg"),
   giftKeyring: withBasePath("/assets/figma/mcp/42cef7f0-21d9-486d-b54f-03929f4fee80.svg"),
@@ -83,7 +83,7 @@ const mobileAssets = {
   kHero: withBasePath("/assets/figma/mobile/courses-k-hero.webp"),
   kBoat: withBasePath("/assets/figma/mobile/courses-k-boat.webp"),
   kRice: withBasePath("/assets/figma/mobile/courses-k-rice.webp"),
-  clubMapRoute: withBasePath("/assets/figma/groups/courses-club-map-frame-updated.svg"),
+  clubMapRoute: withBasePath("/assets/figma/mobile/courses-club-map-route.webp"),
 };
 
 const sections: TourSection[] = [
