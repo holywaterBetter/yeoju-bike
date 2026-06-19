@@ -1418,22 +1418,22 @@
 
   .mobileBellDecoration {
     left: calc(var(--mobile-frame-offset) + 15em);
-    top: 1390em;
+    top: 1430em;
     width: 116.48em;
     height: 92.143em;
   }
 
   .mobileTaegeukDecoration {
     left: calc(var(--mobile-frame-offset) + 24em);
-    top: 2640em;
-    width: 62.743em;
+    top: 2800em;
+    width: 160em;
     height: 62.743em;
     opacity: 0.48;
   }
 
   .mobileBikeDecoration {
     left: calc(var(--mobile-frame-offset) + 49em);
-    top: 3920em;
+    top: 4170em;
     width: 129.675em;
     height: 81.229em;
     opacity: 0.48;
@@ -1441,7 +1441,7 @@
 
   .mobileGiftDecoration {
     left: calc(var(--mobile-frame-offset) + 37em);
-    top: 4900em;
+    top: 5200em;
     width: 85.754em;
     height: 91.036em;
   }

@@ -158,6 +158,10 @@
   background: linear-gradient(179.183deg, rgba(47, 41, 26, 0) 0.955%, #2f291a 98.84%);
 }
 
+.figmaMediaCard[data-card-anchor="club-tour"] .gradient {
+  inset: 50% 0 -0.05%;
+}
+
 .title {
   position: absolute;
   inset: 63.87% 0 8.51%;
@@ -173,11 +177,6 @@
   line-height: normal;
   text-align: center;
   word-break: break-word;
-}
-
-.figmaMediaCard .blur,
-.figmaMediaCard .gradient {
-  display: none;
 }
 
 .titleLine {

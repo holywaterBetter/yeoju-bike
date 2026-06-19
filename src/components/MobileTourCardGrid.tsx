@@ -69,6 +69,7 @@ function MobileTourCardView({ card, mode, isStatusVisible, onDisabledActivate, o
         className={className}
         type="button"
         aria-label={`${card.plainTitle} 예약 준비 중입니다`}
+        data-card-anchor={card.anchor}
         data-status-visible={isStatusVisible ? "true" : undefined}
         onClick={() => onDisabledActivate(card.anchor)}
         onFocus={() => onDisabledActivate(card.anchor)}
@@ -80,7 +81,7 @@ function MobileTourCardView({ card, mode, isStatusVisible, onDisabledActivate, o
   }
 
   return (
-    <a className={className} href={href} aria-label={`${card.plainTitle} ${mode === "courses" ? "코스 안내 보기" : "예약하기"}`}>
+    <a className={className} href={href} aria-label={`${card.plainTitle} ${mode === "courses" ? "코스 안내 보기" : "예약하기"}`} data-card-anchor={card.anchor}>
       {content}
     </a>
   );
