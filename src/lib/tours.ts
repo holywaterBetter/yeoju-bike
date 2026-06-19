@@ -23,6 +23,7 @@ export type TourCatalogItem = {
   anchor: CourseAnchor;
   plainTitle: string;
   titleLines: string[];
+  mobileTitleLines?: string[];
   courseHref: string;
   reservationUrl?: string;
   desktopCardMedia: string;
@@ -38,11 +39,12 @@ export type TourCatalogItem = {
 export const tourCatalog: TourCatalogItem[] = [
   {
     anchor: courseAnchors.hangul,
-    plainTitle: "한글길 이야기 코스 (Story Course)",
-    titleLines: ["한글길 이야기 코스", "(Story Course)"],
+    plainTitle: "따르릉 여주 한글길 투어",
+    titleLines: ["따르릉 여주 한글길 투어"],
+    mobileTitleLines: ["따르릉", "여주 한글길 투어"],
     courseHref: courseAnchorHref(courseAnchors.hangul),
     reservationUrl: "https://form.naver.com/response/v7niAyUhIlKeoY2YjUv2ww",
-    desktopCardMedia: withBasePath("/assets/figma/groups/tour-card-hangul-media.webp"),
+    desktopCardMedia: withBasePath("/assets/figma/groups/tour-card-golden-media.webp"),
     mobileCard: {
       imageSrc: withBasePath("/assets/figma/mobile/tour-card-hangul.webp"),
       imageWidth: 1440,
@@ -65,11 +67,12 @@ export const tourCatalog: TourCatalogItem[] = [
   },
   {
     anchor: courseAnchors.goldenBell,
-    plainTitle: "한글길 수수께끼 코스 (Quiz Course)",
-    titleLines: ["한글길 수수께끼 코스", "(Quiz Course)"],
+    plainTitle: "남한강 골든벨 투어",
+    titleLines: ["남한강 골든벨 투어"],
+    mobileTitleLines: ["남한강", "골든벨 투어"],
     courseHref: courseAnchorHref(courseAnchors.goldenBell),
     reservationUrl: "https://form.naver.com/response/zN4F5ETAfQtFaA7o8z5uUQ",
-    desktopCardMedia: withBasePath("/assets/figma/groups/tour-card-golden-media.webp"),
+    desktopCardMedia: withBasePath("/assets/figma/groups/tour-card-hangul-media.webp"),
     mobileCard: {
       imageSrc: withBasePath("/assets/figma/mobile/tour-card-golden.webp"),
       imageWidth: 1440,
@@ -89,8 +92,9 @@ export const tourCatalog: TourCatalogItem[] = [
   },
   {
     anchor: courseAnchors.kYeoju,
-    plainTitle: "K-컬쳐 코스 (K-Culture Course)",
-    titleLines: ["K-컬쳐 코스", "(K-Culture Course)"],
+    plainTitle: "K-여주 바이크 투어",
+    titleLines: ["K-여주 바이크 투어"],
+    mobileTitleLines: ["K-여주", "바이크 투어"],
     courseHref: courseAnchorHref(courseAnchors.kYeoju),
     desktopCardMedia: withBasePath("/assets/figma/groups/tour-card-k-yeoju-media.webp"),
     mobileCard: {
@@ -115,14 +119,18 @@ export const tourCatalog: TourCatalogItem[] = [
   },
   {
     anchor: courseAnchors.club,
-    plainTitle: "바이크 챌린지 코스 (Challenge Course)",
-    titleLines: ["바이크 챌린지 코스", "(Challenge Course)"],
+    plainTitle: "따르릉 동호회 코스",
+    titleLines: ["따르릉 동호회 코스"],
+    mobileTitleLines: ["따르릉", "동호회 코스"],
     courseHref: courseAnchorHref(courseAnchors.club),
     desktopCardMedia: withBasePath("/assets/figma/groups/tour-card-club-media.webp"),
     mobileCard: {
       imageSrc: withBasePath("/assets/figma/mobile/tour-card-club.webp"),
       imageWidth: 1080,
       imageHeight: 810,
+      figmaMediaImageSrc: withBasePath("/assets/figma/mobile/landing-journey-card-club-textless.webp"),
+      figmaMediaImageWidth: 168,
+      figmaMediaImageHeight: 172,
       reservationImageSrc: withBasePath("/assets/figma/mobile/reservation-card-club.webp"),
       reservationImageWidth: 1080,
       reservationImageHeight: 810,
@@ -150,7 +158,7 @@ export function toMobileTourCard(tour: TourCatalogItem): MobileTourCard {
   return {
     anchor: tour.anchor,
     plainTitle: tour.plainTitle,
-    titleLines: tour.titleLines,
+    titleLines: tour.mobileTitleLines ?? tour.titleLines,
     courseHref: tour.courseHref,
     ...tour.mobileCard,
   };

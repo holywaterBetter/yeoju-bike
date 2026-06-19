@@ -161,28 +161,18 @@
 .title {
   position: absolute;
   inset: 63.87% 0 8.51%;
-  display: flex;
+  display: block;
   width: 100%;
-  align-items: center;
-  flex-direction: column;
-  gap: 4em;
-  justify-content: center;
   margin: 0;
-  padding: 0 6em 12em;
+  padding: 0 0.625em 0.625em;
   color: #ffffff;
   font-family: var(--font-primary);
-  font-size: inherit;
+  font-size: 19.2em;
   font-weight: 600;
   letter-spacing: -0.02345em;
   line-height: normal;
   text-align: center;
   word-break: break-word;
-}
-
-.courses .title,
-.reservation .title {
-  justify-content: flex-start;
-  gap: 0;
 }
 
 .figmaMediaCard .blur,
@@ -191,15 +181,19 @@
 }
 
 .titleLine {
-  font-size: 16em;
-  line-height: 1.2;
+  display: block;
+  width: 100%;
+  font-size: 1em;
+  letter-spacing: inherit;
+  line-height: normal;
 }
 
 .titleLineSecondary {
-  margin-top: 0.2em;
-  font-size: 11.6em;
+  margin-top: 0;
+  font-size: 1em;
   font-weight: 600;
-  line-height: 1.2;
+  letter-spacing: inherit;
+  line-height: normal;
 }
 
 .status {

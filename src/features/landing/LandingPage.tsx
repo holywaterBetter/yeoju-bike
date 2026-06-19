@@ -15,8 +15,6 @@ const imgF5550E6E0A054A92B6DbAae059C455821 = withBasePath("/assets/figma/mcp/712
 const imgKakaoTalk202511171151172981 = withBasePath("/assets/figma/mcp/461689e3-dc4a-47ac-8fc9-7f9928a9fed4-mobile.webp");
 const imgKakaoTalk202511171152391871 = withBasePath("/assets/figma/mcp/c57dbe85-295b-4130-9b84-401993be52c4-mobile.webp");
 const imgKakaoTalk20251117115117298071 = withBasePath("/assets/figma/mcp/da8bc77c-6a74-4345-98b6-f0941f96579e-mobile.webp");
-const imgHeroBikeSource = withBasePath("/assets/figma/groups/landing-hero-bike-source-mobile.webp");
-const imgHeroGroup = withBasePath("/assets/figma/groups/landing-hero-group.webp");
 const imgImage40 = withBasePath("/assets/figma/mcp/efb2b323-a460-4830-a947-ad0427775610.png");
 const imgRiverHeroFrame = withBasePath("/assets/figma/groups/landing-river-hero-frame.webp");
 const imgRiverCardOneFrame = withBasePath("/assets/figma/groups/landing-river-card-one-frame.webp");
@@ -33,7 +31,6 @@ const imgRedDashTwo = withBasePath("/assets/figma/groups/landing-red-dash-2.png"
 const imgMobileRedDashOne = withBasePath("/assets/figma/mobile/landing-red-dash-one.svg");
 const imgMobileRedDashTwo = withBasePath("/assets/figma/mobile/landing-red-dash-two.svg");
 const imgYellowSpark = withBasePath("/assets/figma/groups/landing-yellow-spark.png");
-const transparentPixel = "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///ywAAAAAAQABAAACAUwAOw==";
 
 type LandingPageProps = {
   className?: string;
@@ -80,29 +77,19 @@ function Hero() {
     <section className={styles.hero} aria-labelledby="landing-title">
       <div className={styles.heroCopy} data-node-id="1:57" data-name="Content">
         <h1 id="landing-title" className={styles.heroTitle} data-node-id="1:58">
-          가이드와 함께
-          <br />
-          전기 자전거로 달리는
+          가이드와 함께 전기 자전거로 달리는
           <br />
           가장 완벽한 여주 시티투어
         </h1>
         <p className={styles.heroDescription} data-node-id="1:59">
-          전기 자전거에 몸을 싣고 여주의 풍경 속으로 들어와 보세요.
+          전기 자전거에 몸을 싣고 여주의 풍경 속으로 들어와 보세요. 발길이 닿지 않던 샛길부터 탁 트인 남한강변까지,
           <br />
-          발길이 닿지 않던 샛길부터 탁 트인 남한강변까지, 바퀴가 구르는 곳마다
+          바퀴가 구르는 곳마다 흥미로운 이야기가 펼쳐집니다.
           <br />
-          흥미로운 이야기가 펼쳐집니다. 여주의 구석구석을 가장 잘 아는 든든한
-          <br />
-          '자전거 가이드'가 여러분의 안전하고 즐거운 여행을 책임집니다.
+          여주의 구석구석을 가장 잘 아는 든든한 '자전거 가이드'가 여러분의 안전하고 즐거운 여행을 책임집니다.
           <br />
           우리 가족, 친구, 연인과 여주에서 잊지 못할 낭만을 완성해 보세요.
         </p>
-      </div>
-      <div className={styles.heroArt} aria-hidden="true" data-node-id="1:199">
-        <picture>
-          <source media="(min-width: 768px)" srcSet={imgHeroGroup} />
-          <img className={styles.heroArtImage} src={transparentPixel} alt="" width={726} height={962} data-name="Group 162532" {...eagerImageAttrs} />
-        </picture>
       </div>
       <YellowSpark />
     </section>
@@ -314,7 +301,7 @@ function MobileLanding() {
     <div className={styles.mobileFrame} data-node-id="57:134" data-name="01_landing_M">
       <MobileSiteHeader active="landing" compact />
       <section className={styles.mobileHero} aria-labelledby="mobile-landing-title">
-        <div className={styles.mobileCopyBlock}>
+        <div className={`${styles.mobileCopyBlock} ${styles.mobileHeroCopyBlock}`}>
           <h1 id="mobile-landing-title" className={styles.mobileHeroTitle}>
             가이드와 함께
             <br />
@@ -325,14 +312,6 @@ function MobileLanding() {
           <p className={styles.mobileBodyText}>
             전기 자전거에 몸을 싣고 여주의 풍경 속으로 들어와 보세요. 발길이 닿지 않던 샛길부터 탁 트인 남한강변까지, 바퀴가 구르는 곳마다 흥미로운 이야기가 펼쳐집니다. 여주의 구석구석을 가장 잘 아는 든든한 '자전거 가이드'가 여러분의 안전하고 즐거운 여행을 책임집니다. 우리 가족, 친구, 연인과 여주에서 잊지 못할 낭만을 완성해 보세요.
           </p>
-        </div>
-        <div className={styles.mobileHeroArt} aria-hidden="true">
-          <div className={styles.mobileHeroYellowOutline} />
-          <div className={styles.mobileHeroYellowFill} />
-          <picture>
-            <source media="(max-width: 767px)" srcSet={imgHeroBikeSource} />
-            <img className={styles.mobileHeroBikeImage} src={transparentPixel} alt="" width={760} height={950} {...eagerImageAttrs} />
-          </picture>
         </div>
       </section>
       <section className={styles.mobileRiver} aria-labelledby="mobile-river-title" data-reveal>
@@ -447,7 +426,16 @@ function MobileLanding() {
             있으신가요?
           </h2>
           <p className={styles.mobileBodyText}>
-            코스 문의, 단체 예약, 자전거 이용 방법 등 따르릉 여주 시티투어에 대한 모든 궁금증을 환영합니다. 카카오톡 채널로 메시지를 남겨주시면 친절하게 안내해 드리겠습니다. 주말 / 공휴일에는 가이드들이 현장에서 신나게 투어를 진행하고 있어 실시간 응대가 어려울 수 있습니다. 상담 운영 시간 - 평일 9:00~18:00
+            코스 문의, 단체 예약, 자전거 이용 방법 등 따르릉 여주 시티투어에 대한
+            <br />
+            모든 궁금증을 환영합니다.
+            <br />
+            카카오톡 채널로 메시지를 남겨주시면 친절하게 안내해 드리겠습니다.
+            <br />
+            주말 / 공휴일에는 가이드들이 현장에서 신나게 투어를 진행하고 있어 실시간 응대가 어려울 수 있습니다.
+            <br />
+            <br />
+            상담 운영 시간 - 평일 9:00~18:00
           </p>
         </div>
         <a className={styles.mobileKakaoButton} href={kakaoChannelUrl}>
@@ -476,7 +464,7 @@ type MobileFeatureProps = {
 function MobileFeature({ imageSrc, imageAlt, imageClassName, imageWidth, imageHeight, title, body, alignRight, imageDecoration }: MobileFeatureProps) {
   return (
     <article className={styles.mobileFeature}>
-      <div className={styles.mobileFeatureImage}>
+      <div className={`${styles.mobileFeatureImage} ${alignRight ? styles.mobileFeatureImageRight : ""}`}>
         <div className={styles.mobileFeatureImageClip}>
           <img className={imageClassName} src={imageSrc} alt={imageAlt} width={imageWidth} height={imageHeight} {...lazyImageAttrs} />
         </div>

@@ -3,7 +3,7 @@
   position: relative;
   isolation: isolate;
   width: 100%;
-  height: 5693px;
+  height: 5625px;
   overflow: hidden;
   background: transparent;
 }
@@ -16,7 +16,7 @@
   transform: scale(var(--pc-scale));
   transform-origin: top center;
   width: 1440px;
-  height: 5693px;
+  height: 5625px;
   overflow: visible;
   background: transparent;
   color: #000000;
@@ -192,13 +192,14 @@
 
 .heroCopy {
   position: absolute;
-  left: 0;
+  left: 120px;
   top: 231px;
   display: flex;
   flex-direction: column;
+  align-items: center;
   gap: 24px;
-  width: 823px;
-  padding-left: 120px;
+  width: 1200px;
+  text-align: center;
   word-break: break-word;
 }
 
@@ -208,6 +209,7 @@
   font-size: 60px;
   font-weight: 800;
   line-height: 84px;
+  text-align: center;
 }
 
 .heroDescription {
@@ -219,6 +221,7 @@
   font-weight: 400;
   letter-spacing: -0.6565px;
   line-height: 39px;
+  text-align: center;
   white-space: pre-wrap;
 }
 
@@ -334,10 +337,10 @@
 
 .yellowSpark {
   position: absolute;
-  left: 470px;
-  top: 889px;
-  width: 172px;
-  height: 109px;
+  left: 489px;
+  top: 821px;
+  width: 164.392px;
+  height: 108.192px;
   object-fit: contain;
   pointer-events: none;
 }
@@ -345,11 +348,11 @@
 .riverSection {
   position: absolute;
   left: 50%;
-  top: 964px;
+  top: 896px;
   display: flex;
   width: 1440px;
   flex-direction: column;
-  align-items: flex-start;
+  align-items: center;
   gap: 42px;
   padding: 0 120px;
   transform: translateX(-50%);
@@ -384,8 +387,10 @@
 
 .riverHeroImage {
   position: relative;
-  width: 100%;
+  width: 1200px;
+  max-width: 100%;
   height: 706px;
+  margin-inline: auto;
   overflow: hidden;
 }
 
@@ -400,9 +405,11 @@
 
 .riverCards {
   display: flex;
-  width: 1204px;
+  width: 1200px;
+  max-width: 100%;
   align-items: flex-start;
   justify-content: space-between;
+  margin-inline: auto;
 }
 
 .riverCard {
@@ -456,8 +463,8 @@
 .specialSection {
   position: absolute;
   isolation: isolate;
-  left: -3px;
-  top: 2724px;
+  left: -4px;
+  top: 2656px;
   display: flex;
   width: 1440px;
   flex-direction: column;
@@ -646,8 +653,8 @@
 
 .journeySection {
   position: absolute;
-  left: 1px;
-  top: 4304px;
+  left: 0;
+  top: 4236px;
   display: flex;
   width: 1440px;
   flex-direction: column;
@@ -755,8 +762,8 @@
 
 .contactCta {
   position: absolute;
-  left: -2px;
-  top: 5193px;
+  left: -3px;
+  top: 5125px;
   display: flex;
   width: 1440px;
   height: 500px;
@@ -883,7 +890,7 @@
 @media (min-width: 768px) and (max-width: 1439px) {
   .surface {
     --pc-scale: 0.9486111111;
-    height: 5400.443056px;
+    height: 5335.9375px;
   }
 }
 
@@ -891,7 +898,7 @@
   @media (min-width: 768px) and (max-width: 1439px) {
     .surface {
       --pc-scale: calc(100vw / 1440px);
-      height: 395.347222vw;
+      height: 390.625vw;
     }
   }
 }
@@ -931,6 +938,7 @@
 
   .mobileFrame {
     --mobile-unit: clamp(0.8955px, 0.248756vw, 1.0697px);
+    --mobile-frame-width: min(100%, 402em);
     position: relative;
     z-index: 1;
     display: block;
@@ -955,7 +963,9 @@
   .mobileContact {
     position: relative;
     z-index: 1;
-    width: 100%;
+    width: var(--mobile-frame-width);
+    margin-right: auto;
+    margin-left: auto;
     padding-right: 24em;
     padding-left: 24em;
   }
@@ -1003,6 +1013,11 @@
     word-break: break-word;
   }
 
+  .mobileHeroCopyBlock {
+    align-items: center;
+    text-align: center;
+  }
+
   .mobileHeroTitle,
   .mobileSectionTitle,
   .mobileCenteredTitle {
@@ -1016,8 +1031,10 @@
   }
 
   .mobileHeroTitle {
-    font-size: 34em;
-    width: min(378px, calc(100vw - 24px));
+    width: min(calc(354 * var(--mobile-unit)), calc(100vw - 48px));
+    height: calc(202 * var(--mobile-unit));
+    font-size: 36em;
+    text-align: center;
   }
 
   .mobileBodyText {
@@ -1031,6 +1048,11 @@
     letter-spacing: -0.03126em;
     line-height: 1.8571428571;
     word-break: break-word;
+  }
+
+  .mobileHeroCopyBlock .mobileBodyText {
+    width: min(calc(354 * var(--mobile-unit)), calc(100vw - 48px));
+    text-align: center;
   }
 
   .mobileHeroArt {
@@ -1079,7 +1101,7 @@
     display: flex;
     flex-direction: column;
     gap: 25.2em;
-    margin-top: 29em;
+    margin-top: 116em;
   }
 
   .mobilePhotoFrame {
@@ -1148,7 +1170,7 @@
     display: flex;
     flex-direction: column;
     gap: 36em;
-    margin-top: 90.4em;
+    margin-top: 101.6em;
   }
 
   .mobileFeatureList {
@@ -1173,6 +1195,11 @@
     background: #ffffff;
   }
 
+  .mobileFeatureImageRight {
+    display: flex;
+    justify-content: flex-end;
+  }
+
   .mobileFeatureImageClip {
     position: absolute;
     inset: 0;
@@ -1194,7 +1221,7 @@
   }
 
   .mobileFeaturePhotoTwo {
-    left: 0;
+    right: 0;
     top: -57em;
     width: 356em;
     height: 267em;
@@ -1344,7 +1371,7 @@
     display: flex;
     flex-direction: column;
     gap: 40.8em;
-    margin-top: 101em;
+    margin-top: 126em;
   }
 
   .mobileCenteredTitle {
@@ -1451,8 +1478,9 @@
     align-items: center;
     gap: 30em;
     margin-top: 101em;
+    min-height: 426.775em;
     padding-top: 51em;
-    padding-bottom: 30em;
+    padding-bottom: 27.6em;
     background: rgba(30, 30, 32, 0.06);
   }
 
@@ -1460,7 +1488,8 @@
     position: relative;
     display: inline-flex;
     min-width: 44px;
-    min-height: 44px;
+    min-height: 0;
+    height: 38.775em;
     align-items: center;
     justify-content: center;
     gap: 6em;
