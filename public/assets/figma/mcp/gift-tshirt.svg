@@ -1,0 +1,10 @@
+<svg preserveAspectRatio="none" width="100%" height="100%" overflow="visible" style="display: block;" viewBox="0 0 69 69" fill="none" xmlns="http://www.w3.org/2000/svg">
+<g id="Icon">
+<path id="Oval" fill-rule="evenodd" clip-rule="evenodd" d="M34.5 69C53.5538 69 69 53.5538 69 34.5C69 15.4462 53.5538 0 34.5 0C15.4462 0 0 15.4462 0 34.5C0 53.5538 15.4462 69 34.5 69Z" fill="var(--fill-0, #37A9F0)" fill-opacity="0.1"/>
+<path d="M27.87 18.6L21.73 21.26C20.83 21.65 20.17 22.44 19.94 23.39L18.42 29.67C18.08 31.07 18.85 32.5 20.21 32.99L24.58 34.55V49.02C24.58 50.69 25.93 52.04 27.6 52.04H41.4C43.07 52.04 44.42 50.69 44.42 49.02V34.55L48.79 32.99C50.15 32.5 50.92 31.07 50.58 29.67L49.06 23.39C48.83 22.44 48.17 21.65 47.27 21.26L41.13 18.6C39.92 20.48 37.48 21.75 34.5 21.75C31.52 21.75 29.08 20.48 27.87 18.6Z" fill="var(--fill-0, #EBF7FE)" stroke="var(--stroke-0, #37A9F0)" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/>
+<path d="M27.87 18.6C28.47 23.11 31.07 25.5 34.5 25.5C37.93 25.5 40.53 23.11 41.13 18.6" stroke="var(--stroke-0, #37A9F0)" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/>
+<path d="M24.58 34.55V28.64" stroke="var(--stroke-0, #37A9F0)" stroke-width="2.2" stroke-linecap="round"/>
+<path d="M44.42 34.55V28.64" stroke="var(--stroke-0, #37A9F0)" stroke-width="2.2" stroke-linecap="round"/>
+<path opacity="0.42" d="M30.25 34.1H38.75M30.25 39.15H38.75" stroke="var(--stroke-0, #37A9F0)" stroke-width="2.2" stroke-linecap="round"/>
+</g>
+</svg>

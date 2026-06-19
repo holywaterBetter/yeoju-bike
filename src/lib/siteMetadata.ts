@@ -9,6 +9,8 @@ export const siteName = "따르릉 여주 시티투어";
 export const siteTitle = "여주 자전거 시티투어";
 export const siteDescription =
   "남한강 자전거길과 여주 여행 코스를 전기자전거로 달리는 가이드 동행 여주 자전거 시티투어입니다.";
+export const siteOgImage = `${siteUrl}assets/og-logo.png`;
+export const siteOgImageAlt = "여주 자전거 시티투어 로고";
 export const siteKeywords = [
   "여주 자전거 시티투어",
   "여주 자전거 투어",
@@ -57,7 +59,7 @@ export function localBusinessJsonLd() {
     name: siteName,
     alternateName: siteTitle,
     url: siteUrl,
-    image: absoluteSiteUrl("/assets/figma/groups/landing-hero-group.png"),
+    image: siteOgImage,
     description: siteDescription,
     keywords: siteKeywords.join(", "),
     address: {

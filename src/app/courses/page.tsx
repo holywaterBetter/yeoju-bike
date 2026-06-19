@@ -1,5 +1,5 @@
 import CoursesPage from "@/features/courses/CoursesPage";
-import { absoluteSiteUrl, courseListJsonLd, siteName } from "@/lib/siteMetadata";
+import { absoluteSiteUrl, courseListJsonLd, siteName, siteOgImage, siteOgImageAlt } from "@/lib/siteMetadata";
 import type { Metadata } from "next";
 
 const coursesTitle = "여주 자전거 투어 코스 안내";
@@ -17,6 +17,15 @@ export const metadata: Metadata = {
     title: `${coursesTitle} | ${siteName}`,
     description: coursesDescription,
     url: coursesUrl,
+    images: [
+      {
+        url: siteOgImage,
+        width: 1200,
+        height: 630,
+        alt: siteOgImageAlt,
+        type: "image/png",
+      },
+    ],
   },
 };
 

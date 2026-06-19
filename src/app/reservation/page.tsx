@@ -1,5 +1,5 @@
 import ReservationPage from "@/features/reservation/ReservationPage";
-import { absoluteSiteUrl, siteName } from "@/lib/siteMetadata";
+import { absoluteSiteUrl, siteName, siteOgImage, siteOgImageAlt } from "@/lib/siteMetadata";
 import type { Metadata } from "next";
 
 const reservationTitle = "여주 전기자전거 투어 예약";
@@ -17,6 +17,15 @@ export const metadata: Metadata = {
     title: `${reservationTitle} | ${siteName}`,
     description: reservationDescription,
     url: reservationUrl,
+    images: [
+      {
+        url: siteOgImage,
+        width: 1200,
+        height: 630,
+        alt: siteOgImageAlt,
+        type: "image/png",
+      },
+    ],
   },
 };
 

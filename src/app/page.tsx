@@ -1,5 +1,5 @@
 import LandingPage from "@/features/landing/LandingPage";
-import { localBusinessJsonLd, siteDescription, siteName, siteTitle, siteUrl } from "@/lib/siteMetadata";
+import { localBusinessJsonLd, siteDescription, siteName, siteOgImage, siteOgImageAlt, siteTitle, siteUrl } from "@/lib/siteMetadata";
 import { withBasePath } from "@/lib/sitePaths";
 import type { Metadata } from "next";
 
@@ -13,6 +13,15 @@ export const metadata: Metadata = {
     title: `${siteTitle} | ${siteName}`,
     description: siteDescription,
     url: siteUrl,
+    images: [
+      {
+        url: siteOgImage,
+        width: 1200,
+        height: 630,
+        alt: siteOgImageAlt,
+        type: "image/png",
+      },
+    ],
   },
 };
 

@@ -679,6 +679,23 @@
     --pc-scale: 0.9486111111;
     height: 8454.970833px;
   }
+
+  .hangulLettersDecoration {
+    left: 300px;
+  }
+
+  .bellDecoration {
+    top: 2160px;
+  }
+
+  .taegeukDecoration {
+    top: 4160px;
+  }
+
+  .bikeDecoration {
+    left: 450px;
+    top: 6150px;
+  }
 }
 
 @supports (transform: scale(calc(100vw / 1440px))) {
@@ -952,7 +969,7 @@
   .mobileContentStack {
     position: absolute;
     left: 50%;
-    top: 106em;
+    top: 150em;
     z-index: 2;
     display: flex;
     width: min(100%, 402em);
@@ -1344,6 +1361,13 @@
     height: 23.12em;
   }
 
+  .mobileGiftIcon .clickerKeyringIcon {
+    left: 12.6em;
+    top: 6.9em;
+    width: 15em;
+    height: 24.23em;
+  }
+
   .mobileGiftCard h3 {
     width: 100%;
     margin: 0;
@@ -1387,21 +1411,21 @@
 
   .mobileHangulLettersDecoration {
     left: calc(var(--mobile-frame-offset) + 16em);
-    top: 68em;
+    top: 100em;
     width: 230.1em;
     height: 88.821em;
   }
 
   .mobileBellDecoration {
     left: calc(var(--mobile-frame-offset) + 15em);
-    top: 1306em;
+    top: 1390em;
     width: 116.48em;
     height: 92.143em;
   }
 
   .mobileTaegeukDecoration {
     left: calc(var(--mobile-frame-offset) + 24em);
-    top: 2573em;
+    top: 2640em;
     width: 62.743em;
     height: 62.743em;
     opacity: 0.48;
@@ -1409,7 +1433,7 @@
 
   .mobileBikeDecoration {
     left: calc(var(--mobile-frame-offset) + 49em);
-    top: 3849em;
+    top: 3920em;
     width: 129.675em;
     height: 81.229em;
     opacity: 0.48;
@@ -1417,7 +1441,7 @@
 
   .mobileGiftDecoration {
     left: calc(var(--mobile-frame-offset) + 37em);
-    top: 4795em;
+    top: 4900em;
     width: 85.754em;
     height: 91.036em;
   }

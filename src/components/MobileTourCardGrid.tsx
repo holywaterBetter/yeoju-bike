@@ -22,8 +22,8 @@ function MobileTourCardView({ card, mode, isStatusVisible, onDisabledActivate, o
   const reservationUrl = getTourReservationUrl(card.anchor);
   const href = mode === "courses" ? card.courseHref : reservationUrl;
   const isDisabled = !href;
-  const usesFigmaMediaImage = Boolean(card.figmaMediaImageSrc);
-  const usesReservationImage = mode === "reservation" && !usesFigmaMediaImage;
+  const usesReservationImage = mode === "reservation" && Boolean(card.reservationImageSrc);
+  const usesFigmaMediaImage = mode !== "reservation" && Boolean(card.figmaMediaImageSrc);
   const imageSrc = usesFigmaMediaImage
     ? (card.figmaMediaImageSrc ?? card.imageSrc)
     : usesReservationImage

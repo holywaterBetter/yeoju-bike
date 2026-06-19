@@ -12,7 +12,7 @@ import "@fontsource/nunito-sans/latin-400.css";
 import "@fontsource/nunito-sans/latin-600.css";
 import "@fontsource/nunito-sans/latin-700.css";
 import "@fontsource/nunito-sans/latin-800.css";
-import { absoluteSiteUrl, siteDescription, siteKeywords, siteName, siteTitle, siteUrl } from "@/lib/siteMetadata";
+import { siteDescription, siteKeywords, siteName, siteOgImage, siteOgImageAlt, siteTitle, siteUrl } from "@/lib/siteMetadata";
 import { withBasePath } from "@/lib/sitePaths";
 import "./globals.css";
 
@@ -37,10 +37,19 @@ export const metadata: Metadata = {
     url: siteUrl,
     images: [
       {
-        url: absoluteSiteUrl("/assets/figma/groups/landing-hero-group.png"),
-        alt: "여주 자전거 시티투어 라이딩",
+        url: siteOgImage,
+        width: 1200,
+        height: 630,
+        alt: siteOgImageAlt,
+        type: "image/png",
       },
     ],
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: `${siteTitle} | ${siteName}`,
+    description: siteDescription,
+    images: [siteOgImage],
   },
 };
 
