@@ -55,9 +55,7 @@ async function checkPage(pageSpec, viewport, mode) {
 
   try {
     await page.goto(`${baseUrl}${pageSpec.route}`, { waitUntil: "networkidle" });
-    await page.waitForFunction(() =>
-      Array.from(document.images).every((image) => image.complete)
-    );
+    await loadRenderedImages(page);
 
     const result = await page.evaluate(
       ({ mode, pageSpec }) => {
@@ -71,7 +69,18 @@ async function checkPage(pageSpec, viewport, mode) {
         const runtimeCropImages = Array.from(document.images)
           .map((image) => image.currentSrc || image.src)
           .filter((src) => src.includes("/assets/figma/crops/"));
+        const isRenderedImage = (image) => {
+          const rect = image.getBoundingClientRect();
+          const style = getComputedStyle(image);
+          return (
+            rect.width > 0 &&
+            rect.height > 0 &&
+            style.display !== "none" &&
+            style.visibility !== "hidden"
+          );
+        };
         const brokenImages = Array.from(document.images)
+          .filter(isRenderedImage)
           .filter((image) => !image.complete || image.naturalWidth === 0)
           .map((image) => image.getAttribute("src"));
         const links = Array.from(document.querySelectorAll("a[href]")).map((link) => {
@@ -124,6 +133,35 @@ async function checkPage(pageSpec, viewport, mode) {
   } finally {
     await page.close();
   }
+}
+
+async function loadRenderedImages(page) {
+  await page.evaluate(async () => {
+    const wait = (ms) => new Promise((resolve) => setTimeout(resolve, ms));
+    const step = Math.max(320, Math.floor(window.innerHeight * 0.8));
+    const maxScroll = document.documentElement.scrollHeight - window.innerHeight;
+
+    for (let y = 0; y <= maxScroll; y += step) {
+      window.scrollTo(0, y);
+      await wait(80);
+    }
+
+    window.scrollTo(0, 0);
+  });
+
+  await page.waitForFunction(() =>
+    Array.from(document.images).every((image) => {
+      const rect = image.getBoundingClientRect();
+      const style = window.getComputedStyle(image);
+      const isRendered =
+        rect.width > 0 &&
+        rect.height > 0 &&
+        style.display !== "none" &&
+        style.visibility !== "hidden";
+
+      return !isRendered || (image.complete && image.naturalWidth > 0);
+    })
+  );
 }
 
 function validate(result, pageSpec, viewport, mode) {

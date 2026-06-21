@@ -34,21 +34,21 @@ const pages = [
     route: "/",
     width: 1440,
     height: 5693,
-    reference: "public/assets/figma/reference/01-landing.png"
+    reference: "test-assets/figma/reference/01-landing.png"
   },
   {
     name: "02-courses",
     route: "/courses",
     width: 1440,
     height: 8472,
-    reference: "public/assets/figma/reference/02-courses.png"
+    reference: "test-assets/figma/reference/02-courses.png"
   },
   {
     name: "04-reservation",
     route: "/reservation",
     width: 1440,
     height: 2415,
-    reference: "public/assets/figma/reference/04-reservation.png"
+    reference: "test-assets/figma/reference/04-reservation.png"
   }
 ];
 
@@ -65,9 +65,7 @@ try {
     });
 
     await page.goto(`${baseUrl}${pageSpec.route}`, { waitUntil: "networkidle" });
-    await page.waitForFunction(() =>
-      Array.from(document.images).every((image) => image.complete)
-    );
+    await loadRenderedImages(page);
     await page.evaluate(async () => {
       if ("fonts" in document) {
         await document.fonts.ready;
@@ -167,6 +165,35 @@ for (const result of results) {
 
 if (hasFailure) {
   process.exitCode = 1;
+}
+
+async function loadRenderedImages(page) {
+  await page.evaluate(async () => {
+    const wait = (ms) => new Promise((resolve) => setTimeout(resolve, ms));
+    const step = Math.max(320, Math.floor(window.innerHeight * 0.8));
+    const maxScroll = document.documentElement.scrollHeight - window.innerHeight;
+
+    for (let y = 0; y <= maxScroll; y += step) {
+      window.scrollTo(0, y);
+      await wait(80);
+    }
+
+    window.scrollTo(0, 0);
+  });
+
+  await page.waitForFunction(() =>
+    Array.from(document.images).every((image) => {
+      const rect = image.getBoundingClientRect();
+      const style = window.getComputedStyle(image);
+      const isRendered =
+        rect.width > 0 &&
+        rect.height > 0 &&
+        style.display !== "none" &&
+        style.visibility !== "hidden";
+
+      return !isRendered || (image.complete && image.naturalWidth > 0);
+    })
+  );
 }
 
 async function compareImagesInBrowser(

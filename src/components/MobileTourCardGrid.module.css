@@ -103,34 +103,6 @@
   transform: scale(1.03);
 }
 
-.cardHangulImage {
-  left: -30em;
-  top: -76.2em;
-  width: 396.8em;
-  height: 297.6em;
-}
-
-.cardGoldenImage {
-  left: -138em;
-  top: -123.6em;
-  width: 566.4em;
-  height: 319.8em;
-}
-
-.cardKYeojuImage {
-  left: -127.3em;
-  top: -63em;
-  width: 448em;
-  height: 252em;
-}
-
-.cardClubImage {
-  left: -13.2em;
-  top: -124.2em;
-  width: 452.8em;
-  height: 339.6em;
-}
-
 .blur {
   position: absolute;
   inset: 42.66% 0 0;

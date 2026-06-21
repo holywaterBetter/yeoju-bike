@@ -7,6 +7,7 @@
     "build": "NODE_ENV=production node node_modules/next/dist/bin/next build",
     "build:pages": "NODE_ENV=production GITHUB_PAGES=true node node_modules/next/dist/bin/next build",
     "start": "node node_modules/next/dist/bin/next start",
+    "assets:audit": "node scripts/audit-public-assets.mjs",
     "visual:check": "node scripts/visual-check.mjs",
     "visual:check:production": "bash scripts/visual-check-production.sh"
   },

@@ -7,19 +7,19 @@ const outDir = path.join(root, "visual-diffs", "report");
 const pages = [
   {
     name: "01-landing",
-    reference: "public/assets/figma/reference/01-landing.png",
+    reference: "test-assets/figma/reference/01-landing.png",
     actual: "visual-diffs/01-landing.actual.png",
     crops: [0, 900, 1800, 2700, 3600, 4500, 5193]
   },
   {
     name: "02-courses",
-    reference: "public/assets/figma/reference/02-courses.png",
+    reference: "test-assets/figma/reference/02-courses.png",
     actual: "visual-diffs/02-courses.actual.png",
     crops: [0, 1000, 2200, 3400, 4600, 5800, 7000, 7600]
   },
   {
     name: "04-reservation",
-    reference: "public/assets/figma/reference/04-reservation.png",
+    reference: "test-assets/figma/reference/04-reservation.png",
     actual: "visual-diffs/04-reservation.actual.png",
     crops: [0, 650, 1300, 1900]
   }

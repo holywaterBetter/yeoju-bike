@@ -6,16 +6,12 @@ export type MobileTourCard = {
   plainTitle: string;
   titleLines: string[];
   courseHref: string;
-  imageSrc: string;
-  imageWidth: number;
-  imageHeight: number;
-  figmaMediaImageSrc?: string;
-  figmaMediaImageWidth?: number;
-  figmaMediaImageHeight?: number;
-  reservationImageSrc?: string;
-  reservationImageWidth?: number;
-  reservationImageHeight?: number;
-  cropClassName: "cardHangulImage" | "cardGoldenImage" | "cardKYeojuImage" | "cardClubImage";
+  figmaMediaImageSrc: string;
+  figmaMediaImageWidth: number;
+  figmaMediaImageHeight: number;
+  reservationImageSrc: string;
+  reservationImageWidth: number;
+  reservationImageHeight: number;
   gradientClassName: "gradientBlack" | "gradientOlive" | "gradientGreen" | "gradientBrown";
 };
 
@@ -46,16 +42,12 @@ export const tourCatalog: TourCatalogItem[] = [
     reservationUrl: "https://form.naver.com/response/v7niAyUhIlKeoY2YjUv2ww",
     desktopCardMedia: withBasePath("/assets/figma/groups/tour-card-golden-media.webp"),
     mobileCard: {
-      imageSrc: withBasePath("/assets/figma/mobile/tour-card-hangul.webp"),
-      imageWidth: 1440,
-      imageHeight: 1080,
       figmaMediaImageSrc: withBasePath("/assets/figma/mobile/landing-journey-card-hangul.webp"),
       figmaMediaImageWidth: 168,
       figmaMediaImageHeight: 172,
       reservationImageSrc: withBasePath("/assets/figma/mobile/landing-journey-card-hangul.webp"),
       reservationImageWidth: 168,
       reservationImageHeight: 172,
-      cropClassName: "cardHangulImage",
       gradientClassName: "gradientBlack",
     },
     seo: {
@@ -73,16 +65,12 @@ export const tourCatalog: TourCatalogItem[] = [
     courseHref: courseAnchorHref(courseAnchors.goldenBell),
     desktopCardMedia: withBasePath("/assets/figma/groups/tour-card-hangul-media.webp"),
     mobileCard: {
-      imageSrc: withBasePath("/assets/figma/mobile/tour-card-golden.webp"),
-      imageWidth: 1440,
-      imageHeight: 813,
       figmaMediaImageSrc: withBasePath("/assets/figma/mobile/landing-journey-card-golden.webp"),
       figmaMediaImageWidth: 168,
       figmaMediaImageHeight: 172,
       reservationImageSrc: withBasePath("/assets/figma/mobile/landing-journey-card-golden.webp"),
       reservationImageWidth: 168,
       reservationImageHeight: 172,
-      cropClassName: "cardGoldenImage",
       gradientClassName: "gradientOlive",
     },
     seo: {
@@ -100,16 +88,12 @@ export const tourCatalog: TourCatalogItem[] = [
     courseHref: courseAnchorHref(courseAnchors.kYeoju),
     desktopCardMedia: withBasePath("/assets/figma/groups/tour-card-k-yeoju-media.webp"),
     mobileCard: {
-      imageSrc: withBasePath("/assets/figma/mobile/tour-card-k-yeoju.webp"),
-      imageWidth: 2048,
-      imageHeight: 1152,
       figmaMediaImageSrc: withBasePath("/assets/figma/mobile/landing-journey-card-k-yeoju.webp"),
       figmaMediaImageWidth: 168,
       figmaMediaImageHeight: 172,
       reservationImageSrc: withBasePath("/assets/figma/mobile/landing-journey-card-k-yeoju.webp"),
       reservationImageWidth: 168,
       reservationImageHeight: 172,
-      cropClassName: "cardKYeojuImage",
       gradientClassName: "gradientGreen",
     },
     seo: {
@@ -127,16 +111,12 @@ export const tourCatalog: TourCatalogItem[] = [
     courseHref: courseAnchorHref(courseAnchors.club),
     desktopCardMedia: withBasePath("/assets/figma/groups/tour-card-club-media.webp"),
     mobileCard: {
-      imageSrc: withBasePath("/assets/figma/mobile/tour-card-club.webp"),
-      imageWidth: 1080,
-      imageHeight: 810,
       figmaMediaImageSrc: withBasePath("/assets/figma/mobile/bike-challenge-course.webp"),
       figmaMediaImageWidth: 336,
       figmaMediaImageHeight: 344,
       reservationImageSrc: withBasePath("/assets/figma/mobile/bike-challenge-course.webp"),
       reservationImageWidth: 336,
       reservationImageHeight: 344,
-      cropClassName: "cardClubImage",
       gradientClassName: "gradientBrown",
     },
     seo: {
