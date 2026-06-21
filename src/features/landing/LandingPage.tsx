@@ -264,7 +264,7 @@ function JourneySection() {
             className={styles.journeyCard}
             href={journey.courseHref}
             key={journey.anchor}
-            aria-label={`${journey.plainTitle} 코스 안내 보기`}
+            aria-label={`${journey.plainTitle} 상세 안내 보기`}
           >
             <img className={styles.journeyMediaImage} src={journey.desktopCardMedia} alt="" width={585} height={286} {...lazyImageAttrs} />
             <h3>

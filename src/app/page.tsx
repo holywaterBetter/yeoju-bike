@@ -1,5 +1,5 @@
 import LandingPage from "@/features/landing/LandingPage";
-import { localBusinessJsonLd, siteDescription, siteName, siteOgImage, siteOgImageAlt, siteTitle, siteUrl } from "@/lib/siteMetadata";
+import { localBusinessJsonLd, openGraphMetadata, siteDescription, siteTitle, siteUrl, twitterMetadata } from "@/lib/siteMetadata";
 import { withBasePath } from "@/lib/sitePaths";
 import type { Metadata } from "next";
 
@@ -9,20 +9,8 @@ export const metadata: Metadata = {
   alternates: {
     canonical: siteUrl,
   },
-  openGraph: {
-    title: `${siteTitle} | ${siteName}`,
-    description: siteDescription,
-    url: siteUrl,
-    images: [
-      {
-        url: siteOgImage,
-        width: 1200,
-        height: 630,
-        alt: siteOgImageAlt,
-        type: "image/png",
-      },
-    ],
-  },
+  openGraph: openGraphMetadata(siteTitle, siteDescription, siteUrl),
+  twitter: twitterMetadata(siteTitle, siteDescription),
 };
 
 export default function Home() {

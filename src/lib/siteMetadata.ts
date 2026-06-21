@@ -1,3 +1,4 @@
+import type { Metadata } from "next";
 import { courseAnchors, type CourseAnchor } from "./courseAnchors";
 import { getTourReservationUrl, tourCatalog } from "./tours";
 import { kakaoChannelUrl } from "./tourLinks";
@@ -49,6 +50,48 @@ export function courseSiteUrl(anchor: CourseAnchor) {
   }
 
   return absoluteSiteUrl(`/courses/#${anchor}`);
+}
+
+export function openGraphMetadata(title: string, description: string, url: string): NonNullable<Metadata["openGraph"]> {
+  return {
+    type: "website",
+    locale: "ko_KR",
+    siteName,
+    title: `${title} | ${siteName}`,
+    description,
+    url,
+    images: [
+      {
+        url: siteOgImage,
+        width: 1200,
+        height: 630,
+        alt: siteOgImageAlt,
+        type: "image/png",
+      },
+    ],
+  };
+}
+
+export function twitterMetadata(title: string, description: string): NonNullable<Metadata["twitter"]> {
+  return {
+    card: "summary_large_image",
+    title: `${title} | ${siteName}`,
+    description,
+    images: [siteOgImage],
+  };
+}
+
+export function breadcrumbJsonLd(items: { name: string; url: string }[]) {
+  return {
+    "@context": "https://schema.org",
+    "@type": "BreadcrumbList",
+    itemListElement: items.map((item, index) => ({
+      "@type": "ListItem",
+      position: index + 1,
+      name: item.name,
+      item: item.url,
+    })),
+  };
 }
 
 export function localBusinessJsonLd() {

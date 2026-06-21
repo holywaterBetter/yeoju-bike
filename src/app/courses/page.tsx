@@ -1,5 +1,5 @@
 import CoursesPage from "@/features/courses/CoursesPage";
-import { absoluteSiteUrl, courseListJsonLd, siteName, siteOgImage, siteOgImageAlt } from "@/lib/siteMetadata";
+import { absoluteSiteUrl, breadcrumbJsonLd, courseListJsonLd, openGraphMetadata, siteTitle, twitterMetadata } from "@/lib/siteMetadata";
 import type { Metadata } from "next";
 
 const coursesTitle = "여주 자전거 투어 코스 안내";
@@ -13,25 +13,24 @@ export const metadata: Metadata = {
   alternates: {
     canonical: coursesUrl,
   },
-  openGraph: {
-    title: `${coursesTitle} | ${siteName}`,
-    description: coursesDescription,
-    url: coursesUrl,
-    images: [
-      {
-        url: siteOgImage,
-        width: 1200,
-        height: 630,
-        alt: siteOgImageAlt,
-        type: "image/png",
-      },
-    ],
-  },
+  openGraph: openGraphMetadata(coursesTitle, coursesDescription, coursesUrl),
+  twitter: twitterMetadata(coursesTitle, coursesDescription),
 };
 
 export default function Courses() {
   return (
     <>
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{
+          __html: JSON.stringify(
+            breadcrumbJsonLd([
+              { name: siteTitle, url: absoluteSiteUrl("/") },
+              { name: "코스 안내", url: coursesUrl },
+            ]),
+          ),
+        }}
+      />
       <script
         type="application/ld+json"
         dangerouslySetInnerHTML={{

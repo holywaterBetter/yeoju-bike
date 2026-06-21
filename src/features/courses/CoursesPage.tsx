@@ -465,13 +465,13 @@ function SectionTitle({ title, width }: { title: string | string[]; width: numbe
   const lines = Array.isArray(title) ? title : [title];
 
   return (
-    <h1 className={styles.sectionTitle} style={{ width }}>
+    <h2 className={styles.sectionTitle} style={{ width }}>
       {lines.map((line, index) => (
         <span className={index > 0 ? styles.sectionTitleSecondary : undefined} key={line}>
           {line}
         </span>
       ))}
-    </h1>
+    </h2>
   );
 }
 
@@ -540,7 +540,7 @@ function InfoColumn({ heading, lines }: { heading: string; lines: string[] }) {
 
 function TourSectionView({ section }: { section: TourSection }) {
   return (
-    <section className={styles.tourSection} data-course-anchor={section.anchor} data-node-id={section.nodeId} data-reveal>
+    <section id={section.anchor} className={styles.tourSection} data-course-anchor={section.anchor} data-node-id={section.nodeId} data-reveal>
       <div className={styles.sectionIntro}>
         <div className={styles.titleGroup}>
           {section.decoration ? <CourseDecorationImage decoration={section.decoration} /> : null}
@@ -628,13 +628,13 @@ function MobileSectionTitle({ section }: { section: TourSection }) {
   const lines = Array.isArray(title) ? title : [title];
 
   return (
-    <h1 className={styles.mobileCourseTitle}>
+    <h2 className={styles.mobileCourseTitle}>
       {lines.map((line) => (
         <span key={line}>
           {line}
         </span>
       ))}
-    </h1>
+    </h2>
   );
 }
 
@@ -780,6 +780,7 @@ export function CoursesPage({ className }: CoursesPageProps) {
         <div className={styles.blurSix} />
       </div>
       <main className={className ? `${styles.page} ${className}` : styles.page} data-node-id="24:253" data-name="02_Landing">
+        <h1 className={styles.visuallyHidden}>여주 자전거 투어 코스 안내</h1>
         <div className={styles.desktopPageContent}>
           <a className={styles.logoLink} href={withBasePath("/")} aria-label="따르릉 여주 홈">
             <img className={styles.logo} src={assets.logo} alt="" width={146} height={101} {...eagerImageAttrs} />

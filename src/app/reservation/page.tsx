@@ -1,5 +1,5 @@
 import ReservationPage from "@/features/reservation/ReservationPage";
-import { absoluteSiteUrl, siteName, siteOgImage, siteOgImageAlt } from "@/lib/siteMetadata";
+import { absoluteSiteUrl, breadcrumbJsonLd, openGraphMetadata, siteTitle, twitterMetadata } from "@/lib/siteMetadata";
 import type { Metadata } from "next";
 
 const reservationTitle = "여주 전기자전거 투어 예약";
@@ -13,22 +13,25 @@ export const metadata: Metadata = {
   alternates: {
     canonical: reservationUrl,
   },
-  openGraph: {
-    title: `${reservationTitle} | ${siteName}`,
-    description: reservationDescription,
-    url: reservationUrl,
-    images: [
-      {
-        url: siteOgImage,
-        width: 1200,
-        height: 630,
-        alt: siteOgImageAlt,
-        type: "image/png",
-      },
-    ],
-  },
+  openGraph: openGraphMetadata(reservationTitle, reservationDescription, reservationUrl),
+  twitter: twitterMetadata(reservationTitle, reservationDescription),
 };
 
 export default function Reservation() {
-  return <ReservationPage />;
+  return (
+    <>
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{
+          __html: JSON.stringify(
+            breadcrumbJsonLd([
+              { name: siteTitle, url: absoluteSiteUrl("/") },
+              { name: "투어 예약", url: reservationUrl },
+            ]),
+          ),
+        }}
+      />
+      <ReservationPage />
+    </>
+  );
 }

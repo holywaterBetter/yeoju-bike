@@ -68,7 +68,7 @@ function MobileTourCardView({ card, mode, isStatusVisible, onDisabledActivate, o
   }
 
   return (
-    <a className={className} href={href} aria-label={`${card.plainTitle} ${mode === "courses" ? "코스 안내 보기" : "예약하기"}`} data-card-anchor={card.anchor}>
+    <a className={className} href={href} aria-label={`${card.plainTitle} ${mode === "courses" ? "상세 안내 보기" : "예약하기"}`} data-card-anchor={card.anchor}>
       {content}
     </a>
   );
