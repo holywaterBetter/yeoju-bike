@@ -65,66 +65,6 @@
   object-fit: cover;
 }
 
-.glow {
-  position: absolute;
-  border-radius: 233.5px;
-  filter: blur(150px);
-}
-
-.glowOne {
-  left: 1060px;
-  top: 2750px;
-  width: 599.578px;
-  height: 652.853px;
-  transform: rotate(-125.63deg) scaleY(-1);
-  background: linear-gradient(180deg, rgba(84, 84, 212, 0.2), rgba(84, 84, 212, 0.08));
-}
-
-.glowTwo {
-  left: 960px;
-  top: -38px;
-  width: 467px;
-  height: 1399.298px;
-  transform: rotate(65.71deg);
-  background: linear-gradient(180deg, rgba(251, 168, 28, 0.11), rgba(224, 86, 136, 0.06));
-}
-
-.glowThree {
-  left: -18px;
-  top: 1731px;
-  width: 467px;
-  height: 1399.298px;
-  transform: rotate(65.71deg);
-  background: linear-gradient(180deg, rgba(251, 168, 28, 0.11), rgba(224, 86, 136, 0.06));
-}
-
-.glowFour {
-  left: 236px;
-  top: 1393px;
-  width: 860.002px;
-  height: 2576.87px;
-  transform: rotate(65.71deg);
-  background: linear-gradient(180deg, rgba(251, 168, 28, 0.05), rgba(224, 86, 136, 0.02));
-}
-
-.glowFive {
-  left: -49px;
-  top: 116px;
-  width: 467px;
-  height: 1233.793px;
-  transform: rotate(-54.37deg);
-  background: linear-gradient(180deg, rgba(84, 84, 212, 0.27), rgba(84, 84, 212, 0.11));
-}
-
-.glowSix {
-  left: -203px;
-  top: 1754px;
-  width: 467px;
-  height: 508.495px;
-  transform: rotate(-54.37deg);
-  background: linear-gradient(180deg, rgba(84, 84, 212, 0.21), rgba(84, 84, 212, 0.09));
-}
-
 .logoWrap {
   position: absolute;
   left: 120px;
@@ -225,28 +165,9 @@
   white-space: pre-wrap;
 }
 
-.heroArt {
-  position: absolute;
-  inset: 0;
-  pointer-events: none;
-}
-
-.heroArtImage {
-  position: absolute;
-  left: 688px;
-  top: 106px;
-  width: 726px;
-  height: 962px;
-  object-fit: contain;
-}
-
 @media (prefers-reduced-motion: no-preference) {
   .heroCopy {
     animation: landingHeroCopyIn var(--motion-slow) var(--ease-out) both;
-  }
-
-  .heroArtImage {
-    animation: landingHeroArtIn 520ms var(--ease-out) 90ms both;
   }
 }
 
@@ -260,79 +181,6 @@
     opacity: 1;
     translate: 0 0;
   }
-}
-
-@keyframes landingHeroArtIn {
-  from {
-    opacity: 0;
-    translate: 18px 10px;
-  }
-
-  to {
-    opacity: 1;
-    translate: 0 0;
-  }
-}
-
-.heroYellowOutlineFrame,
-.heroYellowFillFrame,
-.heroBikeLayer {
-  position: absolute;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-}
-
-.heroYellowOutlineFrame {
-  left: 823px;
-  top: 222px;
-  width: 511.271px;
-  height: 511.271px;
-}
-
-.heroYellowFillFrame {
-  left: 861px;
-  top: 316px;
-  width: 511.271px;
-  height: 511.271px;
-}
-
-.heroYellowOutline,
-.heroYellowFill {
-  width: 387.427px;
-  height: 387.427px;
-  flex: 0 0 auto;
-  border: 16px solid #ffd500;
-  border-radius: 43px;
-  transform: rotate(23.93deg);
-}
-
-.heroYellowFill {
-  background: #ffd500;
-}
-
-.heroBikeLayer {
-  left: 708.41px;
-  top: 159.9px;
-  width: 721.602px;
-  height: 863.4px;
-}
-
-.heroBikeRotated {
-  position: relative;
-  width: 640.036px;
-  height: 799.76px;
-  flex: 0 0 auto;
-  overflow: visible;
-  transform: rotate(6.12deg);
-}
-
-.heroBikeRotated img {
-  position: absolute;
-  inset: 0;
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
 }
 
 .riverTitleSpark {
@@ -885,16 +733,6 @@
   object-fit: cover;
 }
 
-.journeyCard h3.visualHidden {
-  clip: rect(0 0 0 0);
-  clip-path: inset(50%);
-  height: 1px;
-  overflow: hidden;
-  padding: 0;
-  white-space: nowrap;
-  width: 1px;
-}
-
 @media (min-width: 768px) and (max-width: 1439px) {
   .surface {
     --pc-scale: 0.9486111111;
@@ -1061,48 +899,6 @@
   .mobileHeroCopyBlock .mobileBodyText {
     width: min(calc(354 * var(--mobile-unit)), calc(100vw - 48px));
     text-align: center;
-  }
-
-  .mobileHeroArt {
-    position: relative;
-    width: 435.506em;
-    height: 577.086em;
-    margin: 8em 0 0 -58em;
-    overflow: visible;
-    pointer-events: none;
-  }
-
-  .mobileHeroYellowOutline,
-  .mobileHeroYellowFill {
-    position: absolute;
-    width: 232.456em;
-    height: 232.456em;
-    border: 9.6em solid #ffd500;
-    border-radius: 25.8em;
-    transform: rotate(23.93deg);
-    transform-origin: center;
-  }
-
-  .mobileHeroYellowOutline {
-    left: 81em;
-    top: 69.6em;
-  }
-
-  .mobileHeroYellowFill {
-    left: 103.8em;
-    top: 126em;
-    background: #ffd500;
-  }
-
-  .mobileHeroBikeImage {
-    position: absolute;
-    left: 40em;
-    top: 43em;
-    width: 384.022em;
-    height: 479.856em;
-    object-fit: contain;
-    transform: rotate(6.12deg);
-    transform-origin: center;
   }
 
   .mobileRiver {
@@ -1386,100 +1182,6 @@
     text-align: center;
   }
 
-  .mobileJourneyGrid {
-    display: grid;
-    width: 100%;
-    height: 361.2em;
-    grid-template-columns: repeat(2, minmax(0, 1fr));
-    grid-template-rows: repeat(2, minmax(0, 1fr));
-    gap: 18em;
-  }
-
-  .mobileJourneyCard {
-    position: relative;
-    display: block;
-    overflow: hidden;
-    background: #000000;
-    color: inherit;
-    cursor: pointer;
-    text-decoration: none;
-    transition:
-      filter 160ms ease,
-      scale var(--motion-fast) var(--ease-out),
-      transform 160ms ease;
-  }
-
-  .mobileJourneyCard:hover,
-  .mobileJourneyCard:focus-visible {
-    filter: brightness(1.06);
-    transform: translateY(-1.5em);
-  }
-
-  .mobileJourneyCard:focus-visible {
-    outline: 3em solid #fba81c;
-    outline-offset: 4em;
-  }
-
-  .mobileJourneyCard:active {
-    filter: brightness(0.96);
-    scale: 0.985;
-    transform: translateY(0);
-  }
-
-  .mobileJourneyImageLayer,
-  .mobileJourneyImageLayer img {
-    position: absolute;
-  }
-
-  .mobileJourneyImageLayer {
-    inset: 0;
-    overflow: hidden;
-  }
-
-  .mobileJourneyMediaImage {
-    left: 0;
-    top: 0;
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
-  }
-
-  .mobileJourneyBlur {
-    position: absolute;
-    inset: 42.66% 0 0;
-    background: rgba(0, 0, 0, 0.01);
-    backdrop-filter: blur(19.65em);
-  }
-
-  .mobileJourneyGradient {
-    position: absolute;
-    inset: 35.71% 0 -0.05%;
-    background: linear-gradient(179.183deg, rgba(0, 0, 0, 0) 0.955%, #000000 98.84%);
-  }
-
-  .mobileJourneyCard h3 {
-    position: absolute;
-    inset: 63.87% 0 8.51%;
-    display: flex;
-    width: 100%;
-    align-items: flex-end;
-    justify-content: center;
-    margin: 0;
-    padding: 0 12em 12em;
-    color: #ffffff;
-    font-family: var(--font-primary);
-    font-size: var(--mobile-unit);
-    font-weight: 600;
-    letter-spacing: -0.02345em;
-    line-height: normal;
-    text-align: center;
-    word-break: break-word;
-  }
-
-  .mobileJourneyTitleText {
-    font-size: 19.2em;
-  }
-
   .mobileContact {
     display: flex;
     width: 100%;
@@ -1497,7 +1199,7 @@
     position: relative;
     display: inline-flex;
     min-width: 44px;
-    min-height: 0;
+    min-height: 44px;
     height: 38.775em;
     align-items: center;
     justify-content: center;

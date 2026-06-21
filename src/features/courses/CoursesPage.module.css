@@ -556,6 +556,76 @@
   pointer-events: none;
 }
 
+.routeAnimationLayer {
+  position: absolute;
+  inset: 0;
+  z-index: 1;
+  display: block;
+  width: 100%;
+  height: 100%;
+  overflow: visible;
+  pointer-events: none;
+}
+
+.routeAnimatedMarker,
+.routeStaticMarker {
+  pointer-events: none;
+}
+
+.routeStaticMarker {
+  display: none;
+}
+
+.routeMarkerPulse {
+  fill: none;
+  stroke: #946ce9;
+  stroke-width: 2.2px;
+  opacity: 0.24;
+  transform-box: fill-box;
+  transform-origin: center;
+  animation: routeMarkerPulse 1800ms ease-out infinite;
+}
+
+.routeMarkerHalo {
+  fill: rgba(255, 255, 255, 0.92);
+  stroke: rgba(148, 108, 233, 0.34);
+  stroke-width: 2.2px;
+  filter: drop-shadow(0 7px 16px rgba(60, 41, 122, 0.18));
+}
+
+.routeMarkerBike {
+  opacity: 0.96;
+  filter: drop-shadow(0 2px 5px rgba(60, 41, 122, 0.18));
+}
+
+@keyframes routeMarkerPulse {
+  0% {
+    opacity: 0.25;
+    transform: scale(0.92);
+  }
+
+  70%,
+  100% {
+    opacity: 0;
+    transform: scale(1.55);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .routeAnimatedMarker {
+    display: none;
+  }
+
+  .routeStaticMarker {
+    display: block;
+  }
+
+  .routeMarkerPulse {
+    animation: none !important;
+    opacity: 0;
+  }
+}
+
 .giftSection {
   display: flex;
   width: 1440px;
@@ -640,7 +710,6 @@
 .iconOval,
 .keyringIcon,
 .cameraIcon,
-.penIcon,
 .clickerKeyringIcon {
   position: absolute;
   max-width: none;
@@ -663,14 +732,6 @@
   top: 22.5px;
   width: 29px;
   height: 22px;
-}
-
-.penIcon {
-  left: 22.5px;
-  top: 15.7px;
-  width: 22.222px;
-  height: 38.528px;
-  transform: rotate(15deg);
 }
 
 .clickerKeyringIcon {
@@ -1274,6 +1335,15 @@
     background: #ffffff;
   }
 
+  .mobileMapCanvas {
+    position: absolute;
+    left: 0;
+    top: 18em;
+    width: 100%;
+    height: 224em;
+    overflow: hidden;
+  }
+
   .mobileMapImage {
     inset: 0;
     width: 100%;
@@ -1375,13 +1445,6 @@
     top: 13.5em;
     width: 17.4em;
     height: 13.2em;
-  }
-
-  .mobileGiftIcon .penIcon {
-    left: 13.5em;
-    top: 9.4em;
-    width: 13.33em;
-    height: 23.12em;
   }
 
   .mobileGiftIcon .clickerKeyringIcon {

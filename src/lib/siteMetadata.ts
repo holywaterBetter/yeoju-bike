@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import { courseAnchors, type CourseAnchor } from "./courseAnchors";
 import { getTourReservationUrl, tourCatalog } from "./tours";
 import { kakaoChannelUrl } from "./tourLinks";
+import { visitStreetAddress } from "./visitInfo";
 
 export const siteDisplayDomain = "www.여주자전거시티투어.com";
 export const siteDomain = "www.xn--v69a683bo5blg28e5tag8cz18antb.com";
@@ -21,7 +22,7 @@ export const siteKeywords = [
 ];
 
 export const siteAddress = {
-  streetAddress: "강변유원지길 105 폰박물관 옆 따르릉 여주 사랑방",
+  streetAddress: visitStreetAddress,
   addressLocality: "여주시",
   addressRegion: "경기도",
   addressCountry: "KR",

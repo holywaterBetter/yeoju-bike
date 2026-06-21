@@ -2,8 +2,10 @@ import MobileSiteHeader from "@/components/MobileSiteHeader";
 import MobileTourCardGrid from "@/components/MobileTourCardGrid";
 import RevealOnScroll from "@/components/RevealOnScroll";
 import { eagerImageAttrs, lazyImageAttrs } from "@/lib/imageAttrs";
+import { siteNavigationItems } from "@/lib/siteNavigation";
 import { withBasePath } from "@/lib/sitePaths";
 import { getTourReservationUrl, tourCatalog } from "@/lib/tours";
+import { parkingDirections, transitDirections, visitFullAddress } from "@/lib/visitInfo";
 import styles from "./ReservationPage.module.css";
 
 const logoImage =
@@ -106,7 +108,7 @@ function MobileReservationPage() {
             <h2 id="mobile-directions-title">따르릉으로 오시는 길</h2>
             <div className={styles.mobileAddressRow}>
               <img src={mobileAssets.pin} alt="" width={22} height={29} {...lazyImageAttrs} />
-              <p>경기도 여주시 강변유원지길 105 폰박물관 옆 따르릉 여주 사랑방</p>
+              <p>{visitFullAddress}</p>
             </div>
           </div>
           <div className={styles.mobileTransportGroup}>
@@ -115,16 +117,14 @@ function MobileReservationPage() {
               <div className={styles.mobileTransportCopy}>
                 <h3>자가 이용 시</h3>
                 <div className={styles.mobileTransportDetails}>
-                  <div>
-                    <p className={styles.mobileDetailHeading}>유료</p>
-                    <p>금은모래캠핑장 2주차장</p>
-                    <p>(경기도 여주시 강변유원지길 107)</p>
-                  </div>
-                  <div>
-                    <p className={styles.mobileDetailHeading}>무료</p>
-                    <p>공원 주차장</p>
-                    <p>(경기도 여주시 강변유원지길 164)</p>
-                  </div>
+                  {parkingDirections.map((option) => (
+                    <div key={option.heading}>
+                      <p className={styles.mobileDetailHeading}>{option.heading}</p>
+                      {option.lines.map((line) => (
+                        <p key={line}>{line}</p>
+                      ))}
+                    </div>
+                  ))}
                 </div>
               </div>
             </div>
@@ -134,20 +134,14 @@ function MobileReservationPage() {
               <div className={styles.mobileTransportCopy}>
                 <h3>대중교통 이용 시</h3>
                 <div className={styles.mobileTransportDetails}>
-                  <div>
-                    <p className={styles.mobileDetailHeading}>기차</p>
-                    <p>경강선 여주역 전철</p>
-                    <p>(여주역에서 사무국까지 4.5km거리)</p>
-                  </div>
-                  <div>
-                    <p className={styles.mobileDetailHeading}>택시</p>
-                    <p>도착지 : 금은모래 캠핑장 폰박물관</p>
-                  </div>
-                  <div>
-                    <p className={styles.mobileDetailHeading}>시내버스</p>
-                    <p>청솔가든 정류장 하차 (913번, 913-2번 등)</p>
-                    <p>(하차 후 약 15분 도보 이동)</p>
-                  </div>
+                  {transitDirections.map((option) => (
+                    <div key={option.heading}>
+                      <p className={styles.mobileDetailHeading}>{option.heading}</p>
+                      {option.lines.map((line) => (
+                        <p key={line}>{line}</p>
+                      ))}
+                    </div>
+                  ))}
                 </div>
               </div>
             </div>
@@ -171,15 +165,15 @@ export default function ReservationPage({ className = "" }: ReservationPageProps
               <img className={styles.logoImage} src={logoImage} alt="" width={146} height={101} {...eagerImageAttrs} />
             </a>
             <nav className={styles.navigation}>
-              <a className={styles.navItem} href={withBasePath("/")}>
-                투어 소개
-              </a>
-              <a className={styles.navItem} href={withBasePath("/courses/")}>
-                코스 안내
-              </a>
-              <a className={`${styles.navItem} ${styles.activeNavItem}`} href={withBasePath("/reservation/")}>
-                투어 예약
-              </a>
+              {siteNavigationItems.map((item) => {
+                const isActive = item.key === "reservation";
+
+                return (
+                  <a className={[styles.navItem, isActive ? styles.activeNavItem : ""].filter(Boolean).join(" ")} href={item.href} aria-current={isActive ? "page" : undefined} key={item.key}>
+                    {item.label}
+                  </a>
+                );
+              })}
             </nav>
           </header>
 
@@ -208,7 +202,7 @@ export default function ReservationPage({ className = "" }: ReservationPageProps
               </h2>
               <div className={styles.addressRow}>
                 <img className={styles.pinIcon} src={pinIcon} alt="" width={36} height={49} {...lazyImageAttrs} />
-                <p>경기도 여주시 강변유원지길 105 폰박물관 옆 따르릉 여주 사랑방</p>
+                <p>{visitFullAddress}</p>
               </div>
             </div>
 
@@ -220,16 +214,14 @@ export default function ReservationPage({ className = "" }: ReservationPageProps
                 <div className={styles.transportCopy}>
                   <h3>자가 이용 시</h3>
                   <div className={styles.carDetails}>
-                    <div className={styles.parkingColumn}>
-                      <p className={styles.detailHeading}>유료</p>
-                      <p>금은모래캠핑장 2주차장</p>
-                      <p>(경기도 여주시 강변유원지길 107)</p>
-                    </div>
-                    <div className={styles.parkingColumn}>
-                      <p className={styles.detailHeading}>무료</p>
-                      <p>공원 주차장</p>
-                      <p>(경기도 여주시 강변유원지길 164)</p>
-                    </div>
+                    {parkingDirections.map((option) => (
+                      <div className={styles.parkingColumn} key={option.heading}>
+                        <p className={styles.detailHeading}>{option.heading}</p>
+                        {option.lines.map((line) => (
+                          <p key={line}>{line}</p>
+                        ))}
+                      </div>
+                    ))}
                   </div>
                 </div>
               </div>
@@ -241,20 +233,14 @@ export default function ReservationPage({ className = "" }: ReservationPageProps
                 <div className={styles.transportCopy}>
                   <h3>대중교통 이용 시</h3>
                   <div className={styles.transitDetails}>
-                    <div className={styles.transitColumn}>
-                      <p className={styles.detailHeading}>기차</p>
-                      <p>경강선 여주역 전철</p>
-                      <p>(여주역에서 사무국까지 4.5km거리)</p>
-                    </div>
-                    <div className={styles.transitColumn}>
-                      <p className={styles.detailHeading}>택시</p>
-                      <p>도착지 : 금은모래 캠핑장 폰박물관</p>
-                    </div>
-                    <div className={styles.transitColumn}>
-                      <p className={styles.detailHeading}>시내버스</p>
-                      <p>청솔가든 정류장 하차 (913번, 913-2번 등)</p>
-                      <p>(하차 후 약 15분 도보 이동)</p>
-                    </div>
+                    {transitDirections.map((option) => (
+                      <div className={styles.transitColumn} key={option.heading}>
+                        <p className={styles.detailHeading}>{option.heading}</p>
+                        {option.lines.map((line) => (
+                          <p key={line}>{line}</p>
+                        ))}
+                      </div>
+                    ))}
                   </div>
                 </div>
               </div>

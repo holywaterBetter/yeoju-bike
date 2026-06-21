@@ -8,23 +8,29 @@
     "build:pages": "NODE_ENV=production GITHUB_PAGES=true node node_modules/next/dist/bin/next build",
     "start": "node node_modules/next/dist/bin/next start",
     "assets:audit": "node scripts/audit-public-assets.mjs",
-    "visual:check": "node scripts/visual-check.mjs",
-    "visual:check:production": "bash scripts/visual-check-production.sh"
+    "verify": "bash scripts/run-with-production-server.sh bash scripts/verify-checks.sh",
+    "verify:layout": "node scripts/verify-layout.mjs",
+    "visual:baseline": "node scripts/visual-regression.mjs baseline",
+    "visual:baseline:production": "bash scripts/run-with-production-server.sh node scripts/visual-regression.mjs baseline",
+    "visual:compare": "node scripts/visual-regression.mjs compare",
+    "visual:compare:production": "bash scripts/run-with-production-server.sh node scripts/visual-regression.mjs compare",
+    "visual:check": "npm run visual:compare",
+    "visual:check:production": "npm run visual:compare:production"
   },
   "dependencies": {
-    "@fontsource/figtree": "^5.2.10",
-    "@fontsource/noto-sans-kr": "^5.2.9",
-    "@fontsource/nunito-sans": "^5.2.7",
-    "next": "^15.3.3",
-    "react": "^19.1.0",
-    "react-dom": "^19.1.0"
+    "@fontsource/figtree": "5.2.10",
+    "@fontsource/noto-sans-kr": "5.2.9",
+    "@fontsource/nunito-sans": "5.2.7",
+    "next": "15.5.19",
+    "react": "19.2.7",
+    "react-dom": "19.2.7"
   },
   "devDependencies": {
-    "@types/node": "^22.15.30",
-    "@types/react": "^19.1.6",
-    "@types/react-dom": "^19.1.6",
-    "playwright": "^1.52.0",
-    "sharp": "^0.34.5",
-    "typescript": "^5.8.3"
+    "@types/node": "22.19.20",
+    "@types/react": "19.2.17",
+    "@types/react-dom": "19.2.3",
+    "playwright": "1.60.0",
+    "sharp": "0.34.5",
+    "typescript": "5.9.3"
   }
 }

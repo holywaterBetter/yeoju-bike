@@ -2,10 +2,11 @@
 
 import { useEffect, useId, useState } from "react";
 import { eagerImageAttrs, lazyImageAttrs } from "@/lib/imageAttrs";
+import { siteNavigationItems, type SiteNavigationKey } from "@/lib/siteNavigation";
 import { withBasePath } from "@/lib/sitePaths";
 import styles from "./MobileSiteHeader.module.css";
 
-export type MobileSiteHeaderActive = "landing" | "courses" | "reservation";
+export type MobileSiteHeaderActive = SiteNavigationKey;
 
 type MobileSiteHeaderProps = {
   active: MobileSiteHeaderActive;
@@ -15,16 +16,6 @@ type MobileSiteHeaderProps = {
 const logoImage = withBasePath("/assets/figma/mcp/6e173378-eb7c-4df3-936b-d8007b404ad4-transparent.png");
 const menuSortIcon = withBasePath("/assets/figma/mobile/menu-sort.png");
 const menuArrowIcon = withBasePath("/assets/figma/mobile/menu-arrow.png");
-
-const menuItems: {
-  active: MobileSiteHeaderActive;
-  label: string;
-  href: string;
-}[] = [
-  { active: "landing", label: "투어 소개", href: withBasePath("/") },
-  { active: "courses", label: "코스 안내", href: withBasePath("/courses/") },
-  { active: "reservation", label: "투어 예약", href: withBasePath("/reservation/") },
-];
 
 export default function MobileSiteHeader({ active, compact = true }: MobileSiteHeaderProps) {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
@@ -77,15 +68,15 @@ export default function MobileSiteHeader({ active, compact = true }: MobileSiteH
           </button>
         </header>
         <nav className={styles.menuNav} aria-label="모바일 주요 메뉴">
-          {menuItems.map((item) => {
-            const isActive = item.active === active;
+          {siteNavigationItems.map((item) => {
+            const isActive = item.key === active;
 
             return (
               <a
                 className={isActive ? styles.active : undefined}
                 href={item.href}
                 aria-current={isActive ? "page" : undefined}
-                key={item.active}
+                key={item.key}
                 onClick={() => setIsMenuOpen(false)}
               >
                 {item.label}

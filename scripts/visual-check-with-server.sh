@@ -29,4 +29,4 @@ if [ "$ready" -ne 1 ]; then
   exit 1
 fi
 
-VISUAL_MAX_MISMATCH_PERCENT="${VISUAL_MAX_MISMATCH_PERCENT:-0}" node scripts/visual-check.mjs
+VISUAL_BASE_URL="http://127.0.0.1:${PORT:-3000}" node scripts/visual-regression.mjs compare

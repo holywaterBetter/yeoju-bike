@@ -1,6 +1,7 @@
 import MobileSiteHeader from "@/components/MobileSiteHeader";
 import RevealOnScroll from "@/components/RevealOnScroll";
 import { eagerImageAttrs, lazyImageAttrs } from "@/lib/imageAttrs";
+import { siteNavigationItems } from "@/lib/siteNavigation";
 import { withBasePath } from "@/lib/sitePaths";
 import { type CourseAnchor, courseAnchors } from "@/lib/courseAnchors";
 import { getTourReservationUrl } from "@/lib/tourLinks";
@@ -300,100 +301,19 @@ const sections: TourSection[] = [
   },
 ];
 
-const desktopGifts = [
-  {
-    title: "자전거 라이딩 마스크",
-    course: "한글길 이야기 코스",
-    icon: <img className={styles.iconImage} src={assets.giftMask} alt="" width={69} height={69} {...lazyImageAttrs} />,
-  },
-  {
-    title: "한글 가챠 키링 만들기",
-    course: "한글길 이야기 코스",
-    icon: (
-      <span className={styles.iconStack}>
-        <img className={styles.iconOval} src={assets.giftOvalBlue} alt="" width={69} height={69} {...lazyImageAttrs} />
-        <img className={styles.keyringIcon} src={assets.giftKeyring} alt="" width={25} height={41} {...lazyImageAttrs} />
-      </span>
-    ),
-  },
-  {
-    title: "스냅샷 & 드론 영상 촬영",
-    course: "한글길 수수께끼 코스",
-    icon: (
-      <span className={styles.iconStack}>
-        <img className={styles.iconOval} src={assets.giftOvalYellow} alt="" width={69} height={69} {...lazyImageAttrs} />
-        <img className={styles.cameraIcon} src={assets.giftCamera} alt="" width={31} height={24} {...lazyImageAttrs} />
-      </span>
-    ),
-  },
-  {
-    title: "한글 클릭커 키링 만들기",
-    course: "한글길 수수께끼 코스",
-    icon: (
-      <span className={styles.iconStack}>
-        <img className={styles.iconOval} src={assets.giftOvalYellow} alt="" width={69} height={69} {...lazyImageAttrs} />
-        <img className={styles.clickerKeyringIcon} src={assets.giftClickerKeyring} alt="" width={27} height={42} {...lazyImageAttrs} />
-      </span>
-    ),
-  },
-  {
-    title: "여주 도자기 기념품",
-    course: "K-컬쳐 코스",
-    icon: <img className={styles.iconImage} src={assets.giftPottery} alt="" width={69} height={69} {...lazyImageAttrs} />,
-  },
-  {
-    title: "완주 인증 티셔츠",
-    course: "바이크 챌린지 코스",
-    icon: <img className={styles.iconImage} src={assets.giftTshirt} alt="" width={69} height={69} {...lazyImageAttrs} />,
-  },
-];
+type GiftIconKey = "mask" | "keyring" | "camera" | "clickerKeyring" | "pottery" | "tshirt";
 
-const mobileGifts = [
-  {
-    title: "자전거 라이딩 마스크",
-    course: "한글길 이야기 코스",
-    icon: <img className={styles.iconImage} src={assets.giftMask} alt="" width={69} height={69} {...lazyImageAttrs} />,
-  },
-  {
-    title: "한글 가챠 키링 만들기",
-    course: "한글길 이야기 코스",
-    icon: (
-      <span className={styles.iconStack}>
-        <img className={styles.iconOval} src={assets.giftOvalBlue} alt="" width={69} height={69} {...lazyImageAttrs} />
-        <img className={styles.keyringIcon} src={assets.giftKeyring} alt="" width={25} height={41} {...lazyImageAttrs} />
-      </span>
-    ),
-  },
-  {
-    title: "스냅샷 & 드론 영상 촬영",
-    course: "한글길 수수께끼 코스",
-    icon: (
-      <span className={styles.iconStack}>
-        <img className={styles.iconOval} src={assets.giftOvalYellow} alt="" width={69} height={69} {...lazyImageAttrs} />
-        <img className={styles.cameraIcon} src={assets.giftCamera} alt="" width={31} height={24} {...lazyImageAttrs} />
-      </span>
-    ),
-  },
-  {
-    title: "한글 클릭커 키링 만들기",
-    course: "한글길 수수께끼 코스",
-    icon: (
-      <span className={styles.iconStack}>
-        <img className={styles.iconOval} src={assets.giftOvalYellow} alt="" width={69} height={69} {...lazyImageAttrs} />
-        <img className={styles.clickerKeyringIcon} src={assets.giftClickerKeyring} alt="" width={27} height={42} {...lazyImageAttrs} />
-      </span>
-    ),
-  },
-  {
-    title: "여주 도자기 기념품",
-    course: "K-컬쳐 코스",
-    icon: <img className={styles.iconImage} src={assets.giftPottery} alt="" width={69} height={69} {...lazyImageAttrs} />,
-  },
-  {
-    title: "완주 인증 티셔츠",
-    course: "바이크 챌린지 코스",
-    icon: <img className={styles.iconImage} src={assets.giftTshirt} alt="" width={69} height={69} {...lazyImageAttrs} />,
-  },
+const giftItems: {
+  title: string;
+  course: string;
+  icon: GiftIconKey;
+}[] = [
+  { title: "자전거 라이딩 마스크", course: "한글길 이야기 코스", icon: "mask" },
+  { title: "한글 가챠 키링 만들기", course: "한글길 이야기 코스", icon: "keyring" },
+  { title: "스냅샷 & 드론 영상 촬영", course: "한글길 수수께끼 코스", icon: "camera" },
+  { title: "한글 클릭커 키링 만들기", course: "한글길 수수께끼 코스", icon: "clickerKeyring" },
+  { title: "여주 도자기 기념품", course: "K-컬쳐 코스", icon: "pottery" },
+  { title: "완주 인증 티셔츠", course: "바이크 챌린지 코스", icon: "tshirt" },
 ];
 
 const mobileSectionMedia = [
@@ -422,6 +342,111 @@ const mobileSectionMedia = [
   width: number;
   height: number;
 }[][][];
+
+const desktopRoutePoints = [
+  [654, 486],
+  [692, 485],
+  [714, 504],
+  [717, 539],
+  [738, 572],
+  [734, 612],
+  [760, 650],
+  [814, 666],
+  [851, 630],
+  [865, 583],
+  [886, 544],
+  [942, 547],
+  [986, 519],
+  [998, 466],
+  [983, 415],
+  [947, 377],
+  [958, 335],
+  [1001, 303],
+  [975, 266],
+  [936, 247],
+  [897, 250],
+  [865, 279],
+  [840, 314],
+  [792, 347],
+  [773, 315],
+  [790, 250],
+  [768, 192],
+  [781, 121],
+  [777, 61],
+  [719, 58],
+  [674, 86],
+  [635, 107],
+  [594, 83],
+  [565, 98],
+  [525, 128],
+  [476, 149],
+  [421, 153],
+  [368, 141],
+  [327, 112],
+  [314, 74],
+  [316, 38],
+  [279, 36],
+  [267, 72],
+  [278, 112],
+  [318, 148],
+  [348, 165],
+  [348, 229],
+  [397, 243],
+  [410, 291],
+  [414, 340],
+  [397, 383],
+  [368, 413],
+  [352, 455],
+  [350, 496],
+  [383, 526],
+  [426, 547],
+  [475, 541],
+  [508, 548],
+  [549, 579],
+  [592, 591],
+  [633, 580],
+  [660, 544],
+  [648, 506],
+  [654, 486],
+] as const satisfies readonly (readonly [number, number])[];
+
+const mobileRouteScale = 672 / 734;
+const mobileRouteXOffset = (1062 - 1200 * mobileRouteScale) / 2;
+
+const mobileRoutePoints = desktopRoutePoints.map(([x, y]) => [roundRouteCoordinate(x * mobileRouteScale + mobileRouteXOffset), roundRouteCoordinate(y * mobileRouteScale)] as const);
+
+const routeAnimationConfigs = {
+  desktop: {
+    viewBox: "0 0 1200 734",
+    pathId: "course-route-desktop",
+    path: pointsToSvgPath(desktopRoutePoints),
+    start: desktopRoutePoints[0],
+    bikeSrc: assets.bikeDecoration,
+    duration: "18s",
+    markerRadius: 24,
+    bikeWidth: 36,
+    bikeHeight: 24,
+  },
+  mobile: {
+    viewBox: "0 0 1062 672",
+    pathId: "course-route-mobile",
+    path: pointsToSvgPath(mobileRoutePoints),
+    start: mobileRoutePoints[0],
+    bikeSrc: mobileAssets.bikeDecoration,
+    duration: "16s",
+    markerRadius: 42,
+    bikeWidth: 64,
+    bikeHeight: 42,
+  },
+} as const;
+
+function roundRouteCoordinate(value: number) {
+  return Number(value.toFixed(1));
+}
+
+function pointsToSvgPath(points: readonly (readonly [number, number])[]) {
+  return points.map(([x, y], index) => `${index === 0 ? "M" : "L"} ${x} ${y}`).join(" ");
+}
 
 function PositionedMediaImage({ media }: { media: PositionedMedia }) {
   return (
@@ -596,8 +621,88 @@ function CourseMap() {
   return (
     <div className={styles.mapRoot} data-node-id="32:535">
       <img className={styles.mapFrameImage} src={assets.clubMapFrame} alt="바이크 챌린지 코스 추천 지도" width={1200} height={734} {...lazyImageAttrs} />
+      <CourseRouteAnimation variant="desktop" />
     </div>
   );
+}
+
+function CourseRouteAnimation({ variant }: { variant: keyof typeof routeAnimationConfigs }) {
+  const config = routeAnimationConfigs[variant];
+  const [startX, startY] = config.start;
+
+  return (
+    <svg className={styles.routeAnimationLayer} viewBox={config.viewBox} aria-hidden="true" focusable="false">
+      <defs>
+        <path id={config.pathId} d={config.path} />
+      </defs>
+      <g className={styles.routeAnimatedMarker}>
+        <animateMotion dur={config.duration} repeatCount="indefinite" rotate="0" calcMode="linear">
+          <mpath href={`#${config.pathId}`} />
+        </animateMotion>
+        <CourseRouteMarker config={config} />
+      </g>
+      <g className={styles.routeStaticMarker} transform={`translate(${startX} ${startY})`}>
+        <CourseRouteMarker config={config} />
+      </g>
+    </svg>
+  );
+}
+
+function CourseRouteMarker({ config }: { config: (typeof routeAnimationConfigs)[keyof typeof routeAnimationConfigs] }) {
+  return (
+    <>
+      <circle className={styles.routeMarkerPulse} r={config.markerRadius} />
+      <circle className={styles.routeMarkerHalo} r={config.markerRadius} />
+      <image
+        className={styles.routeMarkerBike}
+        href={config.bikeSrc}
+        x={-config.bikeWidth / 2}
+        y={-config.bikeHeight / 2}
+        width={config.bikeWidth}
+        height={config.bikeHeight}
+        preserveAspectRatio="xMidYMid meet"
+      />
+    </>
+  );
+}
+
+function GiftIcon({ icon }: { icon: GiftIconKey }) {
+  if (icon === "mask") {
+    return <img className={styles.iconImage} src={assets.giftMask} alt="" width={69} height={69} {...lazyImageAttrs} />;
+  }
+
+  if (icon === "keyring") {
+    return (
+      <span className={styles.iconStack}>
+        <img className={styles.iconOval} src={assets.giftOvalBlue} alt="" width={69} height={69} {...lazyImageAttrs} />
+        <img className={styles.keyringIcon} src={assets.giftKeyring} alt="" width={25} height={41} {...lazyImageAttrs} />
+      </span>
+    );
+  }
+
+  if (icon === "camera") {
+    return (
+      <span className={styles.iconStack}>
+        <img className={styles.iconOval} src={assets.giftOvalYellow} alt="" width={69} height={69} {...lazyImageAttrs} />
+        <img className={styles.cameraIcon} src={assets.giftCamera} alt="" width={31} height={24} {...lazyImageAttrs} />
+      </span>
+    );
+  }
+
+  if (icon === "clickerKeyring") {
+    return (
+      <span className={styles.iconStack}>
+        <img className={styles.iconOval} src={assets.giftOvalYellow} alt="" width={69} height={69} {...lazyImageAttrs} />
+        <img className={styles.clickerKeyringIcon} src={assets.giftClickerKeyring} alt="" width={27} height={42} {...lazyImageAttrs} />
+      </span>
+    );
+  }
+
+  if (icon === "pottery") {
+    return <img className={styles.iconImage} src={assets.giftPottery} alt="" width={69} height={69} {...lazyImageAttrs} />;
+  }
+
+  return <img className={styles.iconImage} src={assets.giftTshirt} alt="" width={69} height={69} {...lazyImageAttrs} />;
 }
 
 function GiftSection() {
@@ -611,9 +716,11 @@ function GiftSection() {
         <p>코스마다 제공되는 선물이 다릅니다. </p>
       </div>
       <div className={styles.giftGrid}>
-        {desktopGifts.map((gift) => (
+        {giftItems.map((gift) => (
           <article className={styles.giftCard} key={gift.title}>
-            <div className={styles.giftIcon}>{gift.icon}</div>
+            <div className={styles.giftIcon}>
+              <GiftIcon icon={gift.icon} />
+            </div>
             <h3>{gift.title}</h3>
             <p>{gift.course}</p>
           </article>
@@ -688,7 +795,10 @@ function MobileMediaStack({ sectionIndex }: { sectionIndex: number }) {
 function MobileCourseMap() {
   return (
     <div className={styles.mobileMapFrame} data-node-id="57:791">
-      <img className={styles.mobileMapImage} src={mobileAssets.clubMapRoute} alt="바이크 챌린지 코스 추천 지도" width={354} height={224} {...lazyImageAttrs} />
+      <div className={styles.mobileMapCanvas}>
+        <img className={styles.mobileMapImage} src={mobileAssets.clubMapRoute} alt="바이크 챌린지 코스 추천 지도" width={1062} height={672} {...lazyImageAttrs} />
+        <CourseRouteAnimation variant="mobile" />
+      </div>
     </div>
   );
 }
@@ -740,9 +850,11 @@ function MobileGiftSection() {
         <p>코스마다 제공되는 선물이 다릅니다. </p>
       </div>
       <div className={styles.mobileGiftGrid}>
-        {mobileGifts.map((gift) => (
+        {giftItems.map((gift) => (
           <article className={styles.mobileGiftCard} key={gift.title}>
-            <div className={styles.mobileGiftIcon}>{gift.icon}</div>
+            <div className={styles.mobileGiftIcon}>
+              <GiftIcon icon={gift.icon} />
+            </div>
             <h3>{gift.title}</h3>
             <p>{gift.course}</p>
           </article>
@@ -786,11 +898,15 @@ export function CoursesPage({ className }: CoursesPageProps) {
             <img className={styles.logo} src={assets.logo} alt="" width={146} height={101} {...eagerImageAttrs} />
           </a>
           <nav className={styles.nav} aria-label="주요 메뉴">
-            <a href={withBasePath("/")}>투어 소개</a>
-            <a className={styles.activeNav} href={withBasePath("/courses/")} aria-current="page">
-              코스 안내
-            </a>
-            <a href={withBasePath("/reservation/")}>투어 예약</a>
+            {siteNavigationItems.map((item) => {
+              const isActive = item.key === "courses";
+
+              return (
+                <a className={isActive ? styles.activeNav : undefined} href={item.href} aria-current={isActive ? "page" : undefined} key={item.key}>
+                  {item.label}
+                </a>
+              );
+            })}
           </nav>
           <div className={styles.contentStack}>
             {sections.map((section) => (

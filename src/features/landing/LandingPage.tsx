@@ -3,6 +3,7 @@ import MobileSiteHeader from "@/components/MobileSiteHeader";
 import MobileTourCardGrid from "@/components/MobileTourCardGrid";
 import RevealOnScroll from "@/components/RevealOnScroll";
 import { eagerImageAttrs, lazyImageAttrs } from "@/lib/imageAttrs";
+import { siteNavigationItems } from "@/lib/siteNavigation";
 import { withBasePath } from "@/lib/sitePaths";
 import { kakaoChannelUrl } from "@/lib/tourLinks";
 import { tourCatalog } from "@/lib/tours";
@@ -64,9 +65,15 @@ function Header() {
         <img className={styles.fullImage} src={imgImage30} alt="따르릉 여주 로고" width={146} height={101} {...eagerImageAttrs} />
       </a>
       <nav className={styles.nav} aria-label="주요 메뉴" data-node-id="35:956">
-        <a className={styles.navActive} href={withBasePath("/")} aria-current="page">투어 소개</a>
-        <a href={withBasePath("/courses/")}>코스 안내</a>
-        <a href={withBasePath("/reservation/")}>투어 예약</a>
+        {siteNavigationItems.map((item) => {
+          const isActive = item.key === "landing";
+
+          return (
+            <a className={isActive ? styles.navActive : undefined} href={item.href} aria-current={isActive ? "page" : undefined} key={item.key}>
+              {item.label}
+            </a>
+          );
+        })}
       </nav>
     </>
   );
