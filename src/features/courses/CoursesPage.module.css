@@ -177,51 +177,46 @@
   transform: rotate(-54.37deg);
 }
 
-.decorativeAssets {
+.courseTitleDecoration {
   position: absolute;
-  inset: 0;
-  z-index: 1;
-  pointer-events: none;
-}
-
-.decorativeAssets img {
-  position: absolute;
+  z-index: 0;
   display: block;
   max-width: none;
   object-fit: contain;
+  pointer-events: none;
 }
 
 .hangulLettersDecoration {
-  left: 234px;
-  top: 200px;
+  left: -170px;
+  top: -64px;
   width: 383.5px;
   height: 148.03px;
 }
 
 .bellDecoration {
-  left: 345px;
-  top: 2148px;
+  left: -59px;
+  top: -80px;
   width: 194.133px;
   height: 153.572px;
 }
 
 .taegeukDecoration {
-  left: 508px;
-  top: 4128px;
+  left: 104px;
+  top: -60px;
   width: 104.571px;
   height: 104.571px;
 }
 
 .bikeDecoration {
-  left: 349px;
-  top: 6139px;
+  left: -50px;
+  top: -100px;
   width: 216.126px;
   height: 135.382px;
 }
 
 .giftDecoration {
-  left: 293px;
-  top: 7907px;
+  left: -74.5px;
+  top: -88.5px;
   width: 142.924px;
   height: 151.727px;
 }
@@ -324,6 +319,8 @@
 }
 
 .titleGroup {
+  position: relative;
+  isolation: isolate;
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -331,6 +328,9 @@
 }
 
 .sectionTitle {
+  position: relative;
+  isolation: isolate;
+  z-index: 1;
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -342,6 +342,11 @@
   word-break: keep-all;
 }
 
+.sectionTitle > span {
+  position: relative;
+  z-index: 1;
+}
+
 .sectionTitleSecondary {
   font-size: inherit;
   font-weight: inherit;
@@ -349,6 +354,8 @@
 }
 
 .reserveButton {
+  position: relative;
+  z-index: 1;
   display: flex;
   width: 233px;
   height: 64.625px;
@@ -556,11 +563,18 @@
 }
 
 .giftHeading h2 {
+  position: relative;
+  isolation: isolate;
   width: 705px;
   font-family: var(--font-primary);
   font-size: 60px;
   font-weight: 800;
   line-height: 84px;
+}
+
+.giftHeading h2 > span {
+  position: relative;
+  z-index: 1;
 }
 
 .giftHeading p {
@@ -679,23 +693,6 @@
     --pc-scale: 0.9486111111;
     height: 8454.970833px;
   }
-
-  .hangulLettersDecoration {
-    left: 300px;
-  }
-
-  .bellDecoration {
-    top: 2160px;
-  }
-
-  .taegeukDecoration {
-    top: 4160px;
-  }
-
-  .bikeDecoration {
-    left: 450px;
-    top: 6150px;
-  }
 }
 
 @supports (transform: scale(calc(100vw / 1440px))) {
@@ -738,8 +735,7 @@
   .blurFour,
   .blurFive,
   .blurSix,
-  .desktopBackground,
-  .decorativeAssets {
+  .desktopBackground {
     display: none;
   }
 
@@ -999,6 +995,8 @@
   }
 
   .mobileTitleGroup {
+    position: relative;
+    isolation: isolate;
     display: flex;
     width: 100%;
     flex-direction: column;
@@ -1007,6 +1005,8 @@
   }
 
   .mobileCourseTitle {
+    position: relative;
+    isolation: isolate;
     display: flex;
     width: min(calc(100% + 0.7em), 100vw);
     flex-direction: column;
@@ -1023,6 +1023,8 @@
   }
 
   .mobileCourseTitle span {
+    position: relative;
+    z-index: 1;
     font-family: inherit;
     font-size: inherit;
     font-weight: inherit;
@@ -1031,6 +1033,8 @@
   }
 
   .mobileReserveButton {
+    position: relative;
+    z-index: 1;
     display: inline-flex;
     width: 140.6em;
     height: 38.775em;
@@ -1284,12 +1288,19 @@
   }
 
   .mobileGiftHeading h2 {
+    position: relative;
+    isolation: isolate;
     width: 100%;
     margin: 0;
     font-family: var(--font-primary);
     font-size: 36em;
     font-weight: 800;
     line-height: 1.4;
+  }
+
+  .mobileGiftHeading h2 > span {
+    position: relative;
+    z-index: 1;
   }
 
   .mobileGiftHeading p {
@@ -1395,55 +1406,39 @@
     line-break: strict;
   }
 
-  .mobileDecorativeAssets {
-    position: absolute;
-    inset: 0;
-    z-index: 1;
-    pointer-events: none;
-  }
-
-  .mobileDecorativeAssets img {
-    position: absolute;
-    display: block;
-    max-width: none;
-    object-fit: contain;
-  }
-
   .mobileHangulLettersDecoration {
-    left: calc(var(--mobile-frame-offset) + 16em);
-    top: 100em;
-    width: 230.1em;
-    height: 88.821em;
+    left: calc(-8 * var(--mobile-unit));
+    top: calc(-50 * var(--mobile-unit));
+    width: calc(230.1 * var(--mobile-unit));
+    height: calc(88.821 * var(--mobile-unit));
   }
 
   .mobileBellDecoration {
-    left: calc(var(--mobile-frame-offset) + 15em);
-    top: 1430em;
-    width: 116.48em;
-    height: 92.143em;
+    left: calc(-9 * var(--mobile-unit));
+    top: calc(-76.99 * var(--mobile-unit));
+    width: calc(116.48 * var(--mobile-unit));
+    height: calc(92.143 * var(--mobile-unit));
   }
 
   .mobileTaegeukDecoration {
-    left: calc(var(--mobile-frame-offset) + 24em);
-    top: 2800em;
-    width: 160em;
-    height: 62.743em;
-    opacity: 0.48;
+    left: 10px;
+    top: -30px;
+    width: calc(160 * var(--mobile-unit));
+    height: calc(62.743 * var(--mobile-unit));
   }
 
   .mobileBikeDecoration {
-    left: calc(var(--mobile-frame-offset) + 49em);
-    top: 4170em;
-    width: 129.675em;
-    height: 81.229em;
-    opacity: 0.48;
+    left: calc(25 * var(--mobile-unit));
+    top: -60px;
+    width: calc(129.675 * var(--mobile-unit));
+    height: calc(81.229 * var(--mobile-unit));
   }
 
   .mobileGiftDecoration {
-    left: calc(var(--mobile-frame-offset) + 37em);
-    top: 5200em;
-    width: 85.754em;
-    height: 91.036em;
+    left: calc(13 * var(--mobile-unit));
+    top: calc(-45.38 * var(--mobile-unit));
+    width: calc(85.754 * var(--mobile-unit));
+    height: calc(91.036 * var(--mobile-unit));
   }
 }
 

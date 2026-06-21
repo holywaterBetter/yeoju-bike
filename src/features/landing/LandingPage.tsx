@@ -91,7 +91,6 @@ function Hero() {
           우리 가족, 친구, 연인과 여주에서 잊지 못할 낭만을 완성해 보세요.
         </p>
       </div>
-      <YellowSpark />
     </section>
   );
 }
@@ -102,6 +101,7 @@ function RiverSection() {
       <div className={styles.riverIntro} data-node-id="1:78">
         <h2 id="river-title" className={styles.sectionTitle} data-node-id="1:80">
           두 바퀴로 만나는
+          <img className={styles.riverTitleSpark} src={imgYellowSpark} alt="" width={172} height={109} aria-hidden="true" data-node-id="10:173" {...lazyImageAttrs} />
           <br />
           남한강의 선물
           <br />
@@ -155,7 +155,9 @@ function SpecialSection() {
           imageAlt="PAS 전기 자전거"
           title={
             <>
-              힘들이지 않고 가뿐하게, <br />
+              힘들이지 않고 가뿐하게,
+              <img className={styles.featureSmileDecoration} src={imgSmile} alt="" width={76} height={76} data-node-id="24:149" data-name="스마일" {...lazyImageAttrs} />
+              <br />
               PAS 전기 자전거
             </>
           }
@@ -176,9 +178,11 @@ function SpecialSection() {
           imageAlt="가이드 크루와 함께하는 주행"
           title={
             <>
+              <img className={styles.featureGuideMarkDecoration} src={imgVector21} alt="" width={71} height={88} data-node-id="24:154" {...lazyImageAttrs} />
               안전과 감동을 책임지는
               <br />
               가이드 크루
+              <img className={styles.featureGuideUnderlineDecoration} src={imgVector36} alt="" width={216} height={40} data-node-id="10:170" {...lazyImageAttrs} />
             </>
           }
           body={
@@ -196,6 +200,17 @@ function SpecialSection() {
           title={
             <>
               달리는 라디오,
+              <img className={styles.featureSenaSquiggleDecoration} src={imgVector20} alt="" width={123} height={40} data-node-id="10:119" {...lazyImageAttrs} />
+              <span className={styles.featureRadioDashOne} data-node-id="37:785">
+                <span className={styles.redDashOneInner}>
+                  <img src={imgRedDashOne} alt="" width={22} height={38} {...lazyImageAttrs} />
+                </span>
+              </span>
+              <span className={styles.featureRadioDashTwo} data-node-id="37:786">
+                <span className={styles.redDashTwoInner}>
+                  <img src={imgRedDashTwo} alt="" width={41} height={19} {...lazyImageAttrs} />
+                </span>
+              </span>
               <br />
               세나인터콤
             </>
@@ -203,7 +218,6 @@ function SpecialSection() {
             body="특수 헬멧에 장착된 인터콤 시스템을 활용하여, 주행 중에도 가이드의 실시간 길 안내와 흥미진진한 여주 역사 이야기를 라디오 방송처럼 생생하게 들으며 즐길 수 있습니다. "
         />
       </div>
-      <Decorations />
     </section>
   );
 }
@@ -475,32 +489,5 @@ function MobileFeature({ imageSrc, imageAlt, imageClassName, imageWidth, imageHe
         <p>{body}</p>
       </div>
     </article>
-  );
-}
-
-function YellowSpark() {
-  return (
-    <img className={styles.yellowSpark} src={imgYellowSpark} alt="" width={172} height={109} aria-hidden="true" data-node-id="10:173" {...lazyImageAttrs} />
-  );
-}
-
-function Decorations() {
-  return (
-    <div className={styles.specialDecorations} aria-hidden="true">
-      <img className={styles.blueSquiggle} src={imgVector36} alt="" width={216} height={40} data-node-id="10:170" {...lazyImageAttrs} />
-      <img className={styles.blueMark} src={imgVector21} alt="" width={71} height={88} data-node-id="24:154" {...lazyImageAttrs} />
-      <img className={styles.smile} src={imgSmile} alt="" width={76} height={76} data-node-id="24:149" data-name="스마일" {...lazyImageAttrs} />
-      <img className={styles.redSquiggle} src={imgVector20} alt="" width={123} height={40} data-node-id="10:119" {...lazyImageAttrs} />
-      <span className={styles.redDashOne} data-node-id="37:785">
-        <span className={styles.redDashOneInner}>
-          <img src={imgRedDashOne} alt="" width={22} height={38} {...lazyImageAttrs} />
-        </span>
-      </span>
-      <span className={styles.redDashTwo} data-node-id="37:786">
-        <span className={styles.redDashTwoInner}>
-          <img src={imgRedDashTwo} alt="" width={41} height={19} {...lazyImageAttrs} />
-        </span>
-      </span>
-    </div>
   );
 }

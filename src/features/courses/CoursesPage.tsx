@@ -20,12 +20,15 @@ type PositionedMedia = {
   height: number;
 };
 
+type CourseDecoration = "hangulLetters" | "bell" | "taegeuk" | "bike" | "gift";
+
 type TourSection = {
   anchor: CourseAnchor;
   nodeId: string;
   title: string | string[];
   mobileTitle?: string | string[];
   titleWidth: number;
+  decoration?: CourseDecoration;
   badges: string[];
   mobileBadges?: string[];
   subtitle: string;
@@ -86,12 +89,53 @@ const mobileAssets = {
   clubMapRoute: withBasePath("/assets/figma/mobile/courses-club-map-route.webp"),
 };
 
+const courseDecorationConfigs = {
+  hangulLetters: {
+    desktop: { src: assets.hangulLetters, className: styles.hangulLettersDecoration, width: 394, height: 154 },
+    mobile: { src: mobileAssets.hangulLettersDecoration, className: styles.mobileHangulLettersDecoration, width: 237, height: 92 },
+    dataNodeId: "24:123",
+  },
+  bell: {
+    desktop: { src: assets.bell, className: styles.bellDecoration, width: 195, height: 154 },
+    mobile: { src: mobileAssets.bellDecoration, className: styles.mobileBellDecoration, width: 117, height: 93 },
+    dataNodeId: "28:148",
+    dataName: "종",
+  },
+  taegeuk: {
+    desktop: { src: assets.taegeuk, className: styles.taegeukDecoration, width: 108, height: 113 },
+    mobile: { src: mobileAssets.taegeukDecoration, className: styles.mobileTaegeukDecoration, width: 65, height: 68 },
+    dataNodeId: "28:206",
+    dataName: "태극기",
+  },
+  bike: {
+    desktop: { src: assets.bikeDecoration, className: styles.bikeDecoration, width: 233, height: 152 },
+    mobile: { src: mobileAssets.bikeDecoration, className: styles.mobileBikeDecoration, width: 140, height: 91 },
+    dataNodeId: "28:169",
+    dataName: "자전거",
+  },
+  gift: {
+    desktop: { src: assets.giftDecoration, className: styles.giftDecoration, width: 143, height: 156 },
+    mobile: { src: mobileAssets.giftDecoration, className: styles.mobileGiftDecoration, width: 86, height: 94 },
+    dataNodeId: "31:453",
+    dataName: "선물",
+  },
+} satisfies Record<
+  CourseDecoration,
+  {
+    desktop: { src: string; className: string; width: number; height: number };
+    mobile: { src: string; className: string; width: number; height: number };
+    dataNodeId?: string;
+    dataName?: string;
+  }
+>;
+
 const sections: TourSection[] = [
   {
     anchor: courseAnchors.hangul,
     nodeId: "23:896",
     title: ["한글길 이야기 코스", "Story Course"],
     titleWidth: 632,
+    decoration: "hangulLetters",
     badges: ["가이드형"],
     subtitle: "여주의 숨은 역사와 문화를 초성 순서대로 만나는 인문 해설 투어",
     body: [
@@ -142,6 +186,7 @@ const sections: TourSection[] = [
     nodeId: "24:156",
     title: ["한글길 수수께끼 코스", "Quiz Course"],
     titleWidth: 632,
+    decoration: "bell",
     badges: ["가이드형", "개발중"],
     subtitle: "강변 공원을 달리며 유쾌한 초성 퀴즈를 푸는 에듀테인먼트 투어",
     body: [
@@ -189,6 +234,7 @@ const sections: TourSection[] = [
     nodeId: "24:183",
     title: ["K-컬쳐 코스", "K-Culture Course"],
     titleWidth: 632,
+    decoration: "taegeuk",
     badges: ["가이드형", "개발중"],
     subtitle: "외국인을 대상으로 K-문화의 집합, 여주의 매력을 전하는 글로벌 투어",
     body: [
@@ -240,6 +286,7 @@ const sections: TourSection[] = [
     nodeId: "24:423",
     title: ["바이크 챌린지 코스", "Challenge Course"],
     titleWidth: 632,
+    decoration: "bike",
     badges: ["가이드형", "개발중"],
     subtitle: "동호인을 위한 가이드 없는 자율 완주 인증 라이딩 투어",
     body: [
@@ -395,6 +442,25 @@ function PositionedMediaImage({ media }: { media: PositionedMedia }) {
   );
 }
 
+function CourseDecorationImage({ decoration, mobile = false }: { decoration: CourseDecoration; mobile?: boolean }) {
+  const config = courseDecorationConfigs[decoration];
+  const asset = mobile ? config.mobile : config.desktop;
+  const dataName = "dataName" in config ? config.dataName : undefined;
+
+  return (
+    <img
+      className={`${styles.courseTitleDecoration} ${asset.className}`}
+      src={asset.src}
+      alt=""
+      width={asset.width}
+      height={asset.height}
+      data-node-id={mobile ? undefined : config.dataNodeId}
+      data-name={mobile ? undefined : dataName}
+      {...lazyImageAttrs}
+    />
+  );
+}
+
 function SectionTitle({ title, width }: { title: string | string[]; width: number }) {
   const lines = Array.isArray(title) ? title : [title];
 
@@ -477,6 +543,7 @@ function TourSectionView({ section }: { section: TourSection }) {
     <section className={styles.tourSection} data-course-anchor={section.anchor} data-node-id={section.nodeId} data-reveal>
       <div className={styles.sectionIntro}>
         <div className={styles.titleGroup}>
+          {section.decoration ? <CourseDecorationImage decoration={section.decoration} /> : null}
           <SectionTitle title={section.title} width={section.titleWidth} />
           <ReservationButton section={section} />
         </div>
@@ -537,7 +604,10 @@ function GiftSection() {
   return (
     <section className={styles.giftSection} data-node-id="30:215" data-reveal>
       <div className={styles.giftHeading}>
-        <h2>투어를 기념하는 특별한 선물</h2>
+        <h2>
+          <CourseDecorationImage decoration="gift" />
+          <span>투어를 기념하는 특별한 선물</span>
+        </h2>
         <p>코스마다 제공되는 선물이 다릅니다. </p>
       </div>
       <div className={styles.giftGrid}>
@@ -550,18 +620,6 @@ function GiftSection() {
         ))}
       </div>
     </section>
-  );
-}
-
-function DecorativeAssets() {
-  return (
-    <div className={styles.decorativeAssets} aria-hidden="true">
-      <img className={styles.hangulLettersDecoration} src={assets.hangulLetters} alt="" width={394} height={154} data-node-id="24:123" {...lazyImageAttrs} />
-      <img className={styles.bellDecoration} src={assets.bell} alt="" width={195} height={154} data-node-id="28:148" data-name="종" {...lazyImageAttrs} />
-      <img className={styles.taegeukDecoration} src={assets.taegeuk} alt="" width={108} height={113} data-node-id="28:206" data-name="태극기" {...lazyImageAttrs} />
-      <img className={styles.bikeDecoration} src={assets.bikeDecoration} alt="" width={233} height={152} data-node-id="28:169" data-name="자전거" {...lazyImageAttrs} />
-      <img className={styles.giftDecoration} src={assets.giftDecoration} alt="" width={143} height={156} data-node-id="31:453" data-name="선물" {...lazyImageAttrs} />
-    </div>
   );
 }
 
@@ -642,6 +700,7 @@ function MobileCourseSectionView({ section, index }: { section: TourSection; ind
     <section className={styles.mobileCourseSection} data-course-anchor={section.anchor} data-node-id={section.nodeId} data-reveal>
       <div className={styles.mobileCourseInfo}>
         <div className={styles.mobileTitleGroup}>
+          {section.decoration ? <CourseDecorationImage decoration={section.decoration} mobile /> : null}
           <MobileSectionTitle section={section} />
           <MobileReserveButton section={section} />
         </div>
@@ -671,9 +730,12 @@ function MobileGiftSection() {
     <section className={styles.mobileGiftSection} data-node-id="57:815" data-reveal>
       <div className={styles.mobileGiftHeading}>
         <h2>
-          따르릉 투어만의
-          <br />
-          특별한 선물
+          <CourseDecorationImage decoration="gift" mobile />
+          <span>
+            따르릉 투어만의
+            <br />
+            특별한 선물
+          </span>
         </h2>
         <p>코스마다 제공되는 선물이 다릅니다. </p>
       </div>
@@ -690,23 +752,10 @@ function MobileGiftSection() {
   );
 }
 
-function MobileDecorativeAssets() {
-  return (
-    <div className={styles.mobileDecorativeAssets} aria-hidden="true">
-      <img className={styles.mobileHangulLettersDecoration} src={mobileAssets.hangulLettersDecoration} alt="" width={237} height={92} {...lazyImageAttrs} />
-      <img className={styles.mobileBellDecoration} src={mobileAssets.bellDecoration} alt="" width={117} height={93} {...lazyImageAttrs} />
-      <img className={styles.mobileTaegeukDecoration} src={mobileAssets.taegeukDecoration} alt="" width={65} height={68} {...lazyImageAttrs} />
-      <img className={styles.mobileBikeDecoration} src={mobileAssets.bikeDecoration} alt="" width={140} height={91} {...lazyImageAttrs} />
-      <img className={styles.mobileGiftDecoration} src={mobileAssets.giftDecoration} alt="" width={86} height={94} {...lazyImageAttrs} />
-    </div>
-  );
-}
-
 function MobileCoursesPage() {
   return (
     <div className={styles.mobilePage} data-node-id="57:904" data-name="02_landing_M">
       <MobileSiteHeader active="courses" compact />
-      <MobileDecorativeAssets />
       <div className={styles.mobileContentStack}>
         {sections.map((section, index) => (
           <MobileCourseSectionView section={section} index={index} key={`mobile-${section.nodeId}`} />
@@ -732,7 +781,6 @@ export function CoursesPage({ className }: CoursesPageProps) {
       </div>
       <main className={className ? `${styles.page} ${className}` : styles.page} data-node-id="24:253" data-name="02_Landing">
         <div className={styles.desktopPageContent}>
-          <DecorativeAssets />
           <a className={styles.logoLink} href={withBasePath("/")} aria-label="따르릉 여주 홈">
             <img className={styles.logo} src={assets.logo} alt="" width={146} height={101} {...eagerImageAttrs} />
           </a>
