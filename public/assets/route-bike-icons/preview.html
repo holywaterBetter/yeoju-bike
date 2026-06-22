@@ -1,0 +1,391 @@
+<!doctype html>
+<html lang="ko">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Route Bike Icon Comparison</title>
+    <style>
+      :root {
+        --purple: #8f6be8;
+        --purple-deep: #5d43c9;
+        --purple-soft: rgba(143, 107, 232, 0.22);
+        --blue: #52a6ff;
+        --ink: #171321;
+        --muted: rgba(23, 19, 33, 0.64);
+        --line: rgba(143, 107, 232, 0.38);
+        --panel: #ffffff;
+        --paper: #f7f6fb;
+      }
+
+      * {
+        box-sizing: border-box;
+      }
+
+      body {
+        margin: 0;
+        background: var(--paper);
+        color: var(--ink);
+        font-family:
+          Figtree,
+          "Noto Sans KR",
+          "Apple SD Gothic Neo",
+          "Malgun Gothic",
+          Arial,
+          sans-serif;
+      }
+
+      main {
+        width: min(1280px, calc(100% - 32px));
+        margin: 0 auto;
+        padding: 42px 0 58px;
+      }
+
+      h1 {
+        margin: 0 0 10px;
+        font-size: clamp(30px, 4vw, 48px);
+        line-height: 1.08;
+        letter-spacing: 0;
+      }
+
+      .intro {
+        max-width: 880px;
+        margin: 0 0 18px;
+        color: var(--muted);
+        font-size: 16px;
+        line-height: 1.7;
+      }
+
+      .legend {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 8px;
+        margin: 0 0 26px;
+      }
+
+      .legend span,
+      .tag {
+        display: inline-flex;
+        width: fit-content;
+        align-items: center;
+        border-radius: 999px;
+        background: rgba(82, 166, 255, 0.12);
+        color: #236bb4;
+        padding: 5px 9px;
+        font-size: 12px;
+        font-weight: 800;
+        line-height: 1;
+      }
+
+      .grid {
+        display: grid;
+        grid-template-columns: repeat(4, minmax(0, 1fr));
+        gap: 14px;
+      }
+
+      .card {
+        display: flex;
+        min-height: 500px;
+        flex-direction: column;
+        gap: 14px;
+        border: 1px solid rgba(23, 19, 33, 0.08);
+        border-radius: 8px;
+        background: var(--panel);
+        padding: 16px;
+        box-shadow: 0 18px 42px rgba(49, 35, 96, 0.08);
+      }
+
+      .hero {
+        display: grid;
+        min-height: 126px;
+        place-items: center;
+        border-radius: 8px;
+        background:
+          radial-gradient(circle at 18% 24%, rgba(82, 166, 255, 0.14), transparent 28%),
+          radial-gradient(circle at 82% 72%, rgba(143, 107, 232, 0.16), transparent 32%),
+          #fbfbf8;
+      }
+
+      .hero img {
+        width: 136px;
+        height: auto;
+      }
+
+      h2 {
+        margin: 0;
+        font-size: 17px;
+        line-height: 1.25;
+        letter-spacing: 0;
+      }
+
+      p {
+        margin: 0;
+        color: var(--muted);
+        font-size: 13px;
+        line-height: 1.55;
+      }
+
+      .route-tests {
+        display: grid;
+        gap: 8px;
+        margin-top: auto;
+      }
+
+      .route-test {
+        position: relative;
+        min-height: 58px;
+        overflow: hidden;
+        border-radius: 8px;
+        background:
+          linear-gradient(115deg, rgba(82, 166, 255, 0.08), transparent 42%),
+          linear-gradient(20deg, transparent 0 48%, rgba(82, 166, 255, 0.14) 49% 54%, transparent 55%),
+          #fafaf6;
+      }
+
+      .route-test svg {
+        position: absolute;
+        inset: 0;
+        width: 100%;
+        height: 100%;
+      }
+
+      .route-test-label {
+        position: absolute;
+        left: 8px;
+        top: 7px;
+        z-index: 2;
+        color: rgba(23, 19, 33, 0.58);
+        font-size: 11px;
+        font-weight: 800;
+      }
+
+      .moving-marker {
+        position: absolute;
+        left: 0;
+        top: 50%;
+        z-index: 1;
+        display: grid;
+        width: 46px;
+        height: 46px;
+        place-items: center;
+        offset-path: path("M 12 42 C 48 14 88 54 124 30 S 198 20 228 42");
+        offset-distance: 50%;
+        offset-rotate: 0deg;
+        transform: translate(-50%, -50%);
+        animation: routePreview 5.2s linear infinite;
+      }
+
+      .moving-marker img {
+        width: 36px;
+        height: auto;
+      }
+
+      .moving-marker.raw {
+        background: transparent;
+      }
+
+      .moving-marker.glow img {
+        filter:
+          drop-shadow(0 1px 0 rgba(255, 255, 255, 0.96))
+          drop-shadow(0 -1px 0 rgba(255, 255, 255, 0.96))
+          drop-shadow(1px 0 0 rgba(255, 255, 255, 0.96))
+          drop-shadow(-1px 0 0 rgba(255, 255, 255, 0.96))
+          drop-shadow(0 5px 10px rgba(60, 41, 122, 0.2));
+      }
+
+      .moving-marker.chip {
+        border-radius: 999px;
+        background: rgba(255, 255, 255, 0.88);
+        box-shadow: 0 8px 18px rgba(60, 41, 122, 0.16);
+        outline: 1.5px solid var(--purple-soft);
+      }
+
+      .moving-marker.chip::before {
+        position: absolute;
+        inset: -6px;
+        border: 1.5px solid rgba(143, 107, 232, 0.15);
+        border-radius: inherit;
+        content: "";
+      }
+
+      @keyframes routePreview {
+        from {
+          offset-distance: 0%;
+        }
+
+        to {
+          offset-distance: 100%;
+        }
+      }
+
+      @media (prefers-reduced-motion: reduce) {
+        .moving-marker {
+          animation: none;
+          offset-distance: 52%;
+        }
+      }
+
+      @media (max-width: 1160px) {
+        .grid {
+          grid-template-columns: repeat(3, minmax(0, 1fr));
+        }
+      }
+
+      @media (max-width: 840px) {
+        .grid {
+          grid-template-columns: repeat(2, minmax(0, 1fr));
+        }
+      }
+
+      @media (max-width: 560px) {
+        main {
+          width: min(100% - 24px, 430px);
+          padding-top: 30px;
+        }
+
+        .grid {
+          grid-template-columns: 1fr;
+        }
+
+        .card {
+          min-height: auto;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <main>
+      <h1>자전거 이동 아이콘 비교</h1>
+      <p class="intro">
+        총 12개 후보입니다. 각 후보는 크게 본 형태와 함께 실제 지도 위에서 쓸 수 있는 세 가지 처리 방식(무배경, 약한 흰 글로우, 원형 칩)을 같이 비교합니다.
+      </p>
+      <div class="legend" aria-label="비교 방식">
+        <span>무배경: 최종 적용 1순위</span>
+        <span>글로우: 라벨 위 가독성 보강</span>
+        <span>원형 칩: 가장 안전하지만 장식감 강함</span>
+      </div>
+      <section class="grid" id="iconGrid" aria-label="자전거 아이콘 후보"></section>
+    </main>
+
+    <template id="cardTemplate">
+      <article class="card">
+        <div class="hero"><img alt="" /></div>
+        <h2></h2>
+        <span class="tag"></span>
+        <p></p>
+        <div class="route-tests">
+          <div class="route-test" data-mode="raw">
+            <span class="route-test-label">무배경</span>
+            <svg viewBox="0 0 240 58" aria-hidden="true"><path d="M12 42 C48 14 88 54 124 30 S198 20 228 42" fill="none" stroke="var(--line)" stroke-width="7" stroke-linecap="round" /></svg>
+            <span class="moving-marker raw"><img alt="" /></span>
+          </div>
+          <div class="route-test" data-mode="glow">
+            <span class="route-test-label">글로우</span>
+            <svg viewBox="0 0 240 58" aria-hidden="true"><path d="M12 42 C48 14 88 54 124 30 S198 20 228 42" fill="none" stroke="var(--line)" stroke-width="7" stroke-linecap="round" /></svg>
+            <span class="moving-marker glow"><img alt="" /></span>
+          </div>
+          <div class="route-test" data-mode="chip">
+            <span class="route-test-label">원형 칩</span>
+            <svg viewBox="0 0 240 58" aria-hidden="true"><path d="M12 42 C48 14 88 54 124 30 S198 20 228 42" fill="none" stroke="var(--line)" stroke-width="7" stroke-linecap="round" /></svg>
+            <span class="moving-marker chip"><img alt="" /></span>
+          </div>
+        </div>
+      </article>
+    </template>
+
+    <script>
+      const icons = [
+        {
+          file: "classic-outline.svg",
+          title: "01 클래식 라인",
+          tag: "기본형",
+          note: "가장 익숙한 자전거 실루엣입니다. 무배경으로도 안정적이고 현재 지도 선과 톤이 잘 맞습니다.",
+        },
+        {
+          file: "rider-motion.svg",
+          title: "02 라이더 모션",
+          tag: "생동감",
+          note: "사람이 타고 있다는 느낌이 강합니다. 작은 크기에서는 글로우 처리까지 같이 보는 게 좋습니다.",
+        },
+        {
+          file: "electric-spark.svg",
+          title: "03 전기 스파크",
+          tag: "속도감",
+          note: "파란 번개로 전기자전거 느낌을 줍니다. 이벤트성, 액티브한 인상에 적합합니다.",
+        },
+        {
+          file: "navigation-pin.svg",
+          title: "04 내비 핀",
+          tag: "지도성",
+          note: "자전거와 위치 핀을 결합했습니다. 이동 위치를 보여준다는 의미가 가장 직접적입니다.",
+        },
+        {
+          file: "compact-glyph.svg",
+          title: "05 컴팩트 글리프",
+          tag: "모바일",
+          note: "굵은 면으로 만든 후보입니다. 작은 모바일 지도에서도 형태가 가장 덜 무너집니다.",
+        },
+        {
+          file: "forward-arrow.svg",
+          title: "06 진행 화살표",
+          tag: "방향성",
+          note: "주행 방향을 명확히 보여줍니다. 움직임을 보지 않는 순간에도 앞으로 간다는 정보가 남습니다.",
+        },
+        {
+          file: "group-ride.svg",
+          title: "07 그룹 라이딩",
+          tag: "동호회",
+          note: "바이크 챌린지 코스의 단체/동호회 성격과 가장 잘 맞습니다. 디테일이 있어 글로우 권장입니다.",
+        },
+        {
+          file: "helmet-rider.svg",
+          title: "08 헬멧 라이더",
+          tag: "안전감",
+          note: "라이더와 헬멧을 강조한 후보입니다. 자전거 투어의 안전하고 관리된 인상을 줍니다.",
+        },
+        {
+          file: "river-wave.svg",
+          title: "09 강변 웨이브",
+          tag: "여주감",
+          note: "남한강과 라이딩을 같이 연상시키는 후보입니다. 지역성과 관광 느낌을 살리기 좋습니다.",
+        },
+        {
+          file: "checkpoint.svg",
+          title: "10 체크포인트",
+          tag: "완주",
+          note: "완주 인증/챌린지 느낌이 강합니다. 코스 끝점이나 인증 섹션에도 확장하기 좋습니다.",
+        },
+        {
+          file: "map-compass.svg",
+          title: "11 컴퍼스",
+          tag: "탐색",
+          note: "추천 코스맵을 따라가는 탐색 느낌입니다. 지도 UI와 자연스럽게 연결됩니다.",
+        },
+        {
+          file: "soft-rounded.svg",
+          title: "12 소프트 라운드",
+          tag: "친근함",
+          note: "부드러운 곡선과 파란 포인트가 있는 후보입니다. 투어 브랜드의 밝은 인상과 잘 맞습니다.",
+        },
+      ];
+
+      const grid = document.querySelector("#iconGrid");
+      const template = document.querySelector("#cardTemplate");
+
+      icons.forEach((icon) => {
+        const card = template.content.cloneNode(true);
+        const imagePath = `./${icon.file}`;
+
+        card.querySelector(".hero img").src = imagePath;
+        card.querySelector("h2").textContent = icon.title;
+        card.querySelector(".tag").textContent = icon.tag;
+        card.querySelector("p").textContent = icon.note;
+
+        card.querySelectorAll(".moving-marker img").forEach((img) => {
+          img.src = imagePath;
+        });
+
+        grid.appendChild(card);
+      });
+    </script>
+  </body>
+</html>

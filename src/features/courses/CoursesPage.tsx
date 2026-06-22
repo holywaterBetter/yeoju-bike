@@ -63,6 +63,7 @@ const assets = {
   kYeojuGalleryLeftFrame: withBasePath("/assets/figma/groups/courses-k-yeoju-gallery-left-frame.webp"),
   kYeojuGalleryRightFrame: withBasePath("/assets/figma/groups/courses-k-yeoju-gallery-right-frame.webp"),
   clubMapFrame: withBasePath("/assets/figma/groups/courses-club-map-frame.webp"),
+  routeBikeClassic: withBasePath("/assets/route-bike-icons/classic-outline.svg"),
   giftMask: withBasePath("/assets/figma/mcp/93cbe394-9c05-4d99-8f39-3f425e6a6e0d.svg"),
   giftOvalBlue: withBasePath("/assets/figma/mcp/261415ef-f7ad-469f-a2bb-df9d47e5b520.svg"),
   giftKeyring: withBasePath("/assets/figma/mcp/42cef7f0-21d9-486d-b54f-03929f4fee80.svg"),
@@ -421,22 +422,20 @@ const routeAnimationConfigs = {
     pathId: "course-route-desktop",
     path: pointsToSvgPath(desktopRoutePoints),
     start: desktopRoutePoints[0],
-    bikeSrc: assets.bikeDecoration,
+    bikeSrc: assets.routeBikeClassic,
     duration: "18s",
-    markerRadius: 24,
-    bikeWidth: 36,
-    bikeHeight: 24,
+    bikeWidth: 44,
+    bikeHeight: 30,
   },
   mobile: {
     viewBox: "0 0 1062 672",
     pathId: "course-route-mobile",
     path: pointsToSvgPath(mobileRoutePoints),
     start: mobileRoutePoints[0],
-    bikeSrc: mobileAssets.bikeDecoration,
+    bikeSrc: assets.routeBikeClassic,
     duration: "16s",
-    markerRadius: 42,
-    bikeWidth: 64,
-    bikeHeight: 42,
+    bikeWidth: 72,
+    bikeHeight: 48,
   },
 } as const;
 
@@ -650,19 +649,15 @@ function CourseRouteAnimation({ variant }: { variant: keyof typeof routeAnimatio
 
 function CourseRouteMarker({ config }: { config: (typeof routeAnimationConfigs)[keyof typeof routeAnimationConfigs] }) {
   return (
-    <>
-      <circle className={styles.routeMarkerPulse} r={config.markerRadius} />
-      <circle className={styles.routeMarkerHalo} r={config.markerRadius} />
-      <image
-        className={styles.routeMarkerBike}
-        href={config.bikeSrc}
-        x={-config.bikeWidth / 2}
-        y={-config.bikeHeight / 2}
-        width={config.bikeWidth}
-        height={config.bikeHeight}
-        preserveAspectRatio="xMidYMid meet"
-      />
-    </>
+    <image
+      className={styles.routeMarkerBike}
+      href={config.bikeSrc}
+      x={-config.bikeWidth / 2}
+      y={-config.bikeHeight / 2}
+      width={config.bikeWidth}
+      height={config.bikeHeight}
+      preserveAspectRatio="xMidYMid meet"
+    />
   );
 }
 

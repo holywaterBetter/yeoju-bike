@@ -576,39 +576,14 @@
   display: none;
 }
 
-.routeMarkerPulse {
-  fill: none;
-  stroke: #946ce9;
-  stroke-width: 2.2px;
-  opacity: 0.24;
-  transform-box: fill-box;
-  transform-origin: center;
-  animation: routeMarkerPulse 1800ms ease-out infinite;
-}
-
-.routeMarkerHalo {
-  fill: rgba(255, 255, 255, 0.92);
-  stroke: rgba(148, 108, 233, 0.34);
-  stroke-width: 2.2px;
-  filter: drop-shadow(0 7px 16px rgba(60, 41, 122, 0.18));
-}
-
 .routeMarkerBike {
   opacity: 0.96;
-  filter: drop-shadow(0 2px 5px rgba(60, 41, 122, 0.18));
-}
-
-@keyframes routeMarkerPulse {
-  0% {
-    opacity: 0.25;
-    transform: scale(0.92);
-  }
-
-  70%,
-  100% {
-    opacity: 0;
-    transform: scale(1.55);
-  }
+  filter:
+    drop-shadow(0 1px 0 rgba(255, 255, 255, 0.96))
+    drop-shadow(0 -1px 0 rgba(255, 255, 255, 0.96))
+    drop-shadow(1px 0 0 rgba(255, 255, 255, 0.96))
+    drop-shadow(-1px 0 0 rgba(255, 255, 255, 0.96))
+    drop-shadow(0 5px 10px rgba(60, 41, 122, 0.2));
 }
 
 @media (prefers-reduced-motion: reduce) {
@@ -618,11 +593,6 @@
 
   .routeStaticMarker {
     display: block;
-  }
-
-  .routeMarkerPulse {
-    animation: none !important;
-    opacity: 0;
   }
 }
 
