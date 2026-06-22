@@ -63,7 +63,6 @@ const assets = {
   kYeojuGalleryLeftFrame: withBasePath("/assets/figma/groups/courses-k-yeoju-gallery-left-frame.webp"),
   kYeojuGalleryRightFrame: withBasePath("/assets/figma/groups/courses-k-yeoju-gallery-right-frame.webp"),
   clubMapFrame: withBasePath("/assets/figma/groups/courses-club-map-frame.webp"),
-  routeBikeClassic: withBasePath("/assets/route-bike-icons/classic-outline.svg"),
   giftMask: withBasePath("/assets/figma/mcp/93cbe394-9c05-4d99-8f39-3f425e6a6e0d.svg"),
   giftOvalBlue: withBasePath("/assets/figma/mcp/261415ef-f7ad-469f-a2bb-df9d47e5b520.svg"),
   giftKeyring: withBasePath("/assets/figma/mcp/42cef7f0-21d9-486d-b54f-03929f4fee80.svg"),
@@ -344,109 +343,6 @@ const mobileSectionMedia = [
   height: number;
 }[][][];
 
-const desktopRoutePoints = [
-  [654, 486],
-  [692, 485],
-  [714, 504],
-  [717, 539],
-  [738, 572],
-  [734, 612],
-  [760, 650],
-  [814, 666],
-  [851, 630],
-  [865, 583],
-  [886, 544],
-  [942, 547],
-  [986, 519],
-  [998, 466],
-  [983, 415],
-  [947, 377],
-  [958, 335],
-  [1001, 303],
-  [975, 266],
-  [936, 247],
-  [897, 250],
-  [865, 279],
-  [840, 314],
-  [792, 347],
-  [773, 315],
-  [790, 250],
-  [768, 192],
-  [781, 121],
-  [777, 61],
-  [719, 58],
-  [674, 86],
-  [635, 107],
-  [594, 83],
-  [565, 98],
-  [525, 128],
-  [476, 149],
-  [421, 153],
-  [368, 141],
-  [327, 112],
-  [314, 74],
-  [316, 38],
-  [279, 36],
-  [267, 72],
-  [278, 112],
-  [318, 148],
-  [348, 165],
-  [348, 229],
-  [397, 243],
-  [410, 291],
-  [414, 340],
-  [397, 383],
-  [368, 413],
-  [352, 455],
-  [350, 496],
-  [383, 526],
-  [426, 547],
-  [475, 541],
-  [508, 548],
-  [549, 579],
-  [592, 591],
-  [633, 580],
-  [660, 544],
-  [648, 506],
-  [654, 486],
-] as const satisfies readonly (readonly [number, number])[];
-
-const mobileRouteScale = 672 / 734;
-const mobileRouteXOffset = (1062 - 1200 * mobileRouteScale) / 2;
-
-const mobileRoutePoints = desktopRoutePoints.map(([x, y]) => [roundRouteCoordinate(x * mobileRouteScale + mobileRouteXOffset), roundRouteCoordinate(y * mobileRouteScale)] as const);
-
-const routeAnimationConfigs = {
-  desktop: {
-    viewBox: "0 0 1200 734",
-    pathId: "course-route-desktop",
-    path: pointsToSvgPath(desktopRoutePoints),
-    start: desktopRoutePoints[0],
-    bikeSrc: assets.routeBikeClassic,
-    duration: "18s",
-    bikeWidth: 44,
-    bikeHeight: 30,
-  },
-  mobile: {
-    viewBox: "0 0 1062 672",
-    pathId: "course-route-mobile",
-    path: pointsToSvgPath(mobileRoutePoints),
-    start: mobileRoutePoints[0],
-    bikeSrc: assets.routeBikeClassic,
-    duration: "16s",
-    bikeWidth: 72,
-    bikeHeight: 48,
-  },
-} as const;
-
-function roundRouteCoordinate(value: number) {
-  return Number(value.toFixed(1));
-}
-
-function pointsToSvgPath(points: readonly (readonly [number, number])[]) {
-  return points.map(([x, y], index) => `${index === 0 ? "M" : "L"} ${x} ${y}`).join(" ");
-}
-
 function PositionedMediaImage({ media }: { media: PositionedMedia }) {
   return (
     <img
@@ -620,44 +516,7 @@ function CourseMap() {
   return (
     <div className={styles.mapRoot} data-node-id="32:535">
       <img className={styles.mapFrameImage} src={assets.clubMapFrame} alt="바이크 챌린지 코스 추천 지도" width={1200} height={734} {...lazyImageAttrs} />
-      <CourseRouteAnimation variant="desktop" />
     </div>
-  );
-}
-
-function CourseRouteAnimation({ variant }: { variant: keyof typeof routeAnimationConfigs }) {
-  const config = routeAnimationConfigs[variant];
-  const [startX, startY] = config.start;
-
-  return (
-    <svg className={styles.routeAnimationLayer} viewBox={config.viewBox} aria-hidden="true" focusable="false">
-      <defs>
-        <path id={config.pathId} d={config.path} />
-      </defs>
-      <g className={styles.routeAnimatedMarker}>
-        <animateMotion dur={config.duration} repeatCount="indefinite" rotate="0" calcMode="linear">
-          <mpath href={`#${config.pathId}`} />
-        </animateMotion>
-        <CourseRouteMarker config={config} />
-      </g>
-      <g className={styles.routeStaticMarker} transform={`translate(${startX} ${startY})`}>
-        <CourseRouteMarker config={config} />
-      </g>
-    </svg>
-  );
-}
-
-function CourseRouteMarker({ config }: { config: (typeof routeAnimationConfigs)[keyof typeof routeAnimationConfigs] }) {
-  return (
-    <image
-      className={styles.routeMarkerBike}
-      href={config.bikeSrc}
-      x={-config.bikeWidth / 2}
-      y={-config.bikeHeight / 2}
-      width={config.bikeWidth}
-      height={config.bikeHeight}
-      preserveAspectRatio="xMidYMid meet"
-    />
   );
 }
 
@@ -790,10 +649,7 @@ function MobileMediaStack({ sectionIndex }: { sectionIndex: number }) {
 function MobileCourseMap() {
   return (
     <div className={styles.mobileMapFrame} data-node-id="57:791">
-      <div className={styles.mobileMapCanvas}>
-        <img className={styles.mobileMapImage} src={mobileAssets.clubMapRoute} alt="바이크 챌린지 코스 추천 지도" width={1062} height={672} {...lazyImageAttrs} />
-        <CourseRouteAnimation variant="mobile" />
-      </div>
+      <img className={styles.mobileMapImage} src={mobileAssets.clubMapRoute} alt="바이크 챌린지 코스 추천 지도" width={354} height={224} {...lazyImageAttrs} />
     </div>
   );
 }
