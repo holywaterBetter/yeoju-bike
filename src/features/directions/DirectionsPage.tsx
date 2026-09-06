@@ -1,6 +1,6 @@
 import SitePageShell from "@/components/SitePageShell";
 import { withBasePath } from "@/lib/sitePaths";
-import { parkingDirections, transitDirections, visitFullAddress, visitLocation } from "@/lib/visitInfo";
+import { parkingDirections, transitDirections, visitDisplayAddressLines, visitLocation } from "@/lib/visitInfo";
 import KakaoMap from "./KakaoMap";
 import styles from "./DirectionsPage.module.css";
 
@@ -22,7 +22,11 @@ export default function DirectionsPage({ className }: DirectionsPageProps) {
             <h1 id="directions-title">따르릉으로 오시는 길</h1>
             <div className={styles.address}>
               <img src={assets.pin} alt="" width={22} height={29} aria-hidden="true" />
-              <p>{visitFullAddress}</p>
+              <p>
+                {visitDisplayAddressLines.map((line) => (
+                  <span key={line}>{line}</span>
+                ))}
+              </p>
             </div>
           </header>
 

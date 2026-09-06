@@ -1,8 +1,11 @@
-export const visitStreetAddress = "강변유원지길 105 폰박물관 옆 따르릉 자전거 사랑방";
+const visitStreetLandmark = "강변유원지길 105 폰박물관 옆";
+export const visitLocationName = "따르릉 자전거 사랑방";
+export const visitStreetAddress = `${visitStreetLandmark} ${visitLocationName}`;
 export const visitFullAddress = `경기도 여주시 ${visitStreetAddress}`;
+export const visitDisplayAddressLines = [`경기도 여주시 ${visitStreetLandmark}`, visitLocationName] as const;
 
 export const visitLocation = {
-  name: "따르릉 자전거 사랑방",
+  name: visitLocationName,
   latitude: 37.29331121758,
   longitude: 127.66733871357,
 } as const;

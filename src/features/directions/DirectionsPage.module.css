@@ -57,6 +57,10 @@
   word-break: keep-all;
 }
 
+.address p span {
+  display: block;
+}
+
 .mapFrame {
   aspect-ratio: 1200 / 626;
   margin-top: 40px;
@@ -189,6 +193,14 @@
     font-size: 18px;
     letter-spacing: -0.3939px;
     line-height: 30px;
+  }
+
+  .address p span {
+    display: inline;
+  }
+
+  .address p span + span::before {
+    content: " ";
   }
 
   .mapFrame {
