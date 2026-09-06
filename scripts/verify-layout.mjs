@@ -10,6 +10,7 @@ const pages = [
 ];
 
 const viewports = [
+  { width: 332, height: 720 },
   { width: 360, height: 800 },
   { width: 390, height: 844 },
   { width: 402, height: 874 },
@@ -39,7 +40,7 @@ if (failures.length > 0) {
   process.exit(1);
 }
 
-console.log("[pass] layout checks passed at 360/390/402/430/768/1024/1366/1440/1920px");
+console.log("[pass] layout checks passed at 332/360/390/402/430/768/1024/1366/1440/1920px");
 
 async function checkPage(pageSpec, viewport) {
   const page = await browser.newPage({ viewport, deviceScaleFactor: 1 });
@@ -132,6 +133,30 @@ async function checkPage(pageSpec, viewport) {
             src: image?.getAttribute("src") ?? "",
           };
         }),
+        giftTitles: Array.from(document.querySelectorAll("[data-gift-icon] + h3")).map((element) => {
+          const style = getComputedStyle(element);
+          const textNode = element.firstChild;
+          const text = textNode?.textContent ?? "";
+          let searchFrom = 0;
+          const words = text.trim().split(/\s+/).map((word) => {
+            const start = text.indexOf(word, searchFrom);
+            const range = document.createRange();
+            range.setStart(textNode, start);
+            range.setEnd(textNode, start + word.length);
+            searchFrom = start + word.length;
+            return {
+              text: word,
+              lineCount: new Set(Array.from(range.getClientRects(), (rect) => Math.round(rect.top * 100) / 100)).size,
+            };
+          });
+
+          return {
+            text,
+            overflowWrap: style.overflowWrap,
+            wordBreak: style.wordBreak,
+            words,
+          };
+        }),
         courseTitleLayers: Array.from(document.querySelectorAll("[data-course-anchor]")).map((section) => {
           const title = section.querySelector("h2");
           const decoration = section.querySelector('[data-visual-id^="course-decoration-"]');
@@ -202,6 +227,7 @@ async function checkPage(pageSpec, viewport) {
         const visualDotGap = result.metrics.carouselDots.y - (result.metrics.carousel.y + result.metrics.carousel.width);
         if (Math.abs(visualDotGap - 9.6) > 1) failures.push(`${label}: carousel dot gap is ${visualDotGap.toFixed(2)}px, expected 9.6px`);
       }
+      if (pageSpec.key === "courses") assertGiftTitleWrapping(label, result.giftTitles);
     }
 
     if (viewport.width === 1440) {
@@ -326,6 +352,18 @@ function assertGiftIcons(label, icons, visualSize, positions) {
       : icon.src.includes("/assets/figma/260906/gifts/");
     if (!usesApprovedAsset) failures.push(`${label}: gift icon ${icon.key} does not use its approved Figma asset`);
   });
+}
+
+function assertGiftTitleWrapping(label, titles) {
+  for (const title of titles) {
+    if (title.wordBreak !== "keep-all" || title.overflowWrap !== "normal") {
+      failures.push(`${label}: gift title "${title.text}" does not preserve Korean word boundaries`);
+    }
+
+    for (const word of title.words) {
+      if (word.lineCount > 1) failures.push(`${label}: gift title word "${word.text}" is split across lines`);
+    }
+  }
 }
 
 function assertGuideTitleLayering(label, result) {

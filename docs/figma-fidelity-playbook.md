@@ -37,6 +37,7 @@
 ### 타이포그래피와 버튼
 
 - 폰트 크기만 맞추지 말고 family, weight, line-height, letter-spacing, 실제 줄바꿈을 함께 비교한다.
+- 모바일 한국어 제목은 `word-break: keep-all`과 `overflow-wrap: normal`을 사용해 음절이 아니라 어절 경계에서 줄바꿈한다.
 - 버튼은 시각 박스와 최소 44px 조작 영역을 분리한다.
 - Figma에 없는 hover 이동, 그림자, 자동 애니메이션을 추가하지 않는다.
 
