@@ -36,6 +36,8 @@ jobs:
 
       - name: Build static site
         run: npm run build:pages
+        env:
+          NEXT_PUBLIC_BASE_PATH: /${{ github.event.repository.name }}
 
       - name: Disable Jekyll processing
         run: touch out/.nojekyll
