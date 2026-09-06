@@ -1,6 +1,7 @@
 import fs from "node:fs";
 import path from "node:path";
 import process from "node:process";
+import sharp from "sharp";
 
 const root = process.cwd();
 const publicAssetsDir = path.join(root, "public", "assets");
@@ -88,7 +89,23 @@ const missingAssets = [...sourceReferences.keys()]
   .filter((assetPath) => assetPath.startsWith("public/assets/") && !publicAssets.has(assetPath))
   .sort();
 
-if (unreferencedAssets.length > 0 || missingAssets.length > 0) {
+const transparentDecorationPaths = ["public/assets/figma/groups/courses-bell.png"];
+const opaqueDecorations = [];
+
+for (const assetPath of transparentDecorationPaths) {
+  const absolutePath = path.join(root, assetPath);
+  if (!fs.existsSync(absolutePath)) continue;
+
+  const metadata = await sharp(absolutePath).metadata();
+  const stats = await sharp(absolutePath).stats();
+  const alpha = stats.channels[3];
+
+  if (!metadata.hasAlpha || !alpha || alpha.min !== 0) {
+    opaqueDecorations.push(assetPath);
+  }
+}
+
+if (unreferencedAssets.length > 0 || missingAssets.length > 0 || opaqueDecorations.length > 0) {
   if (unreferencedAssets.length > 0) {
     const totalSize = unreferencedAssets.reduce((sum, assetPath) => sum + publicAssets.get(assetPath), 0);
     console.error(
@@ -105,6 +122,11 @@ if (unreferencedAssets.length > 0 || missingAssets.length > 0) {
       const sources = [...sourceReferences.get(assetPath)].sort().join(", ");
       console.error(`  ${assetPath} (${sources})`);
     }
+  }
+
+  if (opaqueDecorations.length > 0) {
+    console.error("[assets:audit] decorative assets with an opaque background:");
+    for (const assetPath of opaqueDecorations) console.error(`  ${assetPath}`);
   }
 
   process.exit(1);
