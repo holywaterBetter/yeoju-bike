@@ -1,5 +1,5 @@
 import type { Metadata } from "next";
-import { courseAnchors, type CourseAnchor } from "./courseAnchors";
+import type { CourseAnchor } from "./courseAnchors";
 import { getTourReservationUrl, tourCatalog } from "./tours";
 import { kakaoChannelUrl } from "./tourLinks";
 import { visitStreetAddress } from "./visitInfo";
@@ -10,7 +10,7 @@ export const siteUrl = `https://${siteDomain}/`;
 export const siteName = "따르릉 여주 시티투어";
 export const siteTitle = "여주 자전거 시티투어";
 export const siteDescription =
-  "남한강 자전거길과 여주 여행 코스를 전기자전거로 달리는 가이드 동행 여주 자전거 시티투어입니다.";
+  "남한강변을 따라 해설 투어부터 자율 완주 챌린지까지 즐기는 2026 여주 자전거 시티투어입니다.";
 export const siteOgImage = `${siteUrl}assets/og-logo.png`;
 export const siteOgImageAlt = "여주 자전거 시티투어 로고";
 export const siteKeywords = [
@@ -30,7 +30,7 @@ export const siteAddress = {
 
 export const seoTours = tourCatalog.map((tour) => ({
   anchor: tour.anchor,
-  name: tour.plainTitle,
+  name: tour.title,
   description: tour.seo.description,
   audience: tour.seo.audience,
   duration: tour.seo.duration,
@@ -46,10 +46,6 @@ export function absoluteSiteUrl(path = "/") {
 }
 
 export function courseSiteUrl(anchor: CourseAnchor) {
-  if (anchor === courseAnchors.hangul) {
-    return absoluteSiteUrl("/courses/");
-  }
-
   return absoluteSiteUrl(`/courses/#${anchor}`);
 }
 
@@ -117,7 +113,7 @@ export function localBusinessJsonLd() {
     sameAs: [kakaoChannelUrl],
     makesOffer: seoTours.map((tour) => ({
       "@type": "Offer",
-      url: getTourReservationUrl(tour.anchor) ?? absoluteSiteUrl("/reservation/"),
+      url: getTourReservationUrl(tour.anchor),
       itemOffered: {
         "@type": "TouristTrip",
         name: tour.name,

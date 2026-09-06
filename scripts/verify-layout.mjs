@@ -4,15 +4,21 @@ import { chromium } from "playwright";
 const baseUrl = process.env.LAYOUT_BASE_URL || process.env.RESPONSIVE_BASE_URL || "http://127.0.0.1:3000";
 
 const pages = [
-  { route: "/", key: "landing", designWidth: 1440 },
-  { route: "/courses", key: "courses", designWidth: 1440 },
-  { route: "/reservation", key: "reservation", designWidth: 1440 },
+  { route: "/", key: "landing", referenceHeights: { 1440: 5440, 402: 4107 } },
+  { route: "/courses/", key: "courses", referenceHeights: { 1440: 5247, 402: 3828 } },
+  { route: "/reservation/", key: "directions", referenceHeights: { 1440: 2602, 402: 1883 } },
 ];
 
 const viewports = [
-  { key: "pc", width: 1440, height: 900 },
-  { key: "tablet", width: 1024, height: 768 },
-  { key: "mobile", width: 390, height: 844 },
+  { width: 360, height: 800 },
+  { width: 390, height: 844 },
+  { width: 402, height: 874 },
+  { width: 430, height: 932 },
+  { width: 768, height: 900 },
+  { width: 1024, height: 900 },
+  { width: 1366, height: 900 },
+  { width: 1440, height: 900 },
+  { width: 1920, height: 1080 },
 ];
 
 const browser = await chromium.launch();
@@ -29,103 +35,73 @@ try {
 }
 
 if (failures.length > 0) {
-  for (const failure of failures) {
-    console.error(`[fail] ${failure}`);
-  }
+  for (const failure of failures) console.error(`[fail] ${failure}`);
   process.exit(1);
 }
 
-console.log("[pass] layout checks passed");
+console.log("[pass] layout checks passed at 360/390/402/430/768/1024/1366/1440/1920px");
 
 async function checkPage(pageSpec, viewport) {
-  const page = await browser.newPage({
-    viewport: { width: viewport.width, height: viewport.height },
-    deviceScaleFactor: 1,
-  });
+  const page = await browser.newPage({ viewport, deviceScaleFactor: 1 });
+  const label = `${pageSpec.key} ${viewport.width}x${viewport.height}`;
 
   try {
     await page.goto(new URL(pageSpec.route, baseUrl).toString(), { waitUntil: "networkidle" });
     await loadRenderedImages(page);
-    await page.evaluate(async () => {
-      if ("fonts" in document) {
-        await document.fonts.ready;
-      }
-    });
 
-    const result = await page.evaluate(
-      ({ pageSpec, viewport }) => {
-        const main = document.querySelector("main[data-node-id]");
-        const surface = document.querySelector("[data-responsive-page]");
-        const mainRect = main?.getBoundingClientRect();
-        const surfaceRect = surface?.getBoundingClientRect();
-        const runtimeReferenceImages = Array.from(document.images)
-          .map((image) => image.currentSrc || image.src)
-          .filter((src) => src.includes("/assets/figma/reference/"));
-        const runtimeCropImages = Array.from(document.images)
-          .map((image) => image.currentSrc || image.src)
-          .filter((src) => src.includes("/assets/figma/crops/"));
-        const isRenderedImage = (image) => {
-          const rect = image.getBoundingClientRect();
-          const style = getComputedStyle(image);
+    const result = await page.evaluate(() => {
+      const isVisible = (element) => {
+        const rect = element.getBoundingClientRect();
+        const style = getComputedStyle(element);
+        return rect.width > 0 && rect.height > 0 && style.display !== "none" && style.visibility !== "hidden";
+      };
 
-          return (
-            rect.width > 0 &&
-            rect.height > 0 &&
-            style.display !== "none" &&
-            style.visibility !== "hidden"
-          );
-        };
-        const brokenImages = Array.from(document.images)
-          .filter(isRenderedImage)
+      return {
+        scrollWidth: document.documentElement.scrollWidth,
+        bodyScrollWidth: document.body.scrollWidth,
+        scrollHeight: document.documentElement.scrollHeight,
+        hasMain: Boolean(document.querySelector("[data-responsive-page] main")),
+        footerCount: document.querySelectorAll("[data-contact-footer]").length,
+        footerLogoCount: document.querySelectorAll('[data-contact-footer] img[alt="여주시"], [data-contact-footer] img[alt="여주세종문화관광재단"]').length,
+        brokenImages: Array.from(document.images)
+          .filter(isVisible)
           .filter((image) => !image.complete || image.naturalWidth === 0)
-          .map((image) => image.getAttribute("src"));
-        const visibleLinks = Array.from(document.querySelectorAll("a[href]"))
-          .map((link) => {
-            const rect = link.getBoundingClientRect();
-            const style = getComputedStyle(link);
-
+          .map((image) => image.getAttribute("src")),
+        forbiddenRuntimeImages: Array.from(document.images)
+          .map((image) => image.currentSrc || image.src)
+          .filter((src) => src.includes("/assets/figma/reference/") || src.includes("/assets/figma/crops/")),
+        smallControls: Array.from(document.querySelectorAll("a[href], button"))
+          .filter(isVisible)
+          .map((element) => {
+            const rect = element.getBoundingClientRect();
             return {
-              href: link.getAttribute("href") || "",
-              text: link.textContent?.trim() || link.getAttribute("aria-label") || "",
+              label: element.textContent?.trim() || element.getAttribute("aria-label") || element.tagName,
               width: rect.width,
               height: rect.height,
-              visible:
-                rect.width > 0 &&
-                rect.height > 0 &&
-                style.display !== "none" &&
-                style.visibility !== "hidden",
             };
           })
-          .filter((link) => link.visible);
-        const mobileCtas = visibleLinks.filter(
-          (link) => /예약|문의|카카오톡/.test(link.text) || /form\.naver|pf\.kakao/.test(link.href),
-        );
+          .filter((control) => control.width < 44 || control.height < 44),
+      };
+    });
 
-        return {
-          key: pageSpec.key,
-          viewport,
-          scrollWidth: document.documentElement.scrollWidth,
-          bodyScrollWidth: document.body.scrollWidth,
-          mainRect,
-          surfaceRect,
-          runtimeReferenceImages,
-          runtimeCropImages,
-          brokenImages,
-          mobileCtas,
-          hasVisibleTitle: Boolean(
-            Array.from(document.querySelectorAll("h1, h2")).some((heading) => {
-              const rect = heading.getBoundingClientRect();
-              const style = getComputedStyle(heading);
+    const overflow = Math.max(result.scrollWidth, result.bodyScrollWidth) - viewport.width;
+    if (overflow > 1) failures.push(`${label}: horizontal overflow ${overflow}px`);
+    if (!result.hasMain) failures.push(`${label}: missing semantic main`);
+    if (result.footerCount !== 1) failures.push(`${label}: expected one shared footer, found ${result.footerCount}`);
+    if (result.footerLogoCount !== 2) failures.push(`${label}: expected two official footer logos, found ${result.footerLogoCount}`);
+    if (result.brokenImages.length) failures.push(`${label}: broken images ${result.brokenImages.join(", ")}`);
+    if (result.forbiddenRuntimeImages.length) failures.push(`${label}: reference/crop image rendered at runtime`);
 
-              return rect.width > 0 && rect.height > 0 && style.display !== "none" && style.visibility !== "hidden";
-            }),
-          ),
-        };
-      },
-      { pageSpec, viewport },
-    );
+    if (viewport.width < 768 && result.smallControls.length) {
+      failures.push(
+        `${label}: controls smaller than 44px — ${result.smallControls.map((control) => `${control.label} ${control.width.toFixed(1)}x${control.height.toFixed(1)}`).join(", ")}`,
+      );
+    }
 
-    validate(result, pageSpec, viewport);
+    const expectedHeight = pageSpec.referenceHeights[viewport.width];
+    if (expectedHeight && Math.abs(result.scrollHeight - expectedHeight) > 4) {
+      failures.push(`${label}: height ${result.scrollHeight}px differs from reference ${expectedHeight}px`);
+    }
   } finally {
     await page.close();
   }
@@ -139,74 +115,19 @@ async function loadRenderedImages(page) {
 
     for (let y = 0; y <= maxScroll; y += step) {
       window.scrollTo(0, y);
-      await wait(80);
+      await wait(50);
     }
 
     window.scrollTo(0, 0);
+    if ("fonts" in document) await document.fonts.ready;
   });
 
   await page.waitForFunction(() =>
     Array.from(document.images).every((image) => {
       const rect = image.getBoundingClientRect();
-      const style = window.getComputedStyle(image);
-      const isRendered =
-        rect.width > 0 &&
-        rect.height > 0 &&
-        style.display !== "none" &&
-        style.visibility !== "hidden";
-
-      return !isRendered || (image.complete && image.naturalWidth > 0);
+      const style = getComputedStyle(image);
+      const rendered = rect.width > 0 && rect.height > 0 && style.display !== "none" && style.visibility !== "hidden";
+      return !rendered || (image.complete && image.naturalWidth > 0);
     }),
   );
-}
-
-function validate(result, pageSpec, viewport) {
-  const label = `${pageSpec.key} ${viewport.key} ${viewport.width}x${viewport.height}`;
-  const overflow = Math.max(result.scrollWidth, result.bodyScrollWidth) - viewport.width;
-
-  if (overflow > 1) {
-    failures.push(`${label}: horizontal overflow ${overflow}px`);
-  }
-
-  if (result.brokenImages.length > 0) {
-    failures.push(`${label}: broken images ${result.brokenImages.join(", ")}`);
-  }
-
-  if (result.runtimeReferenceImages.length > 0) {
-    failures.push(`${label}: runtime reference images ${result.runtimeReferenceImages.join(", ")}`);
-  }
-
-  if (result.runtimeCropImages.length > 0) {
-    failures.push(`${label}: runtime crop images ${result.runtimeCropImages.join(", ")}`);
-  }
-
-  if (!result.mainRect || !result.surfaceRect) {
-    failures.push(`${label}: missing main or responsive surface`);
-    return;
-  }
-
-  if (Math.abs(result.mainRect.width - viewport.width) > 1.5) {
-    failures.push(`${label}: main width ${result.mainRect.width.toFixed(2)} expected ${viewport.width}`);
-  }
-
-  if (viewport.width >= 768) {
-    const expectedLeft = 0;
-    const leftDelta = Math.abs(result.mainRect.left - expectedLeft);
-
-    if (leftDelta > 1.5) {
-      failures.push(`${label}: main left ${result.mainRect.left.toFixed(2)} expected ${expectedLeft}`);
-    }
-  }
-
-  if (viewport.width < 768) {
-    if (!result.hasVisibleTitle) {
-      failures.push(`${label}: no visible mobile heading`);
-    }
-
-    for (const cta of result.mobileCtas) {
-      if (cta.height < 44 || cta.width < 44) {
-        failures.push(`${label}: small CTA/link ${cta.text || cta.href} ${cta.width.toFixed(1)}x${cta.height.toFixed(1)}`);
-      }
-    }
-  }
 }

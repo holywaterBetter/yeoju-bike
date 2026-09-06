@@ -1,0 +1,100 @@
+.carousel {
+  width: 100%;
+  outline: none;
+}
+
+.carousel:focus-visible .viewport {
+  outline: 3px solid rgba(25, 98, 208, 0.65);
+  outline-offset: 4px;
+}
+
+.viewport {
+  overflow: hidden;
+  width: 100%;
+  aspect-ratio: 1;
+  border-radius: 1px;
+  box-shadow: 0 16px 40px rgba(0, 0, 0, 0.12);
+  touch-action: pan-y;
+}
+
+.track {
+  display: flex;
+  width: 100%;
+  height: 100%;
+  transition: transform 360ms var(--ease-out);
+  will-change: transform;
+}
+
+.slide {
+  width: 100%;
+  height: 100%;
+  flex: 0 0 100%;
+}
+
+.slide img,
+.placeholder {
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  user-select: none;
+}
+
+.placeholder {
+  background: #f4f4f4;
+}
+
+.dots {
+  display: flex;
+  margin-top: 7px;
+  align-items: center;
+  justify-content: center;
+}
+
+.dotButton {
+  display: inline-flex;
+  width: 44px;
+  height: 44px;
+  align-items: center;
+  justify-content: center;
+  padding: 0;
+  border: 0;
+  background: transparent;
+  cursor: pointer;
+}
+
+.dot {
+  display: block;
+  width: 10px;
+  height: 10px;
+  border: 1px solid #696969;
+  border-radius: 50%;
+  background: transparent;
+  transition: border-color var(--motion-fast) var(--ease-out), background var(--motion-fast) var(--ease-out), transform var(--motion-fast) var(--ease-out);
+}
+
+.dotButton:hover .dot,
+.dotButton:focus-visible .dot {
+  transform: scale(1.25);
+}
+
+.dotButton[aria-current="true"] .dot {
+  border-color: #0b0b0b;
+  background: #0b0b0b;
+}
+
+.srOnly {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .track {
+    transition: none;
+  }
+}

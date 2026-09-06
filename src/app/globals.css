@@ -10,6 +10,14 @@
   --ease-out: cubic-bezier(0.16, 1, 0.3, 1);
   --ease-spring: cubic-bezier(0.2, 0.8, 0.2, 1);
   --shadow-interactive: 0 18px 40px rgba(0, 0, 0, 0.14);
+  --page-max-width: 1440px;
+  --content-max-width: 1200px;
+  --page-gutter: clamp(32px, 8.333vw, 120px);
+  --section-space: clamp(120px, 12vw, 180px);
+  --title-size: clamp(42px, 4.167vw, 60px);
+  --title-line-height: 1.4;
+  --body-size: clamp(17px, 1.459vw, 21px);
+  --body-line-height: 1.86;
   font-family: var(--font-primary);
 }
 
@@ -115,6 +123,15 @@ html[data-highlight-course="club-tour"] [data-course-anchor="club-tour"] {
 }
 
 @media (max-width: 767px) {
+  :root {
+    --page-gutter: 24px;
+    --section-space: 100px;
+    --title-size: 36px;
+    --title-line-height: 1.4;
+    --body-size: 12.6px;
+    --body-line-height: 1.86;
+  }
+
   .site-shell {
     background-image: none;
   }

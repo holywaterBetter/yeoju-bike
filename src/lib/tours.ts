@@ -1,147 +1,145 @@
 import { courseAnchorHref, courseAnchors, type CourseAnchor } from "./courseAnchors";
 import { withBasePath } from "./sitePaths";
 
-export type MobileTourCard = {
-  anchor: CourseAnchor;
-  plainTitle: string;
-  titleLines: string[];
-  courseHref: string;
-  figmaMediaImageSrc: string;
-  figmaMediaImageWidth: number;
-  figmaMediaImageHeight: number;
-  reservationImageSrc: string;
-  reservationImageWidth: number;
-  reservationImageHeight: number;
-  gradientClassName: "gradientBlack" | "gradientOlive" | "gradientGreen" | "gradientBrown";
+export type TourSeo = {
+  description: string;
+  audience: string;
+  duration: string;
+  serviceType: string;
 };
 
 export type TourCatalogItem = {
   anchor: CourseAnchor;
-  plainTitle: string;
-  titleLines: string[];
-  mobileTitleLines?: string[];
+  title: string;
   courseHref: string;
-  reservationUrl?: string;
-  desktopCardMedia: string;
-  mobileCard: Omit<MobileTourCard, "anchor" | "plainTitle" | "titleLines" | "courseHref">;
-  seo: {
-    description: string;
-    audience: string;
-    duration: string;
-    serviceType: string;
+  landingMedia: {
+    desktop: string;
+    mobile: string;
   };
+  cardNewsSlides: readonly [string, string, string, string, string];
+  booking: {
+    href: string;
+    kind: "eventus" | "kakao";
+    ariaLabel: string;
+  };
+  seo: TourSeo;
 };
 
-export const tourCatalog: TourCatalogItem[] = [
+export const tourCatalog: readonly TourCatalogItem[] = [
   {
     anchor: courseAnchors.hangul,
-    plainTitle: "한글길 이야기 코스",
-    titleLines: ["한글길 이야기 코스"],
-    mobileTitleLines: ["한글길", "이야기 코스"],
+    title: "한글길 해설 투어",
     courseHref: courseAnchorHref(courseAnchors.hangul),
-    reservationUrl: "https://form.naver.com/response/v7niAyUhIlKeoY2YjUv2ww",
-    desktopCardMedia: withBasePath("/assets/figma/groups/tour-card-golden-media.webp"),
-    mobileCard: {
-      figmaMediaImageSrc: withBasePath("/assets/figma/mobile/landing-journey-card-hangul.webp"),
-      figmaMediaImageWidth: 168,
-      figmaMediaImageHeight: 172,
-      reservationImageSrc: withBasePath("/assets/figma/mobile/landing-journey-card-hangul.webp"),
-      reservationImageWidth: 168,
-      reservationImageHeight: 172,
-      gradientClassName: "gradientBlack",
+    landingMedia: {
+      desktop: withBasePath("/assets/figma/groups/tour-card-golden-media.webp"),
+      mobile: withBasePath("/assets/figma/mobile/landing-journey-card-hangul.webp"),
+    },
+    cardNewsSlides: [
+      withBasePath("/assets/figma/260906/card-news/hangul-01.webp"),
+      withBasePath("/assets/figma/260906/card-news/hangul-02.webp"),
+      withBasePath("/assets/figma/260906/card-news/hangul-03.webp"),
+      withBasePath("/assets/figma/260906/card-news/hangul-04.webp"),
+      withBasePath("/assets/figma/260906/card-news/hangul-05.webp"),
+    ],
+    booking: {
+      href: "https://event-us.kr/yeojubiketour/event/133588",
+      kind: "eventus",
+      ariaLabel: "한글길 해설 투어 예약하기",
     },
     seo: {
-      description: "여주의 숨은 역사와 문화를 초성 순서대로 만나는 가이드형 인문 해설 전기자전거 투어입니다.",
+      description: "세종대왕과 한글의 이야기를 따라 여주의 역사와 문화를 만나는 가이드형 전기자전거 해설 투어입니다.",
       audience: "여주의 역사와 문화를 여유롭게 즐기고 싶은 여행객",
       duration: "약 5시간",
-      serviceType: "한글길 이야기 코스",
+      serviceType: "한글길 해설 투어",
     },
   },
   {
     anchor: courseAnchors.goldenBell,
-    plainTitle: "한글길 수수께끼 코스",
-    titleLines: ["한글길 수수께끼 코스"],
-    mobileTitleLines: ["한글길", "수수께끼 코스"],
+    title: "여주 골든벨 투어",
     courseHref: courseAnchorHref(courseAnchors.goldenBell),
-    desktopCardMedia: withBasePath("/assets/figma/groups/tour-card-hangul-media.webp"),
-    mobileCard: {
-      figmaMediaImageSrc: withBasePath("/assets/figma/mobile/landing-journey-card-golden.webp"),
-      figmaMediaImageWidth: 168,
-      figmaMediaImageHeight: 172,
-      reservationImageSrc: withBasePath("/assets/figma/mobile/landing-journey-card-golden.webp"),
-      reservationImageWidth: 168,
-      reservationImageHeight: 172,
-      gradientClassName: "gradientOlive",
+    landingMedia: {
+      desktop: withBasePath("/assets/figma/groups/tour-card-hangul-media.webp"),
+      mobile: withBasePath("/assets/figma/mobile/landing-journey-card-golden.webp"),
+    },
+    cardNewsSlides: [
+      withBasePath("/assets/figma/260906/card-news/golden-bell-01.webp"),
+      withBasePath("/assets/figma/260906/card-news/golden-bell-02.webp"),
+      withBasePath("/assets/figma/260906/card-news/golden-bell-03.webp"),
+      withBasePath("/assets/figma/260906/card-news/golden-bell-04.webp"),
+      withBasePath("/assets/figma/260906/card-news/golden-bell-05.webp"),
+    ],
+    booking: {
+      href: "https://event-us.kr/yeojubiketour/event/133605",
+      kind: "eventus",
+      ariaLabel: "여주 골든벨 투어 예약하기",
     },
     seo: {
-      description: "강변공원을 달리며 유쾌한 초성 퀴즈를 푸는 가이드형 에듀테인먼트 전기자전거 투어입니다.",
+      description: "남한강변을 달리며 여주의 역사와 문화에 관한 퀴즈를 즐기는 가이드형 에듀테인먼트 전기자전거 투어입니다.",
       audience: "아이와 함께 특별한 여주 여행 코스를 찾는 가족 여행객",
       duration: "약 30분",
-      serviceType: "한글길 수수께끼 코스",
+      serviceType: "여주 골든벨 투어",
     },
   },
   {
     anchor: courseAnchors.kYeoju,
-    plainTitle: "K-컬쳐 코스",
-    titleLines: ["K-컬쳐 코스"],
-    mobileTitleLines: ["K-컬쳐", "코스"],
+    title: "Yeoju K-Culture Trail",
     courseHref: courseAnchorHref(courseAnchors.kYeoju),
-    desktopCardMedia: withBasePath("/assets/figma/groups/tour-card-k-yeoju-media.webp"),
-    mobileCard: {
-      figmaMediaImageSrc: withBasePath("/assets/figma/mobile/landing-journey-card-k-yeoju.webp"),
-      figmaMediaImageWidth: 168,
-      figmaMediaImageHeight: 172,
-      reservationImageSrc: withBasePath("/assets/figma/mobile/landing-journey-card-k-yeoju.webp"),
-      reservationImageWidth: 168,
-      reservationImageHeight: 172,
-      gradientClassName: "gradientGreen",
+    landingMedia: {
+      desktop: withBasePath("/assets/figma/groups/tour-card-k-yeoju-media.webp"),
+      mobile: withBasePath("/assets/figma/mobile/landing-journey-card-k-yeoju.webp"),
+    },
+    cardNewsSlides: [
+      withBasePath("/assets/figma/260906/card-news/k-culture-01.webp"),
+      withBasePath("/assets/figma/260906/card-news/k-culture-02.webp"),
+      withBasePath("/assets/figma/260906/card-news/k-culture-03.webp"),
+      withBasePath("/assets/figma/260906/card-news/k-culture-04.webp"),
+      withBasePath("/assets/figma/260906/card-news/k-culture-05.webp"),
+    ],
+    booking: {
+      href: "https://pf.kakao.com/_NxgwUn",
+      kind: "kakao",
+      ariaLabel: "Yeoju K-Culture Trail 카카오 채널로 문의하기",
     },
     seo: {
-      description: "외국인을 대상으로 K-문화의 집합, 여주의 매력을 전하는 개발 중인 글로벌 전기자전거 투어입니다.",
+      description: "한국을 찾은 여행자가 여주의 전통과 로컬 문화를 자전거로 경험하는 글로벌 문화 투어입니다.",
       audience: "한국 로컬 문화를 체험하고 싶은 외국인 관광객",
       duration: "약 5시간",
-      serviceType: "K-컬쳐 코스",
+      serviceType: "Yeoju K-Culture Trail",
     },
   },
   {
     anchor: courseAnchors.club,
-    plainTitle: "바이크 챌린지 코스",
-    titleLines: ["바이크 챌린지 코스"],
-    mobileTitleLines: ["바이크", "챌린지 코스"],
+    title: "여주 프리폰도",
     courseHref: courseAnchorHref(courseAnchors.club),
-    desktopCardMedia: withBasePath("/assets/figma/groups/tour-card-club-media.webp"),
-    mobileCard: {
-      figmaMediaImageSrc: withBasePath("/assets/figma/mobile/bike-challenge-course.webp"),
-      figmaMediaImageWidth: 336,
-      figmaMediaImageHeight: 344,
-      reservationImageSrc: withBasePath("/assets/figma/mobile/bike-challenge-course.webp"),
-      reservationImageWidth: 336,
-      reservationImageHeight: 344,
-      gradientClassName: "gradientBrown",
+    landingMedia: {
+      desktop: withBasePath("/assets/figma/groups/tour-card-club-media.webp"),
+      mobile: withBasePath("/assets/figma/mobile/bike-challenge-course.webp"),
+    },
+    cardNewsSlides: [
+      withBasePath("/assets/figma/260906/card-news/freefondo-01.webp"),
+      withBasePath("/assets/figma/260906/card-news/freefondo-02.webp"),
+      withBasePath("/assets/figma/260906/card-news/freefondo-03.webp"),
+      withBasePath("/assets/figma/260906/card-news/freefondo-04.webp"),
+      withBasePath("/assets/figma/260906/card-news/freefondo-05.webp"),
+    ],
+    booking: {
+      href: "https://event-us.kr/yeojubiketour/event/133610",
+      kind: "eventus",
+      ariaLabel: "여주 프리폰도 예약하기",
     },
     seo: {
-      description: "동호인을 위한 가이드 없는 자율 완주 인증 방식의 개발 중인 추천 라이딩 투어입니다.",
+      description: "여주의 풍경과 명소를 자기 속도로 달리고 완주를 인증하는 자율 주행형 라이딩 프로그램입니다.",
       audience: "자전거 동호회와 단체 라이더",
       duration: "자유 주행",
-      serviceType: "바이크 챌린지 코스",
+      serviceType: "여주 프리폰도",
     },
   },
-];
+] as const;
 
-export const tourReservationUrls: Partial<Record<CourseAnchor, string>> = Object.fromEntries(
-  tourCatalog.flatMap((tour) => (tour.reservationUrl ? [[tour.anchor, tour.reservationUrl]] : [])),
-) as Partial<Record<CourseAnchor, string>>;
+export const tourReservationUrls = Object.fromEntries(
+  tourCatalog.map((tour) => [tour.anchor, tour.booking.href]),
+) as Record<CourseAnchor, string>;
 
 export function getTourReservationUrl(anchor: CourseAnchor) {
   return tourReservationUrls[anchor];
-}
-
-export function toMobileTourCard(tour: TourCatalogItem): MobileTourCard {
-  return {
-    anchor: tour.anchor,
-    plainTitle: tour.plainTitle,
-    titleLines: tour.mobileTitleLines ?? tour.titleLines,
-    courseHref: tour.courseHref,
-    ...tour.mobileCard,
-  };
 }

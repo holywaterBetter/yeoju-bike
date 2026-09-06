@@ -16,13 +16,13 @@ const channelTolerance = Number.parseInt(process.env.VISUAL_CHANNEL_TOLERANCE ||
 const pages = [
   { key: "landing", route: "/" },
   { key: "courses", route: "/courses" },
-  { key: "reservation", route: "/reservation" },
+  { key: "directions", route: "/reservation" },
 ];
 
 const viewports = [
   { key: "pc", width: 1440, height: 900 },
   { key: "tablet", width: 1024, height: 768 },
-  { key: "mobile", width: 390, height: 844 },
+  { key: "mobile", width: 402, height: 874 },
 ];
 
 if (!["baseline", "compare"].includes(mode)) {

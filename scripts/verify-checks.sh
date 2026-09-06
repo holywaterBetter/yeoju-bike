@@ -5,4 +5,5 @@ cd "$(dirname "$0")/.."
 
 npm run assets:audit
 node scripts/verify-layout.mjs
+node scripts/verify-interactions.mjs
 node scripts/visual-regression.mjs compare

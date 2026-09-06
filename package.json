@@ -10,6 +10,7 @@
     "assets:audit": "node scripts/audit-public-assets.mjs",
     "verify": "bash scripts/run-with-production-server.sh bash scripts/verify-checks.sh",
     "verify:layout": "node scripts/verify-layout.mjs",
+    "verify:interactions": "node scripts/verify-interactions.mjs",
     "visual:baseline": "node scripts/visual-regression.mjs baseline",
     "visual:baseline:production": "bash scripts/run-with-production-server.sh node scripts/visual-regression.mjs baseline",
     "visual:compare": "node scripts/visual-regression.mjs compare",

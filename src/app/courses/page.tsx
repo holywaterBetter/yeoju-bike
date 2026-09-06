@@ -2,9 +2,9 @@ import CoursesPage from "@/features/courses/CoursesPage";
 import { absoluteSiteUrl, breadcrumbJsonLd, courseListJsonLd, openGraphMetadata, siteTitle, twitterMetadata } from "@/lib/siteMetadata";
 import type { Metadata } from "next";
 
-const coursesTitle = "여주 자전거 투어 코스 안내";
+const coursesTitle = "여주 자전거 투어 코스 & 예약";
 const coursesDescription =
-  "한글길 이야기 코스, 한글길 수수께끼 코스, K-컬쳐 코스, 바이크 챌린지 코스로 즐기는 여주 자전거 시티투어 코스 안내입니다.";
+  "한글길 해설 투어, 여주 골든벨 투어, Yeoju K-Culture Trail, 여주 프리폰도의 카드뉴스와 예약 링크를 확인하세요.";
 const coursesUrl = absoluteSiteUrl("/courses/");
 
 export const metadata: Metadata = {
@@ -26,7 +26,7 @@ export default function Courses() {
           __html: JSON.stringify(
             breadcrumbJsonLd([
               { name: siteTitle, url: absoluteSiteUrl("/") },
-              { name: "코스 안내", url: coursesUrl },
+              { name: "코스 & 예약", url: coursesUrl },
             ]),
           ),
         }}
