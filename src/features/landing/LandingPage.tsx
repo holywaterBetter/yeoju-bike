@@ -1,7 +1,5 @@
 import type { ReactNode } from "react";
-import ContactFooter from "@/components/ContactFooter";
-import RevealOnScroll from "@/components/RevealOnScroll";
-import SiteHeader from "@/components/SiteHeader";
+import SitePageShell from "@/components/SitePageShell";
 import { withBasePath } from "@/lib/sitePaths";
 import { tourCatalog } from "@/lib/tours";
 import styles from "./LandingPage.module.css";
@@ -13,7 +11,7 @@ const assets = {
   riverCardTwo: withBasePath("/assets/figma/groups/landing-river-card-two-frame.webp"),
   riverCardTwoMobile: withBasePath("/assets/figma/mcp/7126efd5-5893-4db5-a348-932564b7fd20-mobile.webp"),
   featureOne: withBasePath("/assets/figma/groups/landing-feature-one-frame.webp"),
-  featureOneMobile: withBasePath("/assets/figma/mcp/461689e3-dc4a-47ac-8fc9-7f9928a9fed4-mobile.webp"),
+  featureOneMobile: withBasePath("/assets/figma/groups/landing-feature-one-frame.webp"),
   featureTwo: withBasePath("/assets/figma/groups/landing-feature-two-frame.webp"),
   featureTwoMobile: withBasePath("/assets/figma/mcp/c57dbe85-295b-4130-9b84-401993be52c4-mobile.webp"),
   featureThree: withBasePath("/assets/figma/groups/landing-feature-three-frame.webp"),
@@ -31,23 +29,20 @@ type LandingPageProps = { className?: string };
 
 export default function LandingPage({ className }: LandingPageProps) {
   return (
-    <div className={[styles.surface, className].filter(Boolean).join(" ")} data-responsive-page="landing">
-      <RevealOnScroll />
-      <SiteHeader active="landing" />
+    <SitePageShell page="landing" active="landing" className={[styles.surface, className].filter(Boolean).join(" ")}>
       <main>
         <Hero />
         <RiverSection />
         <SpecialSection />
         <JourneySection />
       </main>
-      <ContactFooter />
-    </div>
+    </SitePageShell>
   );
 }
 
 function Hero() {
   return (
-    <section className={`${styles.sectionInner} ${styles.hero}`} aria-labelledby="landing-title">
+    <section className={`${styles.sectionInner} ${styles.hero}`} aria-labelledby="landing-title" data-visual-id="landing-hero">
       <h1 id="landing-title">달리자! 다채로운 여주 속으로</h1>
       <p>
         역사의 숨결이 느껴지는 남한강변을 따라 즐기는 2026 여주 자전거 시티투어
@@ -60,7 +55,7 @@ function Hero() {
 
 function RiverSection() {
   return (
-    <section className={`${styles.sectionInner} ${styles.riverSection}`} aria-labelledby="river-title" data-reveal>
+    <section className={`${styles.sectionInner} ${styles.riverSection}`} aria-labelledby="river-title" data-visual-id="landing-river">
       <div className={styles.riverIntro}>
         <h2 id="river-title">
           두 바퀴로 만나는
@@ -87,11 +82,11 @@ function RiverSection() {
       <div className={styles.riverCards}>
         <article>
           <ResponsiveImage desktopSrc={assets.riverCardOne} mobileSrc={assets.riverCardOneMobile} alt="남한강변의 평탄한 자전거 코스" width={600} height={350} />
-          <h3>남한강에서 편안하게 달릴 수 있는 자전거 코스</h3>
+          <h3>남한강에서 편안하게 <br />달릴 수 있는 자전거 코스</h3>
         </article>
         <article>
           <ResponsiveImage desktopSrc={assets.riverCardTwo} mobileSrc={assets.riverCardTwoMobile} alt="한글과 세종대왕의 이야기를 만나는 문화유산" width={560} height={350} />
-          <h3>한글의 자음을 따라 달리는 지붕 없는 박물관</h3>
+          <h3>한글의 자음을 따라 달리는 <br />지붕 없는 박물관</h3>
         </article>
       </div>
     </section>
@@ -100,7 +95,7 @@ function RiverSection() {
 
 function SpecialSection() {
   return (
-    <section className={`${styles.sectionInner} ${styles.specialSection}`} aria-labelledby="special-title" data-reveal>
+    <section className={`${styles.sectionInner} ${styles.specialSection}`} aria-labelledby="special-title" data-visual-id="landing-special">
       <h2 id="special-title" className={styles.centeredTitle}>따르릉 투어의 특별함 세 가지</h2>
       <div className={styles.featureList}>
         <FeatureRow
@@ -186,7 +181,7 @@ function FeatureRow({ desktopSrc, mobileSrc, imageAlt, title, children, reversed
 
 function JourneySection() {
   return (
-    <section className={`${styles.sectionInner} ${styles.journeySection}`} aria-labelledby="journey-title" data-reveal>
+    <section className={`${styles.sectionInner} ${styles.journeySection}`} aria-labelledby="journey-title" data-visual-id="landing-journeys">
       <h2 id="journey-title" className={styles.centeredTitle}>이야기를 따라 달리는 4가지 여정</h2>
       <div className={styles.journeyGrid}>
         {tourCatalog.map((tour) => (

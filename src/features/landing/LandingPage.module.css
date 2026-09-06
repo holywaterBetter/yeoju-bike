@@ -1,5 +1,4 @@
 .surface {
-  overflow: clip;
   color: #030303;
 }
 
@@ -17,19 +16,22 @@
 
 .hero {
   display: flex;
-  min-height: 491px;
-  padding-block: 99px 260px;
+  min-height: 524px;
+  padding-block: 107px 231px;
   flex-direction: column;
   align-items: center;
   gap: 24px;
   text-align: center;
 }
 
-.hero h1 {
-  font-size: var(--title-size);
+.hero h1,
+.riverIntro h2,
+.centeredTitle {
+  font-family: Figtree, "Noto Sans KR", "Apple SD Gothic Neo", "Malgun Gothic", sans-serif;
+  font-size: 60px;
   font-weight: 800;
-  letter-spacing: -0.035em;
-  line-height: var(--title-line-height);
+  letter-spacing: normal;
+  line-height: 84px;
   word-break: keep-all;
 }
 
@@ -37,32 +39,24 @@
 .riverIntro p {
   color: rgba(0, 0, 0, 0.72);
   font-family: var(--font-korean);
-  font-size: var(--body-size);
+  font-size: 21px;
   font-weight: 400;
-  letter-spacing: -0.03em;
-  line-height: var(--body-line-height);
+  letter-spacing: var(--body-tracking);
+  line-height: 39px;
   word-break: keep-all;
 }
 
 .riverSection {
-  padding-bottom: var(--section-space);
+  width: 1204px;
+  min-height: 1520px;
+  transform: translateX(-2px);
 }
 
 .riverIntro {
   display: grid;
-  margin-bottom: 42px;
-  grid-template-columns: minmax(380px, 500px) minmax(0, 1fr);
+  grid-template-columns: 588px 588px;
   align-items: center;
-  gap: clamp(64px, 9vw, 130px);
-}
-
-.riverIntro h2,
-.centeredTitle {
-  font-size: var(--title-size);
-  font-weight: 800;
-  letter-spacing: -0.04em;
-  line-height: var(--title-line-height);
-  word-break: keep-all;
+  gap: 24px;
 }
 
 .riverIntro h2 {
@@ -73,11 +67,13 @@
 .riverSpark {
   position: absolute;
   z-index: -1;
-  width: 164px;
-  height: auto;
   top: -72px;
-  right: 2px;
+  right: 0;
+  display: block;
+  width: 172px;
+  height: 109px;
   object-fit: contain;
+  pointer-events: none;
 }
 
 .riverHero,
@@ -88,7 +84,9 @@
 }
 
 .riverHero {
+  width: 1200px;
   overflow: hidden;
+  margin-top: 42px;
 }
 
 .riverHero img {
@@ -99,8 +97,8 @@
 .riverCards {
   display: grid;
   margin-top: 42px;
-  grid-template-columns: 1fr 0.934fr;
-  gap: 40px;
+  grid-template-columns: 600px 560px;
+  gap: 44px;
 }
 
 .riverCards article {
@@ -111,7 +109,7 @@
 .riverCards img {
   display: block;
   width: 100%;
-  aspect-ratio: 600 / 350;
+  height: 350px;
 }
 
 .riverCards picture {
@@ -119,45 +117,54 @@
 }
 
 .riverCards img {
-  height: 100%;
   object-fit: cover;
 }
 
 .riverCards h3 {
-  max-width: 540px;
-  margin-top: 21px;
-  font-size: clamp(24px, 2.084vw, 30px);
+  display: flex;
+  min-height: 100px;
+  margin-top: 28px;
+  align-items: flex-start;
+  justify-content: center;
+  padding-inline: 16px;
+  font-size: 30px;
   font-weight: 700;
-  letter-spacing: -0.035em;
-  line-height: 1.45;
+  color: rgba(0, 0, 0, 0.7);
+  letter-spacing: var(--body-tracking);
+  line-height: 50px;
+  text-align: center;
   word-break: keep-all;
 }
 
 .specialSection {
-  padding-bottom: var(--section-space);
+  width: 1204px;
+  min-height: 1338px;
+  margin-top: 240px;
+  transform: translateX(-4px);
 }
 
 .centeredTitle {
-  text-align: center;
+  text-align: left;
 }
 
 .featureList {
   display: flex;
-  margin-top: 94px;
+  margin-top: 100px;
   flex-direction: column;
-  gap: 124px;
+  gap: 52px;
 }
 
 .featureRow {
   display: grid;
-  grid-template-columns: minmax(0, 540px) minmax(0, 1fr);
+  height: 350px;
+  grid-template-columns: 540px 623px;
   grid-template-areas: "image copy";
   align-items: center;
-  gap: clamp(66px, 9vw, 128px);
+  gap: 41px;
 }
 
 .featureRow.reversed {
-  grid-template-columns: minmax(0, 1fr) minmax(0, 540px);
+  grid-template-columns: 623px 540px;
   grid-template-areas: "copy image";
 }
 
@@ -169,8 +176,8 @@
 .featureImage picture,
 .featureImage picture img {
   display: block;
-  width: 100%;
-  aspect-ratio: 54 / 35;
+  width: 540px;
+  height: 350px;
 }
 
 .featureImage picture {
@@ -178,7 +185,6 @@
 }
 
 .featureImage picture img {
-  height: 100%;
   object-fit: cover;
 }
 
@@ -186,24 +192,31 @@
   grid-area: copy;
 }
 
+.featureRow.reversed .featureCopy {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  text-align: right;
+}
+
 .featureCopy h3 {
   position: relative;
   display: inline-block;
-  font-size: clamp(31px, 2.918vw, 42px);
-  font-weight: 800;
-  letter-spacing: -0.04em;
-  line-height: 1.43;
+  font-size: 42px;
+  font-weight: 700;
+  letter-spacing: var(--body-tracking);
+  line-height: 60px;
 }
 
 .featureCopy p {
-  max-width: 516px;
-  margin-top: 20px;
+  max-width: 623px;
+  margin-top: 12px;
   color: rgba(0, 0, 0, 0.72);
   font-family: var(--font-korean);
-  font-size: clamp(16px, 1.459vw, 21px);
-  font-weight: 400;
-  letter-spacing: -0.03em;
-  line-height: 1.86;
+  font-size: 21px;
+  font-weight: 600;
+  letter-spacing: var(--body-tracking);
+  line-height: 39px;
   word-break: keep-all;
 }
 
@@ -214,67 +227,69 @@
 .redDashTwo,
 .senaSquiggleDecoration {
   position: absolute;
+  display: block;
+  height: auto;
   pointer-events: none;
 }
 
 .smileDecoration {
-  width: 55px;
-  height: auto;
-  top: -34px;
-  right: -54px;
+  width: 76px;
+  top: -43px;
+  right: -70px;
 }
 
 .guideMarkDecoration {
-  width: 50px;
-  height: auto;
-  top: -35px;
-  left: -42px;
+  width: 71px;
+  top: -46px;
+  left: -55px;
 }
 
 .guideUnderlineDecoration {
-  width: 180px;
-  height: auto;
-  right: -10px;
-  bottom: -17px;
+  width: 216px;
+  right: -8px;
+  bottom: -18px;
 }
 
 .redDashOne {
-  width: 20px;
-  height: auto;
-  top: -21px;
-  right: -21px;
+  width: 22px;
+  top: -23px;
+  right: -24px;
 }
 
 .redDashTwo {
-  width: 36px;
-  height: auto;
+  width: 41px;
   top: 4px;
-  right: -53px;
+  right: -59px;
 }
 
 .senaSquiggleDecoration {
-  width: 105px;
-  height: auto;
-  right: -72px;
+  width: 123px;
+  right: -84px;
   top: 28px;
 }
 
 .journeySection {
-  padding-bottom: 136px;
+  min-height: 754px;
+  margin-top: 242px;
+  margin-bottom: 135px;
+}
+
+.journeySection .centeredTitle {
+  text-align: center;
 }
 
 .journeyGrid {
   display: grid;
-  margin-top: 67px;
-  grid-template-columns: repeat(2, minmax(0, 1fr));
-  gap: 28px 30px;
+  margin-top: 68px;
+  grid-template-columns: repeat(2, 585px);
+  gap: 30px;
 }
 
 .journeyCard {
   position: relative;
   overflow: hidden;
-  min-width: 0;
-  aspect-ratio: 585 / 286;
+  width: 585px;
+  height: 286px;
   color: #fff;
   text-decoration: none;
 }
@@ -288,69 +303,112 @@
 
 .journeyCard img {
   object-fit: cover;
-  transition: transform var(--motion-slow) var(--ease-out), filter var(--motion-slow) var(--ease-out);
-}
-
-.journeyCard:hover img,
-.journeyCard:focus-visible img {
-  filter: brightness(1.08);
-  transform: scale(1.025);
 }
 
 .journeyCard h3 {
   position: absolute;
-  inset: auto 30px 25px;
-  font-size: clamp(24px, 2.084vw, 30px);
-  font-weight: 800;
-  letter-spacing: -0.035em;
-  line-height: 1.25;
+  right: 20px;
+  top: 207px;
+  bottom: auto;
+  left: 20px;
+  font-size: 32px;
+  font-weight: 600;
+  letter-spacing: -0.7503px;
+  line-height: normal;
+  text-align: center;
   word-break: keep-all;
+}
+
+@media (min-width: 768px) and (max-width: 1240px) {
+  .hero h1,
+  .riverIntro h2,
+  .centeredTitle {
+    font-size: var(--display-title-size);
+    line-height: var(--display-title-leading);
+  }
+
+  .hero p,
+  .riverIntro p,
+  .featureCopy p {
+    font-size: var(--body-size);
+    line-height: var(--body-leading);
+  }
+
+  .riverIntro,
+  .riverCards,
+  .featureRow,
+  .featureRow.reversed,
+  .journeyGrid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
+  .riverCards,
+  .featureRow,
+  .featureRow.reversed {
+    gap: 32px;
+  }
+
+  .featureImage picture,
+  .featureImage picture img,
+  .journeyCard {
+    width: 100%;
+  }
+
+  .journeyGrid {
+    gap: 24px;
+  }
 }
 
 @media (max-width: 767px) {
   .hero {
-    min-height: 0;
-    padding-block: 57px 85px;
+    min-height: 331.36px;
+    padding-block: 3px 118.96px;
     align-items: flex-start;
-    gap: 18px;
+    gap: 14.4px;
     text-align: left;
   }
 
-  .hero h1 {
-    max-width: 330px;
+  .hero h1,
+  .riverIntro h2,
+  .centeredTitle {
     font-size: 36px;
-    line-height: 1.4;
+    line-height: 50.4px;
   }
 
-  .hero p {
+  .hero h1 {
+    max-width: 354px;
+  }
+
+  .hero p,
+  .riverIntro p {
     max-width: 354px;
     font-size: 12.6px;
-    line-height: 1.86;
+    line-height: 23.4px;
   }
 
   .hero p br {
     display: none;
   }
 
-  .riverIntro {
-    display: block;
-    margin-bottom: 25px;
+  .riverSection {
+    width: calc(100% - (2 * var(--page-gutter)));
+    min-height: 1020.4px;
+    transform: none;
   }
 
-  .riverIntro h2,
-  .centeredTitle {
-    font-size: 36px;
-    line-height: 1.4;
+  .riverIntro {
+    display: block;
   }
 
   .riverIntro p {
-    margin-top: 15px;
+    margin-top: 15.6px;
   }
 
   .riverSpark {
-    width: 105px;
-    top: -40px;
-    right: 4px;
+    width: 103.2px;
+    height: 65.4px;
+    top: -43.2px;
+    right: 0;
   }
 
   .riverHero,
@@ -358,30 +416,40 @@
     aspect-ratio: 354 / 200;
   }
 
+  .riverHero {
+    width: 100%;
+    margin-top: 25.2px;
+  }
+
   .riverCards {
-    margin-top: 25px;
+    margin-top: 25.2px;
     grid-template-columns: 1fr;
     gap: 16px;
   }
 
   .riverCards picture,
   .riverCards img {
+    height: auto;
     aspect-ratio: 354 / 200;
   }
 
   .riverCards h3 {
-    margin-top: 11px;
+    min-height: 23.4px;
+    margin-top: 16.8px;
+    padding-inline: 0;
     font-size: 18px;
-    line-height: 1.4;
+    line-height: 30px;
   }
 
-  .riverSection {
-    padding-bottom: 123px;
+  .riverCards h3 br {
+    display: none;
   }
 
   .specialSection {
-    padding-top: 0;
-    padding-bottom: 108px;
+    width: calc(100% - (2 * var(--page-gutter)));
+    min-height: 1352px;
+    margin-top: 100px;
+    transform: none;
   }
 
   .centeredTitle {
@@ -389,77 +457,86 @@
   }
 
   .featureList {
-    margin-top: 36px;
-    gap: 31px;
+    margin-top: 36.2px;
+    gap: 31.2px;
   }
 
   .featureRow,
   .featureRow.reversed {
     display: flex;
+    height: auto;
     flex-direction: column;
     align-items: stretch;
     gap: 24px;
   }
 
-  .featureImage {
-    width: 100%;
-  }
-
+  .featureImage,
   .featureImage picture,
   .featureImage picture img {
+    width: 100%;
+    height: auto;
     aspect-ratio: 354 / 210;
   }
 
   .featureCopy h3 {
     font-size: 25.2px;
-    line-height: 1.43;
+    font-weight: 700;
+    line-height: 36px;
   }
 
   .featureCopy p {
     max-width: 100%;
-    margin-top: 13px;
+    margin-top: 7.2px;
     font-size: 12.6px;
-    line-height: 1.86;
+    font-weight: 600;
+    line-height: 23.4px;
+  }
+
+  .featureRow.reversed .featureCopy {
+    align-items: flex-end;
+    text-align: right;
   }
 
   .smileDecoration {
-    width: 39px;
-    top: -21px;
-    right: -40px;
+    width: 45.6px;
+    top: -25.8px;
+    right: -42px;
   }
 
   .guideMarkDecoration {
-    width: 33px;
-    top: -22px;
-    left: -28px;
+    width: 42.6px;
+    top: -27.6px;
+    left: -33px;
   }
 
   .guideUnderlineDecoration {
-    width: 126px;
-    right: -6px;
-    bottom: -12px;
+    width: 129.6px;
+    right: -4.8px;
+    bottom: -10.8px;
   }
 
   .redDashOne {
-    width: 13px;
-    top: -12px;
-    right: -11px;
+    width: 13.2px;
+    top: -13.8px;
+    right: -14.4px;
   }
 
   .redDashTwo {
-    width: 24px;
-    top: 3px;
-    right: -33px;
+    width: 24.6px;
+    top: 2.4px;
+    right: -35.4px;
   }
 
   .senaSquiggleDecoration {
-    width: 75px;
-    right: -39px;
-    top: 18px;
+    width: 73.8px;
+    right: -50.4px;
+    top: 16.8px;
   }
 
   .journeySection {
-    padding-bottom: 98px;
+    min-height: 503px;
+    margin-top: 99.6px;
+    margin-bottom: 100px;
   }
 
   .journeySection .centeredTitle {
@@ -467,23 +544,37 @@
   }
 
   .journeyGrid {
-    margin-top: 42px;
+    margin-top: 41px;
+    grid-template-columns: repeat(2, 168px);
     gap: 18px;
   }
 
   .journeyCard {
-    aspect-ratio: 168 / 172;
+    width: 168px;
+    height: 171.6px;
   }
 
   .journeyCard h3 {
-    inset: auto 12px 13px;
-    font-size: 16px;
-    line-height: 1.22;
+    right: 8px;
+    top: 109.6px;
+    bottom: auto;
+    left: 8px;
+    font-size: 19.2px;
+    font-weight: 600;
+    line-height: 24px;
   }
 }
 
 @media (max-width: 380px) {
+  .journeyGrid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
+  .journeyCard {
+    width: 100%;
+  }
+
   .journeyCard h3 {
-    font-size: 14px;
+    font-size: 16px;
   }
 }

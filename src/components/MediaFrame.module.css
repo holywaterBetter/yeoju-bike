@@ -1,0 +1,27 @@
+.frame {
+  position: relative;
+  overflow: hidden;
+  width: 100%;
+  aspect-ratio: var(--media-aspect);
+}
+
+.media {
+  position: absolute;
+  inset: 0;
+  transform: translate(var(--media-x-desktop), var(--media-y-desktop)) scale(var(--media-scale-desktop));
+  transform-origin: center;
+}
+
+.media > :where(img, picture),
+.media > picture > img {
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+@media (max-width: 767px) {
+  .media {
+    transform: translate(var(--media-x-mobile), var(--media-y-mobile)) scale(var(--media-scale-mobile));
+  }
+}

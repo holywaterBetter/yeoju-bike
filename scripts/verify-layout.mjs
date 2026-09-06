@@ -70,7 +70,23 @@ async function checkPage(pageSpec, viewport) {
         forbiddenRuntimeImages: Array.from(document.images)
           .map((image) => image.currentSrc || image.src)
           .filter((src) => src.includes("/assets/figma/reference/") || src.includes("/assets/figma/crops/")),
-        smallControls: Array.from(document.querySelectorAll("a[href], button"))
+        backdropBackground: getComputedStyle(document.querySelector("[data-page-backdrop]")).backgroundImage,
+        backdropBackgroundSize: getComputedStyle(document.querySelector("[data-page-backdrop]")).backgroundSize,
+        metrics: {
+          firstCourse: document.querySelector("[data-course-anchor]") ? rectOf(document.querySelector("[data-course-anchor]")) : null,
+          firstCourseTitle: document.querySelector("[data-course-anchor] h2") ? rectOf(document.querySelector("[data-course-anchor] h2")) : null,
+          firstDecoration: document.querySelector("[data-course-anchor] img") ? rectOf(document.querySelector("[data-course-anchor] img")) : null,
+          bookingVisual: document.querySelector("[data-booking-visual]") ? rectOf(document.querySelector("[data-booking-visual]")) : null,
+          carousel: document.querySelector("[data-course-carousel]") ? rectOf(document.querySelector("[data-course-carousel]")) : null,
+          carouselDots: document.querySelector("[data-carousel-dots]") ? rectOf(document.querySelector("[data-carousel-dots]")) : null,
+        },
+        typography: document.querySelector("[data-course-anchor] h2")
+          ? {
+              lineHeight: getComputedStyle(document.querySelector("[data-course-anchor] h2")).lineHeight,
+              letterSpacing: getComputedStyle(document.querySelector("[data-course-anchor] h2")).letterSpacing,
+            }
+          : null,
+        smallControls: Array.from(document.querySelectorAll("a[href], button, [role='slider']"))
           .filter(isVisible)
           .map((element) => {
             const rect = element.getBoundingClientRect();
@@ -82,6 +98,11 @@ async function checkPage(pageSpec, viewport) {
           })
           .filter((control) => control.width < 44 || control.height < 44),
       };
+
+      function rectOf(element) {
+        const rect = element.getBoundingClientRect();
+        return { x: rect.x, y: rect.y, width: rect.width, height: rect.height };
+      }
     });
 
     const overflow = Math.max(result.scrollWidth, result.bodyScrollWidth) - viewport.width;
@@ -98,12 +119,52 @@ async function checkPage(pageSpec, viewport) {
       );
     }
 
+    if (viewport.width < 768) {
+      if (result.backdropBackground === "none") failures.push(`${label}: mobile backdrop background-image is none`);
+      if (result.backdropBackgroundSize !== "100% 100%") failures.push(`${label}: mobile backdrop is not mapped across the full content surface`);
+    }
+
+    if (pageSpec.key === "courses" && viewport.width === 1440) {
+      assertRect(label, "first course", result.metrics.firstCourse, { x: 120, y: 231, width: 1200, height: 652 });
+      assertRect(label, "first decoration", result.metrics.firstDecoration, { x: 84, y: 400, width: 394, height: 154 });
+      assertRect(label, "booking visual", result.metrics.bookingVisual, { x: 120, y: 584, width: 195, height: 63 });
+      assertRect(label, "carousel", result.metrics.carousel, { x: 694, y: 231, width: 626, height: 652 });
+      assertRect(label, "carousel dots", result.metrics.carouselDots, { x: 962, y: 873, width: 90, height: 10 });
+      if (result.typography?.lineHeight !== "84px" || result.typography?.letterSpacing !== "normal") {
+        failures.push(`${label}: desktop course title typography is not 60/84 with normal tracking`);
+      }
+    }
+
+    if (pageSpec.key === "courses" && viewport.width === 402) {
+      assertRect(label, "first course", result.metrics.firstCourse, { x: 24, y: 106, width: 354, height: 504.8 });
+      assertRect(label, "first decoration", result.metrics.firstDecoration, { x: 16, y: 65.8, width: 236.4, height: 92.4 });
+      assertRect(label, "booking visual", result.metrics.bookingVisual, { x: 142.4, y: 177, width: 117.2, height: 37.8 });
+      assertRect(label, "carousel", result.metrics.carousel, { x: 24, y: 241.2, width: 354, height: 369.6 });
+      assertRect(label, "carousel dots", result.metrics.carouselDots, { x: 174, y: 604.8, width: 54, height: 6 });
+      if (result.typography?.lineHeight !== "50.4px" || result.typography?.letterSpacing !== "normal") {
+        failures.push(`${label}: mobile course title typography is not 36/50.4 with normal tracking`);
+      }
+    }
+
     const expectedHeight = pageSpec.referenceHeights[viewport.width];
     if (expectedHeight && Math.abs(result.scrollHeight - expectedHeight) > 4) {
       failures.push(`${label}: height ${result.scrollHeight}px differs from reference ${expectedHeight}px`);
     }
   } finally {
     await page.close();
+  }
+}
+
+function assertRect(label, name, actual, expected, tolerance = 1) {
+  if (!actual) {
+    failures.push(`${label}: missing ${name}`);
+    return;
+  }
+
+  for (const key of ["x", "y", "width", "height"]) {
+    if (Math.abs(actual[key] - expected[key]) > tolerance) {
+      failures.push(`${label}: ${name} ${key}=${actual[key].toFixed(2)} expected ${expected[key]}`);
+    }
   }
 }
 

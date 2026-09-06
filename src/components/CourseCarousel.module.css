@@ -1,9 +1,11 @@
 .carousel {
+  position: relative;
   width: 100%;
+  height: 652px;
   outline: none;
 }
 
-.carousel:focus-visible .viewport {
+.carousel:focus-within .viewport {
   outline: 3px solid rgba(25, 98, 208, 0.65);
   outline-offset: 4px;
 }
@@ -12,8 +14,6 @@
   overflow: hidden;
   width: 100%;
   aspect-ratio: 1;
-  border-radius: 1px;
-  box-shadow: 0 16px 40px rgba(0, 0, 0, 0.12);
   touch-action: pan-y;
 }
 
@@ -44,43 +44,44 @@
   background: #f4f4f4;
 }
 
-.dots {
+.selector {
+  position: absolute;
+  left: 50%;
+  top: 625px;
   display: flex;
-  margin-top: 7px;
-  align-items: center;
-  justify-content: center;
-}
-
-.dotButton {
-  display: inline-flex;
-  width: 44px;
+  width: 90px;
   height: 44px;
   align-items: center;
   justify-content: center;
-  padding: 0;
-  border: 0;
-  background: transparent;
+  border-radius: 4px;
   cursor: pointer;
+  outline: none;
+  transform: translateX(-50%);
+}
+
+.selector:focus-visible {
+  outline: 2px solid rgba(25, 98, 208, 0.72);
+  outline-offset: 2px;
+}
+
+.dots {
+  display: flex;
+  width: 90px;
+  height: 10px;
+  align-items: center;
+  justify-content: space-between;
 }
 
 .dot {
   display: block;
   width: 10px;
   height: 10px;
-  border: 1px solid #696969;
   border-radius: 50%;
-  background: transparent;
-  transition: border-color var(--motion-fast) var(--ease-out), background var(--motion-fast) var(--ease-out), transform var(--motion-fast) var(--ease-out);
+  background: rgba(0, 0, 0, 0.2);
 }
 
-.dotButton:hover .dot,
-.dotButton:focus-visible .dot {
-  transform: scale(1.25);
-}
-
-.dotButton[aria-current="true"] .dot {
-  border-color: #0b0b0b;
-  background: #0b0b0b;
+.dot[aria-current="true"] {
+  background: rgba(0, 0, 0, 0.4);
 }
 
 .srOnly {
@@ -96,5 +97,26 @@
 @media (prefers-reduced-motion: reduce) {
   .track {
     transition: none;
+  }
+}
+
+@media (max-width: 767px) {
+  .carousel {
+    height: 369.6px;
+  }
+
+  .selector {
+    top: 344.6px;
+    width: 54px;
+  }
+
+  .dots {
+    width: 54px;
+    height: 6px;
+  }
+
+  .dot {
+    width: 6px;
+    height: 6px;
   }
 }

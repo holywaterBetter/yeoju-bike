@@ -38,7 +38,7 @@ export default function SiteHeader({ active }: SiteHeaderProps) {
 
   return (
     <>
-      <header className={styles.header} data-site-header>
+      <header className={styles.header} data-site-header data-active={active}>
         <div className={styles.inner}>
           <a className={styles.logo} href={withBasePath("/")} aria-label="따르릉 여주 홈">
             <img src={logoImage} alt="따르릉 여주 로고" width={146} height={101} />

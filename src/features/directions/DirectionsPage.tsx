@@ -1,6 +1,5 @@
-import ContactFooter from "@/components/ContactFooter";
-import RevealOnScroll from "@/components/RevealOnScroll";
-import SiteHeader from "@/components/SiteHeader";
+import MediaFrame from "@/components/MediaFrame";
+import SitePageShell from "@/components/SitePageShell";
 import { withBasePath } from "@/lib/sitePaths";
 import { parkingDirections, transitDirections, visitFullAddress } from "@/lib/visitInfo";
 import styles from "./DirectionsPage.module.css";
@@ -16,9 +15,7 @@ const assets = {
 
 export default function DirectionsPage({ className }: DirectionsPageProps) {
   return (
-    <div className={[styles.surface, className].filter(Boolean).join(" ")} data-responsive-page="directions">
-      <RevealOnScroll />
-      <SiteHeader active="directions" />
+    <SitePageShell page="directions" active="directions" className={[styles.surface, className].filter(Boolean).join(" ")}>
       <main className={styles.main}>
         <section aria-labelledby="directions-title">
           <header className={styles.heading}>
@@ -29,9 +26,14 @@ export default function DirectionsPage({ className }: DirectionsPageProps) {
             </div>
           </header>
 
-          <div className={styles.mapFrame} data-reveal>
+          <MediaFrame
+            className={styles.mapFrame}
+            aspectRatio="1200 / 626"
+            desktop={{ scale: 1.19, positionX: 0, positionY: 46.5 }}
+            mobile={{ scale: 1.33, positionX: -23, positionY: 35.5 }}
+          >
             <img src={assets.map} alt="따르릉 자전거사랑방과 주변 주차장 위치 지도" width={1247} height={777} />
-          </div>
+          </MediaFrame>
 
           <div className={styles.transport}>
             <TransportSection icon={assets.car} iconAlt="" title="자가 이용 시" columns={parkingDirections} kind="parking" />
@@ -39,8 +41,7 @@ export default function DirectionsPage({ className }: DirectionsPageProps) {
           </div>
         </section>
       </main>
-      <ContactFooter />
-    </div>
+    </SitePageShell>
   );
 }
 
@@ -56,7 +57,7 @@ type TransportSectionProps = {
 
 function TransportSection({ icon, iconAlt, title, columns, kind }: TransportSectionProps) {
   return (
-    <section className={styles.transportSection} aria-labelledby={`${kind}-title`} data-reveal>
+    <section className={styles.transportSection} aria-labelledby={`${kind}-title`} data-visual-id={`${kind}-directions`}>
       <div className={styles.transportHeading}>
         <img className={kind === "parking" ? styles.carIcon : styles.trainIcon} src={icon} alt={iconAlt} width={134} height={51} aria-hidden="true" />
         <h2 id={`${kind}-title`}>{title}</h2>

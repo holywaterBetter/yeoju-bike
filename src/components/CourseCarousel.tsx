@@ -1,6 +1,6 @@
 "use client";
 
-import { useRef, useState, type KeyboardEvent, type PointerEvent } from "react";
+import { useRef, useState, type KeyboardEvent, type MouseEvent, type PointerEvent } from "react";
 import styles from "./CourseCarousel.module.css";
 
 type CourseCarouselProps = {
@@ -16,15 +16,6 @@ export default function CourseCarousel({ courseName, slides, priority = false }:
   const [loadedIndexes, setLoadedIndexes] = useState<Set<number>>(() => new Set([0, 1]));
   const pointerOrigin = useRef<PointerOrigin>(null);
   const lastIndex = slides.length - 1;
-
-  const prepareSlide = (index: number) => {
-    setLoadedIndexes((current) => {
-      if (current.has(index)) return current;
-      const next = new Set(current);
-      next.add(index);
-      return next;
-    });
-  };
 
   const goTo = (requestedIndex: number) => {
     const nextIndex = Math.min(lastIndex, Math.max(0, requestedIndex));
@@ -74,6 +65,12 @@ export default function CourseCarousel({ courseName, slides, priority = false }:
     goTo(activeIndex + (deltaX < 0 ? 1 : -1));
   };
 
+  const handleSelectorClick = (event: MouseEvent<HTMLDivElement>) => {
+    const rect = event.currentTarget.getBoundingClientRect();
+    const relativeX = Math.min(rect.width, Math.max(0, event.clientX - rect.left));
+    goTo(Math.round((relativeX / rect.width) * lastIndex));
+  };
+
   return (
     <div
       className={styles.carousel}
@@ -81,9 +78,7 @@ export default function CourseCarousel({ courseName, slides, priority = false }:
       aria-roledescription="carousel"
       aria-label={`${courseName} 카드뉴스`}
       aria-describedby={`${courseName.replace(/\s+/g, "-")}-carousel-status`}
-      tabIndex={0}
       data-course-carousel={courseName}
-      onKeyDown={handleKeyDown}
     >
       <div className={styles.viewport} onPointerDown={handlePointerDown} onPointerUp={handlePointerUp} onPointerCancel={() => (pointerOrigin.current = null)}>
         <div className={styles.track} style={{ transform: `translateX(-${activeIndex * 100}%)` }}>
@@ -114,22 +109,28 @@ export default function CourseCarousel({ courseName, slides, priority = false }:
         </div>
       </div>
 
-      <div className={styles.dots} aria-label={`${courseName} 카드뉴스 슬라이드 선택`}>
-        {slides.map((src, index) => (
-          <button
-            className={styles.dotButton}
-            type="button"
-            aria-label={`${index + 1}번째 슬라이드 보기`}
-            aria-current={index === activeIndex ? "true" : undefined}
-            data-carousel-dot={index}
-            key={src}
-            onClick={() => goTo(index)}
-            onMouseEnter={() => prepareSlide(index)}
-            onFocus={() => prepareSlide(index)}
-          >
-            <span className={styles.dot} aria-hidden="true" />
-          </button>
-        ))}
+      <div
+        className={styles.selector}
+        role="slider"
+        tabIndex={0}
+        aria-label={`${courseName} 카드뉴스 슬라이드 선택`}
+        aria-valuemin={1}
+        aria-valuemax={slides.length}
+        aria-valuenow={activeIndex + 1}
+        aria-valuetext={`${activeIndex + 1} / ${slides.length}`}
+        onClick={handleSelectorClick}
+        onKeyDown={handleKeyDown}
+      >
+        <span className={styles.dots} aria-hidden="true" data-carousel-dots>
+          {slides.map((src, index) => (
+            <span
+              className={styles.dot}
+              aria-current={index === activeIndex ? "true" : undefined}
+              data-carousel-dot={index}
+              key={src}
+            />
+          ))}
+        </span>
       </div>
 
       <p id={`${courseName.replace(/\s+/g, "-")}-carousel-status`} className={styles.srOnly} aria-live="polite">

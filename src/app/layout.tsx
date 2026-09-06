@@ -1,5 +1,5 @@
 import type { Metadata } from "next";
-import type { CSSProperties, ReactNode } from "react";
+import type { ReactNode } from "react";
 import "@fontsource/figtree/latin-400.css";
 import "@fontsource/figtree/latin-600.css";
 import "@fontsource/figtree/latin-700.css";
@@ -32,14 +32,6 @@ export const metadata: Metadata = {
   twitter: twitterMetadata(siteTitle, siteDescription),
 };
 
-type SiteShellStyle = CSSProperties & {
-  "--site-bg": string;
-};
-
-const siteShellStyle: SiteShellStyle = {
-  "--site-bg": `url("${withBasePath("/assets/figma/groups/landing-bg.webp")}")`
-};
-
 export default function RootLayout({
   children
 }: Readonly<{
@@ -52,7 +44,10 @@ export default function RootLayout({
         <link rel="icon" href={withBasePath("/favicon.png")} sizes="512x512" type="image/png" />
       </head>
       <body>
-        <div className="site-shell" style={siteShellStyle}>
+        <div
+          className="site-shell"
+          style={{ "--site-bg": `url("${withBasePath("/assets/figma/groups/landing-bg.webp")}")` } as React.CSSProperties}
+        >
           {children}
         </div>
       </body>

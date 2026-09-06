@@ -56,13 +56,14 @@ async function checkCourses() {
     }
 
     const first = carousels.first();
+    const firstSlider = first.getByRole("slider");
     await first.locator('[data-carousel-dot="4"]').click();
     if ((await first.locator('[data-carousel-dot][aria-current="true"]').getAttribute("data-carousel-dot")) !== "4") failures.push("dot click did not activate fifth slide");
     if ((await first.locator('[aria-live="polite"]').textContent())?.replace(/\s+/g, " ").trim() !== "5 / 5") failures.push("carousel status did not report 5 / 5");
-    await first.press("ArrowRight");
+    await firstSlider.press("ArrowRight");
     if ((await first.locator('[data-carousel-dot][aria-current="true"]').getAttribute("data-carousel-dot")) !== "4") failures.push("carousel wrapped after last slide");
-    await first.press("Home");
-    await first.press("ArrowRight");
+    await firstSlider.press("Home");
+    await firstSlider.press("ArrowRight");
     if ((await first.locator('[data-carousel-dot][aria-current="true"]').getAttribute("data-carousel-dot")) !== "1") failures.push("keyboard ArrowRight did not activate second slide");
 
     const hrefs = await page.locator("a[data-booking-kind]").evaluateAll((links) => links.map((link) => link.getAttribute("href")));

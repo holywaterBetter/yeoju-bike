@@ -1,0 +1,22 @@
+.page {
+  width: 100%;
+  overflow: clip;
+  background: #fff;
+}
+
+.backdrop {
+  display: flow-root;
+  width: 100%;
+  overflow: clip;
+  background-color: #fff;
+  background-image: var(--site-bg);
+  background-position: center top;
+  background-repeat: no-repeat;
+  background-size: 100% auto;
+}
+
+@media (max-width: 767px) {
+  .backdrop {
+    background-size: 100% 100%;
+  }
+}

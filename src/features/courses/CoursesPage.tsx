@@ -1,7 +1,5 @@
-import ContactFooter from "@/components/ContactFooter";
 import CourseCarousel from "@/components/CourseCarousel";
-import RevealOnScroll from "@/components/RevealOnScroll";
-import SiteHeader from "@/components/SiteHeader";
+import SitePageShell from "@/components/SitePageShell";
 import { courseAnchors, type CourseAnchor } from "@/lib/courseAnchors";
 import { withBasePath } from "@/lib/sitePaths";
 import { tourCatalog, type TourCatalogItem } from "@/lib/tours";
@@ -9,30 +7,26 @@ import styles from "./CoursesPage.module.css";
 
 type CoursesPageProps = { className?: string };
 
-type Decoration = { desktop: string; mobile: string; width: number; height: number };
+type Decoration = { src: string; width: number; height: number };
 
 const decorations: Record<CourseAnchor, Decoration> = {
   [courseAnchors.hangul]: {
-    desktop: withBasePath("/assets/figma/groups/courses-hangul-letters.png"),
-    mobile: withBasePath("/assets/figma/mobile/courses-hangul-letters-decoration.png"),
+    src: withBasePath("/assets/figma/groups/courses-hangul-letters.png"),
     width: 394,
     height: 154,
   },
   [courseAnchors.goldenBell]: {
-    desktop: withBasePath("/assets/figma/groups/courses-bell.png"),
-    mobile: withBasePath("/assets/figma/mobile/courses-bell-decoration.png"),
+    src: withBasePath("/assets/figma/groups/courses-bell.png"),
     width: 195,
     height: 154,
   },
   [courseAnchors.kYeoju]: {
-    desktop: withBasePath("/assets/figma/groups/courses-taegeuk.png"),
-    mobile: withBasePath("/assets/figma/mobile/courses-taegeuk-decoration.png"),
+    src: withBasePath("/assets/figma/groups/courses-taegeuk.png"),
     width: 108,
     height: 113,
   },
   [courseAnchors.club]: {
-    desktop: withBasePath("/assets/figma/groups/courses-bike-decoration.png"),
-    mobile: withBasePath("/assets/figma/mobile/courses-bike-decoration.png"),
+    src: withBasePath("/assets/figma/groups/courses-bike-decoration.png"),
     width: 233,
     height: 152,
   },
@@ -40,7 +34,6 @@ const decorations: Record<CourseAnchor, Decoration> = {
 
 const giftAssets = {
   decoration: withBasePath("/assets/figma/groups/courses-gift-decoration.png"),
-  decorationMobile: withBasePath("/assets/figma/mobile/courses-gift-decoration.png"),
   mask: withBasePath("/assets/figma/mcp/93cbe394-9c05-4d99-8f39-3f425e6a6e0d.svg"),
   ovalBlue: withBasePath("/assets/figma/mcp/261415ef-f7ad-469f-a2bb-df9d47e5b520.svg"),
   keyring: withBasePath("/assets/figma/mcp/42cef7f0-21d9-486d-b54f-03929f4fee80.svg"),
@@ -64,9 +57,7 @@ const giftItems: readonly { title: string; course: string; icon: GiftIconKey }[]
 
 export default function CoursesPage({ className }: CoursesPageProps) {
   return (
-    <div className={[styles.surface, className].filter(Boolean).join(" ")} data-responsive-page="courses">
-      <RevealOnScroll />
-      <SiteHeader active="courses" />
+    <SitePageShell page="courses" active="courses" className={[styles.surface, className].filter(Boolean).join(" ")}>
       <main className={styles.main}>
         <h1 className={styles.srOnly}>여주 자전거 시티투어 코스와 예약</h1>
         <div className={styles.courseList}>
@@ -76,8 +67,7 @@ export default function CoursesPage({ className }: CoursesPageProps) {
         </div>
         <GiftSection />
       </main>
-      <ContactFooter />
-    </div>
+    </SitePageShell>
   );
 }
 
@@ -90,18 +80,21 @@ function BookingCourseSection({ tour, priority }: { tour: TourCatalogItem; prior
       className={styles.courseSection}
       aria-labelledby={`${tour.anchor}-title`}
       data-course-anchor={tour.anchor}
-      data-reveal
+      data-visual-id={`course-${tour.anchor}`}
     >
       <div className={styles.courseCopy}>
         <div className={styles.titleWrap}>
-          <picture className={styles.courseDecoration} aria-hidden="true">
-            <source media="(max-width: 767px)" srcSet={decoration.mobile} />
-            <img src={decoration.desktop} alt="" width={decoration.width} height={decoration.height} />
-          </picture>
-          <h2 id={`${tour.anchor}-title`}>{tour.title}</h2>
+          <img className={styles.courseDecoration} src={decoration.src} alt="" width={decoration.width} height={decoration.height} aria-hidden="true" />
+          <h2 id={`${tour.anchor}-title`}>
+            {tour.anchor === courseAnchors.kYeoju ? (
+              <>
+                Yeoju <br />K-Culture Trail
+              </>
+            ) : tour.title}
+          </h2>
         </div>
         <a className={styles.bookingButton} href={tour.booking.href} target="_blank" rel="noreferrer" aria-label={tour.booking.ariaLabel} data-booking-kind={tour.booking.kind}>
-          예약하기
+          <span className={styles.bookingButtonVisual} data-booking-visual>예약하기</span>
         </a>
       </div>
       <CourseCarousel courseName={tour.title} slides={tour.cardNewsSlides} priority={priority} />
@@ -111,13 +104,10 @@ function BookingCourseSection({ tour, priority }: { tour: TourCatalogItem; prior
 
 function GiftSection() {
   return (
-    <section className={styles.giftSection} aria-labelledby="gift-title" data-reveal>
+    <section className={styles.giftSection} aria-labelledby="gift-title" data-visual-id="gift-section">
       <div className={styles.giftHeading}>
         <div className={styles.giftTitleWrap}>
-          <picture className={styles.giftDecoration} aria-hidden="true">
-            <source media="(max-width: 767px)" srcSet={giftAssets.decorationMobile} />
-            <img src={giftAssets.decoration} alt="" width={143} height={156} />
-          </picture>
+          <img className={styles.giftDecoration} src={giftAssets.decoration} alt="" width={143} height={156} aria-hidden="true" />
           <h2 id="gift-title">투어를 기념하는 특별한 선물</h2>
         </div>
         <p>코스마다 제공되는 선물이 다릅니다.</p>

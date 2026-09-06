@@ -12,12 +12,12 @@
   --shadow-interactive: 0 18px 40px rgba(0, 0, 0, 0.14);
   --page-max-width: 1440px;
   --content-max-width: 1200px;
-  --page-gutter: clamp(32px, 8.333vw, 120px);
-  --section-space: clamp(120px, 12vw, 180px);
-  --title-size: clamp(42px, 4.167vw, 60px);
-  --title-line-height: 1.4;
-  --body-size: clamp(17px, 1.459vw, 21px);
-  --body-line-height: 1.86;
+  --page-gutter: clamp(32px, 8.333333vw, 120px);
+  --display-title-size: 60px;
+  --display-title-leading: 84px;
+  --body-size: 21px;
+  --body-leading: 39px;
+  --body-tracking: -0.031em;
   font-family: var(--font-primary);
 }
 
@@ -43,10 +43,6 @@ body {
   --site-bg: none;
   min-height: 100vh;
   background-color: #ffffff;
-  background-image: var(--site-bg);
-  background-position: top center;
-  background-repeat: no-repeat;
-  background-size: 100% auto;
 }
 
 a {
@@ -68,72 +64,22 @@ a {
   }
 }
 
-@media (prefers-reduced-motion: no-preference) {
-  [data-responsive-page] {
-    animation: pageEnter var(--motion-base) var(--ease-out) both;
-  }
-}
-
-html[data-motion-ready="true"] [data-reveal]:not([data-revealed="true"]) {
-  opacity: 0;
-  translate: 0 var(--reveal-distance, 18px);
-}
-
-[data-reveal] {
-  transition:
-    opacity var(--motion-slow) var(--ease-out),
-    translate var(--motion-slow) var(--ease-out),
-    filter var(--motion-slow) var(--ease-out);
-  will-change: opacity, translate;
-}
-
-[data-revealed="true"] {
-  opacity: 1;
-  translate: 0 0;
-}
-
-html[data-highlight-course="golden-bell-tour"] [data-course-anchor="golden-bell-tour"],
-html[data-highlight-course="k-yeoju-tour"] [data-course-anchor="k-yeoju-tour"],
-html[data-highlight-course="club-tour"] [data-course-anchor="club-tour"] {
-  animation: courseHighlight 900ms var(--ease-out) both;
-}
-
-@keyframes pageEnter {
-  from {
-    opacity: 0;
-  }
-
-  to {
-    opacity: 1;
-  }
-}
-
-@keyframes courseHighlight {
-  0% {
-    box-shadow: 0 0 0 rgba(251, 168, 28, 0);
-  }
-
-  24% {
-    box-shadow: 0 0 0 10px rgba(251, 168, 28, 0.16);
-  }
-
-  100% {
-    box-shadow: 0 0 0 24px rgba(251, 168, 28, 0);
-  }
-}
-
 @media (max-width: 767px) {
   :root {
     --page-gutter: 24px;
-    --section-space: 100px;
-    --title-size: 36px;
-    --title-line-height: 1.4;
+    --display-title-size: 36px;
+    --display-title-leading: 50.4px;
     --body-size: 12.6px;
-    --body-line-height: 1.86;
+    --body-leading: 23.4px;
   }
+}
 
-  .site-shell {
-    background-image: none;
+@media (min-width: 768px) and (max-width: 1439px) {
+  :root {
+    --display-title-size: clamp(42px, 4.167vw, 60px);
+    --display-title-leading: clamp(58.8px, 5.834vw, 84px);
+    --body-size: clamp(17px, 1.459vw, 21px);
+    --body-leading: clamp(31px, 2.709vw, 39px);
   }
 }
 

@@ -20,7 +20,8 @@
   width: 79px;
   height: 55px;
   flex: 0 0 auto;
-  transition: opacity var(--motion-fast) var(--ease-out), transform var(--motion-fast) var(--ease-out);
+  transform: translateY(2px);
+  transition: opacity var(--motion-fast) var(--ease-out);
 }
 
 .logo:hover,
@@ -28,8 +29,9 @@
   opacity: 0.78;
 }
 
-.logo:active {
-  transform: scale(0.985);
+.header[data-active="landing"] .logo,
+.header[data-active="landing"] .desktopNav {
+  transform: translateY(15.5px);
 }
 
 .logo img {
@@ -167,14 +169,21 @@
   }
 
   .logo {
-    width: 48px;
+    width: 47.7px;
     height: 44px;
     display: flex;
-    align-items: flex-start;
+    align-items: center;
+    transform: none;
   }
 
   .logo img {
+    width: 47.7px;
     height: 33px;
+    transform: translateY(1.5px);
+  }
+
+  .header[data-active="landing"] .logo {
+    transform: none;
   }
 
   .desktopNav {

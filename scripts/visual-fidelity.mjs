@@ -1,0 +1,82 @@
+import fs from "node:fs/promises";
+import path from "node:path";
+import process from "node:process";
+import sharp from "sharp";
+import { chromium } from "playwright";
+
+const baseUrl = process.env.VISUAL_BASE_URL || "http://127.0.0.1:3000";
+const root = process.cwd();
+const outputDir = path.join(root, "visual-diffs", "fidelity");
+const maxMeanDelta = Number.parseFloat(process.env.FIGMA_MAX_MEAN_DELTA || "6");
+const specs = [
+  ["01-landing", "/", 1440, "test-assets/figma/reference/01-landing.png", false],
+  ["01-landing-mobile", "/", 402, "test-assets/figma/reference/01-landing-mobile.png", true],
+  ["02-courses", "/courses/", 1440, "test-assets/figma/reference/02-courses.png", false],
+  ["02-courses-mobile", "/courses/", 402, "test-assets/figma/reference/02-courses-mobile.png", true],
+  ["03-directions", "/reservation/", 1440, "test-assets/figma/reference/03-directions.png", false],
+  ["03-directions-mobile", "/reservation/", 402, "test-assets/figma/reference/03-directions-mobile.png", true],
+];
+
+await fs.mkdir(outputDir, { recursive: true });
+const browser = await chromium.launch();
+const failures = [];
+
+try {
+  for (const [name, route, width, referencePath, hideProductMobileBackdrop] of specs) {
+    const page = await browser.newPage({ viewport: { width, height: 900 }, deviceScaleFactor: 1 });
+    await page.goto(new URL(route, baseUrl).toString(), { waitUntil: "networkidle" });
+    if (hideProductMobileBackdrop) {
+      await page.addStyleTag({ content: "[data-page-backdrop]{background-image:none!important;background-color:#fff!important}" });
+    }
+    await loadRenderedImages(page);
+    const actualPath = path.join(outputDir, `${name}.actual.png`);
+    await page.screenshot({ path: actualPath, fullPage: true });
+    await page.close();
+
+    const reference = path.join(root, referencePath);
+    const [referenceMeta, actualMeta] = await Promise.all([sharp(reference).metadata(), sharp(actualPath).metadata()]);
+    if (referenceMeta.width !== actualMeta.width || referenceMeta.height !== actualMeta.height) {
+      failures.push(`${name}: dimension mismatch ${actualMeta.width}x${actualMeta.height}, expected ${referenceMeta.width}x${referenceMeta.height}`);
+      continue;
+    }
+
+    const [referencePixels, actualPixels] = await Promise.all([normalize(reference), normalize(actualPath)]);
+    let absoluteDelta = 0;
+    for (let index = 0; index < referencePixels.length; index += 1) {
+      absoluteDelta += Math.abs(referencePixels[index] - actualPixels[index]);
+    }
+    const meanDelta = (absoluteDelta / referencePixels.length / 255) * 100;
+    const status = meanDelta <= maxMeanDelta ? "pass" : "fail";
+    console.log(`[${status}] ${name}: blurred mean color delta ${meanDelta.toFixed(3)}% (threshold ${maxMeanDelta.toFixed(3)}%)`);
+    if (status === "fail") failures.push(`${name}: fidelity delta ${meanDelta.toFixed(3)}%`);
+  }
+} finally {
+  await browser.close();
+}
+
+if (failures.length) {
+  failures.forEach((failure) => console.error(`[fail] ${failure}`));
+  process.exit(1);
+}
+
+async function normalize(input) {
+  return sharp(input)
+    .resize({ width: 180 })
+    .blur(4)
+    .removeAlpha()
+    .raw()
+    .toBuffer();
+}
+
+async function loadRenderedImages(page) {
+  await page.evaluate(async () => {
+    const wait = (ms) => new Promise((resolve) => setTimeout(resolve, ms));
+    for (let y = 0; y <= document.documentElement.scrollHeight - innerHeight; y += Math.max(360, innerHeight * 0.8)) {
+      scrollTo(0, y);
+      await wait(50);
+    }
+    scrollTo(0, 0);
+    await document.fonts.ready;
+  });
+  await page.waitForFunction(() => Array.from(document.images).every((image) => image.complete && image.naturalWidth > 0));
+}
