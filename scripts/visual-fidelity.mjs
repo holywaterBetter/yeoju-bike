@@ -7,12 +7,21 @@ import { chromium } from "playwright";
 const baseUrl = process.env.VISUAL_BASE_URL || "http://127.0.0.1:3000";
 const root = process.cwd();
 const outputDir = path.join(root, "visual-diffs", "fidelity");
-const maxMeanDelta = Number.parseFloat(process.env.FIGMA_MAX_MEAN_DELTA || "6");
+const maxMeanDelta = Number.parseFloat(process.env.FIGMA_MAX_MEAN_DELTA || "1.5");
 const specs = [
   ["01-landing", "/", 1440, "test-assets/figma/reference/01-landing.png", false],
   ["01-landing-mobile", "/", 402, "test-assets/figma/reference/01-landing-mobile.png", true],
   ["02-courses", "/courses/", 1440, "test-assets/figma/reference/02-courses.png", false],
-  ["02-courses-mobile", "/courses/", 402, "test-assets/figma/reference/02-courses-mobile.png", true],
+  // The product keeps a user-approved 47px safety gap below the sticky header.
+  // Remove only that product override while comparing the underlying Figma layout.
+  [
+    "02-courses-mobile",
+    "/courses/",
+    402,
+    "test-assets/figma/reference/02-courses-mobile.png",
+    true,
+    '[data-responsive-page="courses"] main{padding-top:3px!important}',
+  ],
   ["03-directions", "/reservation/", 1440, "test-assets/figma/reference/03-directions.png", false],
   ["03-directions-mobile", "/reservation/", 402, "test-assets/figma/reference/03-directions-mobile.png", true],
 ];
@@ -53,12 +62,13 @@ const browser = await chromium.launch();
 const failures = [];
 
 try {
-  for (const [name, route, width, referencePath, hideProductMobileBackdrop] of specs) {
+  for (const [name, route, width, referencePath, hideProductMobileBackdrop, comparisonStyle] of specs) {
     const page = await browser.newPage({ viewport: { width, height: 900 }, deviceScaleFactor: 1 });
     await page.goto(new URL(route, baseUrl).toString(), { waitUntil: "networkidle" });
     if (hideProductMobileBackdrop) {
       await page.addStyleTag({ content: "[data-page-backdrop]{background-image:none!important;background-color:#fff!important}" });
     }
+    if (comparisonStyle) await page.addStyleTag({ content: comparisonStyle });
     await loadRenderedImages(page);
     const actualPath = path.join(outputDir, `${name}.actual.png`);
     await page.screenshot({ path: actualPath, fullPage: true });

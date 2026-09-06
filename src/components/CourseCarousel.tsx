@@ -9,11 +9,14 @@ type CourseCarouselProps = {
   priority?: boolean;
 };
 
-type PointerOrigin = { x: number; y: number } | null;
+type DragAxis = "pending" | "horizontal" | "vertical";
+type PointerOrigin = { pointerId: number; x: number; y: number; axis: DragAxis } | null;
 
 export default function CourseCarousel({ courseName, slides, priority = false }: CourseCarouselProps) {
   const [activeIndex, setActiveIndex] = useState(0);
   const [loadedIndexes, setLoadedIndexes] = useState<Set<number>>(() => new Set([0, 1]));
+  const [dragOffset, setDragOffset] = useState(0);
+  const [isDragging, setIsDragging] = useState(false);
   const pointerOrigin = useRef<PointerOrigin>(null);
   const lastIndex = slides.length - 1;
 
@@ -49,20 +52,78 @@ export default function CourseCarousel({ courseName, slides, priority = false }:
   };
 
   const handlePointerDown = (event: PointerEvent<HTMLDivElement>) => {
-    if (event.pointerType === "mouse") return;
-    pointerOrigin.current = { x: event.clientX, y: event.clientY };
+    if (!event.isPrimary || (event.pointerType === "mouse" && event.button !== 0)) return;
+
+    pointerOrigin.current = {
+      pointerId: event.pointerId,
+      x: event.clientX,
+      y: event.clientY,
+      axis: "pending",
+    };
+    setDragOffset(0);
+    setIsDragging(false);
     event.currentTarget.setPointerCapture(event.pointerId);
+    if (event.pointerType === "mouse") event.preventDefault();
   };
 
-  const handlePointerUp = (event: PointerEvent<HTMLDivElement>) => {
+  const handlePointerMove = (event: PointerEvent<HTMLDivElement>) => {
     const origin = pointerOrigin.current;
-    pointerOrigin.current = null;
-    if (!origin) return;
+    if (!origin || origin.pointerId !== event.pointerId) return;
 
     const deltaX = event.clientX - origin.x;
     const deltaY = event.clientY - origin.y;
-    if (Math.abs(deltaX) < 40 || Math.abs(deltaX) <= Math.abs(deltaY)) return;
-    goTo(activeIndex + (deltaX < 0 ? 1 : -1));
+    const absoluteX = Math.abs(deltaX);
+    const absoluteY = Math.abs(deltaY);
+
+    if (origin.axis === "pending") {
+      if (Math.max(absoluteX, absoluteY) < 6) return;
+      origin.axis = absoluteX > absoluteY ? "horizontal" : "vertical";
+    }
+
+    if (origin.axis !== "horizontal") return;
+
+    event.preventDefault();
+    const pullingPastStart = activeIndex === 0 && deltaX > 0;
+    const pullingPastEnd = activeIndex === lastIndex && deltaX < 0;
+    setDragOffset((pullingPastStart || pullingPastEnd) ? deltaX * 0.24 : deltaX);
+    setIsDragging(true);
+  };
+
+  const finishPointerGesture = (event: PointerEvent<HTMLDivElement>, cancelled = false) => {
+    const origin = pointerOrigin.current;
+    if (!origin || origin.pointerId !== event.pointerId) return;
+
+    const deltaX = event.clientX - origin.x;
+    const deltaY = event.clientY - origin.y;
+    const horizontalGesture = origin.axis === "horizontal"
+      || (origin.axis === "pending" && Math.abs(deltaX) > Math.abs(deltaY));
+    const threshold = Math.min(48, Math.max(24, event.currentTarget.clientWidth * 0.08));
+
+    pointerOrigin.current = null;
+    setDragOffset(0);
+    setIsDragging(false);
+    if (event.currentTarget.hasPointerCapture(event.pointerId)) {
+      event.currentTarget.releasePointerCapture(event.pointerId);
+    }
+
+    if (!cancelled && horizontalGesture && Math.abs(deltaX) >= threshold) {
+      goTo(activeIndex + (deltaX < 0 ? 1 : -1));
+    }
+  };
+
+  const handlePointerUp = (event: PointerEvent<HTMLDivElement>) => {
+    finishPointerGesture(event);
+  };
+
+  const handlePointerCancel = (event: PointerEvent<HTMLDivElement>) => {
+    finishPointerGesture(event, true);
+  };
+
+  const handleLostPointerCapture = (event: PointerEvent<HTMLDivElement>) => {
+    if (pointerOrigin.current?.pointerId !== event.pointerId) return;
+    pointerOrigin.current = null;
+    setDragOffset(0);
+    setIsDragging(false);
   };
 
   const handleSelectorClick = (event: MouseEvent<HTMLDivElement>) => {
@@ -80,8 +141,21 @@ export default function CourseCarousel({ courseName, slides, priority = false }:
       aria-describedby={`${courseName.replace(/\s+/g, "-")}-carousel-status`}
       data-course-carousel={courseName}
     >
-      <div className={styles.viewport} onPointerDown={handlePointerDown} onPointerUp={handlePointerUp} onPointerCancel={() => (pointerOrigin.current = null)}>
-        <div className={styles.track} style={{ transform: `translateX(-${activeIndex * 100}%)` }}>
+      <div
+        className={styles.viewport}
+        data-carousel-viewport
+        data-dragging={isDragging ? "true" : "false"}
+        onPointerDown={handlePointerDown}
+        onPointerMove={handlePointerMove}
+        onPointerUp={handlePointerUp}
+        onPointerCancel={handlePointerCancel}
+        onLostPointerCapture={handleLostPointerCapture}
+      >
+        <div
+          className={`${styles.track} ${isDragging ? styles.trackDragging : ""}`}
+          style={{ transform: `translate3d(calc(-${activeIndex * 100}% + ${dragOffset}px), 0, 0)` }}
+          data-carousel-track
+        >
           {slides.map((src, index) => (
             <div
               className={styles.slide}

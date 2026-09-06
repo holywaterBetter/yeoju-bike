@@ -1,7 +1,9 @@
 .carousel {
   position: relative;
+  display: flex;
   width: 100%;
-  height: 652px;
+  height: auto;
+  flex-direction: column;
   outline: none;
 }
 
@@ -14,7 +16,13 @@
   overflow: hidden;
   width: 100%;
   aspect-ratio: 1;
-  touch-action: pan-y;
+  cursor: grab;
+  touch-action: pan-y pinch-zoom;
+  user-select: none;
+}
+
+.viewport[data-dragging="true"] {
+  cursor: grabbing;
 }
 
 .track {
@@ -23,6 +31,10 @@
   height: 100%;
   transition: transform 360ms var(--ease-out);
   will-change: transform;
+}
+
+.trackDragging {
+  transition: none;
 }
 
 .slide {
@@ -45,18 +57,17 @@
 }
 
 .selector {
-  position: absolute;
-  left: 50%;
-  top: 625px;
+  position: relative;
   display: flex;
   width: 90px;
   height: 44px;
+  margin: -1px auto -17px;
   align-items: center;
   justify-content: center;
+  flex: 0 0 44px;
   border-radius: 4px;
   cursor: pointer;
   outline: none;
-  transform: translateX(-50%);
 }
 
 .selector:focus-visible {
@@ -101,13 +112,9 @@
 }
 
 @media (max-width: 767px) {
-  .carousel {
-    height: 369.6px;
-  }
-
   .selector {
-    top: 344.6px;
     width: 54px;
+    margin: -9.4px auto -19px;
   }
 
   .dots {

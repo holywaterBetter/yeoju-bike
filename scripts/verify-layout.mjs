@@ -132,6 +132,16 @@ async function checkPage(pageSpec, viewport) {
             src: image?.getAttribute("src") ?? "",
           };
         }),
+        courseTitleLayers: Array.from(document.querySelectorAll("[data-course-anchor]")).map((section) => {
+          const title = section.querySelector("h2");
+          const decoration = section.querySelector('[data-visual-id^="course-decoration-"]');
+          return {
+            anchor: section.getAttribute("data-course-anchor"),
+            wrapperIsolation: title?.parentElement ? getComputedStyle(title.parentElement).isolation : null,
+            titleZIndex: title ? getComputedStyle(title).zIndex : null,
+            decorationZIndex: decoration ? getComputedStyle(decoration).zIndex : null,
+          };
+        }),
         footerLogoMetrics: Array.from(document.querySelectorAll('[data-visual-id="footer-logos"] img')).map(rectOf),
         featureTitleStyle: styleFor('[data-feature="guide"] h3'),
         guideTitleTextStyle: styleFor('[data-visual-id="guide-title-text"]'),
@@ -184,6 +194,14 @@ async function checkPage(pageSpec, viewport) {
     if (viewport.width < 768) {
       if (result.backdropBackground === "none") failures.push(`${label}: mobile backdrop background-image is none`);
       if (result.backdropBackgroundSize !== "100% 100%") failures.push(`${label}: mobile backdrop is not mapped across the full content surface`);
+      if (pageSpec.key === "courses" && result.metrics.carousel && result.metrics.carouselDots) {
+        const expectedCarouselHeight = result.metrics.carousel.width + 15.6;
+        if (Math.abs(result.metrics.carousel.height - expectedCarouselHeight) > 1) {
+          failures.push(`${label}: carousel height does not follow its square card width`);
+        }
+        const visualDotGap = result.metrics.carouselDots.y - (result.metrics.carousel.y + result.metrics.carousel.width);
+        if (Math.abs(visualDotGap - 9.6) > 1) failures.push(`${label}: carousel dot gap is ${visualDotGap.toFixed(2)}px, expected 9.6px`);
+      }
     }
 
     if (viewport.width === 1440) {
@@ -195,6 +213,7 @@ async function checkPage(pageSpec, viewport) {
     }
 
     if (pageSpec.key === "courses" && viewport.width === 1440) {
+      assertCourseTitleLayering(label, result.courseTitleLayers);
       assertRect(label, "first course", result.metrics.firstCourse, { x: 120, y: 231, width: 1200, height: 652 });
       assertRect(label, "first decoration", result.metrics.firstDecoration, { x: 84, y: 400, width: 394, height: 154 });
       assertRect(label, "booking visual", result.metrics.bookingVisual, { x: 120, y: 584, width: 195, height: 63 });
@@ -211,6 +230,7 @@ async function checkPage(pageSpec, viewport) {
     }
 
     if (pageSpec.key === "courses" && viewport.width === 402) {
+      assertCourseTitleLayering(label, result.courseTitleLayers);
       assertRect(label, "site header", result.metrics.siteHeader, { x: 0, y: 0, width: 402, height: 103 });
       assertRect(label, "first course", result.metrics.firstCourse, { x: 24, y: 153, width: 354, height: 504.8 });
       assertRect(label, "first decoration", result.metrics.firstDecoration, { x: 16, y: 112.8, width: 236.4, height: 92.4 });
@@ -310,6 +330,19 @@ function assertGuideTitleLayering(label, result) {
   if (result.guideTitleTextStyle?.zIndex !== "1") failures.push(`${label}: guide title text is not above its decorations`);
   if (result.guideMarkStyle?.zIndex !== "0" || result.guideUnderlineStyle?.zIndex !== "0") {
     failures.push(`${label}: guide decorations are not behind the title text`);
+  }
+}
+
+function assertCourseTitleLayering(label, layers) {
+  if (layers.length !== 4) {
+    failures.push(`${label}: expected four course title layering records, found ${layers.length}`);
+    return;
+  }
+
+  for (const layer of layers) {
+    if (layer.wrapperIsolation !== "isolate" || layer.titleZIndex !== "1" || layer.decorationZIndex !== "0") {
+      failures.push(`${label}: ${layer.anchor} title/decorative asset stacking order is incorrect`);
+    }
   }
 }
 

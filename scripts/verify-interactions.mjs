@@ -16,10 +16,43 @@ const bookingLinks = [
 try {
   await checkLandingLinks();
   await checkCourses();
+  await checkDesktopDrag();
   await checkMobileSwipe();
   await checkSharedContent();
 } finally {
   await browser.close();
+}
+
+async function checkDesktopDrag() {
+  const page = await browser.newPage({ viewport: { width: 1440, height: 900 } });
+  try {
+    await page.goto(new URL("/courses/", baseUrl).toString(), { waitUntil: "networkidle" });
+    const carousel = page.locator("[data-course-carousel]").first();
+    const viewport = carousel.locator("[data-carousel-viewport]");
+    const box = await viewport.boundingBox();
+    if (!box) {
+      failures.push("desktop drag: missing carousel viewport");
+      return;
+    }
+
+    const y = box.y + box.height / 2;
+    await page.mouse.move(box.x + box.width * 0.72, y);
+    await page.mouse.down();
+    await page.mouse.move(box.x + box.width * 0.62, y, { steps: 3 });
+    if ((await viewport.getAttribute("data-dragging")) !== "true") failures.push("desktop drag did not visibly follow the pointer");
+    const dragTranslateX = await carousel.locator("[data-carousel-track]").evaluate((track) => new DOMMatrix(getComputedStyle(track).transform).m41);
+    if (dragTranslateX > -20) failures.push(`desktop drag track did not follow the pointer (${dragTranslateX}px)`);
+    await page.mouse.move(box.x + box.width * 0.45, y, { steps: 4 });
+    await page.mouse.up();
+    await page.waitForTimeout(80);
+
+    if ((await carousel.locator('[data-carousel-dot][aria-current="true"]').getAttribute("data-carousel-dot")) !== "1") {
+      failures.push("desktop mouse drag did not activate second slide");
+    }
+    if ((await viewport.getAttribute("data-dragging")) !== "false") failures.push("desktop drag state did not reset after pointer up");
+  } finally {
+    await page.close();
+  }
 }
 
 if (failures.length) {
@@ -79,7 +112,7 @@ async function checkMobileSwipe() {
   try {
     await page.goto(new URL("/courses/", baseUrl).toString(), { waitUntil: "networkidle" });
     const carousel = page.locator("[data-course-carousel]").first();
-    const viewport = carousel.locator("div").first();
+    const viewport = carousel.locator("[data-carousel-viewport]");
     const box = await viewport.boundingBox();
     if (!box) {
       failures.push("mobile swipe: missing carousel viewport");
@@ -88,11 +121,40 @@ async function checkMobileSwipe() {
 
     const cdp = await context.newCDPSession(page);
     const y = box.y + box.height / 2;
-    await cdp.send("Input.dispatchTouchEvent", { type: "touchStart", touchPoints: [{ x: box.x + box.width * 0.8, y }] });
-    await cdp.send("Input.dispatchTouchEvent", { type: "touchMove", touchPoints: [{ x: box.x + box.width * 0.2, y }] });
+    const startX = box.x + box.width * 0.6;
+    await cdp.send("Input.dispatchTouchEvent", { type: "touchStart", touchPoints: [{ x: startX, y }] });
+    await cdp.send("Input.dispatchTouchEvent", { type: "touchMove", touchPoints: [{ x: startX - 32, y }] });
+    await page.waitForTimeout(16);
+    if ((await viewport.getAttribute("data-dragging")) !== "true") failures.push("mobile swipe did not visibly follow the finger");
+    const touchTranslateX = await carousel.locator("[data-carousel-track]").evaluate((track) => new DOMMatrix(getComputedStyle(track).transform).m41);
+    if (touchTranslateX > -20) failures.push(`mobile swipe track did not follow the finger (${touchTranslateX}px)`);
     await cdp.send("Input.dispatchTouchEvent", { type: "touchEnd", touchPoints: [] });
     await page.waitForTimeout(80);
     if ((await carousel.locator('[data-carousel-dot][aria-current="true"]').getAttribute("data-carousel-dot")) !== "1") failures.push("mobile swipe did not activate second slide");
+
+    await carousel.getByRole("slider").press("Home");
+    await page.evaluate(() => scrollTo(0, 0));
+    const verticalBox = await viewport.boundingBox();
+    if (!verticalBox) {
+      failures.push("mobile vertical scroll: missing carousel viewport");
+      return;
+    }
+
+    const verticalX = verticalBox.x + verticalBox.width / 2;
+    const verticalStartY = verticalBox.y + verticalBox.height * 0.7;
+    await cdp.send("Input.dispatchTouchEvent", { type: "touchStart", touchPoints: [{ x: verticalX, y: verticalStartY }] });
+    for (let step = 1; step <= 4; step += 1) {
+      await cdp.send("Input.dispatchTouchEvent", {
+        type: "touchMove",
+        touchPoints: [{ x: verticalX, y: verticalStartY - (step * 30) }],
+      });
+    }
+    await cdp.send("Input.dispatchTouchEvent", { type: "touchEnd", touchPoints: [] });
+    await page.waitForTimeout(240);
+    if ((await page.evaluate(() => scrollY)) < 40) failures.push("mobile vertical gesture was blocked by carousel drag handling");
+    if ((await carousel.locator('[data-carousel-dot][aria-current="true"]').getAttribute("data-carousel-dot")) !== "0") {
+      failures.push("mobile vertical gesture changed the carousel slide");
+    }
   } finally {
     await context.close();
   }

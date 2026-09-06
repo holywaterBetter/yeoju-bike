@@ -89,7 +89,17 @@ const missingAssets = [...sourceReferences.keys()]
   .filter((assetPath) => assetPath.startsWith("public/assets/") && !publicAssets.has(assetPath))
   .sort();
 
-const transparentDecorationPaths = ["public/assets/figma/groups/courses-bell.png"];
+const transparentDecorationPaths = [
+  "public/assets/figma/groups/courses-bell.png",
+  "public/assets/figma/groups/courses-bike-decoration.png",
+  "public/assets/figma/groups/courses-gift-decoration.png",
+  "public/assets/figma/groups/courses-hangul-letters.png",
+  "public/assets/figma/groups/courses-taegeuk.png",
+  "public/assets/figma/groups/landing-red-dash-1.png",
+  "public/assets/figma/groups/landing-red-dash-2.png",
+  "public/assets/figma/groups/landing-smile.png",
+  "public/assets/figma/groups/landing-yellow-spark.png",
+];
 const opaqueDecorations = [];
 
 for (const assetPath of transparentDecorationPaths) {
