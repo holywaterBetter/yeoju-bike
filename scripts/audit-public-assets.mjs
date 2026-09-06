@@ -89,7 +89,12 @@ const missingAssets = [...sourceReferences.keys()]
   .filter((assetPath) => assetPath.startsWith("public/assets/") && !publicAssets.has(assetPath))
   .sort();
 
-const transparentDecorationPaths = [
+const transparentAssetPaths = [
+  "public/assets/figma/260906/gifts/camera.png",
+  "public/assets/figma/260906/gifts/clicker-keyring.png",
+  "public/assets/figma/260906/gifts/keyring.png",
+  "public/assets/figma/260906/gifts/mask.png",
+  "public/assets/figma/260906/gifts/pottery.png",
   "public/assets/figma/groups/courses-bell.png",
   "public/assets/figma/groups/courses-bike-decoration.png",
   "public/assets/figma/groups/courses-gift-decoration.png",
@@ -100,9 +105,9 @@ const transparentDecorationPaths = [
   "public/assets/figma/groups/landing-smile.png",
   "public/assets/figma/groups/landing-yellow-spark.png",
 ];
-const opaqueDecorations = [];
+const opaqueAssets = [];
 
-for (const assetPath of transparentDecorationPaths) {
+for (const assetPath of transparentAssetPaths) {
   const absolutePath = path.join(root, assetPath);
   if (!fs.existsSync(absolutePath)) continue;
 
@@ -111,11 +116,11 @@ for (const assetPath of transparentDecorationPaths) {
   const alpha = stats.channels[3];
 
   if (!metadata.hasAlpha || !alpha || alpha.min !== 0) {
-    opaqueDecorations.push(assetPath);
+    opaqueAssets.push(assetPath);
   }
 }
 
-if (unreferencedAssets.length > 0 || missingAssets.length > 0 || opaqueDecorations.length > 0) {
+if (unreferencedAssets.length > 0 || missingAssets.length > 0 || opaqueAssets.length > 0) {
   if (unreferencedAssets.length > 0) {
     const totalSize = unreferencedAssets.reduce((sum, assetPath) => sum + publicAssets.get(assetPath), 0);
     console.error(
@@ -134,9 +139,9 @@ if (unreferencedAssets.length > 0 || missingAssets.length > 0 || opaqueDecoratio
     }
   }
 
-  if (opaqueDecorations.length > 0) {
-    console.error("[assets:audit] decorative assets with an opaque background:");
-    for (const assetPath of opaqueDecorations) console.error(`  ${assetPath}`);
+  if (opaqueAssets.length > 0) {
+    console.error("[assets:audit] assets that require transparency have an opaque background:");
+    for (const assetPath of opaqueAssets) console.error(`  ${assetPath}`);
   }
 
   process.exit(1);

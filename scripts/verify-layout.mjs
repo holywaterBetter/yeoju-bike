@@ -4,8 +4,8 @@ import { chromium } from "playwright";
 const baseUrl = process.env.LAYOUT_BASE_URL || process.env.RESPONSIVE_BASE_URL || "http://127.0.0.1:3000";
 
 const pages = [
-  { route: "/", key: "landing", referenceHeights: { 1440: 5440, 402: 4107 } },
-  { route: "/courses/", key: "courses", referenceHeights: { 1440: 5247, 402: 3875 } },
+  { route: "/", key: "courses", referenceHeights: { 1440: 5247, 402: 3875 } },
+  { route: "/introduce/", key: "landing", referenceHeights: { 1440: 5440, 402: 4107 } },
   { route: "/reservation/", key: "directions", referenceHeights: { 1440: 2602, 402: 1883 } },
 ];
 

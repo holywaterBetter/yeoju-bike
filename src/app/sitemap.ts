@@ -14,7 +14,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
       priority: 1,
     },
     {
-      url: absoluteSiteUrl("/courses/"),
+      url: absoluteSiteUrl("/introduce/"),
       lastModified,
       changeFrequency: "monthly",
       priority: 0.9,

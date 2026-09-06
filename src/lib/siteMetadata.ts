@@ -46,7 +46,7 @@ export function absoluteSiteUrl(path = "/") {
 }
 
 export function courseSiteUrl(anchor: CourseAnchor) {
-  return absoluteSiteUrl(`/courses/#${anchor}`);
+  return `${siteUrl}#${anchor}`;
 }
 
 export function openGraphMetadata(title: string, description: string, url: string): NonNullable<Metadata["openGraph"]> {
@@ -132,7 +132,7 @@ export function courseListJsonLd() {
   return {
     "@context": "https://schema.org",
     "@type": "ItemList",
-    "@id": `${absoluteSiteUrl("/courses/")}#tour-list`,
+    "@id": `${siteUrl}#tour-list`,
     name: "여주 자전거 시티투어 코스",
     itemListElement: seoTours.map((tour, index) => ({
       "@type": "ListItem",

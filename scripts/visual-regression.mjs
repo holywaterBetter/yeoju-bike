@@ -14,8 +14,8 @@ const maxMismatchPercent = Number.parseFloat(process.env.VISUAL_MAX_MISMATCH_PER
 const channelTolerance = Number.parseInt(process.env.VISUAL_CHANNEL_TOLERANCE || "2", 10);
 
 const pages = [
-  { key: "landing", route: "/" },
-  { key: "courses", route: "/courses" },
+  { key: "landing", route: "/introduce" },
+  { key: "courses", route: "/" },
   { key: "directions", route: "/reservation" },
 ];
 

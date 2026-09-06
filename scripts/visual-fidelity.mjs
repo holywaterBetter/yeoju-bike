@@ -9,14 +9,14 @@ const root = process.cwd();
 const outputDir = path.join(root, "visual-diffs", "fidelity");
 const maxMeanDelta = Number.parseFloat(process.env.FIGMA_MAX_MEAN_DELTA || "1.5");
 const specs = [
-  ["01-landing", "/", 1440, "test-assets/figma/reference/01-landing.png", false],
-  ["01-landing-mobile", "/", 402, "test-assets/figma/reference/01-landing-mobile.png", true],
-  ["02-courses", "/courses/", 1440, "test-assets/figma/reference/02-courses.png", false],
+  ["01-landing", "/introduce/", 1440, "test-assets/figma/reference/01-landing.png", false],
+  ["01-landing-mobile", "/introduce/", 402, "test-assets/figma/reference/01-landing-mobile.png", true],
+  ["02-courses", "/", 1440, "test-assets/figma/reference/02-courses.png", false],
   // The product keeps a user-approved 47px safety gap below the sticky header.
   // Remove only that product override while comparing the underlying Figma layout.
   [
     "02-courses-mobile",
-    "/courses/",
+    "/",
     402,
     "test-assets/figma/reference/02-courses-mobile.png",
     true,

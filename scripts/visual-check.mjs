@@ -31,14 +31,14 @@ if (
 const pages = [
   {
     name: "01-landing",
-    route: "/",
+    route: "/introduce",
     width: 1440,
     height: 5693,
     reference: "test-assets/figma/reference/01-landing.png"
   },
   {
     name: "02-courses",
-    route: "/courses",
+    route: "/",
     width: 1440,
     height: 8472,
     reference: "test-assets/figma/reference/02-courses.png"

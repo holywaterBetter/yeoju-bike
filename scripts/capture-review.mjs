@@ -6,8 +6,8 @@ import { chromium } from "playwright";
 const baseUrl = process.env.VISUAL_BASE_URL || "http://127.0.0.1:3000";
 const outputDir = path.join(process.cwd(), "test-assets", "screenshots", "review-260906");
 const pages = [
-  ["landing", "/"],
-  ["courses", "/courses/"],
+  ["landing", "/introduce/"],
+  ["courses", "/"],
   ["directions", "/reservation/"],
 ];
 const viewports = [

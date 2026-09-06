@@ -14,6 +14,7 @@ const bookingLinks = [
 ];
 
 try {
+  await checkNavigationAndAddress();
   await checkLandingLinks();
   await checkCourses();
   await checkDesktopDrag();
@@ -26,7 +27,7 @@ try {
 async function checkDesktopDrag() {
   const page = await browser.newPage({ viewport: { width: 1440, height: 900 } });
   try {
-    await page.goto(new URL("/courses/", baseUrl).toString(), { waitUntil: "networkidle" });
+    await page.goto(new URL("/", baseUrl).toString(), { waitUntil: "networkidle" });
     const carousel = page.locator("[data-course-carousel]").first();
     const viewport = carousel.locator("[data-carousel-viewport]");
     const box = await viewport.boundingBox();
@@ -65,9 +66,9 @@ console.log("[pass] carousel, booking link, shared footer, and content checks pa
 async function checkLandingLinks() {
   const page = await browser.newPage({ viewport: { width: 1440, height: 900 } });
   try {
-    await page.goto(new URL("/", baseUrl).toString(), { waitUntil: "networkidle" });
+    await page.goto(new URL("/introduce/", baseUrl).toString(), { waitUntil: "networkidle" });
     const hrefs = await page.locator('a[aria-label$="코스와 예약 보기"]').evaluateAll((links) => links.map((link) => link.getAttribute("href")));
-    const expected = anchors.map((anchor) => `/courses/#${anchor}`);
+    const expected = anchors.map((anchor) => `/#${anchor}`);
     if (JSON.stringify(hrefs) !== JSON.stringify(expected)) failures.push(`landing course links: ${JSON.stringify(hrefs)}`);
   } finally {
     await page.close();
@@ -77,7 +78,7 @@ async function checkLandingLinks() {
 async function checkCourses() {
   const page = await browser.newPage({ viewport: { width: 1440, height: 900 } });
   try {
-    await page.goto(new URL("/courses/", baseUrl).toString(), { waitUntil: "networkidle" });
+    await page.goto(new URL("/", baseUrl).toString(), { waitUntil: "networkidle" });
     const carousels = page.locator("[data-course-carousel]");
     if ((await carousels.count()) !== 4) failures.push(`expected four carousels, found ${await carousels.count()}`);
 
@@ -110,7 +111,7 @@ async function checkMobileSwipe() {
   const context = await browser.newContext({ viewport: { width: 402, height: 874 }, hasTouch: true, isMobile: true });
   const page = await context.newPage();
   try {
-    await page.goto(new URL("/courses/", baseUrl).toString(), { waitUntil: "networkidle" });
+    await page.goto(new URL("/", baseUrl).toString(), { waitUntil: "networkidle" });
     const carousel = page.locator("[data-course-carousel]").first();
     const viewport = carousel.locator("[data-carousel-viewport]");
     const box = await viewport.boundingBox();
@@ -163,7 +164,7 @@ async function checkMobileSwipe() {
 async function checkSharedContent() {
   const page = await browser.newPage({ viewport: { width: 402, height: 874 } });
   try {
-    for (const route of ["/", "/courses/", "/reservation/"]) {
+    for (const route of ["/", "/introduce/", "/courses/", "/reservation/"]) {
       await page.goto(new URL(route, baseUrl).toString(), { waitUntil: "networkidle" });
       if ((await page.locator("[data-contact-footer]").count()) !== 1) failures.push(`${route}: shared footer count mismatch`);
       if ((await page.locator('[data-contact-footer] img[alt="여주시"], [data-contact-footer] img[alt="여주세종문화관광재단"]').count()) !== 2) failures.push(`${route}: official footer logos missing`);
@@ -172,6 +173,31 @@ async function checkSharedContent() {
         if (html.includes(legacyText)) failures.push(`${route}: legacy course name remains — ${legacyText}`);
       }
     }
+  } finally {
+    await page.close();
+  }
+}
+
+async function checkNavigationAndAddress() {
+  const page = await browser.newPage({ viewport: { width: 1440, height: 900 } });
+  try {
+    await page.goto(new URL("/", baseUrl).toString(), { waitUntil: "networkidle" });
+    const navigation = await page.locator('nav[aria-label="주요 메뉴"] a').evaluateAll((links) =>
+      links.map((link) => ({ label: link.textContent?.trim(), href: link.getAttribute("href") })),
+    );
+    const expectedNavigation = [
+      { label: "코스 & 예약", href: "/" },
+      { label: "투어 소개", href: "/introduce/" },
+      { label: "오시는 길", href: "/reservation/" },
+    ];
+    if (JSON.stringify(navigation) !== JSON.stringify(expectedNavigation)) {
+      failures.push(`header navigation: ${JSON.stringify(navigation)}`);
+    }
+
+    await page.goto(new URL("/reservation/", baseUrl).toString(), { waitUntil: "networkidle" });
+    const address = (await page.locator("main .address, main p").allTextContents()).join(" ");
+    if (!address.includes("따르릉 자전거 사랑방")) failures.push("directions: corrected place name is missing");
+    if (address.includes("따르릉 여주 사랑방")) failures.push("directions: old place name remains");
   } finally {
     await page.close();
   }

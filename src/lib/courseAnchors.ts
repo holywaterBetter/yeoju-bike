@@ -10,5 +10,5 @@ export const courseAnchors = {
 export type CourseAnchor = (typeof courseAnchors)[keyof typeof courseAnchors];
 
 export function courseAnchorHref(anchor: CourseAnchor) {
-  return `${withBasePath("/courses/")}#${anchor}`;
+  return `${withBasePath("/")}#${anchor}`;
 }

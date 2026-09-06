@@ -4,7 +4,7 @@
   "strategy": "responsive-component-layout-with-reference-only-visual-tests",
   "pages": [
     {
-      "route": "/",
+      "route": "/introduce/",
       "name": "01_Landing",
       "nodeId": "155:1592",
       "width": 1440,
@@ -12,7 +12,7 @@
       "asset": "test-assets/figma/reference/01-landing.png"
     },
     {
-      "route": "/",
+      "route": "/introduce/",
       "name": "01_landing_M",
       "nodeId": "155:1998",
       "width": 402,
@@ -20,7 +20,7 @@
       "asset": "test-assets/figma/reference/01-landing-mobile.png"
     },
     {
-      "route": "/courses/",
+      "route": "/",
       "name": "02_Landing",
       "nodeId": "155:1717",
       "width": 1440,
@@ -28,7 +28,7 @@
       "asset": "test-assets/figma/reference/02-courses.png"
     },
     {
-      "route": "/courses/",
+      "route": "/",
       "name": "02_landing_M",
       "nodeId": "157:3002",
       "width": 402,
