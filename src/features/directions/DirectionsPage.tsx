@@ -39,7 +39,7 @@ export default function DirectionsPage({ className }: DirectionsPageProps) {
           />
 
           <div className={styles.transport}>
-            <TransportSection icon={assets.car} iconAlt="" title="자가 이용 시" columns={parkingDirections} kind="parking" />
+            <TransportSection icon={assets.car} iconAlt="" title="자가용 이용 시" columns={parkingDirections} kind="parking" />
             <TransportSection icon={assets.train} iconAlt="" title="대중교통 이용 시" columns={transitDirections} kind="transit" />
           </div>
         </section>
