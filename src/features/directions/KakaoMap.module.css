@@ -1,0 +1,86 @@
+.root {
+  position: relative;
+  overflow: hidden;
+  width: 100%;
+  isolation: isolate;
+}
+
+.canvas,
+.fallback {
+  position: absolute;
+  inset: 0;
+}
+
+.canvas {
+  z-index: 1;
+  width: 100%;
+  height: 100%;
+}
+
+.fallback {
+  z-index: 0;
+  background: #e4ece7;
+}
+
+.fallbackFrame {
+  width: 100%;
+  height: 100%;
+}
+
+.fallbackFrame img {
+  object-fit: cover;
+}
+
+.placeLabel {
+  display: block;
+  padding: 8px 12px;
+  color: #171717;
+  font-family: var(--font-korean);
+  font-size: 14px;
+  line-height: 20px;
+  white-space: nowrap;
+}
+
+.actions {
+  position: absolute;
+  z-index: 2;
+  right: 18px;
+  bottom: 18px;
+  display: flex;
+  gap: 8px;
+}
+
+.actions a {
+  display: inline-flex;
+  min-height: 44px;
+  align-items: center;
+  justify-content: center;
+  padding: 0 16px;
+  border: 1px solid rgba(0, 0, 0, 0.12);
+  border-radius: 999px;
+  background: #fee500;
+  box-shadow: 0 3px 12px rgba(0, 0, 0, 0.18);
+  color: #191919;
+  font-family: var(--font-korean);
+  font-size: 14px;
+  font-weight: 700;
+  line-height: 1;
+  text-decoration: none;
+}
+
+.actions a:focus-visible {
+  outline: 3px solid #6f45ff;
+  outline-offset: 2px;
+}
+
+@media (max-width: 767px) {
+  .actions {
+    right: 12px;
+    bottom: 12px;
+  }
+
+  .actions a {
+    padding-inline: 12px;
+    font-size: 12px;
+  }
+}

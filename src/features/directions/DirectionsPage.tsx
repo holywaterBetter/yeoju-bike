@@ -1,7 +1,7 @@
-import MediaFrame from "@/components/MediaFrame";
 import SitePageShell from "@/components/SitePageShell";
 import { withBasePath } from "@/lib/sitePaths";
-import { parkingDirections, transitDirections, visitFullAddress } from "@/lib/visitInfo";
+import { parkingDirections, transitDirections, visitFullAddress, visitLocation } from "@/lib/visitInfo";
+import KakaoMap from "./KakaoMap";
 import styles from "./DirectionsPage.module.css";
 
 type DirectionsPageProps = { className?: string };
@@ -26,14 +26,13 @@ export default function DirectionsPage({ className }: DirectionsPageProps) {
             </div>
           </header>
 
-          <MediaFrame
+          <KakaoMap
             className={styles.mapFrame}
-            aspectRatio="1200 / 626"
-            desktop={{ scale: 1.19, positionX: 0, positionY: 46.5 }}
-            mobile={{ scale: 1.33, positionX: -23, positionY: 35.5 }}
-          >
-            <img src={assets.map} alt="따르릉 자전거사랑방과 주변 주차장 위치 지도" width={1247} height={777} />
-          </MediaFrame>
+            latitude={visitLocation.latitude}
+            longitude={visitLocation.longitude}
+            placeName={visitLocation.name}
+            fallbackImage={assets.map}
+          />
 
           <div className={styles.transport}>
             <TransportSection icon={assets.car} iconAlt="" title="자가 이용 시" columns={parkingDirections} kind="parking" />

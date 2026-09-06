@@ -58,12 +58,9 @@
 }
 
 .mapFrame {
+  aspect-ratio: 1200 / 626;
   margin-top: 40px;
   background: #e4ece7;
-}
-
-.mapFrame img {
-  object-fit: cover;
 }
 
 .transport {
