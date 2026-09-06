@@ -37,13 +37,17 @@
 
 .hero p,
 .riverIntro p {
-  color: rgba(0, 0, 0, 0.72);
+  color: rgba(0, 0, 0, 0.7);
   font-family: var(--font-korean);
   font-size: 21px;
   font-weight: 400;
   letter-spacing: var(--body-tracking);
   line-height: 39px;
   word-break: keep-all;
+}
+
+.heroMobileBreak {
+  display: none;
 }
 
 .riverSection {
@@ -140,7 +144,7 @@
   width: 1204px;
   min-height: 1338px;
   margin-top: 240px;
-  transform: translateX(-4px);
+  transform: translateX(-2px);
 }
 
 .centeredTitle {
@@ -204,20 +208,30 @@
   display: inline-block;
   font-size: 42px;
   font-weight: 700;
-  letter-spacing: var(--body-tracking);
+  font-family: Figtree, "Noto Sans KR", "Apple SD Gothic Neo", "Malgun Gothic", sans-serif;
+  letter-spacing: -0.01563em;
   line-height: 60px;
 }
 
 .featureCopy p {
+  width: 100%;
   max-width: 623px;
   margin-top: 12px;
-  color: rgba(0, 0, 0, 0.72);
-  font-family: var(--font-korean);
+  color: rgba(0, 0, 0, 0.7);
+  font-family: Figtree, "Noto Sans KR", "Apple SD Gothic Neo", "Malgun Gothic", sans-serif;
   font-size: 21px;
   font-weight: 600;
   letter-spacing: var(--body-tracking);
   line-height: 39px;
-  word-break: keep-all;
+  word-break: normal;
+}
+
+.featureLine {
+  display: block;
+}
+
+.featureMobileBreak {
+  display: none;
 }
 
 .smileDecoration,
@@ -240,32 +254,33 @@
 
 .guideMarkDecoration {
   width: 71px;
-  top: -46px;
-  left: -55px;
+  top: -47px;
+  left: -36px;
 }
 
 .guideUnderlineDecoration {
   width: 216px;
-  right: -8px;
-  bottom: -18px;
+  right: -9px;
+  bottom: -6px;
 }
 
 .redDashOne {
   width: 22px;
-  top: -23px;
-  right: -24px;
+  top: -29px;
+  right: -4px;
 }
 
 .redDashTwo {
   width: 41px;
-  top: 4px;
-  right: -59px;
+  top: 5.9px;
+  right: -37.3px;
 }
 
 .senaSquiggleDecoration {
-  width: 123px;
-  right: -84px;
-  top: 28px;
+  width: 123.243px;
+  top: 107.72px;
+  right: auto;
+  left: -64.11px;
 }
 
 .journeySection {
@@ -363,9 +378,9 @@
   .hero {
     min-height: 331.36px;
     padding-block: 3px 118.96px;
-    align-items: flex-start;
+    align-items: center;
     gap: 14.4px;
-    text-align: left;
+    text-align: center;
   }
 
   .hero h1,
@@ -386,8 +401,16 @@
     line-height: 23.4px;
   }
 
-  .hero p br {
-    display: none;
+  .featureMobileBreak {
+    display: inline;
+  }
+
+  .hero p {
+    width: 100%;
+  }
+
+  .heroMobileBreak {
+    display: inline;
   }
 
   .riverSection {
@@ -505,32 +528,33 @@
 
   .guideMarkDecoration {
     width: 42.6px;
-    top: -27.6px;
-    left: -33px;
+    top: -24.6px;
+    left: -23px;
   }
 
   .guideUnderlineDecoration {
     width: 129.6px;
-    right: -4.8px;
-    bottom: -10.8px;
+    right: -5.8px;
+    bottom: -7.8px;
   }
 
   .redDashOne {
     width: 13.2px;
-    top: -13.8px;
-    right: -14.4px;
+    top: -18.8px;
+    right: 0.7px;
   }
 
   .redDashTwo {
     width: 24.6px;
-    top: 2.4px;
-    right: -35.4px;
+    top: 2.5px;
+    right: -19.3px;
   }
 
   .senaSquiggleDecoration {
     width: 73.8px;
-    right: -50.4px;
-    top: 16.8px;
+    top: 47.25px;
+    right: auto;
+    left: -14.18px;
   }
 
   .journeySection {

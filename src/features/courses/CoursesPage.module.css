@@ -179,27 +179,14 @@
 }
 
 .giftIcon,
-.iconImage,
-.iconStack,
-.iconOval {
+.iconImage {
   display: block;
   width: 69px;
   height: 69px;
 }
 
-.iconStack {
-  position: relative;
-}
-
-.iconForeground {
-  position: absolute;
-  left: 50%;
-  top: 50%;
-  display: block;
-  width: 35px;
-  height: 44px;
+.iconImage {
   object-fit: contain;
-  transform: translate(-50%, -50%);
 }
 
 .giftCard h3 {
@@ -220,7 +207,6 @@
   font-size: 20px;
   font-weight: 400;
   letter-spacing: -0.5002px;
-  line-height: 28px;
   line-height: 18px;
 }
 
@@ -406,16 +392,9 @@
   }
 
   .giftIcon,
-  .iconImage,
-  .iconStack,
-  .iconOval {
+  .iconImage {
     width: 41.4px;
     height: 41.4px;
-  }
-
-  .iconForeground {
-    width: 21px;
-    height: 26.4px;
   }
 
   .giftCard h3 {

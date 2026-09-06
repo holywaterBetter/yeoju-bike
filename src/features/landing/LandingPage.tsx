@@ -6,16 +6,17 @@ import styles from "./LandingPage.module.css";
 
 const assets = {
   riverHero: withBasePath("/assets/figma/groups/landing-river-hero-frame.webp"),
+  riverHeroMobile: withBasePath("/assets/figma/260906/landing-mobile/river.webp"),
   riverCardOne: withBasePath("/assets/figma/groups/landing-river-card-one-frame.webp"),
-  riverCardOneMobile: withBasePath("/assets/figma/mobile/tour-card-golden-river-mobile.webp"),
+  riverCardOneMobile: withBasePath("/assets/figma/260906/landing-mobile/card-one.webp"),
   riverCardTwo: withBasePath("/assets/figma/groups/landing-river-card-two-frame.webp"),
-  riverCardTwoMobile: withBasePath("/assets/figma/mcp/7126efd5-5893-4db5-a348-932564b7fd20-mobile.webp"),
+  riverCardTwoMobile: withBasePath("/assets/figma/260906/landing-mobile/card-two.webp"),
   featureOne: withBasePath("/assets/figma/groups/landing-feature-one-frame.webp"),
-  featureOneMobile: withBasePath("/assets/figma/groups/landing-feature-one-frame.webp"),
+  featureOneMobile: withBasePath("/assets/figma/260906/landing-mobile/feature-one.webp"),
   featureTwo: withBasePath("/assets/figma/groups/landing-feature-two-frame.webp"),
-  featureTwoMobile: withBasePath("/assets/figma/mcp/c57dbe85-295b-4130-9b84-401993be52c4-mobile.webp"),
+  featureTwoMobile: withBasePath("/assets/figma/260906/landing-mobile/feature-two.webp"),
   featureThree: withBasePath("/assets/figma/groups/landing-feature-three-frame.webp"),
-  featureThreeMobile: withBasePath("/assets/figma/mcp/da8bc77c-6a74-4345-98b6-f0941f96579e-mobile.webp"),
+  featureThreeMobile: withBasePath("/assets/figma/260906/landing-mobile/feature-three.webp"),
   yellowSpark: withBasePath("/assets/figma/groups/landing-yellow-spark.png"),
   smile: withBasePath("/assets/figma/groups/landing-smile.png"),
   guideMark: withBasePath("/assets/figma/mcp/7424fa6c-9d52-426c-acf0-36708e7cc0ff.svg"),
@@ -45,9 +46,9 @@ function Hero() {
     <section className={`${styles.sectionInner} ${styles.hero}`} aria-labelledby="landing-title" data-visual-id="landing-hero">
       <h1 id="landing-title">달리자! 다채로운 여주 속으로</h1>
       <p>
-        역사의 숨결이 느껴지는 남한강변을 따라 즐기는 2026 여주 자전거 시티투어
+        역사의 숨결이 느껴지는 남한강변을 따라 즐기는<span className={styles.heroMobileBreak}><br /></span> 2026 여주 자전거 시티투어
         <br />
-        해설 투어부터 자율 완주 챌린지까지, 나만의 특별한 여주 라이딩을 만나보세요!
+        해설 투어부터 자율 완주 챌린지까지,<span className={styles.heroMobileBreak}><br /></span> 나만의 특별한 여주 라이딩을 만나보세요!
       </p>
     </section>
   );
@@ -73,7 +74,7 @@ function RiverSection() {
       <ResponsiveImage
         className={styles.riverHero}
         desktopSrc={assets.riverHero}
-        mobileSrc={assets.riverHero}
+        mobileSrc={assets.riverHeroMobile}
         alt="노을이 비치는 남한강변 자전거길을 달리는 라이더"
         width={1200}
         height={706}
@@ -99,6 +100,7 @@ function SpecialSection() {
       <h2 id="special-title" className={styles.centeredTitle}>따르릉 투어의 특별함 세 가지</h2>
       <div className={styles.featureList}>
         <FeatureRow
+          feature="pas"
           desktopSrc={assets.featureOne}
           mobileSrc={assets.featureOneMobile}
           imageAlt="PAS 전기자전거로 달리는 참가자"
@@ -115,33 +117,36 @@ function SpecialSection() {
         </FeatureRow>
 
         <FeatureRow
+          feature="guide"
           reversed
           desktopSrc={assets.featureTwo}
           mobileSrc={assets.featureTwoMobile}
           imageAlt="가이드 크루와 함께 안전하게 달리는 참가자"
           title={
             <>
-              <img className={styles.guideMarkDecoration} src={assets.guideMark} alt="" width={71} height={88} aria-hidden="true" />
+              <img className={styles.guideMarkDecoration} src={assets.guideMark} alt="" width={71} height={88} aria-hidden="true" data-visual-id="guide-mark" />
               안전과 감동을 책임지는
               <br />
               가이드 크루
-              <img className={styles.guideUnderlineDecoration} src={assets.guideUnderline} alt="" width={216} height={40} aria-hidden="true" />
+              <img className={styles.guideUnderlineDecoration} src={assets.guideUnderline} alt="" width={216} height={40} aria-hidden="true" data-visual-id="guide-underline" />
             </>
           }
         >
-          전문 가이드가 대열의 선두와 후미에서 밀착 동행합니다. 안전 관리부터 명소 해설까지 투어의 처음과 끝을 든든하게 지켜드립니다.
+          <span className={styles.featureLine}>전문 가이드가 대열의 선두와 후미에서 밀착 동행합니다.</span>
+          <span className={styles.featureLine}>안전 관리부터 명소 해설까지 투어의 처음과 끝을 든든하게<span className={styles.featureMobileBreak}><br /></span> 지켜드립니다.</span>
         </FeatureRow>
 
         <FeatureRow
+          feature="sena"
           desktopSrc={assets.featureThree}
           mobileSrc={assets.featureThreeMobile}
           imageAlt="세나 인터콤이 장착된 헬멧을 착용한 참가자"
-          imageDecoration={<img className={styles.senaSquiggleDecoration} src={assets.senaSquiggle} alt="" width={123} height={40} aria-hidden="true" />}
+          imageDecoration={<img className={styles.senaSquiggleDecoration} src={assets.senaSquiggle} alt="" width={123} height={40} aria-hidden="true" data-visual-id="sena-squiggle" />}
           title={
             <>
               달리는 라디오,
-              <img className={styles.redDashOne} src={assets.redDashOne} alt="" width={22} height={38} aria-hidden="true" />
-              <img className={styles.redDashTwo} src={assets.redDashTwo} alt="" width={41} height={19} aria-hidden="true" />
+              <img className={styles.redDashOne} src={assets.redDashOne} alt="" width={22} height={38} aria-hidden="true" data-visual-id="sena-red-dash-one" />
+              <img className={styles.redDashTwo} src={assets.redDashTwo} alt="" width={41} height={19} aria-hidden="true" data-visual-id="sena-red-dash-two" />
               <br />
               세나 인터콤
             </>
@@ -155,6 +160,7 @@ function SpecialSection() {
 }
 
 type FeatureRowProps = {
+  feature: "pas" | "guide" | "sena";
   desktopSrc: string;
   mobileSrc: string;
   imageAlt: string;
@@ -164,9 +170,9 @@ type FeatureRowProps = {
   imageDecoration?: ReactNode;
 };
 
-function FeatureRow({ desktopSrc, mobileSrc, imageAlt, title, children, reversed = false, imageDecoration }: FeatureRowProps) {
+function FeatureRow({ feature, desktopSrc, mobileSrc, imageAlt, title, children, reversed = false, imageDecoration }: FeatureRowProps) {
   return (
-    <article className={`${styles.featureRow} ${reversed ? styles.reversed : ""}`}>
+    <article className={`${styles.featureRow} ${reversed ? styles.reversed : ""}`} data-feature={feature} data-visual-id={`landing-feature-${feature}`}>
       <div className={styles.featureImage}>
         <ResponsiveImage desktopSrc={desktopSrc} mobileSrc={mobileSrc} alt={imageAlt} width={540} height={350} />
         {imageDecoration}

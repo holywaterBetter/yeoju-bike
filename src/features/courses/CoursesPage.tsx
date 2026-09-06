@@ -34,14 +34,12 @@ const decorations: Record<CourseAnchor, Decoration> = {
 
 const giftAssets = {
   decoration: withBasePath("/assets/figma/groups/courses-gift-decoration.png"),
-  mask: withBasePath("/assets/figma/mcp/93cbe394-9c05-4d99-8f39-3f425e6a6e0d.svg"),
-  ovalBlue: withBasePath("/assets/figma/mcp/261415ef-f7ad-469f-a2bb-df9d47e5b520.svg"),
-  keyring: withBasePath("/assets/figma/mcp/42cef7f0-21d9-486d-b54f-03929f4fee80.svg"),
-  ovalYellow: withBasePath("/assets/figma/mcp/a44d3d69-27a3-4600-8d86-50bfbf9b607d.svg"),
-  camera: withBasePath("/assets/figma/mcp/e404ea38-5482-46ba-8e86-274235ce055d.svg"),
-  clickerKeyring: withBasePath("/assets/figma/mcp/35e38e5b-16ab-4234-b890-f589852d9635.svg"),
-  pottery: withBasePath("/assets/figma/mcp/4745acfa-e7a7-4c39-a23a-3b415f48cf3b.svg"),
-  tshirt: withBasePath("/assets/figma/mcp/gift-tshirt.svg"),
+  mask: withBasePath("/assets/figma/260906/gifts/mask.png"),
+  keyring: withBasePath("/assets/figma/260906/gifts/keyring.png"),
+  camera: withBasePath("/assets/figma/260906/gifts/camera.png"),
+  clickerKeyring: withBasePath("/assets/figma/260906/gifts/clicker-keyring.png"),
+  pottery: withBasePath("/assets/figma/260906/gifts/pottery.png"),
+  tshirt: withBasePath("/assets/figma/260906/gifts/tshirt.png"),
 };
 
 type GiftIconKey = "mask" | "keyring" | "camera" | "clickerKeyring" | "pottery" | "tshirt";
@@ -84,7 +82,15 @@ function BookingCourseSection({ tour, priority }: { tour: TourCatalogItem; prior
     >
       <div className={styles.courseCopy}>
         <div className={styles.titleWrap}>
-          <img className={styles.courseDecoration} src={decoration.src} alt="" width={decoration.width} height={decoration.height} aria-hidden="true" />
+          <img
+            className={styles.courseDecoration}
+            src={decoration.src}
+            alt=""
+            width={decoration.width}
+            height={decoration.height}
+            aria-hidden="true"
+            data-visual-id={`course-decoration-${tour.anchor}`}
+          />
           <h2 id={`${tour.anchor}-title`}>
             {tour.anchor === courseAnchors.kYeoju ? (
               <>
@@ -116,7 +122,7 @@ function GiftSection() {
       <div className={styles.giftGrid}>
         {giftItems.map((gift) => (
           <article className={styles.giftCard} key={gift.title}>
-            <div className={styles.giftIcon} aria-hidden="true">
+            <div className={styles.giftIcon} aria-hidden="true" data-gift-icon={gift.icon}>
               <GiftIcon icon={gift.icon} />
             </div>
             <h3>{gift.title}</h3>
@@ -129,17 +135,5 @@ function GiftSection() {
 }
 
 function GiftIcon({ icon }: { icon: GiftIconKey }) {
-  if (icon === "mask" || icon === "pottery" || icon === "tshirt") {
-    return <img className={styles.iconImage} src={giftAssets[icon]} alt="" width={69} height={69} />;
-  }
-
-  const isBlue = icon === "keyring";
-  const foreground = icon === "keyring" ? giftAssets.keyring : icon === "camera" ? giftAssets.camera : giftAssets.clickerKeyring;
-
-  return (
-    <span className={styles.iconStack}>
-      <img className={styles.iconOval} src={isBlue ? giftAssets.ovalBlue : giftAssets.ovalYellow} alt="" width={69} height={69} />
-      <img className={styles.iconForeground} src={foreground} alt="" width={34} height={44} />
-    </span>
-  );
+  return <img className={styles.iconImage} src={giftAssets[icon]} alt="" width={69} height={69} />;
 }
