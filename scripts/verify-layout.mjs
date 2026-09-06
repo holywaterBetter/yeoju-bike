@@ -5,7 +5,7 @@ const baseUrl = process.env.LAYOUT_BASE_URL || process.env.RESPONSIVE_BASE_URL |
 
 const pages = [
   { route: "/", key: "landing", referenceHeights: { 1440: 5440, 402: 4107 } },
-  { route: "/courses/", key: "courses", referenceHeights: { 1440: 5247, 402: 3828 } },
+  { route: "/courses/", key: "courses", referenceHeights: { 1440: 5247, 402: 3875 } },
   { route: "/reservation/", key: "directions", referenceHeights: { 1440: 2602, 402: 1883 } },
 ];
 
@@ -96,6 +96,7 @@ async function checkPage(pageSpec, viewport) {
         backdropBackground: getComputedStyle(document.querySelector("[data-page-backdrop]")).backgroundImage,
         backdropBackgroundSize: getComputedStyle(document.querySelector("[data-page-backdrop]")).backgroundSize,
         metrics: {
+          siteHeader: rectFor("[data-site-header]"),
           firstCourse: rectFor("[data-course-anchor]"),
           firstCourseTitle: rectFor("[data-course-anchor] h2"),
           firstDecoration: rectFor('[data-visual-id="course-decoration-hangul-tour"]'),
@@ -210,16 +211,24 @@ async function checkPage(pageSpec, viewport) {
     }
 
     if (pageSpec.key === "courses" && viewport.width === 402) {
-      assertRect(label, "first course", result.metrics.firstCourse, { x: 24, y: 106, width: 354, height: 504.8 });
-      assertRect(label, "first decoration", result.metrics.firstDecoration, { x: 16, y: 65.8, width: 236.4, height: 92.4 });
-      assertRect(label, "booking visual", result.metrics.bookingVisual, { x: 142.4, y: 177, width: 117.2, height: 37.8 });
-      assertRect(label, "carousel", result.metrics.carousel, { x: 24, y: 241.2, width: 354, height: 369.6 });
-      assertRect(label, "carousel dots", result.metrics.carouselDots, { x: 174, y: 604.8, width: 54, height: 6 });
-      assertRect(label, "golden bell decoration", result.metrics.bellDecoration, { x: 275.03, y: 659.2, width: 117, height: 92.4 });
+      assertRect(label, "site header", result.metrics.siteHeader, { x: 0, y: 0, width: 402, height: 103 });
+      assertRect(label, "first course", result.metrics.firstCourse, { x: 24, y: 153, width: 354, height: 504.8 });
+      assertRect(label, "first decoration", result.metrics.firstDecoration, { x: 16, y: 112.8, width: 236.4, height: 92.4 });
+      assertRect(label, "booking visual", result.metrics.bookingVisual, { x: 142.4, y: 224, width: 117.2, height: 37.8 });
+      assertRect(label, "carousel", result.metrics.carousel, { x: 24, y: 288.2, width: 354, height: 369.6 });
+      assertRect(label, "carousel dots", result.metrics.carouselDots, { x: 174, y: 651.8, width: 54, height: 6 });
+      assertRect(label, "golden bell decoration", result.metrics.bellDecoration, { x: 275.03, y: 706.2, width: 117, height: 92.4 });
       assertGiftIcons(label, result.giftIcons, 41.4, [
-        [88.8, 2817.8], [271.8, 2817.8], [88.8, 2984.45],
-        [271.8, 2984.45], [88.8, 3151.11], [271.8, 3151.11],
+        [88.8, 2864.8], [271.8, 2864.8], [88.8, 3031.45],
+        [271.8, 3031.45], [88.8, 3198.11], [271.8, 3198.11],
       ]);
+      if (
+        result.metrics.firstDecoration
+        && result.metrics.siteHeader
+        && result.metrics.firstDecoration.y < result.metrics.siteHeader.y + result.metrics.siteHeader.height + 8
+      ) {
+        failures.push(`${label}: first decoration overlaps the sticky header`);
+      }
       if (result.typography?.lineHeight !== "50.4px" || result.typography?.letterSpacing !== "normal") {
         failures.push(`${label}: mobile course title typography is not 36/50.4 with normal tracking`);
       }
