@@ -125,9 +125,11 @@ function SpecialSection() {
           title={
             <>
               <img className={styles.guideMarkDecoration} src={assets.guideMark} alt="" width={71} height={88} aria-hidden="true" data-visual-id="guide-mark" />
-              안전과 감동을 책임지는
-              <br />
-              가이드 크루
+              <span className={styles.guideTitleText} data-visual-id="guide-title-text">
+                안전과 감동을 책임지는
+                <br />
+                가이드 크루
+              </span>
               <img className={styles.guideUnderlineDecoration} src={assets.guideUnderline} alt="" width={216} height={40} aria-hidden="true" data-visual-id="guide-underline" />
             </>
           }

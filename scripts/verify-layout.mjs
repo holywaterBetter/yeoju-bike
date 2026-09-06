@@ -74,6 +74,8 @@ async function checkPage(pageSpec, viewport) {
           letterSpacing: style.letterSpacing,
           lineHeight: style.lineHeight,
           wordBreak: style.wordBreak,
+          zIndex: style.zIndex,
+          isolation: style.isolation,
         };
       };
 
@@ -131,6 +133,9 @@ async function checkPage(pageSpec, viewport) {
         }),
         footerLogoMetrics: Array.from(document.querySelectorAll('[data-visual-id="footer-logos"] img')).map(rectOf),
         featureTitleStyle: styleFor('[data-feature="guide"] h3'),
+        guideTitleTextStyle: styleFor('[data-visual-id="guide-title-text"]'),
+        guideMarkStyle: styleFor('[data-visual-id="guide-mark"]'),
+        guideUnderlineStyle: styleFor('[data-visual-id="guide-underline"]'),
         featureBodyStyle: styleFor('[data-feature="guide"] p'),
         footerStyle: styleFor("[data-contact-footer]"),
         footerTitleStyle: styleFor('[data-visual-id="footer-title"]'),
@@ -234,6 +239,7 @@ async function checkPage(pageSpec, viewport) {
       assertRect(label, "sena second dash", result.metrics.senaDashTwo, { x: 940.69, y: 3452.39, width: 41, height: 19 });
       assertTypography(label, result.featureTitleStyle, { fontSize: "42px", lineHeight: "60px", letterSpacing: "-0.65646px", fontWeight: "700" }, "feature title");
       assertTypography(label, result.featureBodyStyle, { fontSize: "21px", lineHeight: "39px", letterSpacing: "-0.651px", fontWeight: "600", color: "rgba(0, 0, 0, 0.7)", wordBreak: "normal" }, "feature body");
+      assertGuideTitleLayering(label, result);
     }
 
     if (pageSpec.key === "landing" && viewport.width === 402) {
@@ -249,6 +255,7 @@ async function checkPage(pageSpec, viewport) {
       assertRect(label, "sena second dash", result.metrics.senaDashTwo, { x: 167.06, y: 2757.45, width: 24.59, height: 11.39 });
       assertTypography(label, result.featureTitleStyle, { fontSize: "25.2px", lineHeight: "36px", letterSpacing: "-0.393876px", fontWeight: "700" }, "feature title");
       assertTypography(label, result.featureBodyStyle, { fontSize: "12.6px", lineHeight: "23.4px", letterSpacing: "-0.3906px", fontWeight: "600", color: "rgba(0, 0, 0, 0.7)", wordBreak: "normal" }, "feature body");
+      assertGuideTitleLayering(label, result);
     }
 
     const expectedHeight = pageSpec.referenceHeights[viewport.width];
@@ -287,6 +294,14 @@ function assertGiftIcons(label, icons, visualSize, positions) {
     if (icon.naturalWidth !== 69 || icon.naturalHeight !== 69) failures.push(`${label}: gift icon ${icon.key} source is not a 69x69 Figma group export`);
     if (!icon.src.includes("/assets/figma/260906/gifts/")) failures.push(`${label}: gift icon ${icon.key} does not use the corrected Figma group asset`);
   });
+}
+
+function assertGuideTitleLayering(label, result) {
+  if (result.featureTitleStyle?.isolation !== "isolate") failures.push(`${label}: guide title is not an isolated stacking context`);
+  if (result.guideTitleTextStyle?.zIndex !== "1") failures.push(`${label}: guide title text is not above its decorations`);
+  if (result.guideMarkStyle?.zIndex !== "0" || result.guideUnderlineStyle?.zIndex !== "0") {
+    failures.push(`${label}: guide decorations are not behind the title text`);
+  }
 }
 
 function assertFooter(label, result, width) {

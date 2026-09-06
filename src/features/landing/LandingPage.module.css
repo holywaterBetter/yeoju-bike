@@ -205,12 +205,18 @@
 
 .featureCopy h3 {
   position: relative;
+  isolation: isolate;
   display: inline-block;
   font-size: 42px;
   font-weight: 700;
   font-family: Figtree, "Noto Sans KR", "Apple SD Gothic Neo", "Malgun Gothic", sans-serif;
   letter-spacing: -0.01563em;
   line-height: 60px;
+}
+
+.guideTitleText {
+  position: relative;
+  z-index: 1;
 }
 
 .featureCopy p {
@@ -256,12 +262,14 @@
   width: 71px;
   top: -47px;
   left: -36px;
+  z-index: 0;
 }
 
 .guideUnderlineDecoration {
   width: 216px;
   right: -9px;
   bottom: -6px;
+  z-index: 0;
 }
 
 .redDashOne {
