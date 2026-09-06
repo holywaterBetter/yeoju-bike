@@ -39,7 +39,7 @@ const giftAssets = {
   camera: withBasePath("/assets/figma/260906/gifts/camera.png"),
   clickerKeyring: withBasePath("/assets/figma/260906/gifts/clicker-keyring.png"),
   pottery: withBasePath("/assets/figma/260906/gifts/pottery.png"),
-  tshirt: withBasePath("/assets/figma/260906/gifts/tshirt.png"),
+  tshirt: withBasePath("/assets/figma/mcp/gift-tshirt.svg"),
 };
 
 type GiftIconKey = "mask" | "keyring" | "camera" | "clickerKeyring" | "pottery" | "tshirt";

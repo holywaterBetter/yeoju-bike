@@ -321,7 +321,10 @@ function assertGiftIcons(label, icons, visualSize, positions) {
     assertRect(label, `gift icon ${icon.key}`, icon.rect, { x: positions[index][0], y: positions[index][1], width: visualSize, height: visualSize });
     assertRect(label, `gift icon image ${icon.key}`, icon.imageRect, { x: positions[index][0], y: positions[index][1], width: visualSize, height: visualSize });
     if (icon.naturalWidth !== 69 || icon.naturalHeight !== 69) failures.push(`${label}: gift icon ${icon.key} source is not a 69x69 Figma group export`);
-    if (!icon.src.includes("/assets/figma/260906/gifts/")) failures.push(`${label}: gift icon ${icon.key} does not use the corrected Figma group asset`);
+    const usesApprovedAsset = icon.key === "tshirt"
+      ? icon.src.endsWith("/assets/figma/mcp/gift-tshirt.svg")
+      : icon.src.includes("/assets/figma/260906/gifts/");
+    if (!usesApprovedAsset) failures.push(`${label}: gift icon ${icon.key} does not use its approved Figma asset`);
   });
 }
 

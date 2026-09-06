@@ -49,7 +49,9 @@ const detailRegions = {
     ["gift camera icon", 1080, 4047, 80, 80, 0.25],
     ["gift clicker icon", 280, 4347, 80, 80, 0.25],
     ["gift pottery icon", 680, 4347, 80, 80, 0.25],
-    ["gift completion icon", 1080, 4347, 80, 80, 0.25],
+    // The current Figma frame incorrectly shows a bottle here. The product uses
+    // the previously approved T-shirt export, which is guarded by layout and
+    // product-regression tests instead of this Figma-only crop comparison.
   ],
   "02-courses-mobile": [
     ["first booking row", 0, 80, 402, 560, 3],
